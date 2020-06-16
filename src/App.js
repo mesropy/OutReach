@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import Home from './react-components/Home';
-
+import Register from "./react-components/Register"
 
 class App extends React.Component {
 
@@ -15,6 +15,8 @@ class App extends React.Component {
             { /* Each Route below shows a different component depending on the exact path in the URL  */ }
             <Route exact path='/' render={() => 
                             (<Home />)}/>
+            <Route exact path='/Register' render={() => 
+                            (<Register />)}/>                
           </Switch>
         </BrowserRouter>
       </div>
