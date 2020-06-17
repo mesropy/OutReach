@@ -1,18 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
+import Button from 'react-bootstrap/Button';
 
-import "./styles.css";
+import './styles.css';
 
-/* Component for the Home page */
+import RegisterForm from './RegisterForm'
+
+/* Component for the Register page */
 class Register extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: "",
+      password: "",
+      confirmPassword: "",
+      phoneNumber: "",
+      city: "",
+      age: ""
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const value = e.target.value;
+    const name = e.target.name;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleSubmit(e) {
+    console.log(e.target.value);
+  }
+
   render() {
     return (
-      <div className="home__bg-image center">
-        <Link  to={"./../Queue"}>
-               { /* Using the global state variable from App.js */}
-          <Button className="home__button">Go to the Queue {this.props.state.abc}</Button>
-        </Link> 
+      <div>
+        <Link to={"./../"}>
+          <Button variant="primary">Home</Button>
+        </Link>
+        <h1 className="text-center">OutReach</h1>
+        <RegisterForm></RegisterForm>
       </div>
     );
   }
