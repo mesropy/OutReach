@@ -34,7 +34,7 @@ class RegisterForm extends React.Component {
                         Confirm Password: 
                     </Form.Label>
                     <Col sm={3}>
-                        <Form.Control type="text" />
+                        <Form.Control type="password" />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlid="formPhoneNumber" className="justify-content-md-center">
