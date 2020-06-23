@@ -1,0 +1,15 @@
+/* styles for account navigation component */
+
+/* set position */
+.account_nav {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* change look of button when hovered over */
+.MuiButton-root.account_button:hover {
+  text-decoration: none;
+  color: #147E7D;
+
+}
