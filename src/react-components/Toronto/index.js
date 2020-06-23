@@ -2,38 +2,35 @@ import React from "react";
 import '../main_styles.css';
 import './styles.css';
 import { Link } from "react-router-dom";
-import logo from './static/logo.png';
+// import logo from './static/logo.png';
 import profilePicture from './static/profile_picture.png';
 
 class Toronto extends React.Component {
     render() {
         return (
             <div>
-                <meta charSet="utf-8" />
+                {/* <meta charSet="utf-8" />
                 <title>Toronto</title>
-                <link rel="stylesheet" type="text/css" href="styles.css" />
+                <link rel="stylesheet" type="text/css" href="styles.css" /> */}
                 
                 <div className="topBar">
                     <Link to={"./../World"}>
                         &lt; World Map
                     </Link>
 
-                    {/* <a href="../World" className="left">
-                        &lt; World Map
-                    </a> */}
-
-                    <a href className="mid">TORONTO</a>
+                    <Link to={"./../Toronto"} className="mid">
+                        TORONTO
+                    </Link>
 
                     <div className="rightBar">
-                        {/* add pic */}
-                        <a href>
+                        <Link to={""}>
                             <div id="userBlock">
                                 <img id="icon" src={profilePicture} alt="user icon" />
                                 <p id="username">user</p>
                             </div>
-                        </a>
-                        <a href className="actionCorner">log in</a>
-                        <a href className="action">sign up</a>
+                        </Link>
+                        <Link to={""} className="actionCorner">log in</Link>
+                        <Link to={"./../Register"} className="action">sign up</Link>
                     </div>
                 </div>
 
@@ -60,3 +57,4 @@ class Toronto extends React.Component {
 }
 
 export default Toronto;
+

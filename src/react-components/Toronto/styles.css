@@ -1,6 +1,6 @@
-#bd {
+/* #bd {
     margin: 0px;
-}
+} */
 
 a {
     text-decoration: none;
@@ -18,7 +18,7 @@ a {
     background: yellow;
     padding: 20px;
     margin: 20px;
-    width: 200px;
+    width: 250px;
 }
 
 .topBar {

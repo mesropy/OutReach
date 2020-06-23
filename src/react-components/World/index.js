@@ -10,31 +10,29 @@ class World extends React.Component {
     render() {
         return (
             <div>
-            <meta charSet="utf-8" />
+            {/* <meta charSet="utf-8" />
             <title>OutReach</title>
-            <link rel="stylesheet" type="text/css" href="styles.css" />
+            <link rel="stylesheet" type="text/css" href="styles.css" /> */}
 
             <div className="login">
               <ul>
                 {/* TODO: link to login & signup pages */}
-                <a href className="leftLogin">login</a>
-                <a href className="rightSignup">sign up</a>
+                <Link to={""} className="leftLogin">login</Link>
+                <Link to={"./../Register"} href className="rightSignup">sign up</Link>
               </ul>
             </div>
 
             <div id="user">
               {/* TODO: link to user page */}
-              <a href id="userBlock">
-                {/* TODO: add user icon */}
+              <Link to={""} id="userBlock">
                 <img className="icon" src={profilePicture} alt="user icon" />
                 <p id="name">user</p>
-              </a>
+              </Link>
             </div>
 
             <div className="header">
               <ul>
                 <li><p id="NAME">OutReach</p></li>
-                {/* TODO: add hand logo */}
                 <li><img id="logo" src={logo} alt="The hand logo" /></li>
                 <li><p id="slogan">connecting through stories through COVID-19</p></li>
               </ul>
@@ -53,15 +51,16 @@ class World extends React.Component {
               <div className="cityCard">
                 <div id="topCard">
                   <h3>TORONTO</h3>
-                  {/* TODO: add Toronto pic */}
                   <img id="cityPic" className src={torontoPicture} alt="picture of city" />
                 </div>
 
-                <div id="bottomCard">
-                  {/* TODO: link to city page */}
-                  <h4><Link to={"./../Toronto"}>ENTER =&gt;</Link></h4>
-                  {/* <h4><a href="../Toronto/toronto.html">ENTER =&gt;</a></h4> */}
-                </div>
+              <div id="bottomCard">
+                <h4>
+                  <Link to={"./../Toronto"}>
+                    ENTER =&gt;
+                  </Link>
+                </h4>
+              </div>
 
               </div>
             </div>
