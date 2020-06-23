@@ -12,6 +12,9 @@ class Home extends React.Component {
         <Link to={"./../Register"}>
           <Button variant="primary">Register</Button>
         </Link>
+        <Link to={"./../Admin"}>
+          <Button variant="primary">Admin</Button>
+        </Link>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './react-components/Home';
 import Register from "./react-components/Register"
+import Admin from "./react-components/Admin"
 
 class App extends React.Component {
 
@@ -16,7 +17,9 @@ class App extends React.Component {
             <Route exact path='/' render={() => 
                             (<Home />)}/>
             <Route exact path='/Register' render={() => 
-                            (<Register />)}/>                
+                            (<Register />)}/>
+            <Route exact path='/Admin' render={() =>
+                            (<Admin />)}/>             
           </Switch>
         </BrowserRouter>
       </div>
