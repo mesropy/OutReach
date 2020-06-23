@@ -1,4 +1,5 @@
 import React from "react";
+import '../main_styles.css'
 import './styles.css';
 
 import RegisterForm from './RegisterForm'
