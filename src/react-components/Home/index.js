@@ -1,21 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+
 import './styles.css';
 
+// import components
+import Header from "./Header";
+import MapSelection from "./MapSelection";
+import AccountNavigation from "./AccountNavigation";
+
+// customize theme
+import { MuiThemeProvider, createMuiTheme  } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#147E7D",
+    },
+    secondary: {
+      main: "#C73E4E",
+    },
+  },
+});
 
 /* Component for the Home page */
 class Home extends React.Component {
+/*
+  state = {
+    username: "username"
+  }
+*/
   render() {
     return (
-      <div >
-        <Link to={"./../Register"}>
-          <Button variant="primary">Register</Button>
-        </Link>
-        <Link to={"./../Admin"}>
-          <Button variant="primary">Admin</Button>
-        </Link>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <AccountNavigation /*username={ this.state.username }*/ />
+        <Header />
+        <MapSelection />
+      </MuiThemeProvider>
     );
   }
 }
