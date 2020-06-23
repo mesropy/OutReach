@@ -5,6 +5,8 @@ import './App.css';
 import Home from './react-components/Home';
 import Register from "./react-components/Register"
 import Admin from "./react-components/Admin"
+import World from "./react-components/World"
+import Toronto from "./react-components/Toronto"
 
 class App extends React.Component {
 
@@ -19,7 +21,11 @@ class App extends React.Component {
             <Route exact path='/Register' render={() => 
                             (<Register />)}/>
             <Route exact path='/Admin' render={() =>
-                            (<Admin />)}/>             
+                            (<Admin />)}/>
+            <Route exact path='/World' render={() =>
+                            (<World />)}/>
+            <Route exact path='/Toronto' render={() =>
+                            (<Toronto />)}/>
           </Switch>
         </BrowserRouter>
       </div>

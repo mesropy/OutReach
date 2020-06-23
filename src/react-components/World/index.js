@@ -1,6 +1,10 @@
 import React from "react";
-import '../main_styles.css'
+import '../main_styles.css';
 import './styles.css';
+import { Link } from "react-router-dom";
+import logo from '../Toronto/static/logo.png';
+import profilePicture from '../Toronto/static/profile_picture.png';
+import torontoPicture from '../Toronto/static/yyz.jpg';
 
 class World extends React.Component {
     render() {
@@ -22,7 +26,7 @@ class World extends React.Component {
               {/* TODO: link to user page */}
               <a href id="userBlock">
                 {/* TODO: add user icon */}
-                <img className="icon" src="dog.jpg" alt="user icon" />
+                <img className="icon" src={profilePicture} alt="user icon" />
                 <p id="name">user</p>
               </a>
             </div>
@@ -31,7 +35,7 @@ class World extends React.Component {
               <ul>
                 <li><p id="NAME">OutReach</p></li>
                 {/* TODO: add hand logo */}
-                <li><img id="logo" src="dog.jpg" alt="The hand logo" /></li>
+                <li><img id="logo" src={logo} alt="The hand logo" /></li>
                 <li><p id="slogan">connecting through stories through COVID-19</p></li>
               </ul>
             </div>
@@ -50,12 +54,13 @@ class World extends React.Component {
                 <div id="topCard">
                   <h3>TORONTO</h3>
                   {/* TODO: add Toronto pic */}
-                  <img id="cityPic" className src="dog.jpg" alt="picture of city" />
+                  <img id="cityPic" className src={torontoPicture} alt="picture of city" />
                 </div>
 
                 <div id="bottomCard">
                   {/* TODO: link to city page */}
-                  <h4><a href="../Toronto/toronto.html">ENTER =&gt;</a></h4>
+                  <h4><Link to={"./../Toronto"}>ENTER =&gt;</Link></h4>
+                  {/* <h4><a href="../Toronto/toronto.html">ENTER =&gt;</a></h4> */}
                 </div>
 
               </div>
