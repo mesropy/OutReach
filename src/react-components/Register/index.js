@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-
 import './styles.css';
 
 import RegisterForm from './RegisterForm'
+import LeftSideHeader from './LeftSideHeader'
 
 /* Component for the Register page */
 class Register extends React.Component {
@@ -38,10 +36,7 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-        <Link to={"./../"}>
-          <Button variant="primary">Home</Button>
-        </Link>
-        <h1 className="text-center">OutReach</h1>
+        <LeftSideHeader></LeftSideHeader>
         <RegisterForm></RegisterForm>
       </div>
     );
