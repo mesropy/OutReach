@@ -18,7 +18,7 @@ class World extends React.Component {
               <ul>
                 {/* TODO: link to login & signup pages */}
                 <Link to={""} className="leftLogin">login</Link>
-                <Link to={"./../Register"} href className="rightSignup">sign up</Link>
+                <Link to={"./../Register"} className="rightSignup">sign up</Link>
               </ul>
             </div>
 
