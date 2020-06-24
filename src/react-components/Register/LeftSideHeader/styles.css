@@ -1,0 +1,45 @@
+#back {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+    background-color: lightgrey;
+    color: rgb(95, 95, 95);
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#header_background {
+    float: left;
+    background-color: lightgrey;
+    height: 100vh;
+    width: 50vw;
+}
+
+#header {
+    display: inline-block;
+    position: relative;
+    top: 15vh;
+    left: 15vw;
+}
+
+#header h1 {
+    float: left;
+    font-size: 60px;
+}
+
+#header img {
+    position: relative;
+    left: 1vw;
+    height: 72px;
+}
+
+#tagline {
+    display: inline-block;
+    position: relative;
+    top: 15vh;
+    left: 17vw;
+    text-align: center;
+
+}
