@@ -1,5 +1,4 @@
-/* header with (1) website name OutReach, (2) logo, & (3) slogan */
-.header img {
+/* .header img {
     vertical-align: middle;
     height: 80px;
 }
@@ -17,7 +16,7 @@
 #NAME {
     font-size: 200%;
 	font-weight: bold;
-}
+} */
 
 .rightArea {
     position: absolute;
