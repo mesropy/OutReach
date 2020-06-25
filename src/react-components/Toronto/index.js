@@ -5,11 +5,26 @@ import './styles.css';
 // import profilePicture from './static/profile_picture.png';
 import PanelCard from "./PanelCard";
 import CaseReport from "./CaseReport";
+import SafetyInfo from "./SafetyInfo";
+import PopupButton from "./MessageAdder";
 
 class Toronto extends React.Component {
+
+    state = {
+        username: ""
+        // date: new Date(),
+        // messages: [
+        //   { name: "James", content: "What a beautiful day!" },
+        //   { name: "Kate", content: "Kinda worried about " }
+        // ]
+    }
+
     render() {
+
         return (
             <div>
+
+                {/* old top bar commented out at the end of this file, styles commented out too*/}
 
                 <div className="sidePanel">
                     <CaseReport
@@ -19,14 +34,14 @@ class Toronto extends React.Component {
                         status="Yellow"
                     />
 
-                    <PanelCard
-                        title="Safety info"
-                    />
+                    <SafetyInfo/>
 
                     <PanelCard
                         title="Poll Question"
                     />
                 </div>
+
+                <PopupButton/>
             </div>
         );
     }
