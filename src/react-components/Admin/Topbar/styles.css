@@ -1,0 +1,39 @@
+#appbar {
+    box-shadow: none;
+}
+
+#toolbar_div {
+    background-color: rgb(221, 221, 221);
+}
+
+#back_div {
+    width: 200px;
+}
+
+h3 {
+    float: left;
+}
+
+#logo {
+    position: relative;
+    left: 1vw;
+    height: 34px;
+}
+
+#admin_div {
+    width: 100px;
+    height: 41px;
+    position: absolute;
+    right: 2%;
+}
+
+
+#profile_pic {
+    float: left;
+}
+
+h5 {
+    top: 7px;
+    position: relative;
+    color: rgb(68, 67, 67);
+}
