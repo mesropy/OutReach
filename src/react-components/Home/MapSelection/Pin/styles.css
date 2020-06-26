@@ -1,0 +1,31 @@
+/* styles for pin component */
+
+.Toronto {
+  left: 25%;
+  bottom: 62%;
+  position: absolute;
+}
+
+.Paris {
+  left: 46%;
+  bottom: 64%;
+  position: absolute;
+}
+
+.pin_button {
+  border: 0;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.pin_button:hover {
+  background: rgba(224,224,224,0.5);;
+}
+
+.MuiButton-root .pin_button {
+  min-width: 0;
+}
+
+.MuiButton-root .pin_button {
+  min-width: 0;
+}

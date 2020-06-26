@@ -1,5 +1,12 @@
-.world_map {
-  width: 90%;
-  margin-left: 5%;
+/* styles for map selection component */
+
+.container {
+  display: block;
+  position: relative;
   margin-top: 15px;
+  border-radius: 10px;
+}
+
+.world_map {
+  width: 100%;
 }
