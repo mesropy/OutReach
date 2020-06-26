@@ -10,11 +10,11 @@
     width: 200px;
 }
 
-h3 {
+#back_div h3 {
     float: left;
 }
 
-#logo {
+#back_div img {
     position: relative;
     left: 1vw;
     height: 34px;
@@ -28,11 +28,11 @@ h3 {
 }
 
 
-#profile_pic {
+#admin_div img {
     float: left;
 }
 
-h5 {
+#admin_div h5 {
     top: 7px;
     position: relative;
     color: rgb(68, 67, 67);
