@@ -9,6 +9,7 @@ import SafetyInfo from "./SafetyInfo";
 import PopupButton from "./PostAdder";
 import Post from "./Post";
 import TopBar from "./TopBar";
+import AccountNavigation from "./../Home/AccountNavigation"
 
 class Toronto extends React.Component {
 
@@ -49,19 +50,19 @@ class Toronto extends React.Component {
 
                 <Post
                     username="Brian"
-                    content="Remote work is great. I have more time doing fun things with my family! 
-                    Remote work is great. I have more time doing fun things with my family! 
+                    content="Remote work is great. I have more time doing fun things with my family!
+                    Remote work is great. I have more time doing fun things with my family!
                     Remote work is great. I have more time doing fun things with my family!
                     Remote work is great. I have more time doing fun things with my family!"
                 />
 
                 {/* button for adding a new message */}
                 <PopupButton/>
+                
+                <AccountNavigation />
             </div>
         );
     }
 }
 
 export default Toronto;
-
-
