@@ -1,0 +1,27 @@
+.post {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 350px 20px 20px;
+    border-radius: 25px;
+    overflow: auto;
+    height: auto;
+    width: 600px;
+    float: right;
+}
+
+.iconContainer {
+    float: left;
+    width: 70px;
+}
+
+.iconContainer img {
+    margin: 5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.postContent {
+	margin: 10px;
+	margin-left: 80px;
+}

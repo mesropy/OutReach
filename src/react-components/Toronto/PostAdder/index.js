@@ -20,9 +20,9 @@ class Popup extends React.Component {
           // onChange=
         />
 
-        <Button variant="contained" onClick={this.props.closePopup}>Cancel</Button>
-        <Button variant="contained" onClick={this.props.closePopup}>Set Location</Button>
-        <Button variant="contained" onClick={this.props.closePopup}>Post</Button>
+        <Button variant="outlined" onClick={this.props.closePopup}>Cancel</Button>
+        <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
+        <Button variant="outlined" onClick={this.props.closePopup}>Post</Button>
       </div>
     );
   }
