@@ -23,7 +23,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
+/* 
 .rightBar {
     text-decoration: none;
     color: black;
@@ -54,4 +54,4 @@
 #topBar-Username {
     float: right;
     margin: 0px 0px 0px 5px;
-}
+} */

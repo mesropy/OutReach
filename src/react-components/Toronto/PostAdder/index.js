@@ -1,9 +1,38 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import './styles.css';
+// import PostList from "../PostList";
 
 class Popup extends React.Component {
+
+  addPost = event => {
+    // let posts = this.props.list;
+    // const username = this.props.name;
+    // const content = this.props.content;
+    // const newPost = [username, content];
+    // posts.push(newPost)
+    // this.setState({
+    //   list: posts
+    // });
+  };
+
+  handleInput = event => {
+    // const newContent = event.target.value;
+    // this.setState({
+    //   content: newContent
+    // });
+// console.log(newContent);
+  };
+
+  handleSubmit = event => {
+    this.props.closePopup();
+    this.addPost(this);
+  };
+
   render() {
+
+    // const {name, content, list, closePopup} = this.props;
+    
     return(
       <div className="popupWindow">
         <h3>{this.props.title}</h3>
@@ -17,18 +46,18 @@ class Popup extends React.Component {
           defaultValue="Share your thoughts"
           fullWidth={true}
           variant="outlined"
-          // onChange=
+          onChange={this.handleInput}
         />
 
         <Button variant="outlined" onClick={this.props.closePopup}>Cancel</Button>
         <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
-        <Button variant="outlined" onClick={this.props.closePopup}>Post</Button>
+        <Button variant="outlined" onClick={this.handleSubmit}>Post</Button>
       </div>
     );
   }
 }
 
-class PopupButton extends React.Component {
+class PostAdder extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -43,6 +72,7 @@ class PopupButton extends React.Component {
   }
 
   render() {
+    // const {name, content, list} = this.props;
     return (
       <div>
         <Button id="addBtn" variant="contained" onClick={this.toggle.bind(this)}>ADD</Button>
@@ -51,13 +81,15 @@ class PopupButton extends React.Component {
           <Popup
             title="New Message"
             closePopup={this.toggle.bind(this)}
+            // name={name}
+            // content={content}
+            // list={list}
           />
           : null
         }
-
       </div>
     );
   }
 };
 
-export default PopupButton;
+export default PostAdder;

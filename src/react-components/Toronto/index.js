@@ -1,32 +1,31 @@
 import React from "react";
 import '../main_styles.css';
 import './styles.css';
-// import { Link } from "react-router-dom";
-// import profilePicture from './static/profile_picture.png';
 import PanelCard from "./PanelCard";
 import CaseReport from "./CaseReport";
 import SafetyInfo from "./SafetyInfo";
-import PopupButton from "./PostAdder";
-import Post from "./Post";
+// import PostAdder from "./PostAdder";
 import TopBar from "./TopBar";
+import PostList from "./PostList"
 import AccountNavigation from "./../Home/AccountNavigation"
 
-class Toronto extends React.Component {
 
+class Toronto extends React.Component {
     state = {
-        username: ""
-        // date: new Date(),
-        // messages: [
-        //   { name: "James", content: "What a beautiful day!" },
-        //   { name: "Kate", content: "Kinda worried about " }
-        // ]
+        name: "user",
+        content: "",
+        list: [
+            ["Amy", "I am graduating in a few months. Worried about job market under covid :("],
+            ["Brian", "Remote work is great. I have more time doing fun things with my family!"],
+            ["James", "yooooooooooooooooooooooooooooooo"],
+            ["Katie", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+        ]
     }
 
     render() {
-
         return (
             <div>
-                <TopBar />
+                <TopBar cityName="TORONTO"/>
 
                 <div className="sidePanel">
                     <CaseReport
@@ -43,23 +42,13 @@ class Toronto extends React.Component {
                     />
                 </div>
 
-                <Post
-                    username="Amy"
-                    content="I am graduating in a few months. Worried about job market under covid :("
-                />
+                <PostList posts={this.state.list}/>
 
-                <Post
-                    username="Brian"
-                    content="Remote work is great. I have more time doing fun things with my family!
-                    Remote work is great. I have more time doing fun things with my family!
-                    Remote work is great. I have more time doing fun things with my family!
-                    Remote work is great. I have more time doing fun things with my family!"
+                <AccountNavigation 
+                    name={this.state.name}
+                    content={this.state.content}
+                    list={this.state.list}
                 />
-
-                {/* button for adding a new message */}
-                <PopupButton/>
-                
-                <AccountNavigation />
             </div>
         );
     }

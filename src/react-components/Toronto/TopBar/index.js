@@ -1,10 +1,12 @@
 import React from "react";
 import './styles.css';
 import { Link } from "react-router-dom";
-import profilePicture from '../static/profile_picture.png';
+// import profilePicture from '../static/profile_picture.png';
 
 class TopBar extends React.Component {
     render() {
+        const {cityName} = this.props
+
         return (
             <div className="topBar">
                 <Link to={""}>
@@ -12,7 +14,7 @@ class TopBar extends React.Component {
                 </Link>
 
                 <Link to={"./../Toronto"} className="mid">
-                    TORONTO
+                    {cityName}
                 </Link>
                 {/*
                 <div className="rightBar">

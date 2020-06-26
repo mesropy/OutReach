@@ -32,14 +32,9 @@ class SafetyInfo extends React.Component {
         });
     }
 
-    // handle() {
-    //     alert("Safety Advice");
-    // }
-
     render() {
         return (
             <div className="panelCard">
-                {/* <h4>Staying Safe<input type="image" src={infoPic} alt="Info" onClick={() => this.handle()}></input></h4> */}
                 <h4>Staying Safe<input type="image" src={infoPic} alt="Info" onClick={this.toggle.bind(this)}></input></h4>
 
                 {this.state.show ? 
@@ -48,7 +43,6 @@ class SafetyInfo extends React.Component {
                 />
                 : null
                 }
-
             </div>
         );
     }
