@@ -22,11 +22,18 @@ const theme = createMuiTheme({
   },
 });
 
+// TODO: pass these into pages that need them
+/*
+const state = {
+  isLoggedIn: false,
+  isAdmin: false,
+  username: "username"
+} */
+
 class App extends React.Component {
 
   render() {
     return (
-        <div>
         <MuiThemeProvider theme={theme}>
           <BrowserRouter>
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
@@ -44,7 +51,6 @@ class App extends React.Component {
             </Switch>
           </BrowserRouter>
         </MuiThemeProvider>
-      </div>
     );
   }
 }

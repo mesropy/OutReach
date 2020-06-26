@@ -11,5 +11,29 @@
 .MuiButton-root.account_button:hover {
   text-decoration: none;
   color: #147E7D;
+}
+/* remove outline when button is clicked */
+.MuiButton-root.account_button:active {
+  outline: none;
+}
 
+/* make username button transparent */
+.MuiButton-root.username_button:hover {
+  background: transparent;
+}
+/.MuiButton-root.username_button:active {
+  background: transparent;
+}
+
+/* change styles of username button */
+.MuiButton-root.username_button {
+  text-transform: lowercase;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* space between buttons */
+.divider {
+  width: 7px;
+  display: inline-block;
 }
