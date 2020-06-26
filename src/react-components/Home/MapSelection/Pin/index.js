@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
 import PinIcon from './PinIcon'
 
 import "./styles.css";

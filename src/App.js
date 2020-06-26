@@ -23,11 +23,12 @@ const theme = createMuiTheme({
 });
 
 // TODO: pass these into pages that need them
+/*
 const state = {
   isLoggedIn: false,
   isAdmin: false,
   username: "username"
-}
+} */
 
 class App extends React.Component {
 

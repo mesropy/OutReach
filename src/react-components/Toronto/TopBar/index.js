@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css';
 import { Link } from "react-router-dom";
-import profilePicture from '../static/profile_picture.png';
+// import profilePicture from '../static/profile_picture.png';
 
 class TopBar extends React.Component {
     render() {
