@@ -46,7 +46,7 @@ class World extends React.Component {
 
                 <div id="topCard">
                   <h3>TORONTO</h3>
-                  <img id="cityPic" className src={torontoPicture} alt="picture of city" />
+                  <img id="cityPic" className src={torontoPicture} alt="city" />
                 </div>
 
                 <div id="bottomCard">
