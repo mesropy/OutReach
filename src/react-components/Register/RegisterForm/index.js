@@ -27,10 +27,10 @@ class RegisterForm extends React.Component {
             <div id="register_div">
                 <h6>already have an account? <a href="/">login</a></h6>
                 <form id="form">
-                    <span class="star">*</span><OverlayTrigger placement="right" overlay= {
+                    <span class="star">*</span><OverlayTrigger placement="left" overlay= {
                         <Tooltip>Enter a combination of atleast six letters and numbers</Tooltip>
                     }><input type="text" name="username" value={username} placeholder="username" onChange={handleChange}></input></OverlayTrigger><br/>
-                    <span class="star">*</span><OverlayTrigger placement="right" overlay= {
+                    <span class="star">*</span><OverlayTrigger placement="left" overlay= {
                         <Tooltip>Enter a combination of atleast six letters, numbers, and punctuation marks</Tooltip>
                     }><input type="password" name="password" value={password} placeholder="password" onChange={handleChange}></input></OverlayTrigger><br/>
                     <span class="star">*</span><input type="password" name="confirmPassword" value={confirmPassword} placeholder="confirm password" onChange={handleChange}></input><br/>
