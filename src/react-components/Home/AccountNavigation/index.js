@@ -21,7 +21,7 @@ class AccountNavigation extends React.Component{
                    variant= "outlined"
                    color="primary" >
          {/* TODO: add path to login page */}
-          <Button component= { Link } to={"./../Register"}
+          <Button component= { Link } to={"/Admin"}
                   className="account_button">
                   Login
           </Button>
