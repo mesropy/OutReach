@@ -1,7 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
-import './styles.css';
 
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from './LeftSideHeader'
