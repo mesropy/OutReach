@@ -1,11 +1,48 @@
 import React from 'react';
+import {Nav} from "react-bootstrap";
+import './styles.css'
+
 
 class Navbar extends React.Component {
+
     render() {
+        const {handleUsers, handleUserMessages, handleLogout} = this.props;
+
         return (
-            <div>
-                <h1></h1>
-            </div>
+            <Nav className="nav_bar flex-column justify-content-center">
+                <Nav.Item>
+                    <h5 className="text-center">My Account</h5>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="1">
+                        <h6>Messages</h6>
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="2">
+                        <h6>Settings</h6>
+                    </Nav.Link><br/>
+                </Nav.Item>
+                <Nav.Item>
+                    <h5 className="text-center">Admin Control</h5>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="3" onClick={handleUsers}>
+                        <h6>Users</h6>
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="4" onClick={handleUserMessages}>
+                        <h6>User Messages</h6>
+                    </Nav.Link>
+                </Nav.Item>
+                <br/><br/><br/>
+                <Nav.Item>
+                    <Nav.Link eventKey="5" className="text-center" onClick={handleLogout}>
+                        <input type="button" value="Logout"></input>
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
         )
     }
 }

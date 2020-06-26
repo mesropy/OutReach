@@ -1,13 +1,38 @@
 .nav_bar {
     border-radius: 10px 10px 10px 10px;
     background-color: rgb(221, 221, 221);
-    position: relative;
+    position: fixed;
     top: 100px;
     left: 25px;
-    /* min-height: 60vh; */
+    /* height: 60vh; */
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 
+}
+
+.nav-link {
+    padding: 0;
+}
+
+.nav-item h5 {
+    font-weight: 600;
+    color: black;
+}
+
+.nav-item h6 {
+    padding-top: 5px;
+}
+
+.nav-item input {
+    color: #464646;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: large;
+    font-weight: 500;
+    height: 6vh;
+    border-radius: 5px;
+    background-color: rgb(199, 199, 199);
+    border: 3px;
 }
