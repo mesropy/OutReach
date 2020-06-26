@@ -27,19 +27,19 @@ class Navbar extends React.Component {
                     <h5 className="text-center">Admin Control</h5>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="3" onClick={handleUsers}>
-                        <h6>Users</h6>
+                    <Nav.Link eventKey="3" >
+                        <h6 onClick={handleUsers}>Users</h6>
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="4" onClick={handleUserMessages}>
-                        <h6>User Messages</h6>
+                    <Nav.Link eventKey="4">
+                        <h6 onClick={handleUserMessages}>User Messages</h6>
                     </Nav.Link>
                 </Nav.Item>
                 <br/><br/><br/>
                 <Nav.Item>
-                    <Nav.Link eventKey="5" className="text-center" onClick={handleLogout}>
-                        <input type="button" value="Logout"></input>
+                    <Nav.Link eventKey="5" className="text-center" >
+                        <input type="button" value="Logout" onClick={handleLogout}></input>
                     </Nav.Link>
                 </Nav.Item>
             </Nav>

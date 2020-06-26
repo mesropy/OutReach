@@ -21,20 +21,25 @@ class Admin extends React.Component {
     }
 
     handleUsers(e) {
+        e.preventDefault();
+        const toggle = this.state.users;
         this.setState({
-            users: true,
+            users: !toggle,
             user_messages: false,
         })
     }
 
     handleUserMessages(e) {
+        e.preventDefault();
+        const toggle = this.state.users_messages;
         this.setState({
             users: false,
-            user_messages: true,
+            user_messages: !toggle,
         })
     }
 
     handleLogout(e) {
+        e.preventDefault();
         this.setState({
             users: false,
             user_messages: false,
@@ -47,7 +52,6 @@ class Admin extends React.Component {
             return <Redirect to='/'/>
         }
         if (this.state.users) {
-            console.log(this.state)
             return (
             <div>
                 <Topbar/>
@@ -62,7 +66,6 @@ class Admin extends React.Component {
             )
         }
         else if (this.state.user_messages) {
-            console.log(this.state)
             return (
                 <div>
                 <Topbar/>
