@@ -10,6 +10,7 @@ class MapSelection extends React.Component {
         <img className="world_map" src={require("./static/world_map.svg")} alt="world map"/>
         <Pin city="Toronto" />
         <Pin city="Paris" />
+        <Pin city="Montréal" />
       </div>
     );
   }
