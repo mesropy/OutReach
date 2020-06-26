@@ -14,7 +14,7 @@ class TopBar extends React.Component {
                 <Link to={"./../Toronto"} className="mid">
                     TORONTO
                 </Link>
-
+                {/*
                 <div className="rightBar">
                     <Link to={""}>
                         <div id="userBlock">
@@ -25,6 +25,7 @@ class TopBar extends React.Component {
                     <Link to={""} className="actionCorner">log in</Link>
                     <Link to={"./../Register"} className="action">sign up</Link>
                 </div>
+                */}
             </div>
         );
     }
