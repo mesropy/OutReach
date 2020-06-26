@@ -1,6 +1,20 @@
 #users_div {
     position: relative;
-    top: 20vh;
+    top: 25vh;
     left: 40vw;
     width: 400px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(221, 221, 221);
+}
+
+#users_div th {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-size: medium;
+}
+
+#users_div button {
+    background-color: rgb(161, 54, 54);
+    font-weight: bold;
 }

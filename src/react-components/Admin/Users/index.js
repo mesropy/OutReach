@@ -38,7 +38,7 @@ class Users extends React.Component {
                             <User key={uid(user)} user={user} removeUser={this.removeUser}/>
                         ))}
                     </TableBody>
-                </Table>
+                </Table><br/>
             </div>
         )
     }
