@@ -4,24 +4,12 @@ import './styles.css';
 import PanelCard from "./PanelCard";
 import CaseReport from "./CaseReport";
 import SafetyInfo from "./SafetyInfo";
-// import PostAdder from "./PostAdder";
 import TopBar from "./TopBar";
-import PostList from "./PostList"
 import AccountNavigation from "./../Home/AccountNavigation"
+import Queue from "./Queue"
 
 
 class Toronto extends React.Component {
-    state = {
-        name: "user",
-        content: "",
-        list: [
-            ["Amy", "I am graduating in a few months. Worried about job market under covid :("],
-            ["Brian", "Remote work is great. I have more time doing fun things with my family!"],
-            ["James", "yooooooooooooooooooooooooooooooo"],
-            ["Katie", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
-        ]
-    }
-
     render() {
         return (
             <div>
@@ -42,13 +30,9 @@ class Toronto extends React.Component {
                     />
                 </div>
 
-                <PostList posts={this.state.list}/>
+                <Queue/>
 
-                <AccountNavigation 
-                    name={this.state.name}
-                    content={this.state.content}
-                    list={this.state.list}
-                />
+                <AccountNavigation/>
             </div>
         );
     }
