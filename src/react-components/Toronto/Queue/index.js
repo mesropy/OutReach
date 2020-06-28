@@ -20,6 +20,13 @@ class Queue extends React.Component {
         });
     };
 
+    cleanContent = () => {
+        console.log(this.state.list);
+        this.setState({
+            content: ""
+        });
+    }
+
     render() {
         return (
             <div>
@@ -28,9 +35,10 @@ class Queue extends React.Component {
                     content={this.state.content}
                     handleInputFunc={this.handleInput}
                     addPostFunc={() => addPost(this)}
+                    cleanFunc={this.cleanContent}
                 />
 
-                <PostList posts={this.state.list} qComponent={this} />
+                <PostList posts={this.state.list} />
             </div>
         );
     }

@@ -5,7 +5,6 @@ import './App.css';
 import Home from './react-components/Home';
 import Register from "./react-components/Register"
 import Admin from "./react-components/Admin"
-import World from "./react-components/World"
 import Toronto from "./react-components/Toronto"
 
 // customize theme
@@ -44,8 +43,6 @@ class App extends React.Component {
                               (<Register />)}/>
               <Route exact path='/Admin' render={() =>
                               (<Admin />)}/>
-              <Route exact path='/World' render={() =>
-                              (<World />)}/>
               <Route exact path='/Toronto' render={() =>
                               (<Toronto />)}/>
             </Switch>

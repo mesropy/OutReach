@@ -14,3 +14,12 @@
     top: 100px;
     right: 100px;
 }
+
+.popupTitle {
+    display: block;
+    float: right;
+}
+
+.btns {
+    float: right;
+}

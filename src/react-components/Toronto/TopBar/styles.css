@@ -4,6 +4,7 @@
 }
 
 .topBar a {
+    color: black;
     float: left;
     display: block;
     text-align: center;
@@ -16,4 +17,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.topBar-logo {
+    height: 30px;
+    margin-left: 10px;
 }

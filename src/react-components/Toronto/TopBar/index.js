@@ -1,6 +1,7 @@
 import React from "react";
 import './styles.css';
 import { Link } from "react-router-dom";
+import logo from "../static/logo.svg";
 
 // Component to display top navigation bar
 class TopBar extends React.Component {
@@ -10,11 +11,12 @@ class TopBar extends React.Component {
         return (
             <div className="topBar">
                 <Link to={""}>
-                    OutReach
+                    <strong>OutReach</strong>
+                    <img className="topBar-logo" src={logo} alt="logo" />
                 </Link>
 
                 <Link to={"./../Toronto"} className="mid">
-                    {cityName}
+                    <strong>{cityName}</strong>
                 </Link>
             </div>
         );

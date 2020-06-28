@@ -7,14 +7,16 @@ class Popup extends React.Component {
     handleSubmit = () => {
         this.props.closePopup();
         this.props.addPostFunc();
+        this.props.cleanFunc();
     };
 
     render() {
-        const {handleInputFunc, addPostFunc} = this.props;
+        const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
 
         return(
             <div className="popupWindow">
-                <h3>{this.props.title}</h3>
+                <Button onClick={this.props.closePopup}>Cancel</Button>
+                <h3 className="popupTitle">{this.props.title}</h3>
 
                 <TextField
                   className="TextEntry"
@@ -25,10 +27,14 @@ class Popup extends React.Component {
                   variant="outlined"
                   onChange={handleInputFunc}
                 />
-
-                <Button variant="outlined" onClick={this.props.closePopup}>Cancel</Button>
-                <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
-                <Button variant="outlined" onClick={this.handleSubmit}>Post</Button>
+                <div className="btns">
+                    <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
+                    {/* <select name="city" id="city">
+                        <option disabled value="default">select a city</option>
+                        <option value="Toronto">Toronto</option>
+                    </select> */}
+                    <Button className="postBtn" variant="outlined" onClick={this.handleSubmit}>Post</Button>
+                </div>
             </div>
         );
     }
@@ -50,7 +56,7 @@ class PostAdder extends React.Component {
     }
 
     render() {
-        const {handleInputFunc, addPostFunc} = this.props;
+        const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
         return (
             <div>
                 <Button id="addBtn" variant="contained" onClick={this.toggle.bind(this)}>New Message</Button>
@@ -61,6 +67,7 @@ class PostAdder extends React.Component {
                       closePopup={this.toggle.bind(this)}
                       handleInputFunc={handleInputFunc}
                       addPostFunc={addPostFunc}
+                      cleanFunc={cleanFunc}
                     />
                     : null
                 }
