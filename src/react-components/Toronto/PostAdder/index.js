@@ -2,6 +2,7 @@ import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import './styles.css';
 
+// Component for text entry popup, used by PostAdder below
 class Popup extends React.Component {
     handleSubmit = () => {
         this.props.closePopup();
@@ -10,12 +11,12 @@ class Popup extends React.Component {
 
     render() {
         const {handleInputFunc, addPostFunc} = this.props;
-        
+
         return(
             <div className="popupWindow">
                 <h3>{this.props.title}</h3>
 
-                <TextField 
+                <TextField
                   className="TextEntry"
                   multiline
                   rows={12}
@@ -33,6 +34,7 @@ class Popup extends React.Component {
     }
 }
 
+// Component for the button to open new message popup
 class PostAdder extends React.Component {
     constructor() {
         super();
@@ -51,9 +53,9 @@ class PostAdder extends React.Component {
         const {handleInputFunc, addPostFunc} = this.props;
         return (
             <div>
-                <Button id="addBtn" variant="contained" onClick={this.toggle.bind(this)}>ADD</Button>
+                <Button id="addBtn" variant="contained" onClick={this.toggle.bind(this)}>New Message</Button>
 
-                {this.state.show ? 
+                {this.state.show ?
                     <Popup
                       title="New Message"
                       closePopup={this.toggle.bind(this)}

@@ -3,7 +3,7 @@ import React from "react";
 class CaseReport extends React.Component {
     render() {
         const {confirmed, recovered, active, status} = this.props;
-        
+
         return (
             <div className="panelCard">
                 <h4>COVID-19</h4>

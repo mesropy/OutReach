@@ -2,6 +2,7 @@ import React from "react";
 import './styles.css';
 import { Link } from "react-router-dom";
 
+// Component to display top navigation bar
 class TopBar extends React.Component {
     render() {
         const {cityName} = this.props

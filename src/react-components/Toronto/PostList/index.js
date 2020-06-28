@@ -2,7 +2,7 @@ import React from "react";
 import { uid } from "react-uid";
 import Post from "../Post";
 
-/* Component for the displaying all posts */
+// Component to display all posts
 class PostList extends React.Component {
     render() {
         const { posts } = this.props;

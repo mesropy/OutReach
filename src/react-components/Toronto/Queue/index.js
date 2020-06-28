@@ -3,6 +3,7 @@ import PostAdder from "../PostAdder";
 import { addPost } from "../../../actions/addPost";
 import PostList from "../PostList";
 
+// Component to store messages
 class Queue extends React.Component {
     state = {
         name: "user",
@@ -22,7 +23,7 @@ class Queue extends React.Component {
     render() {
         return (
             <div>
-                <PostAdder 
+                <PostAdder
                     name={this.state.name}
                     content={this.state.content}
                     handleInputFunc={this.handleInput}

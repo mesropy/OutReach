@@ -4,6 +4,7 @@ import SafetyPic from "../static/safety.PNG";
 import { Button } from "@material-ui/core";
 import './styles.css';
 
+// Component for the button for safety info, used by SafetyInfo below
 class SafetyPopup extends React.Component {
     render() {
       return(
@@ -17,6 +18,7 @@ class SafetyPopup extends React.Component {
     }
 }
 
+// Component for safety info card & popup
 class SafetyInfo extends React.Component {
 
     constructor() {
@@ -25,7 +27,7 @@ class SafetyInfo extends React.Component {
             show: false
         };
     }
-    
+
     toggle() {
         this.setState({
             show: !this.state.show
@@ -37,7 +39,7 @@ class SafetyInfo extends React.Component {
             <div className="panelCard">
                 <h4>Staying Safe<input type="image" src={infoPic} alt="Info" onClick={this.toggle.bind(this)}></input></h4>
 
-                {this.state.show ? 
+                {this.state.show ?
                 <SafetyPopup
                     closePopup={this.toggle.bind(this)}
                 />
@@ -49,3 +51,4 @@ class SafetyInfo extends React.Component {
 }
 
 export default SafetyInfo;
+

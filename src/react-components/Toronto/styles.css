@@ -1,6 +1,7 @@
 .sidePanel {
     position: sticky;
     float: left;
+    width: 25%;
 }
 
 .panelCard {
@@ -8,6 +9,5 @@
     background: palegoldenrod;
     padding: 20px;
     margin: 20px;
-    width: 280px;
 }
 

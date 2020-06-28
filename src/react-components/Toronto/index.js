@@ -1,19 +1,20 @@
 import React from "react";
 import '../main_styles.css';
 import './styles.css';
-import PanelCard from "./PanelCard";
-import CaseReport from "./CaseReport";
-import SafetyInfo from "./SafetyInfo";
 import TopBar from "./TopBar";
 import AccountNavigation from "./../Home/AccountNavigation"
+import CaseReport from "./CaseReport";
+import SafetyInfo from "./SafetyInfo";
+import PanelCard from "./PanelCard";
 import Queue from "./Queue"
-
 
 class Toronto extends React.Component {
     render() {
         return (
             <div>
                 <TopBar cityName="TORONTO"/>
+
+                <AccountNavigation/>
 
                 <div className="sidePanel">
                     <CaseReport
@@ -31,8 +32,6 @@ class Toronto extends React.Component {
                 </div>
 
                 <Queue/>
-
-                <AccountNavigation/>
             </div>
         );
     }
