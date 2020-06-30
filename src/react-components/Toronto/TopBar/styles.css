@@ -15,3 +15,7 @@ text {
   stroke-width: 1.5px;
   stroke-linejoin: round;
 }
+
+a.app_name {
+  color: #464646;
+}

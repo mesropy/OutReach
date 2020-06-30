@@ -1,15 +1,15 @@
 .post {
-    background-color: white;
-    padding: 30px;
+    background-color: #F8F8F8;
+    padding: 20px;
     margin: 30px 90px 30px 30px;
-    border-radius: 25px;
+    border-radius: 10px;
     overflow: auto;
     height: auto;
     width: 65%;
     float: right;
 }
 
-.iconContainer {
+/* .iconContainer {
     float: left;
     width: 70px;
 }
@@ -19,9 +19,32 @@
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
-}
+} */
 
 .postContent {
-	/* margin: 10px;
-	margin-left: 80px; */
+    padding: 15px;
+}
+
+.post-bar {
+    height: 30px;
+}
+
+.post-rightBar{
+    float: right;
+}
+
+.post-username {
+    float: left;
+}
+
+.post-rightBar button {
+    float: left;
+}
+
+.post-rightBar p {
+    float: right;
+}
+
+.post p {
+    margin: 0px;
 }
