@@ -1,20 +1,21 @@
 #users_div {
     position: relative;
-    top: 25vh;
-    left: 40vw;
-    width: 400px;
-    border-radius: 5px 5px 5px 5px;
-    background-color: rgb(221, 221, 221);
+    top: 20vh;
+    left: 35vw;
+    width: 450px;
 }
 
-#users_div th {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    text-align: center;
-    font-size: medium;
+#edit_div svg {
+    position: relative;
+    right: 5px;
 }
 
-#users_div button {
-    background-color: rgb(161, 54, 54);
-    font-weight: bold;
+#edit_div h6 {
+    float: right;
+}
+
+#edit_div button {
+    outline: none;
+    border: 0px;
+    background-color: inherit;
 }

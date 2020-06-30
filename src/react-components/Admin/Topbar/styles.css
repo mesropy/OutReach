@@ -6,12 +6,12 @@
     background-color: rgb(221, 221, 221);
 }
 
-#toolbar_div a {
-    color: rgb(46, 46, 46);
-}
-
 #back_div {
     width: 200px;
+}
+
+#back_div a {
+    color: rgb(46, 46, 46);
 }
 
 #back_div h3 {
@@ -25,18 +25,31 @@
 }
 
 #admin_div {
-    width: 100px;
+    width: 200px;
     height: 41px;
     position: absolute;
     right: 2%;
+    color: rgb(90, 90, 90);
 }
 
-
-#admin_div img {
+#admin_div #adminName {
     float: left;
+    top: 7px;
+    right: 30px;
+    position: relative;
 }
 
-#admin_div h5 {
-    top: 7px;
+#admin_div svg {
+    float: left;
     position: relative;
+    top: 5px;
+    right: 7px;
+    font-size: 25px;
+}
+
+
+#admin_div #worldMap {
+    position: relative;
+    top: 7px;
+    color: rgb(90, 90, 90);
 }
