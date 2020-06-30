@@ -1,9 +1,8 @@
 import React from "react";
-import { uid } from "react-uid";
 import './styles.css'
-import User from './User'
-import Table from '@material-ui/core/Table'
-import TableBody from "@material-ui/core/TableBody";
+import UserTable from './UserTable'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class Users extends React.Component {
 
@@ -11,34 +10,33 @@ class Users extends React.Component {
         super(props);
         this.state = {
             users: [
-                {username: "Amy"},
-                {username: "Brian"}
-            ]
+                {username: "@amy", age: "10yrs", city: "Toronto"},
+                {username: "@brian", age: "-", city: "Toronto"},
+                {username: "@lily", age: "15yrs", city: "Paris"},
+            ],
+            edit: false
         }
-        this.removeUser = this.removeUser.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
-    removeUser = (user) => {
-        const filteredUsers = this.state.users.filter(u => {
-            return u !== user;
-        });
-
+    handleEdit(e) {
+        const toggle = this.state.edit
         this.setState({
-            users: filteredUsers
-        });
+            edit: !toggle
+        })
     }
 
     render() {
         return (
             <div id="users_div">
-                <h3 className="text-center">Users</h3>
-                <Table>
-                    <TableBody>
-                        {this.state.users.map(user => (
-                            <User key={uid(user)} user={user} removeUser={this.removeUser}/>
-                        ))}
-                    </TableBody>
-                </Table><br/>
+                <div id="edit_div" className="text-right">
+                    <button onClick={this.handleEdit}>
+                        <h6>Edit</h6>
+                        <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    </button>
+                </div>
+                <UserTable state={this.state} usersComponent={this} edit={this.state.edit}></UserTable>
+                <br/>
             </div>
         )
     }

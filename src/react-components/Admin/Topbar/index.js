@@ -1,8 +1,9 @@
 import React from 'react';
 import {AppBar, Toolbar} from '@material-ui/core'
 import logo from './static/logo.svg';
-import profile from './static/profile_picture.png';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import "./styles.css"
 
 class Topbar extends React.Component {
@@ -17,10 +18,11 @@ class Topbar extends React.Component {
                         <img id="logo" alt="The logo for the web-application" src={logo}/>
                     </div>
                     <div id="admin_div">
-                        <Link to={'/Admin'} className="text-link">
-                            <img alt="A default profile pic for the account" src={profile}/>
-                            <h5 >admin</h5>
-                        </Link>
+                        <h5 id="adminName">admin</h5>
+                            <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
+                        <a href="/">
+                            <h5 id="worldMap">World Map</h5>
+                        </a>
                     </div>
                 </Toolbar>
             </AppBar>

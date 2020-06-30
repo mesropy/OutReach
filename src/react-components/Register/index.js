@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
-
+import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername } from "../../actions/checkRegister"
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from './LeftSideHeader'
 
@@ -19,16 +19,11 @@ class Register extends React.Component {
       city: "default",
       age: "default"
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.checkEmpty = this.checkEmpty.bind(this);
-    this.checkUsername = this.checkUsername.bind(this);
-    this.checkPassword = this.checkPassword.bind(this);
-    this.checkPhone = this.checkPhone.bind(this);
-    this.checkCity = this.checkCity.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = e => {
     const value = e.target.value;
     const name = e.target.name;
     this.setState({
@@ -36,43 +31,23 @@ class Register extends React.Component {
     })
   }
 
-  checkEmpty() {
-    return (this.state.username === "" || this.state.password === "" || this.state.confirmPassword === "" || this.state.phoneNumber === "" || this.state.city === "default")
-  }
-
-  checkUsername() {
-    return !(this.state.username.length >= 6 && /^[0-9a-zA-Z]+$/.test(this.state.username))
-  }
-
-  checkPassword() {
-    return !(this.state.password.length >= 6 && /\d/.test(this.state.password) && /[a-zA-Z]/.test(this.state.password) && /[special_characters]/.test(this.state.password))
-  }
-
-  checkPhone() {
-    return !(/^\d{10}$/.test(this.state.phoneNumber))
-  }
-
-  checkCity() {
-    return !(this.state.city === "Toronto")
-  }
-
-  handleSubmit(e) {
-    if (this.checkEmpty()) {
+  handleSubmit = e => {
+    if (checkEmpty(this.state)) {
       alert("Please fill in all required fields.");
     }
-    else if (this.checkUsername()) {
+    else if (checkUsername(this.state)) {
       alert("Username must match the required description.")
     }
-    else if (this.checkPassword()) {
+    else if (checkPassword(this.state)) {
       alert("Password must match the required description.");
     }
     else if (this.state.password !== this.state.confirmPassword) {
       alert("Confirm Password must match the Password entered.");
     }
-    else if (this.checkPhone()) {
+    else if (checkPhone(this.state)) {
       alert("Please enter a valid Phone Number.");
     }
-    else if (this.checkCity()) {
+    else if (checkCity(this.state)) {
       alert("Please select a valid city.");
     }
     else {

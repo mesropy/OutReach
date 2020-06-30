@@ -27,15 +27,15 @@ class RegisterForm extends React.Component {
             <div id="register_div">
                 <h6>already have an account? <a href="/">login</a></h6>
                 <form id="form">
-                    <span class="star">*</span><OverlayTrigger placement="left" overlay= {
+                    <span className="star">*</span><OverlayTrigger placement="left" overlay= {
                         <Tooltip>Enter a combination of atleast six letters and numbers</Tooltip>
                     }><input type="text" name="username" value={username} placeholder="username" onChange={handleChange}></input></OverlayTrigger><br/>
-                    <span class="star">*</span><OverlayTrigger placement="left" overlay= {
+                    <span className="star">*</span><OverlayTrigger placement="left" overlay= {
                         <Tooltip>Enter a combination of atleast six letters, numbers, and punctuation marks</Tooltip>
                     }><input type="password" name="password" value={password} placeholder="password" onChange={handleChange}></input></OverlayTrigger><br/>
-                    <span class="star">*</span><input type="password" name="confirmPassword" value={confirmPassword} placeholder="confirm password" onChange={handleChange}></input><br/>
-                    <span class="star">*</span><input type="text" name="phoneNumber" value={phoneNumber} placeholder="phone number" onChange={handleChange}></input><br/>
-                    <span class="star">*</span><select name="city" value={city} onChange={handleChange}>
+                    <span className="star">*</span><input type="password" name="confirmPassword" value={confirmPassword} placeholder="confirm password" onChange={handleChange}></input><br/>
+                    <span className="star">*</span><input type="number" name="phoneNumber" value={phoneNumber} placeholder="phone number" onChange={handleChange}></input><br/>
+                    <span className="star">*</span><select name="city" value={city} onChange={handleChange}>
                         <option disabled value="default">select a city</option>
                         <option value="Toronto">Toronto</option>
                     </select><br/>
@@ -48,7 +48,7 @@ class RegisterForm extends React.Component {
                         }
                     </select><br/>
                 </form>
-                <button id="signup" type="submit" onClick={handleSubmit} aria-label="Hi" data-balloon-pos="up">sign-up</button>
+                <button id="signup" type="submit" onClick={handleSubmit}>sign-up</button>
             </div>
         )           
     }
