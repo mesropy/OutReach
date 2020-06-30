@@ -18,10 +18,10 @@ class Admin extends React.Component {
         this.handleUsers = this.handleUsers.bind(this)
         this.handleUserMessages = this.handleUserMessages.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
+        this.handleBack = this.handleBack.bind(this)
     }
 
     handleUsers(e) {
-        e.preventDefault();
         const toggle = this.state.users;
         this.setState({
             users: !toggle,
@@ -30,7 +30,6 @@ class Admin extends React.Component {
     }
 
     handleUserMessages(e) {
-        e.preventDefault();
         const toggle = this.state.users_messages;
         this.setState({
             users: false,
@@ -38,8 +37,14 @@ class Admin extends React.Component {
         })
     }
 
+    handleBack(e) {
+        this.setState({
+            users: false,
+            user_messages: false
+        })
+    }
+
     handleLogout(e) {
-        e.preventDefault();
         this.setState({
             users: false,
             user_messages: false,
@@ -59,6 +64,7 @@ class Admin extends React.Component {
                 handleUsers={this.handleUsers}
                 handleUserMessages={this.handleUserMessages}
                 handleLogout={this.handleLogout}
+                handleBack={this.handleBack}
                 >
                 </Navbar>
                 <Users/>
@@ -73,6 +79,7 @@ class Admin extends React.Component {
                 handleUsers={this.handleUsers}
                 handleUserMessages={this.handleUserMessages}
                 handleLogout={this.handleLogout}
+                handleBack={this.handleBack}
                 >
                 </Navbar>
                 <UserMessages/>
@@ -86,6 +93,7 @@ class Admin extends React.Component {
                 handleUsers={this.handleUsers}
                 handleUserMessages={this.handleUserMessages}
                 handleLogout={this.handleLogout}
+                handleBack={this.handleBack}
                 ></Navbar>
             </div>
         )

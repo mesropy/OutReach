@@ -4,16 +4,27 @@
     position: fixed;
     top: 100px;
     left: 25px;
-    /* height: 60vh; */
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 15px;
-
 }
 
-.nav-link {
-    padding: 0;
+.nav-item {
+    padding-top: 5px;
+}
+
+.nav-item svg {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    float: left;
+    font-size: 20px;
+}
+
+.nav-item p {
+    font-size: larger;
+    margin-bottom: 0.5rem;
 }
 
 .nav-item h5 {
@@ -22,7 +33,28 @@
 }
 
 .nav-item h6 {
+    position: relative;
+    color: rgb(71, 69, 69);
+}
+
+.nav-item #backButton {
+    position: relative;
+    right: 1px;
+}
+
+.nav-item button {
+    text-decoration: none;
+    border: none;
+    background-color: inherit;
+}
+
+.nav-item button:focus {
+    outline: none;
+}
+
+.nav-item button {
     padding-top: 5px;
+    position: relative;
 }
 
 .nav-item input {

@@ -1,7 +1,6 @@
 import React from 'react';
 import {AppBar, Toolbar} from '@material-ui/core'
 import logo from './static/logo.svg';
-import profile from './static/profile_picture.png';
 import { Link } from 'react-router-dom';
 import "./styles.css"
 
@@ -18,7 +17,6 @@ class Topbar extends React.Component {
                     </div>
                     <div id="admin_div">
                         <Link to={'/Admin'} className="text-link">
-                            <img alt="A default profile pic for the account" src={profile}/>
                             <h5 >admin</h5>
                         </Link>
                     </div>

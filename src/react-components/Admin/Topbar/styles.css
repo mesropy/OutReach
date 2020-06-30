@@ -6,6 +6,10 @@
     background-color: rgb(221, 221, 221);
 }
 
+#toolbar_div a {
+    color: rgb(46, 46, 46);
+}
+
 #back_div {
     width: 200px;
 }
@@ -35,5 +39,4 @@
 #admin_div h5 {
     top: 7px;
     position: relative;
-    color: rgb(68, 67, 67);
 }
