@@ -1,15 +1,18 @@
 import React from "react";
 import infoPic from "./../../static/information.svg";
-import { Button } from "@material-ui/core";
+import { Button, Backdrop } from "@material-ui/core";
 import './styles.css';
 
 // Component for the button for safety info, used by SafetyInfo below
 class SafetyPopup extends React.Component {
     render() {
-      return(
-        <div className="safetyPopup">
-            <Button id="safetyClose" onClick={this.props.closePopup}><strong>X</strong></Button>
-        </div>
+        return(
+            <div>
+                <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
+                <div className="safetyPopup">
+                    <Button id="safetyClose" onClick={this.props.closePopup}><strong>X</strong></Button>
+                </div>
+            </div>
       );
     }
 }

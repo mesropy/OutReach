@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField } from "@material-ui/core";
+import { Backdrop, Button, TextField } from "@material-ui/core";
 import './styles.css';
 
 // Component for text entry popup, used by PostAdder below
@@ -14,26 +14,29 @@ class Popup extends React.Component {
         const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
 
         return(
-            <div className="popupWindow">
-                <Button onClick={this.props.closePopup}>Cancel</Button>
-                <h3 className="popupTitle">{this.props.title}</h3>
+            <div>
+                <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
+                <div className="popupWindow">
+                    <Button onClick={this.props.closePopup}>Cancel</Button>
+                    <h3 className="popupTitle">{this.props.title}</h3>
 
-                <TextField
-                  className="TextEntry"
-                  multiline
-                  rows={12}
-                  defaultValue="Share your thoughts"
-                  fullWidth={true}
-                  variant="outlined"
-                  onChange={handleInputFunc}
-                />
-                <div className="btns">
-                    <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
-                    {/* <select name="city" id="city">
-                        <option disabled value="default">select a city</option>
-                        <option value="Toronto">Toronto</option>
-                    </select> */}
-                    <Button className="postBtn" variant="outlined" onClick={this.handleSubmit}>Post</Button>
+                    <TextField
+                    className="TextEntry"
+                    multiline
+                    rows={12}
+                    defaultValue="Share your thoughts"
+                    fullWidth={true}
+                    variant="outlined"
+                    onChange={handleInputFunc}
+                    />
+                    <div className="btns">
+                        <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
+                        {/* <select name="city" id="city">
+                            <option disabled value="default">select a city</option>
+                            <option value="Toronto">Toronto</option>
+                        </select> */}
+                        <Button className="postBtn" variant="outlined" onClick={this.handleSubmit}>Post</Button>
+                    </div>
                 </div>
             </div>
         );
