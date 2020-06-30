@@ -1,14 +1,13 @@
 import React from "react";
-import {removeUser} from "../../../../actions/adminEdit"
+import './styles.css'
 import {TableCell, TableRow, Button} from "@material-ui/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class User extends React.Component {
 
-
     render() {
-        const {user, usersComponent, edit} = this.props
+        const {user, handlePopup, edit, parentState} = this.props
         
         if (edit) {
             return (
@@ -23,7 +22,7 @@ class User extends React.Component {
                         {user.city}
                     </TableCell>
                     <TableCell component="th" scope="row">
-                        <Button onClick={removeUser.bind(this, usersComponent, user)}>
+                        <Button onClick={handlePopup.bind(parentState, user)}>
                             <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
                         </Button>
                     </TableCell>
