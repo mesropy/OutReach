@@ -59,7 +59,9 @@ class PostAdder extends React.Component {
         const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
         return (
             <div>
-                <Button id="addBtn" variant="contained" onClick={this.toggle.bind(this)}>New Message</Button>
+                <Button id="addBtn"
+                        color="primary"
+                        onClick={this.toggle.bind(this)}>New Message</Button>
 
                 {this.state.show ?
                     <Popup

@@ -1,6 +1,5 @@
 import React from "react";
-import infoPic from "../static/information.svg";
-import SafetyPic from "../static/safety.PNG";
+import infoPic from "./../../static/information.svg";
 import { Button } from "@material-ui/core";
 import './styles.css';
 
@@ -10,9 +9,6 @@ class SafetyPopup extends React.Component {
       return(
         <div className="safetyPopup">
             <Button id="safetyClose" onClick={this.props.closePopup}><strong>X</strong></Button>
-            <div>
-                <img src={SafetyPic} alt="safetyInfo"/>
-            </div>
         </div>
       );
     }
@@ -20,7 +16,6 @@ class SafetyPopup extends React.Component {
 
 // Component for safety info card & popup
 class SafetyInfo extends React.Component {
-
     constructor() {
         super();
         this.state = {
@@ -36,19 +31,15 @@ class SafetyInfo extends React.Component {
 
     render() {
         return (
-            <div className="panelCard">
-                <h4>Staying Safe<input type="image" src={infoPic} alt="Info" onClick={this.toggle.bind(this)}></input></h4>
+            <div className="panel_card" >
+                <h4>Staying Safe<input id="info_pic" type="image" src={infoPic} alt="Info" onClick={ this.toggle.bind(this) }></input></h4>
 
-                {this.state.show ?
+                { this.state.show ?
                 <SafetyPopup
-                    closePopup={this.toggle.bind(this)}
-                />
-                : null
-                }
+                    closePopup={this.toggle.bind(this)} /> : null }
             </div>
         );
     }
 }
 
 export default SafetyInfo;
-

@@ -1,0 +1,15 @@
+/* styles for the side panel component */
+
+.sidePanel {
+    position: relative;
+    float: left;
+    width: 275px;
+}
+
+.panel_card {
+    border-radius: 15px;
+    text-align: center;
+    background: #F4F4F4;
+    padding: 20px;
+    margin: 20px;
+}

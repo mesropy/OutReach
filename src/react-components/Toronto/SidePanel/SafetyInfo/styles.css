@@ -1,0 +1,23 @@
+#info_pic {
+    height: 35px;
+    outline: none;
+    margin-left: 10px;
+}
+
+/* TODO: center the pop-up on the screen */
+.safetyPopup {
+    background-color: white;
+    padding: 20px;
+    position: fixed;
+    width: 70%;
+    height: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+}
+
+#safetyClose {
+    float: right;
+}
