@@ -1,11 +1,12 @@
 import React from "react";
+import {removeUser} from "../../../../actions/adminEdit"
 import {TableCell, TableRow, Button} from "@material-ui/core"
 
 class User extends React.Component {
 
 
     render() {
-        const {user, removeUser} = this.props
+        const {user, usersComponent} = this.props
 
         return (
             <TableRow key={user.username}>
@@ -16,7 +17,7 @@ class User extends React.Component {
                     <Button
                         onClick={
                         /* Remove button onClick binds the user as the parameter to the remove function. */
-                        () => removeUser(user)
+                        removeUser.bind(this, usersComponent, user)
                         }
                     >
                         remove

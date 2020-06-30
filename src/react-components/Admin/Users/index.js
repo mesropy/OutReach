@@ -15,17 +15,6 @@ class Users extends React.Component {
                 {username: "Brian"}
             ]
         }
-        this.removeUser = this.removeUser.bind(this);
-    }
-
-    removeUser = (user) => {
-        const filteredUsers = this.state.users.filter(u => {
-            return u !== user;
-        });
-
-        this.setState({
-            users: filteredUsers
-        });
     }
 
     render() {
@@ -35,7 +24,7 @@ class Users extends React.Component {
                 <Table>
                     <TableBody>
                         {this.state.users.map(user => (
-                            <User key={uid(user)} user={user} removeUser={this.removeUser}/>
+                            <User key={uid(user)} user={user} usersComponent={this}/>
                         ))}
                     </TableBody>
                 </Table><br/>
