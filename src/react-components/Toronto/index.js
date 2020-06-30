@@ -1,8 +1,9 @@
 import React from "react";
 import '../main_styles.css';
 import './styles.css';
+
+// import components 
 import TopBar from "./TopBar";
-import AccountNavigation from "./../Home/AccountNavigation"
 import CaseReport from "./CaseReport";
 import SafetyInfo from "./SafetyInfo";
 import PanelCard from "./PanelCard";
@@ -13,8 +14,6 @@ class Toronto extends React.Component {
         return (
             <div>
                 <TopBar cityName="TORONTO"/>
-
-                <AccountNavigation/>
 
                 <div className="sidePanel">
                     <CaseReport
