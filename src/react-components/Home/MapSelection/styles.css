@@ -1,10 +1,14 @@
 /* styles for map selection component */
 
-.container {
+.map_container {
   display: block;
   position: relative;
   margin-top: 15px;
   border-radius: 10px;
+  margin: auto;
+  width: 90%;
+  background-color: #F8F8F8;
+  padding: 10px;
 }
 
 .world_map {

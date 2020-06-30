@@ -1,25 +1,17 @@
+/* styles for top bar component */
+
 .topBar {
-    position: relative;
-    overflow: hidden;
+  text-align: center;
+  padding-top: 13px;
+  background-color: #F8F8F8;
 }
 
-.topBar a {
-    color: black;
-    float: left;
-    display: block;
-    text-align: center;
-    padding: 15px 20px;
-}
-
-.topBar a.mid{
-    float: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.topBar-logo {
-    height: 30px;
-    margin-left: 10px;
+/* style the title text to be outlined */
+text {
+  font-weight: bold;
+  font-size: 40px;
+  fill: none;
+  stroke: #464646;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
 }
