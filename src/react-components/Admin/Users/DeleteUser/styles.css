@@ -1,0 +1,59 @@
+#delete_div {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+    position: relative;
+    width: 500px;
+    top: 20vh;
+    left: 35vw;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px 10px 10px 10px;
+}
+
+#delete_div h3 {
+    padding: 10px;
+    font-weight: 400;
+}
+
+#delete_div button:focus {
+    outline: none;
+}
+
+#delete_div #icon_div button {
+    border: 0px;
+    background-color: inherit;
+}
+
+#delete_div #icon_div svg {
+    font-size: 26px;
+    position: relative;
+    right: 10px;
+}
+
+#delete_div #cancel {
+    margin-right: 10px;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid white;
+    border: 0px;
+    padding: 10px;
+    width: 150px;
+    font-size: larger;
+    font-weight: 500;
+}
+
+#delete_div #delete {
+    margin-left: 10px;
+    width: 150px;
+    border: 2px solid rgba(122, 15, 15, 0.781);
+    border-radius: 10px 10px 10px 10px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: larger;
+}
+
+#delete_div #delete svg {
+    color: rgb(161, 54, 54);
+    position: relative;
+    right: 10px;
+}

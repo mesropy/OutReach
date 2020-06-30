@@ -1,8 +1,8 @@
 #users_div {
     position: relative;
+    width: 450px;
     top: 20vh;
     left: 35vw;
-    width: 450px;
 }
 
 #edit_div svg {
