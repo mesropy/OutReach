@@ -8,9 +8,9 @@ class LeftSideHeader extends React.Component {
     render() {
         return(
             <div id="header_background">
-                <Link to={"/"}>
+                <a href="/">
                     <button id="back" type="button"> &#10094; Back</button>
-                </Link>
+                </a>
                 <div id="header_content" className="text-center">
                     <div id="header">
                         <h1>OutReach</h1>

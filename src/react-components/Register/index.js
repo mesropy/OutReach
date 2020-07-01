@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
 import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername } from "../../actions/checkRegister"
 import RegisterForm from './RegisterForm'
-import LeftSideHeader from './LeftSideHeader'
+import LeftSideHeader from '../LeftSideHeader'
 
 /* Component for the Register page */
 class Register extends React.Component {
