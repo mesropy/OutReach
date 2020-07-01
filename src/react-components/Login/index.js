@@ -11,7 +11,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      login: false,
+      userLoggedIn: false,
+      adminLoggedIn: false,
       username: "",
       password: "",
       error: false
@@ -32,8 +33,17 @@ class Login extends React.Component {
     if (checkLogin(this.state)) {
       this.setState({
         error: false,
-        login: true
       })
+      if (this.state.username === "user") {
+        this.setState({
+          userLoggedIn: true,
+        })
+      }
+      else {
+        this.setState({
+          adminLoggedIn: true,
+        })
+      }
     }
     else {
       this.setState({
@@ -43,7 +53,10 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.state.login === true) {
+    if (this.state.userLoggedIn) {
+      return <Redirect to='/'/>
+    }
+    if (this.state.adminLoggedIn) {
       return <Redirect to='/'/>
     }
 

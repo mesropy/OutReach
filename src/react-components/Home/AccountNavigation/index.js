@@ -60,8 +60,8 @@ class AccountNavigation extends React.Component{
           <ButtonGroup className="account_nav"
                        variant= "outlined"
                        color="primary" >
-             {/* TODO: add path to login page */}
-              <Button onClick={ this.handleLogin }
+              <Button component= { Link } to={"./../Login"}
+                      onClick={ this.handleLogin }
                       className="account_button">
                       login
               </Button>
