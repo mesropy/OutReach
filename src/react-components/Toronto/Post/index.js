@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css';
-// import profilePicture from '../static/profile_picture.png';
-import PinIcon from '../../Home/MapSelection/Pin/PinIcon'
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Post extends React.Component {
 
@@ -20,7 +20,7 @@ class Post extends React.Component {
                     {/* <p><strong>{age}</strong></p> */}
                     <div className="post-rightBar">
                         <button className="pin_button">
-                            <PinIcon />
+                            <FontAwesomeIcon icon={faMapMarkerAlt} />
                         </button>
                         <p>{time}</p>
                     </div>

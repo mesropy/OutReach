@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
-import PinIcon from './PinIcon'
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./styles.css";
 
@@ -13,7 +14,7 @@ class Pin extends React.Component {
       link = <Link to="/U/Toronto" >
               <div className="button_container">
                 <button className="pin_button">
-                  <PinIcon />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
                 </button>
               </div>
             </Link>
@@ -22,7 +23,7 @@ class Pin extends React.Component {
       link = <Link to="/A/Toronto" >
               <div className="button_container">
                 <button className="pin_button">
-                  <PinIcon />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
                 </button>
               </div>
             </Link>
@@ -31,7 +32,7 @@ class Pin extends React.Component {
       link = <Link to="/Toronto" >
               <div className="button_container">
                 <button className="pin_button">
-                  <PinIcon />
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
                 </button>
               </div>
             </Link>
