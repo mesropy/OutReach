@@ -72,7 +72,7 @@ class App extends React.Component {
               <Route exact path='/A/Toronto' render={() =>
                               (<Toronto 
                                 userLoggedIn={false}
-                                adminLoggedIn={false}
+                                adminLoggedIn={true}
                               />)}/>
             </Switch>
           </BrowserRouter>
