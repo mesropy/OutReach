@@ -1,50 +1,66 @@
 import React from 'react';
 import {Nav} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment } from '@fortawesome/free-regular-svg-icons'
-import { faCog, faUsers, faComments } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faComments } from '@fortawesome/free-solid-svg-icons'
 import './styles.css'
 
 
 class Navbar extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = ({
+            usersClass: "text-left",
+            messagesClass: "text-left"
+        })
+        this.resetClasses = this.resetClasses.bind(this)
+        this.changeUsersClass = this.changeUsersClass.bind(this)
+        this.changeMessagesClass = this.changeMessagesClass.bind(this)
+    }
+    
+    resetClasses() {
+        this.setState({
+            usersClass: "text-left",
+            messagesClass: "text-left"
+        })
+    }
+
+    changeUsersClass() {
+        this.setState({
+            usersClass: "text-left, nav_highlighted",
+            messagesClass: "text-left"
+        })
+    }
+
+    changeMessagesClass() {
+        this.setState({
+            usersClass: "text-left",
+            messagesClass: "text-left, nav_highlighted"
+        })
+    }
+
     render() {
-        const {handleUsers, handleUserMessages, handleLogout, handleBack} = this.props;
+        const {handleUsers, handleMessages, handleLogout, handleBack} = this.props;
 
         return (
             <Nav className="nav_bar flex-column justify-content-center">
                 <Nav.Item className="text-right">
-                    <button id="backButton" onClick={handleBack}>
+                    <button id="backButton" onClick={() => {handleBack(); this.resetClasses()}}>
                         <p>&#10094;</p>
                     </button>
-                </Nav.Item>
-                <Nav.Item>
-                    <h5 className="text-center">My Account</h5>
-                </Nav.Item>
-                <Nav.Item className="text-center">
-                    <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
-                    <button>
-                        <h6 >Messages</h6>
-                    </button>
-                </Nav.Item>
-                <Nav.Item className="text-center">
-                    <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
-                    <button>
-                        <h6>Settings</h6>
-                    </button><br/>
                 </Nav.Item>
                 <Nav.Item className="text-center">
                     <h5>Admin Control</h5>
                 </Nav.Item>
-                <Nav.Item className="text-center">
+                <Nav.Item className={this.state.usersClass}>
                     <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
-                    <button onClick={handleUsers}>
+                    <button onClick={() => {handleUsers(); this.changeUsersClass()}}>
                         <h6>Users</h6>
                     </button>
                 </Nav.Item>
-                <Nav.Item className="text-center">
+                <Nav.Item className={this.state.messagesClass}>
                     <FontAwesomeIcon icon={faComments}></FontAwesomeIcon>
-                    <button onClick={handleUserMessages}>
+                    <button onClick={() => {handleMessages(); this.changeMessagesClass()}}>
                         <h6>Messages</h6>
                     </button>
                 </Nav.Item>
