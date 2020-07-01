@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
 
         return (
             <div id="register_div">
-                <h6>already have an account? <a href="/">login</a></h6>
+                <h6>already have an account? <a href="/Login">login</a></h6>
                 <form id="form">
                     <span className="star">*</span><OverlayTrigger placement="left" overlay= {
                         <Tooltip>Enter a combination of atleast six letters and numbers</Tooltip>

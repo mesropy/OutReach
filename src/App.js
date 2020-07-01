@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './react-components/Home';
 import Register from "./react-components/Register"
+import Login from "./react-components/Login"
 import Admin from "./react-components/Admin"
 import Toronto from "./react-components/Toronto"
 
@@ -41,6 +42,8 @@ class App extends React.Component {
                               (<Home />)}/>
               <Route exact path='/Register' render={() =>
                               (<Register />)}/>
+              <Route exact path='/Login' render={() =>
+                              (<Login />)}/>               
               <Route exact path='/Admin' render={() =>
                               (<Admin />)}/>
               <Route exact path='/Toronto' render={() =>
