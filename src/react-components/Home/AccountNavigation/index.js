@@ -33,34 +33,33 @@ class AccountNavigation extends React.Component{
   }
 
   render () {
-    const renderButtons = () => {
-      {/* TODO: Add an if statement for each adminLoggedIn/userLoggedIn and link to each profile page */}
-      if (this.state.userLoggedIn || this.state.adminLoggedIn){
-        return (
-          <div className="account_nav">
-            {/* TODO: add path to account */}
-            <Button component= { Link } to={"/Admin"}
-                    className="username_button"
-                    disableRipple
-                    variant="text">
-              {/* TODO: add profile icon */}
-              { this.state.username }
-            <div className="divider"/>
-            </Button>
-            {/* TODO: add onclick function that logs out user */}
-            <Button onClick={ this.handleLogout }
-                    className="account_button"
-                    variant="outlined"
-                    color="primary">
-              Logout
-            </Button>
-          </div>
-        );
-      } else {
+    /* TODO: Add an if statement for each adminLoggedIn/userLoggedIn and link to each profile page */
+    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+      return (
+        <div className="account_nav">
+          {/* TODO: add path to account */}
+          <Button component= { Link } to={"/Admin"}
+                  className="username_button"
+                  disableRipple
+                  variant="text">
+            {/* TODO: add profile icon */}
+            { this.state.username }
+          <div className="divider"/>
+          </Button>
+          {/* TODO: add onclick function that logs out user */}
+          <Button onClick={ this.handleLogout }
+                  className="account_button"
+                  variant="outlined"
+                  color="primary">
+            Logout
+          </Button>
+        </div>
+      );
+    } else {
         return (
           <ButtonGroup className="account_nav"
-                       variant= "outlined"
-                       color="primary" >
+                        variant= "outlined"
+                        color="primary" >
               <Button component= { Link } to={"./../Login"}
                       className="account_button">
                       login
@@ -71,10 +70,7 @@ class AccountNavigation extends React.Component{
               </Button>
           </ButtonGroup>
         );
-      }
     }
-
-    return renderButtons();
   }
 }
 
