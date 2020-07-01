@@ -39,7 +39,20 @@ class App extends React.Component {
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route exact path='/' render={() =>
-                              (<Home />)}/>
+                              (<Home 
+                                userLoggedIn={false}
+                                adminLoggedIn={false}
+                              />)}/>
+              <Route exact path='/U' render={() =>
+                              (<Home 
+                                userLoggedIn={true}
+                                adminLoggedIn={false}
+                              />)}/>
+              <Route exact path='/A' render={() =>
+                              (<Home 
+                                userLoggedIn={false}
+                                adminLoggedIn={true}
+                              />)}/>
               <Route exact path='/Register' render={() =>
                               (<Register />)}/>
               <Route exact path='/Login' render={() =>
@@ -47,7 +60,20 @@ class App extends React.Component {
               <Route exact path='/Admin' render={() =>
                               (<Admin />)}/>
               <Route exact path='/Toronto' render={() =>
-                              (<Toronto />)}/>
+                              (<Toronto 
+                                userLoggedIn={false}
+                                adminLoggedIn={false}
+                              />)}/>
+              <Route exact path='/U/Toronto' render={() =>
+                              (<Toronto 
+                                userLoggedIn={true}
+                                adminLoggedIn={false}
+                              />)}/>
+              <Route exact path='/A/Toronto' render={() =>
+                              (<Toronto 
+                                userLoggedIn={false}
+                                adminLoggedIn={false}
+                              />)}/>
             </Switch>
           </BrowserRouter>
         </MuiThemeProvider>

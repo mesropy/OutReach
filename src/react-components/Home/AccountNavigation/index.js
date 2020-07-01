@@ -10,31 +10,32 @@ import "./styles.css";
 class AccountNavigation extends React.Component{
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    // TODO: get these from App.js as props
+    let username = "";
+    if (this.props.userLoggedIn) {
+      username = "user"
+    }
+    else if (this.props.adminLoggedIn) {
+      username = "admin"
+    }
     this.state = {
-      isLoggedIn: true,
-      isAdmin: false,
-      username: "username"
+      userLoggedIn: this.props.userLoggedIn,
+      adminLoggedIn: this.props.adminLoggedIn,
+      username: username
     }
   }
 
   handleLogout() {
     this.setState({
-      isLoggedIn: false
-    });
-  }
-
-  handleLogin(){
-    this.setState({
-      isLoggedIn: true
+      userLoggedIn: false,
+      adminLoggedIn: false
     });
   }
 
   render () {
     const renderButtons = () => {
-      if (this.state.isLoggedIn){
+      {/* TODO: Add an if statement for each adminLoggedIn/userLoggedIn and link to each profile page */}
+      if (this.state.userLoggedIn || this.state.adminLoggedIn){
         return (
           <div className="account_nav">
             {/* TODO: add path to account */}
@@ -61,7 +62,6 @@ class AccountNavigation extends React.Component{
                        variant= "outlined"
                        color="primary" >
               <Button component= { Link } to={"./../Login"}
-                      onClick={ this.handleLogin }
                       className="account_button">
                       login
               </Button>

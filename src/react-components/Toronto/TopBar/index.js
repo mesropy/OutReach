@@ -22,7 +22,10 @@ class TopBar extends React.Component {
                         letterSpacing="1.5">
                         { cityName }</text>
               </svg>
-              <AccountNavigation/>
+              <AccountNavigation
+                userLoggedIn={this.props.userLoggedIn} 
+                adminLoggedIn={this.props.adminLoggedIn}
+              />
             </div>
         );
     }
