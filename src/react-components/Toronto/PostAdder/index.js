@@ -24,17 +24,14 @@ class Popup extends React.Component {
                     className="TextEntry"
                     multiline
                     rows={12}
-                    defaultValue="Share your thoughts"
+                    defaultValue="Share your thoughts here..."
                     fullWidth={true}
                     variant="outlined"
                     onChange={handleInputFunc}
                     />
+
                     <div className="btns">
-                        <Button variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
-                        {/* <select name="city" id="city">
-                            <option disabled value="default">select a city</option>
-                            <option value="Toronto">Toronto</option>
-                        </select> */}
+                        <Button className="locationBtn" variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
                         <Button className="postBtn" variant="outlined" onClick={this.handleSubmit}>Post</Button>
                     </div>
                 </div>

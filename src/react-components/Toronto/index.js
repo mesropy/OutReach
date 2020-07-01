@@ -11,8 +11,10 @@ class Toronto extends React.Component {
         return (
             <div>
                 <TopBar cityName="TORONTO"/>
-                <SidePanel />
-                <Queue />
+                <div className="mainContent">
+                    <SidePanel />
+                    <Queue />
+                </div>
             </div>
         );
     }

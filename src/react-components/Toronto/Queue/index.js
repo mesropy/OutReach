@@ -22,7 +22,6 @@ class Queue extends React.Component {
     };
 
     cleanContent = () => {
-        console.log(this.state.list);
         this.setState({
             content: ""
         });

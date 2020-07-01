@@ -1,6 +1,9 @@
 /* styles for top bar component */
-
 .topBar {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
   text-align: center;
   padding-top: 13px;
   background-color: #F8F8F8;
@@ -19,3 +22,10 @@ text {
 a.app_name {
   color: #464646;
 }
+
+/* make sure nothing float above top bar when scrolling */
+.mainContent {
+  margin-bottom: 65px;
+  z-index: 0;
+}
+
