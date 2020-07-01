@@ -4,7 +4,7 @@ import './../../main_styles.css';
 
 // import components
 import HomePageNav from "./../../HomePageNav";
-import AccountNavigation from "./../../Home/AccountNavigation";
+import AccountNav from "./../../AccountNav";
 
 // Component to display top navigation bar
 class TopBar extends React.Component {
@@ -22,7 +22,7 @@ class TopBar extends React.Component {
                         letterSpacing="1.5">
                         { cityName }</text>
               </svg>
-              <AccountNavigation/>
+              <AccountNav />
             </div>
         );
     }

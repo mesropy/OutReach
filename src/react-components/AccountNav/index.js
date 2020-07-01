@@ -7,7 +7,7 @@ import "./styles.css";
 // either displays login and sign-up buttons,
 // or username and logout buttons
 // (depending on whether the user is logged in or not)
-class AccountNavigation extends React.Component{
+class AccountNav extends React.Component{
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
@@ -78,4 +78,4 @@ class AccountNavigation extends React.Component{
   }
 }
 
-export default AccountNavigation;
+export default AccountNav;
