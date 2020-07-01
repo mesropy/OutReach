@@ -1,0 +1,17 @@
+#userMessages {
+    position: relative;
+    margin-top: 18vh;
+    margin-left: 25vw;
+}
+
+#userMessages #headers button {
+    border: none;
+    background-color: inherit;
+    font-size: larger;
+    font-weight: 500;
+}
+
+#userMessages #published {
+    position: relative;
+    left: 75px;
+}

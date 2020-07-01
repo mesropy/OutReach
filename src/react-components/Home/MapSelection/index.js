@@ -8,9 +8,21 @@ class MapSelection extends React.Component {
     return(
       <div className="map_container">
         <img className="world_map" src={require("./static/world_map.svg")} alt="world map"/>
-        <Pin city="Toronto" />
-        <Pin city="Paris" />
-        <Pin city="Montréal" />
+        <Pin 
+          city="Toronto" 
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn}
+        />
+        <Pin 
+          city="Paris"
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn} 
+          />
+        <Pin 
+          city="Montréal" 
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn}
+        />
       </div>
     );
   }

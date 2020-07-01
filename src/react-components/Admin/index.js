@@ -12,7 +12,7 @@ class Admin extends React.Component {
         super(props)
         this.state = {
             users: false,
-            user_messages: false,
+            user_messages: true,
             logout: false
         }
         this.handleUsers = this.handleUsers.bind(this)
@@ -56,45 +56,24 @@ class Admin extends React.Component {
         if (this.state.logout) {
             return <Redirect to='/'/>
         }
+        let content = null;
         if (this.state.users) {
-            return (
-            <div>
-                <Topbar/>
-                <Navbar
-                handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                >
-                </Navbar>
-                <Users/>
-            </div>
-            )
+            content = <Users/>
         }
         else if (this.state.user_messages) {
-            return (
-                <div>
-                <Topbar/>
-                <Navbar
-                handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                >
-                </Navbar>
-                <UserMessages/>
-                </div>
-                )
+            content = <UserMessages/>
         }
         return (
             <div>
                 <Topbar/>
                 <Navbar
                 handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
+                handleMessages={this.handleUserMessages}
                 handleLogout={this.handleLogout}
                 handleBack={this.handleBack}
-                ></Navbar>
+                >
+                </Navbar>
+                {content}
             </div>
         )
     }

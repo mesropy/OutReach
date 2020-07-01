@@ -1,17 +1,16 @@
 .nav_bar {
     border-radius: 10px 10px 10px 10px;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(251,248,242);
     position: fixed;
     top: 100px;
     left: 25px;
     padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
     padding-bottom: 15px;
 }
 
 .nav-item {
-    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .nav-item svg {
@@ -35,41 +34,44 @@
 
 .nav-item h6 {
     position: relative;
-    color: rgb(71, 69, 69);
+    color: inherit;
 }
 
 .nav-item #backButton {
     position: relative;
     right: 1px;
+    left: 0px;
 }
 
 .nav-item button {
     text-decoration: none;
     border: none;
     background-color: inherit;
-}
-
-.nav-item button:active {
-    box-shadow: 0 3px 0 #636363;
-}
-
-.nav-item button:focus {
-    outline: none;
-}
-
-.nav-item button {
+    left: 10px;
     padding-top: 5px;
     position: relative;
+}
+
+.nav-item input:focus,
+.nav-item button:focus {
+    outline: none;
 }
 
 .nav-item input {
     color: #464646;
     padding-left: 30px;
     padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: large;
     font-weight: 500;
-    height: 6vh;
     border-radius: 5px;
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(224,238,239);
     border: 3px;
+}
+
+.nav_highlighted,
+.nav_highlighted button {
+    background-color: rgb(224,238,239);
+    color: rgb(20,125,124);
 }

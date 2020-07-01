@@ -10,7 +10,11 @@ class Toronto extends React.Component {
     render() {
         return (
             <div>
-                <TopBar cityName="TORONTO"/>
+                <TopBar 
+                    cityName="TORONTO"
+                    userLoggedIn={this.props.userLoggedIn}
+                    adminLoggedIn={this.props.adminLoggedIn}
+                    />
                 <div className="mainContent">
                     <SidePanel />
                     <Queue />

@@ -10,17 +10,18 @@ import AccountNav from "./../AccountNav";
 
 /* Component for the Home page */
 class Home extends React.Component {
-/*
-  state = {
-    username: "username"
-  }
-*/
+
   render() {
     return (
       <div>
-        <AccountNav /*username={ this.state.username }*/ />
+        <AccountNav 
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn} />
         <Header />
-        <MapSelection />
+        <MapSelection
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn}
+        />
       </div>
     );
   }

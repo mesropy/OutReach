@@ -54,10 +54,10 @@ class Login extends React.Component {
 
   render() {
     if (this.state.userLoggedIn) {
-      return <Redirect to='/'/>
+      return <Redirect to='/U'/>
     }
     if (this.state.adminLoggedIn) {
-      return <Redirect to='/'/>
+      return <Redirect to='/A'/>
     }
 
     return (
