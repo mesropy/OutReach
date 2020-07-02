@@ -7,11 +7,38 @@
 #userMessages #headers button {
     border: none;
     background-color: inherit;
-    font-size: larger;
+    font-size: 1.25em;
     font-weight: 500;
+}
+
+#userMessages button:focus {
+    outline: none;
 }
 
 #userMessages #published {
     position: relative;
     left: 75px;
+}
+
+#userMessages #headers #edit_button {
+    display: inline;
+    position: absolute;
+    font-size: large;
+    right: 130px;
+}
+
+#userMessages #headers #edit_button h6 {
+    float: right;
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+#userMessages #headers #done {
+    color: rgb(188,83,98);
+}
+
+.highlighted {
+    box-shadow: 0px 3px rgb(27,121,120);
+    color: rgb(27,121,120);
 }

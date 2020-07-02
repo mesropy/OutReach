@@ -26,16 +26,18 @@ class Navbar extends React.Component {
     }
 
     changeUsersClass() {
+        const usersClass = this.state.usersClass === "text-left" ? "text-left, nav_highlighted" : "text-left"
         this.setState({
-            usersClass: "text-left, nav_highlighted",
+            usersClass: usersClass,
             messagesClass: "text-left"
         })
     }
 
     changeMessagesClass() {
+        const messagesClass = this.state.messagesClass === "text-left" ? "text-left, nav_highlighted" : "text-left"
         this.setState({
             usersClass: "text-left",
-            messagesClass: "text-left, nav_highlighted"
+            messagesClass: messagesClass
         })
     }
 
