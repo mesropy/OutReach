@@ -16,7 +16,8 @@ class SafetyPopup extends React.Component {
                   <IconButton id="popup_close_button" onClick={this.props.closePopup}>
                       <FontAwesomeIcon icon={ faTimesCircle } />
                   </IconButton>
-                  <img id="placer_img" src="https://dummyimage.com/1000x600/ededed/3d3d3d"/>
+                  <img id="placer_img" src="https://dummyimage.com/1000x600/ededed/3d3d3d"
+                        alt="placer"/>
                 </div>
             </div>
       );

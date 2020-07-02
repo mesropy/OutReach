@@ -3,7 +3,8 @@
   right: 200px;
   top: 15px;
   display: inline;
-  color: inherit;
+  /*color: inherit;*/
+  color: #147E7D;
 }
 
 a:hover {

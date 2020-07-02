@@ -9,7 +9,12 @@
 .panel_card {
     border-radius: 15px;
     text-align: center;
-    background: #F4F4F4;
+    /*background: #F4F4F4;*/
+    background: #E4F0F0;
     padding: 20px;
     margin: 20px;
+}
+
+.panel_card h4 {
+  color: #147E7D;
 }
