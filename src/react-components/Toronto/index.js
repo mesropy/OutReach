@@ -10,7 +10,7 @@ class Toronto extends React.Component {
     render() {
         return (
             <div>
-                <TopBar 
+                <TopBar
                     cityName="TORONTO"
                     userLoggedIn={this.props.userLoggedIn}
                     adminLoggedIn={this.props.adminLoggedIn}
