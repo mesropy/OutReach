@@ -1,6 +1,7 @@
 import React from "react";
 import { uid } from "react-uid";
 import './styles.css'
+import {removePublishedMessage} from '../../../../actions/adminMessagesEdit'
 import Message from "../../../Message"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -8,15 +9,13 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 class Published extends React.Component {
 
     render() {
-        const publishedMessages = this.props.userMessagesComponent.state.publishedMessages
-        const edit = this.props.edit ?  <div id="edit_div" className="text-center">
-                                            <button id="trash" className="text-center"><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
-                                        </div> : null
-        const messageClass = this.props.edit ? "published_post_edit" : "post_div"
-        return (
-            <div id="published_div">
+        const { userMessagesComponent, edit, publishedMessages } = this.props;
+        const messageClass = edit ? "published_post_edit" : "post_div"
+        if (edit) {
+            return (
+                <div id="published_div">
                 {publishedMessages.map(message => (
-                        <div id="messageContainer">
+                        <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                                 <Message
                                     key={uid(message)}
@@ -24,12 +23,33 @@ class Published extends React.Component {
                                     content={message[1]}
                                 />
                             </div>
-                            {edit}
+                            <div id="edit_div" className="text-center">
+                                <button id="trash" className="text-center" onClick={ () => {removePublishedMessage.bind(this, userMessagesComponent, message)()}}>
+                                    <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
+                                </button>
+                            </div>
                         </div>
-                    ))
-                }
-            </div>
-        )
+                    ))}
+                </div>
+            )
+        }
+        else {
+            return (
+                <div id="published_div">
+                    {publishedMessages.map(message => (
+                            <div id="messageContainer" key={uid(message)}>
+                                <div className={messageClass}>
+                                    <Message
+                                        key={uid(message)}
+                                        username={message[0]}
+                                        content={message[1]}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                </div>
+            )
+        }
     }
 }
 

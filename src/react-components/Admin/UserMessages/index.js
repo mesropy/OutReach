@@ -1,6 +1,7 @@
 import React from "react";
 import './styles.css'
 import Pending from './Pending'
+import Disapprove from './Pending/Disapprove'
 import Published from './Published'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -16,16 +17,22 @@ class UserMessages extends React.Component {
             pendingClass: "highlighted",
             publishedClass: "",
             pendingMessages: [
-                ["user", "Message 1"],
-                ["user2", "Message 2"]
+                ["amy", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."],
+                ["brian", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. "]
             ],
             publishedMessages: [
-                ["user3", "Message 3"]
-            ]
+                ["lily", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."]
+                ,                ["lily", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."]
+
+            ],
+            disapprove: false,
+            disapproveMessage: ""
         }
         this.changePending = this.changePending.bind(this);
         this.changePublished = this.changePublished.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.handlePopup = this.handlePopup.bind(this);
+        this.closePopup = this.closePopup.bind(this);
     }
 
     changePending() {
@@ -58,9 +65,34 @@ class UserMessages extends React.Component {
             edit: !toggle,
         })
     }
+    
+    handlePopup(message) {
+        this.setState({
+            disapprove: true,
+            disapproveMessage: message
+        })
+    }
+
+    closePopup() {
+        this.setState({
+            disapprove: false
+        })
+    }
 
     render() {
-        const edit = this.state.edit ? <button id="edit_button" onClick={this.handleEdit}>
+        if (this.state.disapprove) {
+            return (
+                <div>
+                    <Disapprove 
+                        message={this.state.disapproveMessage}
+                        userMessagesComponent={this}
+                        closePopup={this.closePopup}
+                    />
+                </div>
+            )
+        }
+
+        const edit = this.state.edit ? <button id="done_button" onClick={this.handleEdit}>
                                         <h6 id="done">Done</h6>
                                      </button> :
                                      <button id="edit_button" onClick={this.handleEdit}>
@@ -68,10 +100,10 @@ class UserMessages extends React.Component {
                                      </button>
         let messages = null;
         if (this.state.pending) {
-            messages = <Pending userMessagesComponent={this} edit={this.state.edit}/>
+            messages = <Pending userMessagesComponent={this} edit={this.state.edit} pendingMessages={this.state.pendingMessages} handlePopup={this.handlePopup}/>
         }
         if (this.state.published) {
-            messages = <Published userMessagesComponent={this} edit={this.state.edit}/>
+            messages = <Published userMessagesComponent={this} edit={this.state.edit} publishedMessages={this.state.publishedMessages}/>
         }
         return (
             <div id="userMessages">
@@ -81,6 +113,7 @@ class UserMessages extends React.Component {
                     {edit}
                 </div>
                 {messages}
+                <br/><br/>
             </div>
         )
     }
