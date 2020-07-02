@@ -11,7 +11,7 @@
 #published_div #edit_div {
     position: relative;
     margin-left: 60vw;
-    top: 80px;
+    transform: translateY(500%);
     width: min-content;    
 }
 
@@ -21,14 +21,15 @@
 }
 
 .published_post_edit {
+    display: flex;
     float: left;
     margin-right: 0px;
     width: 57vw;
-    height: 200px;
 }
 
 .published_post_edit .post {
     margin-right: 0px;
+    min-height: 250px;
     width: inherit;
     height: inherit;
 }

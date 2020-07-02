@@ -11,8 +11,8 @@
 #pending_div #edit_div {
     position: relative;
     margin-left: 60vw;
-    top: 60px;
-    width: min-content;    
+    transform: translateY(50%);
+    width: min-content;
 }
 
 #messageContainer {
@@ -21,16 +21,17 @@
 }
 
 .pending_post_edit {
+    display: flex;
     float: left;
     margin-right: 0px;
     width: 57vw;
-    height: 200px;
 }
 
 .pending_post_edit .post {
     margin-right: 0px;
     width: inherit;
     height: inherit;
+    min-height: 250px;
 }
 
 #edit_div #approve {
