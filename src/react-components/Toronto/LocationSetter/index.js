@@ -4,37 +4,25 @@ import { Backdrop, Button, IconButton } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faCheck, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import PinPlacer from "../PinPlacer";
 
-
-// Component for text entry popup, used by PostAdder below
+// Component for location setting popup, used by LocationSetter below
 class LocationSettingPopup extends React.Component {
-    handleSubmit = () => {
-        this.props.closePopup();
-    };
-
     render() {
-        const {handleInputFunc} = this.props;
-
         return(
             <div>
-                <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
+                <Backdrop open={ true } onClick={ this.props.closePopup }></Backdrop>
                 <div className="popupWindow">
                     <h4 className="locationTitle">Pick a point on the map...</h4>
-
-                    <IconButton className="closeBtn" onClick={this.props.closePopup}>
-                        <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
+                    <IconButton id="popup_close_button" onClick={ this.props.closePopup }>
+                        <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
-
-                    <img src="" alt=""/>
-
-                    <div className="btns">
-                        <Button onClick={this.props.closePopup}>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} />
-                            Set Location
-                        </Button>
-                        <Button onClick={this.handleSubmit}>
-                            Done
-                            <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+                    <PinPlacer />
+                    <div className="bottomBar">
+                        <FontAwesomeIcon id="bottomPin" icon={ faMapMarkerAlt } />
+                        <Button id="done" onClick={ this.props.closePopup }>
+                            <h5 id="btnText">Done</h5>
+                            <FontAwesomeIcon id="checkmark" icon={ faCheck }></FontAwesomeIcon>
                         </Button>
                     </div>
                 </div>
@@ -43,12 +31,12 @@ class LocationSettingPopup extends React.Component {
     }
 }
 
-// Component for the button to open new message popup
+// Component for the button to open location setter
 class LocationSetter extends React.Component {
     constructor() {
         super();
         this.state = {
-          show: false
+          show: false,
         };
     }
 
@@ -59,21 +47,17 @@ class LocationSetter extends React.Component {
     }
 
     render() {
-        const {handleInputFunc} = this.props;
         return (
             <div>
                 <Button
-                    onClick={this.toggle.bind(this)}
+                    onClick={ this.toggle.bind(this) }
                     className="locationBtn">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} />
+                    <FontAwesomeIcon icon={ faMapMarkerAlt } />
                     Set Location
                 </Button>
-
                 {this.state.show ?
                     <LocationSettingPopup
-                      title="New Message"
-                      closePopup={this.toggle.bind(this)}
-                      handleInputFunc={handleInputFunc}
+                        closePopup={this.toggle.bind(this)}
                     />
                     : null
                 }

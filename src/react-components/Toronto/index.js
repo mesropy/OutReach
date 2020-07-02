@@ -4,7 +4,7 @@ import '../main_styles.css';
 // import components
 import TopBar from "./TopBar";
 import SidePanel from "./SidePanel";
-import Queue from "./Queue"
+import Timeline from "./Timeline";
 
 class Toronto extends React.Component {
     render() {
@@ -16,7 +16,7 @@ class Toronto extends React.Component {
                     adminLoggedIn={this.props.adminLoggedIn}
                     />
                 <SidePanel />
-                <Queue className="queue"/>
+                <Timeline />
             </div>
         );
     }

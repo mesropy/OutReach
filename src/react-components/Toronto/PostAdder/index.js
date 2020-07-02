@@ -22,10 +22,9 @@ class Popup extends React.Component {
             <div>
                 <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
                 <div className="popupWindow">
-                    <IconButton className="closeBtn" onClick={this.props.closePopup}>
-                        <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
+                    <IconButton id="popup_close_button" onClick={this.props.closePopup}>
+                        <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
-
                     <h3 className="popupTitle">{this.props.title}</h3>
 
                     <TextField
