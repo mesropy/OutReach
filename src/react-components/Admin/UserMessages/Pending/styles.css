@@ -1,0 +1,45 @@
+#pending_div {
+    overflow: auto;
+}
+
+#pending_div .post_div .post {
+    float: left;
+    width: 85%;
+    margin-right: 0px;
+}
+
+#pending_div #edit_div {
+    position: relative;
+    margin-left: 60vw;
+    transform: translateY(50%);
+    width: min-content;
+}
+
+#messageContainer {
+    overflow: hidden;
+    width: 100%;
+}
+
+.pending_post_edit {
+    display: flex;
+    float: left;
+    margin-right: 0px;
+    width: 57vw;
+}
+
+.pending_post_edit .post {
+    margin-right: 0px;
+    width: inherit;
+    height: inherit;
+    min-height: 250px;
+}
+
+#edit_div #approve {
+    color: rgb(84,149,75);
+    font-weight: 500;
+}
+
+#edit_div #disapprove {
+    color: rgb(199,62,77);
+    font-weight: 500;
+}

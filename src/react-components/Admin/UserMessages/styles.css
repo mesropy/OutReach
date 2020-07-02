@@ -1,0 +1,58 @@
+#userMessages {
+    position: relative;
+    margin-top: 18vh;
+    margin-left: 25vw;
+}
+
+#userMessages #headers button {
+    border: none;
+    background-color: inherit;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+#userMessages button:hover,
+#userMessages button:focus {
+    outline: none;
+}
+
+#userMessages #published {
+    position: relative;
+    left: 75px;
+}
+
+#userMessages #headers #edit_button {
+    display: inline;
+    position: absolute;
+    font-size: large;
+    right: 130px;
+}
+
+#userMessages #headers #edit_button h6 {
+    float: right;
+    position: relative;
+    top:  5px;
+    left: 5px;
+}
+
+#userMessages #headers #done_button:hover,
+#userMessages #headers #done_button {
+    color: rgb(188,83,98);
+    background-color: inherit;
+    position: absolute;
+    top: 5px;
+    right: 120px;
+}
+
+#userMessages #headers #done_button #done:hover,
+#userMessages #headers #done_button #done {
+    margin: 0px;
+    background-color: inherit;
+    font-size: large;
+}
+
+
+.highlighted {
+    box-shadow: 0px 3px rgb(27,121,120);
+    color: rgb(27,121,120);
+}

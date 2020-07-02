@@ -4,7 +4,8 @@ import './../../main_styles.css';
 
 // import components
 import HomePageNav from "./../../HomePageNav";
-import AccountNavigation from "./../../Home/AccountNavigation";
+import WorldMapNav from "./../../WorldMapNav";
+import AccountNav from "./../../AccountNav";
 
 // Component to display top navigation bar
 class TopBar extends React.Component {
@@ -14,6 +15,8 @@ class TopBar extends React.Component {
         return (
             <div className="topBar">
               <HomePageNav />
+
+              {/* the title: the name of the city */}
               <svg width="250" height="50">
                   <text x="50%"
                         y="50%"
@@ -22,7 +25,11 @@ class TopBar extends React.Component {
                         letterSpacing="1.5">
                         { cityName }</text>
               </svg>
-              <AccountNavigation/>
+              <WorldMapNav />
+              <AccountNav
+                userLoggedIn={this.props.userLoggedIn}
+                adminLoggedIn={this.props.adminLoggedIn}
+              />
             </div>
         );
     }

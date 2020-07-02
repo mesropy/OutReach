@@ -4,20 +4,32 @@
     margin-left: 10px;
 }
 
-/* TODO: center the pop-up on the screen */
 .safetyPopup {
     background-color: white;
-    padding: 20px;
+    padding: 25px;
     position: fixed;
-    width: 70%;
-    height: 80%;
+    overflow-y: auto;
+    min-width: 80%;
+    max-height: 90%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+    z-index: 2;
 }
 
-#safetyClose {
-    float: right;
+#placer_img {
+  width: 100%;
+}
+
+#popup_close_button {
+    position: absolute;
+    outline: none;
+    right: 0px;
+    top: 0px;
+}
+
+div.MuiBackdrop-root{
+    z-index: 2;
 }

@@ -1,86 +1,87 @@
 #register_div {
-    display: inline-block;
     position: relative;
+    margin-left: 50vw;
     height: 100vh;
-    width: 46vw;
+    width: 50vw;
 }
 
-#register_div h6 {
-    color: rgb(114, 114, 114);
-    position: relative;
+.register_info {
+    color: rgb(118,118,118);
     font-size: 20px;
-    top: 20vh;
-    left: 35%;
+    margin-bottom: 2vh;
 }
 
-#register_div h6 a {
+.register_info a {
     color: rgb(73, 73, 73);
-    display: inline-block;
     font-weight: 400;
     text-decoration: underline;
 }
 
-#register_div h6 a:hover {
+.register_info h6 a:hover {
     color: rgb(83, 83, 83);
-    display: inline-block;
     font-weight: 400;
     text-decoration: none;
 }
 
-#register_div input {
+.register_input {
     border-radius: 20px 20px 20px 20px;
-    border: 2px solid rgb(109, 109, 109);
+    border: 2px solid rgb(22,123,121);
     margin: 1vh;
-    width: 30vw;
+    width: 28vw;
     height: 6vh;
     padding-left: 15px;
+    color: rgb(22,123,121);
 }
 
-#register_div input:focus,
-#register_div select:focus,
-#register_div textarea:focus,
-#register_div button:focus {
+.register_select {
+    border-radius: 20px 20px 20px 20px;
+    border: 2px solid rgb(22,123,121);
+    margin: 1vh;
+    width: 28vw;
+    height: 6vh;
+    padding-left: 15px;
+    font-weight: 500;
+    color: rgb(22,123,121);
+}
+
+.register_input:focus,
+.register_select:focus {
     outline: none;
 }
 
-#register_div select {
-    border-radius: 20px 20px 20px 20px;
-    border: 2px solid rgb(109, 109, 109);
-    margin: 1vh;
-    width: 30vw;
-    height: 6vh;
-    padding-left: 15px;
-    color: rgb(114, 114, 114);
-}
-
-
 #age_option {
     position: relative;
-    left: 1vw;
-    width: 30vw;
+    left: 5px;
 }
 
-#form {
-    display: inline-block;
+#register_form {
     position: relative;
-    top: 25vh;
-    left: 10vw;
+    top: 21vh;
 }
 
 .star {
     font-weight: bold;
     font-size: 30px;
+    color: rgb(22,123,121);
 }
 
-#signup {
+#signup_button {
     position: relative;
-    top: 27vh;
-    left: 11vw;
-    width: 30vw;
-    color: rgb(90, 90, 90);
+    width: 28vw;
+    top: 2vh;
+    color: rgb(70,75,78);
     font-size: large;
     font-weight: 500;
     height: 6vh;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(224,238,239);
     border: 1px;
+}
+
+#signup_button:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: rgb(22,123,121);
+    font-weight: 500;
 }

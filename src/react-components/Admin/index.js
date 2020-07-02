@@ -12,11 +12,11 @@ class Admin extends React.Component {
         super(props)
         this.state = {
             users: false,
-            user_messages: false,
+            userMessages: false,
             logout: false
         }
         this.handleUsers = this.handleUsers.bind(this)
-        this.handleUserMessages = this.handleUserMessages.bind(this)
+        this.handleMessages = this.handleMessages.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
         this.handleBack = this.handleBack.bind(this)
     }
@@ -25,29 +25,29 @@ class Admin extends React.Component {
         const toggle = this.state.users;
         this.setState({
             users: !toggle,
-            user_messages: false,
+            userMessages: false,
         })
     }
 
-    handleUserMessages(e) {
-        const toggle = this.state.users_messages;
+    handleMessages(e) {
+        const toggle = this.state.userMessages;
         this.setState({
             users: false,
-            user_messages: !toggle,
+            userMessages: !toggle,
         })
     }
 
     handleBack(e) {
         this.setState({
             users: false,
-            user_messages: false
+            userMessages: false
         })
     }
 
     handleLogout(e) {
         this.setState({
             users: false,
-            user_messages: false,
+            userMessages: false,
             logout: true
         })
     }
@@ -56,45 +56,27 @@ class Admin extends React.Component {
         if (this.state.logout) {
             return <Redirect to='/'/>
         }
+        let content;
         if (this.state.users) {
-            return (
-            <div>
-                <Topbar/>
-                <Navbar
-                handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                >
-                </Navbar>
-                <Users/>
-            </div>
-            )
+            content = <Users/>
         }
-        else if (this.state.user_messages) {
-            return (
-                <div>
-                <Topbar/>
-                <Navbar
-                handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                >
-                </Navbar>
-                <UserMessages/>
-                </div>
-                )
+        else if (this.state.userMessages) {
+            content = <UserMessages/>
+        }
+        else {
+            content = null
         }
         return (
             <div>
                 <Topbar/>
                 <Navbar
                 handleUsers={this.handleUsers}
-                handleUserMessages={this.handleUserMessages}
+                handleMessages={this.handleMessages}
                 handleLogout={this.handleLogout}
                 handleBack={this.handleBack}
-                ></Navbar>
+                >
+                </Navbar>
+                {content}
             </div>
         )
     }

@@ -1,15 +1,25 @@
 import React from "react";
-import infoPic from "./../../static/information.svg";
-import { Button } from "@material-ui/core";
+import { Backdrop, IconButton} from "@material-ui/core";
 import './styles.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
+
 
 // Component for the button for safety info, used by SafetyInfo below
 class SafetyPopup extends React.Component {
     render() {
-      return(
-        <div className="safetyPopup">
-            <Button id="safetyClose" onClick={this.props.closePopup}><strong>X</strong></Button>
-        </div>
+        return(
+            <div>
+                <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
+                <div className="safetyPopup">
+                  <IconButton id="popup_close_button" onClick={this.props.closePopup}>
+                      <FontAwesomeIcon icon={ faTimesCircle } />
+                  </IconButton>
+                  <img id="placer_img" src="https://dummyimage.com/1000x600/ededed/3d3d3d"
+                        alt="placer"/>
+                </div>
+            </div>
       );
     }
 }
@@ -32,7 +42,11 @@ class SafetyInfo extends React.Component {
     render() {
         return (
             <div className="panel_card" >
-                <h4>Staying Safe<input id="info_pic" type="image" src={infoPic} alt="Info" onClick={ this.toggle.bind(this) }></input></h4>
+                <h4>Staying Safe
+                  <IconButton id="info_pic" onClick={ this.toggle.bind(this) }>
+                    <FontAwesomeIcon icon={ faInfo } />
+                  </IconButton>
+                </h4>
 
                 { this.state.show ?
                 <SafetyPopup

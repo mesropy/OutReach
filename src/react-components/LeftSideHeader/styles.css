@@ -1,0 +1,53 @@
+#back {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    background-color: inherit;
+    color: rgb(95, 95, 95);
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#back:focus {
+    outline: none;
+}
+
+#header_background {
+    float: left;
+    background-color: rgb(251,248,242);
+    height: 100vh;
+    width: 50vw;
+}
+
+#header {
+    display: inline-block;
+    position: relative;
+    top: 20vh;
+}
+
+#header h1 {
+    float: left;
+    font-size: 60px;
+}
+
+#header img {
+    position: relative;
+    left: 1vw;
+    height: 72px;
+}
+
+#tagline {
+    display: inline-block;
+    position: relative;
+    top: 20vh;
+    text-align: center;
+}
+
+#handwave_background {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 50vw;
+}

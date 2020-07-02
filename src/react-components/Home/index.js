@@ -6,21 +6,22 @@ import './../main_styles.css'
 // import components
 import Header from "./Header";
 import MapSelection from "./MapSelection";
-import AccountNavigation from "./AccountNavigation";
+import AccountNav from "./../AccountNav";
 
 /* Component for the Home page */
 class Home extends React.Component {
-/*
-  state = {
-    username: "username"
-  }
-*/
+
   render() {
     return (
       <div>
-        <AccountNavigation /*username={ this.state.username }*/ />
+        <AccountNav 
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn} />
         <Header />
-        <MapSelection />
+        <MapSelection
+          userLoggedIn={this.props.userLoggedIn}
+          adminLoggedIn={this.props.adminLoggedIn}
+        />
       </div>
     );
   }
