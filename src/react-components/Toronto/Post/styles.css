@@ -1,7 +1,8 @@
 .post {
     background-color: #F8F8F8;
     padding: 20px;
-    margin: 30px 90px 30px 30px;
+    margin-top: 20px;
+    margin-right: 25px;
     border-radius: 10px;
     overflow: auto;
     height: auto;
@@ -17,12 +18,12 @@
     height: 30px;
 }
 
-.post-rightBar{
-    float: right;
-}
-
 .post-username {
     float: left;
+}
+
+.post-rightBar{
+    float: right;
 }
 
 .post-rightBar button {
@@ -35,6 +36,10 @@
 
 .post p {
     margin: 0px;
+}
+
+.post strong {
+    margin-right: 25px;
 }
 
 .locationPopup {

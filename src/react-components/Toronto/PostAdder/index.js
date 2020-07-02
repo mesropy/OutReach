@@ -1,6 +1,11 @@
 import React from "react";
-import { Backdrop, Button, TextField } from "@material-ui/core";
 import './styles.css';
+import LocationSetter from "../LocationSetter";
+import { Backdrop, Button, TextField } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
 
 // Component for text entry popup, used by PostAdder below
 class Popup extends React.Component {
@@ -17,22 +22,32 @@ class Popup extends React.Component {
             <div>
                 <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
                 <div className="popupWindow">
-                    <Button onClick={this.props.closePopup}>Cancel</Button>
+                    <Button className="closeBtn" onClick={this.props.closePopup}>
+                        <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
+                    </Button>
+
                     <h3 className="popupTitle">{this.props.title}</h3>
 
                     <TextField
-                    className="TextEntry"
-                    multiline
-                    rows={12}
-                    defaultValue="Share your thoughts here..."
-                    fullWidth={true}
-                    variant="outlined"
-                    onChange={handleInputFunc}
+                        className="TextEntry"
+                        multiline
+                        rows={12}
+                        placeholder="Share your thoughts here..."
+                        fullWidth={true}
+                        variant="outlined"
+                        onChange={handleInputFunc}
                     />
 
                     <div className="btns">
-                        <Button className="locationBtn" variant="outlined" onClick={this.props.closePopup}>Set Location</Button>
-                        <Button className="postBtn" variant="outlined" onClick={this.handleSubmit}>Post</Button>
+                        {/* <Button className="locationBtn" onClick={this.props.closePopup}>
+                            <PinIcon/>
+                            Set Location
+                        </Button> */}
+                        <LocationSetter />
+                        <Button className="postBtn" onClick={this.handleSubmit}>
+                            Post
+                            <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
+                        </Button>
                     </div>
                 </div>
             </div>

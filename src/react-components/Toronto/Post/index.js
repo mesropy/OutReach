@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css';
 
-import { Backdrop, IconButton, Icon } from "@material-ui/core";
+import { Backdrop, IconButton } from "@material-ui/core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -61,8 +61,10 @@ class Post extends React.Component {
         return (
             <div className="post">
                 <div className="post-bar">
-                    <p className="post-username"><strong>{username}</strong></p>
-                    {/* <p><strong>{age}</strong></p> */}
+                    <p className="post-username">
+                        <strong>{username}</strong>
+                        {age}
+                    </p>
                     <div className="post-rightBar">
                         <button className="pin_button"
                                 onClick={ this.toggle.bind(this) }>
@@ -73,7 +75,6 @@ class Post extends React.Component {
                 </div>
 
                 <div className="postContent">
-                    {/* <p><strong>{username}</strong></p> */}
                     <p>{content}</p>
                 </div>
 
