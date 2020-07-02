@@ -1,7 +1,11 @@
 import React from "react";
+
+// import components
 import PostAdder from "../PostAdder";
+import MessageList from "../MessageList";
+
+// import actions
 import { addPost } from "../../../actions/addPost";
-import PostList from "../PostList";
 
 // Component to store messages
 class Queue extends React.Component {
@@ -38,7 +42,7 @@ class Queue extends React.Component {
                     cleanFunc={this.cleanContent}
                 />
 
-                <PostList posts={this.state.list} />
+                <MessageList posts={this.state.list} />
             </div>
         );
     }

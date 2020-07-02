@@ -5,7 +5,7 @@ import Message from "../Message";
 import "./styles.css";
 
 // Component to display all posts
-class PostList extends React.Component {
+class MessageList extends React.Component {
     render() {
         const { posts } = this.props;
         return (
@@ -24,4 +24,4 @@ class PostList extends React.Component {
     }
 }
 
-export default PostList;
+export default MessageList;
