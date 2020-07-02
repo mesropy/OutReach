@@ -5,7 +5,7 @@ import { Backdrop, IconButton } from "@material-ui/core";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import toronto_map from "./../static/toronto_map.png";
+import toronto_map from "./../Toronto/static/toronto_map.png";
 
 // Component for the location popup
 class LocationPopup extends React.Component {

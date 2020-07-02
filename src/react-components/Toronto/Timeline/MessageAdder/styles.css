@@ -21,6 +21,9 @@
     top: 80px;
     right: 40px;
     font-size: 20px;
+    z-index: 1;
+    background-color: rgba(185, 217, 217, 0.8);
+    color: #147E7D;
 }
 
 #addBtnText {

@@ -70,6 +70,7 @@ class MessageAdder extends React.Component {
         return (
             <div>
                 <Button id="addBtn"
+                        variant="outlined"
                         color="primary"
                         onClick={this.toggle.bind(this)}>
                   <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>

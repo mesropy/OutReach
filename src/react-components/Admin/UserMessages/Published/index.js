@@ -1,7 +1,7 @@
 import React from "react";
 import { uid } from "react-uid";
 import './styles.css'
-import Post from "../../../Toronto/Post"
+import Message from "../../../Message"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,16 +12,16 @@ class Published extends React.Component {
         const edit = this.props.edit ?  <div id="edit_div" className="text-center">
                                             <button id="trash" className="text-center"><FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon></button>
                                         </div> : null
-        const postClass = this.props.edit ? "published_post_edit" : "post_div"
+        const messageClass = this.props.edit ? "published_post_edit" : "post_div"
         return (
             <div id="published_div">
-                {publishedMessages.map(post => (
+                {publishedMessages.map(message => (
                         <div id="messageContainer">
-                            <div className={postClass}>
-                                <Post
-                                    key={uid(post)}
-                                    username={post[0]}
-                                    content={post[1]}
+                            <div className={messageClass}>
+                                <Message
+                                    key={uid(message)}
+                                    username={message[0]}
+                                    content={message[1]}
                                 />
                             </div>
                             {edit}
