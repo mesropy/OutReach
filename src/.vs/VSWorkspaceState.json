@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\react-components",
+    "\\react-components\\Admin\\Users",
+    "\\react-components\\OtherUser",
+    "\\react-components\\OtherUser\\Topbar",
+    "\\react-components\\User",
+    "\\react-components\\User\\Messages\\Message",
+    "\\react-components\\User\\Messages\\MessageTable"
+  ],
+  "SelectedNode": "\\react-components\\OtherUser\\Topbar\\index.js",
+  "PreviewInSolutionExplorer": false
+}
