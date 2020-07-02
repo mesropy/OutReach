@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\react-components",
+    "\\react-components\\Admin",
+    "\\react-components\\Admin\\UserMessages",
+    "\\react-components\\Admin\\Users",
+    "\\react-components\\Admin\\Users\\User",
+    "\\react-components\\User",
+    "\\react-components\\User\\Settings",
+    "\\react-components\\User\\UserMessages",
+    "\\react-components\\User\\UserMessages\\Message",
+    "\\react-components\\User\\UserMessages\\MessageTable"
+  ],
+  "SelectedNode": "\\react-components\\Admin\\Users\\index.js",
+  "PreviewInSolutionExplorer": false
+}
