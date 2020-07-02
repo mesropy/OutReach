@@ -3,15 +3,14 @@
     "",
     "\\react-components",
     "\\react-components\\Admin",
-    "\\react-components\\Admin\\UserMessages",
+    "\\react-components\\Admin\\Navbar",
     "\\react-components\\Admin\\Users",
-    "\\react-components\\Admin\\Users\\User",
     "\\react-components\\User",
+    "\\react-components\\User\\Messages\\Message",
+    "\\react-components\\User\\Messages\\MessageTable",
     "\\react-components\\User\\Settings",
-    "\\react-components\\User\\UserMessages",
-    "\\react-components\\User\\UserMessages\\Message",
-    "\\react-components\\User\\UserMessages\\MessageTable"
+    "\\react-components\\User\\Topbar"
   ],
-  "SelectedNode": "\\react-components\\Admin\\Users\\index.js",
+  "SelectedNode": "\\react-components\\User\\Topbar\\index.js",
   "PreviewInSolutionExplorer": false
 }

@@ -10,9 +10,9 @@ class Messages extends React.Component {
         super(props);
         this.state = {
             messages: [
-                { username: "@user2", date: "July 2, 2020", text: "consectetur adipiscing"},
-                { username: "@user2", date: "July 1, 2020", text: "dolor sit amet"},
-                { username: "@user2", date: "June 15, 2020", text: "Lorem Ipsum"},
+                { username: "@user1", date: "July 2, 2020", text: "consectetur adipiscing"},
+                { username: "@user1", date: "July 1, 2020", text: "dolor sit amet"},
+                { username: "@user1", date: "June 15, 2020", text: "Lorem Ipsum"},
             ],
         }
     }
