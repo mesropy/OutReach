@@ -26,3 +26,4 @@ package-lock.json
 # visual studio settings
 /.vs
 /src/.vs
+/src/.vs/slnx.sqlite
