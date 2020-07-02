@@ -51,9 +51,14 @@ class Message extends React.Component {
   }
 
     render() {
+        // will always display current time
+        // TODO: set this time when a new message is added (in MessageAdder)
+        const today = new Date();
         const {username="user",
                age="20",
-               time="12:34 pm·Today",
+               time=  today.getHours() + ":" + ('0' + today.getMinutes()).slice(-2),
+               date= today.toLocaleString('default', { month: 'short' }) + " " +
+                     today.getDate(),
                content,
                location_name="UofT",
                pin_left_pos="58%",
@@ -71,7 +76,7 @@ class Message extends React.Component {
                                 onClick={ this.toggle.bind(this) }>
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                         </button>
-                        <span>{ time }</span>
+                        { time.concat(" · ", date) }
                     </div>
                 </div>
 
