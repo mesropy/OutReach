@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import Messages from './Messages'
+import Settings from './Settings'
 
 import '../main_styles.css';
 
@@ -83,7 +84,7 @@ class User extends React.Component {
                         handleBack={this.handleBack}
                     >
                     </Navbar>
-                    
+                    <Settings/>
                 </div>
             )
         };

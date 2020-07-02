@@ -10,7 +10,7 @@ class MessageTable extends React.Component {
 
     render() {
 
-        const {state, messagesComponent, edit} = this.props
+        const {state, messagesComponent} = this.props
 
         return (
             <Table>

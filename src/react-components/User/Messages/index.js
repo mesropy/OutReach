@@ -1,8 +1,8 @@
 import React from "react";
 import './styles.css'
 import MessageTable from './MessageTable'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class Messages extends React.Component {
 

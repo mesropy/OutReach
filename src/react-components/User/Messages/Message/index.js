@@ -1,14 +1,12 @@
 import React from "react";
-import {TableCell, TableRow, Button} from "@material-ui/core"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import {TableCell, TableRow} from "@material-ui/core"
 
 class Message extends React.Component {
 
 
     render() {
-        const {message, messagesComponent} = this.props
-        {
+        const {message} = this.props
+        
             return (
                 <TableRow key={message.username}>
                     <TableCell component="th" scope="row">
@@ -22,7 +20,7 @@ class Message extends React.Component {
                     </TableCell>
                 </TableRow>
             )
-        }
+        
     }
 }
 
