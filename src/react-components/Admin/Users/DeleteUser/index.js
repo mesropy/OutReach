@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.css'
-import {removeUser} from "../../../../actions/adminEdit"
+import {removeUser} from "../../../../actions/adminUserEdit"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
