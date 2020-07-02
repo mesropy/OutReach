@@ -1,7 +1,7 @@
 import React from "react";
 
 //import TimelineNav from "./TimelineNav";
-import PostAdder from "../PostAdder";
+import MessageAdder from "./MessageAdder";
 import MessageList from "./MessageList";
 
 // import actions
@@ -36,11 +36,11 @@ class Timeline extends React.Component {
     return(
       <div id="timeline">
         {/* <TimelineNav /> */}
-        <PostAdder
+        <MessageAdder
             name={this.state.name}
             content={this.state.content}
             handleInputFunc={this.handleInput}
-            addPostFunc={() => addMessage(this)}
+            addMessageFunc={() => addMessage(this)}
             cleanFunc={this.cleanContent}
         />
         <MessageList messages={this.state.messages} />

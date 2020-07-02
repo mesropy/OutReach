@@ -3,7 +3,7 @@ import "./styles.css";
 import { Button } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import toronto_map from "../static/toronto_map.png";
+import toronto_map from "./../../static/toronto_map.png";
 
 // Component for pin on the map, used by PinPlacer below
 class Pin extends React.Component {

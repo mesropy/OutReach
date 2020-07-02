@@ -8,10 +8,10 @@ import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 // Component for text entry popup, used by PostAdder below
-class Popup extends React.Component {
+class NewMessagePopup extends React.Component {
     handleSubmit = () => {
         this.props.closePopup();
-        this.props.addPostFunc();
+        this.props.addMessageFunc();
         this.props.cleanFunc();
     };
 
@@ -51,7 +51,7 @@ class Popup extends React.Component {
 }
 
 // Component for the button to open new message popup
-class PostAdder extends React.Component {
+class MessageAdder extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -66,7 +66,7 @@ class PostAdder extends React.Component {
     }
 
     render() {
-        const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
+        const {handleInputFunc, addMessageFunc, cleanFunc} = this.props;
         return (
             <div>
                 <Button id="addBtn"
@@ -77,11 +77,11 @@ class PostAdder extends React.Component {
                 </Button>
 
                 {this.state.show ?
-                    <Popup
+                    <NewMessagePopup
                       title="New Message"
                       closePopup={this.toggle.bind(this)}
                       handleInputFunc={handleInputFunc}
-                      addPostFunc={addPostFunc}
+                      addMessageFunc={addMessageFunc}
                       cleanFunc={cleanFunc}
                     />
                     : null
@@ -91,4 +91,4 @@ class PostAdder extends React.Component {
     }
 };
 
-export default PostAdder;
+export default MessageAdder;
