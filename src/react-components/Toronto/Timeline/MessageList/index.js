@@ -1,6 +1,6 @@
 import React from "react";
 import { uid } from "react-uid";
-import Message from "./../../Message";
+import Message from "./../../../Message";
 
 import "./styles.css";
 
