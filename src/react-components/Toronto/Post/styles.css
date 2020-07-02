@@ -9,18 +9,6 @@
     float: right;
 }
 
-/* .iconContainer {
-    float: left;
-    width: 70px;
-}
-
-.iconContainer img {
-    margin: 5px;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-} */
-
 .postContent {
     padding: 15px;
 }
@@ -29,12 +17,12 @@
     height: 30px;
 }
 
-.post-rightBar{
-    float: right;
-}
-
 .post-username {
     float: left;
+}
+
+.post-rightBar{
+    float: right;
 }
 
 .post-rightBar button {
@@ -47,4 +35,8 @@
 
 .post p {
     margin: 0px;
+}
+
+.post strong {
+    margin-right: 25px;
 }

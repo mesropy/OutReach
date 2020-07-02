@@ -1,7 +1,7 @@
 /* styles for the side panel component */
 
 .sidePanel {
-    position: relative;
+    position: fixed;
     float: left;
     width: 275px;
 }

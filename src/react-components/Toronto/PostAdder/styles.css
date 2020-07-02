@@ -18,15 +18,19 @@
     right: 40px;
 }
 
-.popupTitle {
-    display: block;
+.closeBtn {
     float: right;
+    font-size: 25px;
 }
-/* 
-.btns {
-    display: block;
-    float: middle;
-} */
+
+.popupTitle {
+    text-align: center;
+}
+
+
+.btns svg {
+    margin: 10px;
+}
 
 .locationBtn {
     float: left;
@@ -34,8 +38,18 @@
     left: 100px;
 }
 
+.locationBtn svg {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
 .postBtn {
     float: right;
     top: 10px;
     right: 100px;
+}
+
+.postBtn svg {
+    margin-left: 10px;
+    font-size: 25px;
 }
