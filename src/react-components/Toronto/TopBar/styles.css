@@ -1,6 +1,6 @@
 /* styles for top bar component */
 .topBar {
-  z-index: 1;
+  z-index: 0;
   position: fixed;
   top: 0;
   width: 100%;
@@ -22,7 +22,7 @@ text {
 /* make sure nothing float above top bar when scrolling */
 .mainContent {
   margin-bottom: 65px;
-  z-index: 0;
+  z-index: -1;
 }
 
 .worldLink {
