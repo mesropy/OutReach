@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 // import components
 import HomePageNav from "./../../HomePageNav";
 import AccountNav from "./../../AccountNav";
-import AccountNavigation from "./../../Home/AccountNavigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 
@@ -34,7 +33,6 @@ class TopBar extends React.Component {
                   <FontAwesomeIcon id="globe" icon={faGlobeAmericas}></FontAwesomeIcon>
                   <h6 id="globe-text">World Map</h6>
               </Link>
-              <AccountNavigation/>
             </div>
         );
     }
