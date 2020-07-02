@@ -25,24 +25,6 @@ text {
   z-index: -1;
 }
 
-.worldLink {
-  position: absolute;
-  right: 210px;
-  top: 15px;
-  display: inline;
-}
-
-.worldLink h6 {
-  float: right;
-  position: relative;
-}
-
-.worldLink svg {
-  float: left;
-  position: relative;
-  margin-right: 10px;
-}
-
 .topBar a {
   color: #464646;
 }
