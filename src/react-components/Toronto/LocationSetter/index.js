@@ -1,10 +1,9 @@
 import React from "react";
 import './styles.css';
-import { Backdrop, Button } from "@material-ui/core";
+import { Backdrop, Button, IconButton } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 // Component for text entry popup, used by PostAdder below
@@ -22,9 +21,9 @@ class LocationSettingPopup extends React.Component {
                 <div className="popupWindow">
                     <h4 className="locationTitle">Pick a point on the map...</h4>
 
-                    <Button className="closeBtn" onClick={this.props.closePopup}>
+                    <IconButton className="closeBtn" onClick={this.props.closePopup}>
                         <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
-                    </Button>
+                    </IconButton>
 
                     <img src="" alt=""/>
 

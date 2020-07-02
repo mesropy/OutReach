@@ -1,0 +1,17 @@
+#worldMapNav {
+  position: absolute;
+  right: 200px;
+  top: 15px;
+  display: inline;
+}
+
+#worldMapNav h6 {
+  float: right;
+  position: relative;
+}
+
+#worldMapNav svg {
+  float: left;
+  position: relative;
+  margin-right: 10px;
+}
