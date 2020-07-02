@@ -4,7 +4,7 @@
 
 ### Instructions for User
 
-### instructions for Admin
+### Instructions for Admin
 
 ### Material UI
 
