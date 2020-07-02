@@ -6,7 +6,7 @@
   width: 100%;
   text-align: center;
   padding-top: 13px;
-  background-color: #F8F8F8;
+  background-color: rgba(247, 247, 247, 0.9);
 }
 
 /* style the title text to be outlined */
@@ -17,14 +17,4 @@ text {
   stroke: #464646;
   stroke-width: 1.5px;
   stroke-linejoin: round;
-}
-
-/* make sure nothing float above top bar when scrolling */
-.mainContent {
-  margin-bottom: 65px;
-  z-index: -1;
-}
-
-.topBar a {
-  color: #464646;
 }

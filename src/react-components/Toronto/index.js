@@ -15,10 +15,8 @@ class Toronto extends React.Component {
                     userLoggedIn={this.props.userLoggedIn}
                     adminLoggedIn={this.props.adminLoggedIn}
                     />
-                <div className="mainContent">
-                    <SidePanel />
-                    <Queue />
-                </div>
+                <SidePanel />
+                <Queue className="queue"/>
             </div>
         );
     }
