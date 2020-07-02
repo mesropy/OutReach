@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\react-components",
+    "\\react-components\\Admin",
+    "\\react-components\\Admin\\Navbar",
     "\\react-components\\Admin\\Users",
-    "\\react-components\\OtherUser",
-    "\\react-components\\OtherUser\\Topbar",
     "\\react-components\\User",
     "\\react-components\\User\\Messages\\Message",
-    "\\react-components\\User\\Messages\\MessageTable"
+    "\\react-components\\User\\Messages\\MessageTable",
+    "\\react-components\\User\\Settings",
+    "\\react-components\\User\\Topbar"
   ],
-  "SelectedNode": "\\react-components\\OtherUser\\Topbar\\index.js",
+  "SelectedNode": "\\react-components\\User\\Topbar\\index.js",
   "PreviewInSolutionExplorer": false
 }
