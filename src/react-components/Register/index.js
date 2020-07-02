@@ -17,7 +17,8 @@ class Register extends React.Component {
       confirmPassword: "",
       phoneNumber: "",
       city: "default",
-      age: "default"
+      age: "default",
+      error: ""
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,25 +34,36 @@ class Register extends React.Component {
 
   handleSubmit = e => {
     if (checkEmpty(this.state)) {
-      alert("Please fill in all required fields.");
+      this.setState({
+        error: "Please fill in all required fields."
+      })
     }
     else if (checkUsername(this.state)) {
-      alert("Username must match the required description.")
+      this.setState({
+        error: "Username must match the required description."
+      })
     }
     else if (checkPassword(this.state)) {
-      alert("Password must match the required description.");
+      this.setState({
+        error: "Password must match the required description."
+      })
     }
     else if (this.state.password !== this.state.confirmPassword) {
-      alert("Confirm Password must match the Password entered.");
+      this.setState({
+        error: "Confirm Password must match the Password entered."
+      })
     }
     else if (checkPhone(this.state)) {
-      alert("Please enter a valid Phone Number.");
+      this.setState({
+        error: "Please enter a valid Phone Number."
+      })
     }
     else if (checkCity(this.state)) {
-      alert("Please select a valid city.");
+      this.setState({
+        error: "Please select a valid city."
+      })
     }
     else {
-      alert("Registration Success!");
       this.setState({
         register: true
       })
@@ -75,6 +87,7 @@ class Register extends React.Component {
           age={this.state.age}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          error={this.state.error}
         />
       </div>
     );

@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
         let input_class = ""
         let error_class = ""
         if (error) {
-            input_class = "login_error"
+            input_class = "input_error"
             error_class = "error_message_div"
         }
         else {

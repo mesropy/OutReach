@@ -20,9 +20,16 @@ class RegisterForm extends React.Component {
             city,
             age,
             handleChange,
-            handleSubmit
+            handleSubmit,
+            error
         } = this.props;
-
+        let error_class = ""
+        if (error !== "") {
+            error_class = "error_message_div"
+        }
+        else if (error === ""){
+            error_class = "hide"
+        }
         return (
             <div id="register_div" className="text-center">
                 <form id="register_form">
@@ -48,6 +55,9 @@ class RegisterForm extends React.Component {
                             }
                         </select><br/>
                         <button id="signup_button" type="button" onClick={handleSubmit}>sign-up</button>
+                        <div className={error_class}>
+                            <h5>{error}</h5>
+                        </div>
                 </form>
             </div>
         )           

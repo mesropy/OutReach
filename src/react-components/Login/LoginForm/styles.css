@@ -32,7 +32,7 @@
     padding-left: 15px;
 }
 
-.login_error {
+.input_error {
     border-radius: 5px 5px 5px 5px;
     border: 2px solid rgb(134,58,69);
     margin: 1vh;
@@ -48,9 +48,10 @@
 .error_message_div h5 {
     color: rgb(153,64,71);
     margin-bottom: 0px;
+    display: block;
 }
 
-.login_error:focus,
+.input_error:focus,
 .login_input:focus {
     outline: none;
 }
