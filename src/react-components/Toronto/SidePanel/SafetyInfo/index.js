@@ -1,5 +1,4 @@
 import React from "react";
-import infoPic from "./../../static/information.svg";
 import { Backdrop, IconButton} from "@material-ui/core";
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,5 +1,5 @@
 export const addPost = postList => {
-    if (postList.state.content == "") {
+    if (postList.state.content === "") {
         alert("Cannot post a empty message.");
         return;
     }

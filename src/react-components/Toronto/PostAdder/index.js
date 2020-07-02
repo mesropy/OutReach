@@ -16,7 +16,7 @@ class Popup extends React.Component {
     };
 
     render() {
-        const {handleInputFunc, addPostFunc, cleanFunc} = this.props;
+        const {handleInputFunc} = this.props;
 
         return(
             <div>
@@ -39,10 +39,6 @@ class Popup extends React.Component {
                     />
 
                     <div className="btns">
-                        {/* <Button className="locationBtn" onClick={this.props.closePopup}>
-                            <PinIcon/>
-                            Set Location
-                        </Button> */}
                         <LocationSetter />
                         <Button className="postBtn" onClick={this.handleSubmit}>
                             Post
