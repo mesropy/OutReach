@@ -1,5 +1,6 @@
 import React from "react";
 import logo from './static/logo.svg'
+import handwave from "./static/handwave.svg"
 import './styles.css'
 
 class LeftSideHeader extends React.Component {
@@ -21,6 +22,7 @@ class LeftSideHeader extends React.Component {
                         <h5>connecting through our stories <br/><span id="second_tagline"> during COVID-19 </span></h5>
                     </div>
                 </div>
+                <img id="handwave_background" alt="Adjacent reaching hands combined to form a wave at the bottom of the left side panel" src={handwave}/>
             </div>
         )
     }
