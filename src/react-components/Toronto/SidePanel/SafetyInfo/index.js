@@ -4,6 +4,7 @@ import { Backdrop, IconButton} from "@material-ui/core";
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
 
 // Component for the button for safety info, used by SafetyInfo below
@@ -41,7 +42,11 @@ class SafetyInfo extends React.Component {
     render() {
         return (
             <div className="panel_card" >
-                <h4>Staying Safe<input id="info_pic" type="image" src={infoPic} alt="Info" onClick={ this.toggle.bind(this) }></input></h4>
+                <h4>Staying Safe
+                  <IconButton id="info_pic" onClick={ this.toggle.bind(this) }>
+                    <FontAwesomeIcon icon={ faInfo } />
+                  </IconButton>
+                </h4>
 
                 { this.state.show ?
                 <SafetyPopup

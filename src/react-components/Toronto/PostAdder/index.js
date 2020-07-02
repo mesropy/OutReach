@@ -1,10 +1,10 @@
 import React from "react";
 import './styles.css';
 import LocationSetter from "../LocationSetter";
-import { Backdrop, Button, TextField } from "@material-ui/core";
+import { Backdrop, Button, IconButton, TextField } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 // Component for text entry popup, used by PostAdder below
@@ -22,9 +22,9 @@ class Popup extends React.Component {
             <div>
                 <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
                 <div className="popupWindow">
-                    <Button className="closeBtn" onClick={this.props.closePopup}>
+                    <IconButton className="closeBtn" onClick={this.props.closePopup}>
                         <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
-                    </Button>
+                    </IconButton>
 
                     <h3 className="popupTitle">{this.props.title}</h3>
 
@@ -76,7 +76,10 @@ class PostAdder extends React.Component {
             <div>
                 <Button id="addBtn"
                         color="primary"
-                        onClick={this.toggle.bind(this)}>New Message</Button>
+                        onClick={this.toggle.bind(this)}>
+                  <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                  <span id="addBtnText" >New Message</span>
+                </Button>
 
                 {this.state.show ?
                     <Popup
