@@ -7,7 +7,7 @@ import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import toronto_map from "./../static/toronto_map.png";
 
-// Component for the button for safety info, used by SafetyInfo below
+// Component for the location popup
 class LocationPopup extends React.Component {
     render() {
       const { city_map, location_name, pin_left_pos, pin_down_pos } = this.props;
@@ -35,7 +35,8 @@ class LocationPopup extends React.Component {
     }
 }
 
-class Post extends React.Component {
+// componenet for the message
+class Message extends React.Component {
   constructor() {
       super();
       this.state = {
@@ -92,4 +93,4 @@ class Post extends React.Component {
     }
 }
 
-export default Post;
+export default Message;

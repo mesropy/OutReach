@@ -1,6 +1,6 @@
 import React from "react";
 import { uid } from "react-uid";
-import Post from "../Post";
+import Message from "../Message";
 
 import "./styles.css";
 
@@ -12,7 +12,7 @@ class PostList extends React.Component {
             <div>
                 <div id="postList">
                     {posts.map(post => (
-                        <Post
+                        <Message
                             key={uid(post)}
                             username={post[0]}
                             content={post[1]}
