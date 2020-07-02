@@ -12,7 +12,7 @@ class LocationSettingPopup extends React.Component {
         return(
             <div>
                 <Backdrop open={ true } onClick={ this.props.closePopup }></Backdrop>
-                <div className="popupWindow">
+                <div className="setLocationPopup">
                     <h4 className="locationTitle">Pick a point on the map...</h4>
                     <IconButton id="popup_close_button" onClick={ this.props.closePopup }>
                         <FontAwesomeIcon icon={ faTimesCircle } />

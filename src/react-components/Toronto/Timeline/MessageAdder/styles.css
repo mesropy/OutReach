@@ -1,11 +1,15 @@
-.popupWindow {
+.addMessagePopup {
     background-color: white;
     padding: 25px;
     position: fixed;
+    overflow-y: auto;
+    min-width: 40%;
+    max-width: 100%;
+    min-height: 50%;
+    max-height: 95%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
     z-index: 2;
@@ -24,8 +28,11 @@
 }
 
 .closeBtn {
-    float: right;
-    font-size: 25px;
+  position: absolute;
+  outline: none;
+  right: 0px;
+  top: 0px;
+  font-size: 25px;
 }
 
 .popupTitle {

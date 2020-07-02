@@ -21,7 +21,7 @@ class NewMessagePopup extends React.Component {
         return(
             <div>
                 <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
-                <div className="popupWindow">
+                <div className="addMessagePopup">
                     <IconButton id="popup_close_button" onClick={this.props.closePopup}>
                         <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
