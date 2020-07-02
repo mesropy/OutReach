@@ -15,7 +15,7 @@ class Published extends React.Component {
             return (
                 <div id="published_div">
                 {publishedMessages.map(message => (
-                        <div id="messageContainer">
+                        <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                                 <Message
                                     key={uid(message)}
@@ -37,7 +37,7 @@ class Published extends React.Component {
             return (
                 <div id="published_div">
                     {publishedMessages.map(message => (
-                            <div id="messageContainer">
+                            <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
                                     <Message
                                         key={uid(message)}

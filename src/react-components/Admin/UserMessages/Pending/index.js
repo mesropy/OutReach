@@ -15,7 +15,7 @@ class Pending extends React.Component {
             return (
                 <div id="pending_div">
                     {pendingMessages.map(message => (
-                            <div id="messageContainer">
+                            <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
                                     <Message
                                         key={uid(message)}
@@ -23,7 +23,7 @@ class Pending extends React.Component {
                                         content={message[1]}
                                     />
                                 </div>
-                                <div id="edit_div" className="text-center">
+                                <div id="edit_div" className="text-center" >
                                     <button id="approve" className="text-center" onClick={() => {approveMessage.bind(this, userMessagesComponent, message)()}}>
                                         <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon><p>approve</p>
                                     </button>
@@ -40,7 +40,7 @@ class Pending extends React.Component {
         return (
             <div id="pending_div">
                 {pendingMessages.map(message => (
-                        <div id="messageContainer">
+                        <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                                 <Message
                                     key={uid(message)}

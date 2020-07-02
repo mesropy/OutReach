@@ -16,6 +16,10 @@
     font-weight: 400;
 }
 
+#delete_div h5 {
+    display: block;
+}
+
 #delete_div button:focus {
     outline: none;
 }
