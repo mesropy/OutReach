@@ -24,4 +24,5 @@ yarn-error.log*
 package-lock.json
 
 # visual studio settings
-*.vs
+/.vs
+/src/.vs
