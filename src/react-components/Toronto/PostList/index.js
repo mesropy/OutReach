@@ -2,13 +2,15 @@ import React from "react";
 import { uid } from "react-uid";
 import Post from "../Post";
 
+import "./styles.css";
+
 // Component to display all posts
 class PostList extends React.Component {
     render() {
         const { posts } = this.props;
         return (
             <div>
-                <div className="postList">
+                <div id="postList">
                     {posts.map(post => (
                         <Post
                             key={uid(post)}

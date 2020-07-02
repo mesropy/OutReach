@@ -2,7 +2,7 @@
 
 .sidePanel {
     position: fixed;
-    float: left;
+    top: 65px;
     width: 275px;
 }
 

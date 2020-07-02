@@ -1,0 +1,39 @@
+#published_div {
+    overflow: auto;
+}
+
+#published_div .post_div .post {
+    float: left;
+    width: 85%;
+    margin-right: 0px;
+}
+
+#published_div #edit_div {
+    position: relative;
+    margin-left: 60vw;
+    top: 80px;
+    width: min-content;    
+}
+
+#messageContainer {
+    overflow: hidden;
+    width: 100%;
+}
+
+.published_post_edit {
+    float: left;
+    margin-right: 0px;
+    width: 57vw;
+    height: 200px;
+}
+
+.published_post_edit .post {
+    margin-right: 0px;
+    width: inherit;
+    height: inherit;
+}
+
+#edit_div #trash {
+    color: rgb(218,128,141);
+    font-size: larger;
+}

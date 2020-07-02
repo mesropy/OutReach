@@ -7,6 +7,10 @@
   top: 15px;
 }
 
+.home_page_nav a {
+  color: inherit;
+}
+
 .app_name {
   display: inline-block
 }
