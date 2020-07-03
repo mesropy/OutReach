@@ -53,11 +53,9 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.state.userLoggedIn) {
-      return <Redirect to='/U'/>
-    }
-    if (this.state.adminLoggedIn) {
-      return <Redirect to='/A'/>
+    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+      this.props.handleLogin(this.state.username);
+      return <Redirect to='/'/>
     }
 
     return (

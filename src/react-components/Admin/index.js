@@ -54,6 +54,7 @@ class Admin extends React.Component {
 
     render() {
         if (this.state.logout) {
+            this.props.handleLogout();
             return <Redirect to='/'/>
         }
         let content;

@@ -6,17 +6,26 @@ import TopBar from "./TopBar";
 import SidePanel from "./SidePanel";
 import Timeline from "./Timeline";
 
+// TODO: rename this to City
 class Toronto extends React.Component {
     render() {
+      const { city } = this.props;
+
         return (
             <div>
                 <TopBar
-                    cityName="TORONTO"
-                    userLoggedIn={this.props.userLoggedIn}
-                    adminLoggedIn={this.props.adminLoggedIn}
+                    city={ city }
+                    isLoggedIn={this.props.isLoggedIn}
+                    isAdmin={this.props.isAdmin}
+                    username={this.props.username}
+                    handleLogout={this.props.handleLogout}
                     />
-                <SidePanel />
-                <Timeline />
+                <SidePanel city={ city } />
+                <Timeline
+                    city={ city }
+                    isLoggedIn={this.props.isLoggedIn}
+                    isAdmin={this.props.isAdmin}
+                    username={this.props.username} />
             </div>
         );
     }

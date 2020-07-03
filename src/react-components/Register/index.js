@@ -72,7 +72,8 @@ class Register extends React.Component {
 
   render() {
     if (this.state.register) {
-      return <Redirect to='/U'/>
+      this.props.handleLogin(this.state.username);
+      return <Redirect to='/'/>
     }
 
     return (

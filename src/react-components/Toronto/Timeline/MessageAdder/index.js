@@ -16,7 +16,7 @@ class NewMessagePopup extends React.Component {
     };
 
     render() {
-        const {handleInputFunc} = this.props;
+        const { city } = this.props;
 
         return(
             <div>
@@ -25,7 +25,7 @@ class NewMessagePopup extends React.Component {
                     <IconButton id="popup_close_button" onClick={this.props.closePopup}>
                         <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
-                    <h3 className="popupTitle">{this.props.title}</h3>
+                    <h3 className="popupTitle">New Message</h3>
 
                     <TextField
                         className="TextEntry"
@@ -34,11 +34,11 @@ class NewMessagePopup extends React.Component {
                         placeholder="Share your thoughts here..."
                         fullWidth={true}
                         variant="outlined"
-                        onChange={handleInputFunc}
+                        onChange={this.props.handleInputFunc}
                     />
 
                     <div className="btns">
-                        <LocationSetter />
+                        <LocationSetter city={ city } />
                         <Button className="postBtn" onClick={this.handleSubmit}>
                             Post
                             <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
@@ -66,7 +66,7 @@ class MessageAdder extends React.Component {
     }
 
     render() {
-        const {handleInputFunc, addMessageFunc, cleanFunc} = this.props;
+        const {city, handleInputFunc, addMessageFunc, cleanFunc} = this.props;
         return (
             <div>
                 <Button id="addBtn"
@@ -79,7 +79,7 @@ class MessageAdder extends React.Component {
 
                 {this.state.show ?
                     <NewMessagePopup
-                      title="New Message"
+                      city={ city }
                       closePopup={this.toggle.bind(this)}
                       handleInputFunc={handleInputFunc}
                       addMessageFunc={addMessageFunc}

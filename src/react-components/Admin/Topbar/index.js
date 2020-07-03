@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import {AppBar, Toolbar} from '@material-ui/core'
 import logo from './static/logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,17 +12,17 @@ class Topbar extends React.Component {
             <AppBar id="appbar">
                 <Toolbar id="toolbar_div">
                     <div id="back_div">
-                        <a href="/A">
+                        <Link to="/">
                             <h3 id="title">OutReach</h3>
                         <img id="logo" alt="The logo for the web-application" src={logo}/>
-                        </a>
+                        </Link>
                     </div>
                     <div id="admin_div">
                         <h5 id="adminName">admin</h5>
                             <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
-                        <a href="/A">
+                        <Link to="/WorldMap">
                             <h5 id="worldMap">World Map</h5>
-                        </a>
+                        </Link>
                     </div>
                 </Toolbar>
             </AppBar>

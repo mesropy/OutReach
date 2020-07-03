@@ -9,9 +9,10 @@ import "./styles.css";
 class Pin extends React.Component {
   render(){
     const { city } = this.props;
+    /*
     let link;
     if (this.props.userLoggedIn) {
-      link = <Link to="/U/Toronto" >
+      link = <Link to="/U/Toronto">
               <div className="button_container">
                 <button className="pin_button">
                   <FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -36,13 +37,21 @@ class Pin extends React.Component {
                 </button>
               </div>
             </Link>
-    }
+    }*/
+
     return (
       <Tooltip className={ city }
                title={ city }
                placement="top"
                arrow >
-          {link}
+          {/*link*/}
+          <Link to={ "/".concat(city) } >
+                  <div className="button_container">
+                    <button className="pin_button">
+                      <FontAwesomeIcon icon={faMapMarkerAlt} />
+                    </button>
+                  </div>
+                </Link>
       </Tooltip>
     );
   }
