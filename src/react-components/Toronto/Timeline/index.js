@@ -38,6 +38,8 @@ class Timeline extends React.Component {
   render(){
     const { city } = this.props;
 
+    // TODO: get global states / functions from props and use them
+
     return(
       <div id="timeline">
         <MessageAdder

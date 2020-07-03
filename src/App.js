@@ -26,15 +26,37 @@ const theme = createMuiTheme({
   },
 });
 
-// TODO: pass these into pages that need them
-/*
-const state = {
-  isLoggedIn: false,
-  isAdmin: false,
-  username: "username"
-} */
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoggedIn: true,
+      isAdmin: false,
+      username: "user"
+    }
+  }
+
+  handleLogout() {
+    this.setState({
+      isLoggedIn: false,
+      isAdmin: false,
+      username: "user"
+    });
+  }
+
+  handleLogin(username) {
+    let admin = false;
+    if (username === "admin"){
+       admin = true;
+     }
+
+    this.setState({
+      isLoggedIn: true,
+      isAdmin: admin,
+      username: username
+    });
+  }
 
   render() {
     return (
@@ -44,49 +66,60 @@ class App extends React.Component {
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route exact path='/' render={() =>
                               (<Home
-                                userLoggedIn={false}
-                                adminLoggedIn={false}
+                                isLoggedIn={this.state.isLoggedIn}
+                                isAdmin={this.state.isAdmin}
+                                username={this.state.username}
+                                handleLogout={this.handleLogout.bind(this)}
                               />)}/>
               <Route exact path='/WorldMap' render={() =>
                               (<WorldMap
-                                userLoggedIn={false}
-                                adminLoggedIn={false}
+                                isLoggedIn={this.state.isLoggedIn}
+                                isAdmin={this.state.isAdmin}
+                                username={this.state.username}
+                                handleLogout={this.handleLogout.bind(this)}
                               />)}/>
-              <Route exact path='/U/WorldMap' render={() =>
-                              (<WorldMap
-                                userLoggedIn={true}
-                                adminLoggedIn={false}
-                              />)}/>
-              <Route exact path='/A/WorldMap' render={() =>
-                              (<WorldMap
-                                userLoggedIn={false}
-                                adminLoggedIn={true}
-                              />)}/>
-              <Route exact path='/Register' render={() =>
-                              (<Register />)}/>
-              <Route exact path='/Login' render={() =>
-                              (<Login />)}/>
-              <Route exact path='/Admin' render={() =>
-                              (<Admin />)}/>
-              <Route exact path='/User' render={() =>
-                              (<User />)} />
-              <Route exact path='/OtherUser' render={() =>
-                              (<OtherUser />)} />
               <Route exact path='/Toronto' render={() =>
                               (<Toronto
-                                userLoggedIn={false}
-                                adminLoggedIn={false}
+                                isLoggedIn={this.state.isLoggedIn}
+                                isAdmin={this.state.isAdmin}
+                                username={this.state.username}
+                                handleLogout={this.handleLogout.bind(this)}
+                                city="TORONTO"
                               />)}/>
-              <Route exact path='/U/Toronto' render={() =>
+              <Route exact path='/Paris' render={() =>
                               (<Toronto
-                                userLoggedIn={true}
-                                adminLoggedIn={false}
+                                isLoggedIn={this.state.isLoggedIn}
+                                isAdmin={this.state.isAdmin}
+                                username={this.state.username}
+                                handleLogout={this.handleLogout.bind(this)}
+                                city="PARIS"
                               />)}/>
-              <Route exact path='/A/Toronto' render={() =>
+              <Route exact path='/Montréal' render={() =>
                               (<Toronto
-                                userLoggedIn={false}
-                                adminLoggedIn={true}
+                                isLoggedIn={this.state.isLoggedIn}
+                                isAdmin={this.state.isAdmin}
+                                username={this.state.username}
+                                handleLogout={this.handleLogout.bind(this)}
+                                city="MONTRÉAL"
                               />)}/>
+              <Route exact path='/Register' render={() =>
+                              (<Register handleLogin={this.handleLogin.bind(this)} />)}/>
+              <Route exact path='/Login' render={() =>
+                              (<Login handleLogin={this.handleLogin.bind(this)} />)}/>
+              <Route exact path='/admin' render={() =>
+                              (<Admin handleLogout={this.handleLogout.bind(this)} />)}/>
+              <Route exact path='/user' render={() =>
+                              (<User username={this.state.username}
+                                     handleLogout={this.handleLogout.bind(this)} />)} />
+              {/* TODO: remove this */}
+              <Route exact path='/OtherUser' render={() =>
+                              (<OtherUser />)} />
+              {/* instead use this: */}
+              <Route exact path='/Ryan' render={() =>
+                              (<User username="Ryan"
+                                     handleLogout={this.handleLogout.bind(this)} />)} />
+              {/* and can make more user pages like this ^*/}
+
             </Switch>
           </BrowserRouter>
         </MuiThemeProvider>

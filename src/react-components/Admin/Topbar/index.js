@@ -19,7 +19,7 @@ class Topbar extends React.Component {
                     <div id="admin_div">
                         <h5 id="adminName">admin</h5>
                             <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
-                        <a href="/A/WorldMap">
+                        <a href="/WorldMap">
                             <h5 id="worldMap">World Map</h5>
                         </a>
                     </div>

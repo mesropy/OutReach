@@ -14,14 +14,12 @@ class WorldMap extends React.Component {
   render() {
     return (
       <div>
-        <AccountNav
-          userLoggedIn={this.props.userLoggedIn}
-          adminLoggedIn={this.props.adminLoggedIn} />
+        <AccountNav isLoggedIn={this.props.isLoggedIn}
+                    isAdmin={this.props.isAdmin}
+                    username={this.props.username}
+                    handleLogout={this.props.handleLogout}/>
         <Header />
-        <MapSelection
-          userLoggedIn={this.props.userLoggedIn}
-          adminLoggedIn={this.props.adminLoggedIn}
-        />
+        <MapSelection />
       </div>
     );
   }
