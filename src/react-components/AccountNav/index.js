@@ -44,9 +44,8 @@ class AccountNav extends React.Component{
                   variant="text">
             {/* TODO: add profile icon */}
             { this.state.username }
-          <div className="divider"/>
           </Button>
-          {/* TODO: add onclick function that logs out user */}
+          <div className="divider"/>
           <Button onClick={ this.handleLogout }
                   className="account_button"
                   variant="outlined"

@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Home from './react-components/Home';
+
+import Home from "./react-components/Home";
+import WorldMap from './react-components/WorldMap';
 import Register from "./react-components/Register"
 import Login from "./react-components/Login"
 import Admin from "./react-components/Admin"
@@ -41,24 +43,29 @@ class App extends React.Component {
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route exact path='/' render={() =>
-                              (<Home 
+                              (<Home
                                 userLoggedIn={false}
                                 adminLoggedIn={false}
                               />)}/>
-              <Route exact path='/U' render={() =>
-                              (<Home 
+              <Route exact path='/WorldMap' render={() =>
+                              (<WorldMap
+                                userLoggedIn={false}
+                                adminLoggedIn={false}
+                              />)}/>
+              <Route exact path='/U/WorldMap' render={() =>
+                              (<WorldMap
                                 userLoggedIn={true}
                                 adminLoggedIn={false}
                               />)}/>
-              <Route exact path='/A' render={() =>
-                              (<Home 
+              <Route exact path='/A/WorldMap' render={() =>
+                              (<WorldMap
                                 userLoggedIn={false}
                                 adminLoggedIn={true}
                               />)}/>
               <Route exact path='/Register' render={() =>
                               (<Register />)}/>
               <Route exact path='/Login' render={() =>
-                              (<Login />)}/>               
+                              (<Login />)}/>
               <Route exact path='/Admin' render={() =>
                               (<Admin />)}/>
               <Route exact path='/User' render={() =>
@@ -66,17 +73,17 @@ class App extends React.Component {
               <Route exact path='/OtherUser' render={() =>
                               (<OtherUser />)} />
               <Route exact path='/Toronto' render={() =>
-                              (<Toronto 
+                              (<Toronto
                                 userLoggedIn={false}
                                 adminLoggedIn={false}
                               />)}/>
               <Route exact path='/U/Toronto' render={() =>
-                              (<Toronto 
+                              (<Toronto
                                 userLoggedIn={true}
                                 adminLoggedIn={false}
                               />)}/>
               <Route exact path='/A/Toronto' render={() =>
-                              (<Toronto 
+                              (<Toronto
                                 userLoggedIn={false}
                                 adminLoggedIn={true}
                               />)}/>
