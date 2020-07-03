@@ -17,12 +17,12 @@ class UserMessages extends React.Component {
             pendingClass: "highlighted",
             publishedClass: "",
             pendingMessages: [
-                ["amy", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."],
-                ["brian", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. "]
+                {username: "amy", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
+                {username: "brian", age: "22", time: "9:00am", date: "Jul 9", content: "Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
             ],
             publishedMessages: [
-                ["lily", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."]
-                ,                ["lily", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus viverra vitae congue eu consequat. Lacinia at quis risus sed vulputate odio. Gravida dictum fusce ut placerat orci nulla. Amet commodo nulla facilisi nullam vehicula ipsum a. Habitant morbi tristique senectus et netus et malesuada fames. In eu mi bibendum neque egestas. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. Arcu vitae elementum curabitur vitae nunc sed. Cras semper auctor neque vitae tempus quam. Adipiscing tristique risus nec feugiat in fermentum posuere urna."]
+                {username: "Lily", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
+                {username: "Lily", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
 
             ],
             disapprove: false,
@@ -65,7 +65,7 @@ class UserMessages extends React.Component {
             edit: !toggle,
         })
     }
-    
+
     handlePopup(message) {
         this.setState({
             disapprove: true,
@@ -83,7 +83,7 @@ class UserMessages extends React.Component {
         if (this.state.disapprove) {
             return (
                 <div>
-                    <Disapprove 
+                    <Disapprove
                         message={this.state.disapproveMessage}
                         userMessagesComponent={this}
                         closePopup={this.closePopup}

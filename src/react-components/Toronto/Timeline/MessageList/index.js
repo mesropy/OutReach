@@ -13,8 +13,14 @@ class MessageList extends React.Component {
                 {messages.map(message => (
                     <Message
                         key={uid(message)}
-                        username={message[0]}
-                        content={message[1]}
+                        username={ message.username }
+                        age={ message.age }
+                        time={ message.time }
+                        date={ message.date }
+                        content={ message.content }
+                        location_name={ message.locationName }
+                        pin_left_pos={ message.pinLeftPos }
+                        pin_down_pos={ message.pinDownPos }
                     />
                 ))}
             </div>

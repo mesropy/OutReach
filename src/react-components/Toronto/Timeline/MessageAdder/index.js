@@ -6,13 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faPaperPlane, faPlus } from '@fortawesome/free-solid-svg-icons'
 
-
-// Component for text entry popup, used by PostAdder below
+// Component for new message popup
 class NewMessagePopup extends React.Component {
     handleSubmit = () => {
         this.props.closePopup();
-        this.props.addMessageFunc();
-        this.props.cleanFunc();
+        this.props.addMessage();
     };
 
     render() {
@@ -34,7 +32,8 @@ class NewMessagePopup extends React.Component {
                         placeholder="Share your thoughts here..."
                         fullWidth={true}
                         variant="outlined"
-                        onChange={this.props.handleInputFunc}
+                        name="content"
+                        onChange={this.props.handleInput}
                     />
 
                     <div className="btns">
@@ -50,23 +49,23 @@ class NewMessagePopup extends React.Component {
     }
 }
 
-// Component for the button to open new message popup
+// Component for the button that will open the new message pop-up
 class MessageAdder extends React.Component {
     constructor() {
         super();
         this.state = {
-          show: false
+          showNewMessagePopup: false
         };
     }
 
     toggle() {
         this.setState({
-          show: !this.state.show
+          showNewMessagePopup: !this.state.showNewMessagePopup
         });
     }
 
     render() {
-        const {city, handleInputFunc, addMessageFunc, cleanFunc} = this.props;
+        const { city } = this.props;
         return (
             <div>
                 <Button id="addBtn"
@@ -77,13 +76,12 @@ class MessageAdder extends React.Component {
                   <span id="addBtnText" >New Message</span>
                 </Button>
 
-                {this.state.show ?
+                {this.state.showNewMessagePopup ?
                     <NewMessagePopup
-                      city={ city }
                       closePopup={this.toggle.bind(this)}
-                      handleInputFunc={handleInputFunc}
-                      addMessageFunc={addMessageFunc}
-                      cleanFunc={cleanFunc}
+                      city={ city }
+                      handleInput={ this.props.handleInput }
+                      addMessage={ this.props.addMessage }
                     />
                     : null
                 }

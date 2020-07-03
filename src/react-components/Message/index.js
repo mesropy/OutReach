@@ -51,18 +51,8 @@ class Message extends React.Component {
   }
 
     render() {
-        // will always display current time
-        // TODO: set this time when a new message is added (in MessageAdder)
-        const today = new Date();
-        const {username="user",
-               age="20",
-               time=  today.getHours() + ":" + ('0' + today.getMinutes()).slice(-2),
-               date= today.toLocaleString('default', { month: 'short' }) + " " +
-                     today.getDate(),
-               content,
-               location_name="UofT",
-               pin_left_pos="58%",
-               pin_down_pos="42%"} = this.props;
+        const {username, age, time, date, content, location_name,
+               pin_left_pos, pin_down_pos} = this.props;
 
         return (
             <div className="post">
