@@ -19,12 +19,11 @@ class Topbar extends React.Component {
                         <img id="logo" alt="The logo for the web-application" src={logo}/>
                     </div>
                     <div id="display_div">
-                        <img id="pfp" alt="The user's profile" src={pfp}/>
-                        TORONTO
-                        20 yrs
+                        <img id="pfp" alt="The user's profile" src={pfp} />
+                        <h5><b>{this.props.username}</b></h5> <b>TORONTO 20 yrs</b>
                     </div>
                     <div id="user_div">
-                        <h5 id="userName">@user1</h5>
+                        <h5 id="userName">{this.props.username}</h5>
                             <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
                         <Link to="/WorldMap">
                             <h5 id="worldMap">World Map</h5>

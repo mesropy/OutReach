@@ -58,12 +58,12 @@ class User extends React.Component {
             return <Redirect to='/'/>
         }
 
-        if (!this.props.userLoggedIn) {
+        if (this.props.username === "Ryan") {
             return (
                 <div>
                     <Topbar
-                        username={"@user2"}/>
-                    <UserMessages username={"@user2"} userLoggedIn={false}/>
+                        username={this.props.username}/>
+                    <UserMessages username={this.props.username} userLoggedIn={false}/>
                 </div>
             )
         };
@@ -72,7 +72,7 @@ class User extends React.Component {
             return (
                 <div>
                     <Topbar
-                        username={"@user1"}/>
+                        username={this.props.username}/>
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}
@@ -80,7 +80,7 @@ class User extends React.Component {
                 handleBack={this.handleBack}
                 >
                 </Navbar>
-                    <UserMessages username={"@user1"} userLoggedIn={true}/>
+                    <UserMessages username={this.props.username} userLoggedIn={true}/>
             </div>
             )
         };
@@ -89,7 +89,7 @@ class User extends React.Component {
             return (
                 <div>
                     <Topbar
-                        username={"@user1"} />/>
+                        username={this.props.username} />
                     <Navbar
                         handleMessages={this.handleMessages}
                         handleSettings={this.handleSettings}
@@ -105,7 +105,7 @@ class User extends React.Component {
         return (
             <div>
                 <Topbar
-                    username={"@user1"} />/>
+                    username={this.props.username} />
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}
