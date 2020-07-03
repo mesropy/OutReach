@@ -1,4 +1,5 @@
 #appbar {
+    z-index: 1;
     box-shadow: none;
     position: fixed;
 }
