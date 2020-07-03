@@ -6,3 +6,49 @@
     position: fixed;
     top: 65px;
 }
+
+#safetyPopup {
+  background-color: white;
+  text-align: center;
+  padding: 25px;
+  padding-bottom: 15px;
+  position: fixed;
+  overflow-y: auto;
+  min-width: 40%;
+  max-width: 100%;
+  max-height: 90%;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+#safetyPopup h4 {
+  color: #147E7D;
+  margin-bottom: 15px;
+}
+
+#safetyPoints {
+  text-align: left;
+}
+
+#safetyPoints li {
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+#safetyPoints span {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+#safetyPoints img {
+  height: 50px;
+  margin-left: 15px;
+}
+
+#iconCredits {
+  margin-top: 10px;
+}
