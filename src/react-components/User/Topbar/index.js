@@ -26,7 +26,7 @@ class Topbar extends React.Component {
                     <div id="user_div">
                         <h5 id="userName">@user1</h5>
                             <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
-                        <a href="/">
+                        <a href="/WorldMap">
                             <h5 id="worldMap">World Map</h5>
                         </a>
                     </div>

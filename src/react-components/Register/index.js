@@ -72,7 +72,7 @@ class Register extends React.Component {
 
   render() {
     if (this.state.register) {
-      return <Redirect to='/U'/>
+      return <Redirect to='/'/>
     }
 
     return (
