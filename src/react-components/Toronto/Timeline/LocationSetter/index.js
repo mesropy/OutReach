@@ -12,6 +12,7 @@ class LocationSettingPopup extends React.Component {
   state ={
     pinLeftPos: "0",
     pinDownPos: "0",
+    locationName: ""
   }
 
   handleSliderLeftChange = (event, newValue) => {
@@ -26,12 +27,24 @@ class LocationSettingPopup extends React.Component {
     });
   };
 
-  handleInputChange = (event) => {
-    const name = this.state.name;
+  handlePosLeftChange = (event) => {
     this.setState({
-      [name]: event.target.value === '' ? '' : Number(event.target.value)
+      pinLeftPos: Number(event.target.value)
     });
-};
+  };
+
+  handlePosDownChange = (event) => {
+    this.setState({
+      pinDownPos: Number(event.target.value)
+    });
+  };
+
+  handleTextInputChange = (event) => {
+    const value = event.target.value;
+    this.setState({
+      locationName: value
+    });
+  };
 
     render() {
       // const { city } = this.props;
@@ -72,9 +85,9 @@ class LocationSettingPopup extends React.Component {
                         <Input
                           value={ Number(this.state.pinLeftPos) }
                           margin="dense"
-                          onChange={this.handleInputChange}
+                          onChange={this.handlePosLeftChange}
                           inputProps={{
-                            step: 10,
+                            step: 1,
                             min: 0,
                             max: 100,
                             type: 'number',
@@ -93,9 +106,9 @@ class LocationSettingPopup extends React.Component {
                         <Input
                           value={ Number(this.state.pinDownPos) }
                           margin="dense"
-                          onChange={this.handleInputChange}
+                          onChange={this.handlePosDownChange}
                           inputProps={{
-                            step: 10,
+                            step: 1,
                             min: 0,
                             max: 100,
                             type: 'number',
@@ -114,11 +127,14 @@ class LocationSettingPopup extends React.Component {
                             </InputAdornment>
                           }
                           placeholder="Write a location name..."
-                      />
+                          onChange={ this.handleTextInputChange }
+                           />
                     </div>
 
 
-                    <Button id="doneButton" onClick={ this.props.closePopup }>
+                    <Button id="doneButton"
+                            onClick={ this.props.closePopup }
+                            disabled={ this.state.locationName === ""}>
                         <h5>Done</h5>
                         <FontAwesomeIcon id="checkmark" icon={ faCheck }></FontAwesomeIcon>
                     </Button>
