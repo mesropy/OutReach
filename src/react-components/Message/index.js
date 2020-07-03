@@ -6,6 +6,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import toronto_map from "./../Toronto/static/toronto_map.png";
+import { Link } from "react-router-dom";
 
 // Component for the location popup
 class LocationPopup extends React.Component {
@@ -58,7 +59,9 @@ class Message extends React.Component {
             <div className="post">
                 <div className="post-bar">
                     <p className="post-username">
-                        <strong>{username}</strong>
+                        <Link to="/User">
+                            <strong>{username}</strong>
+                        </Link>
                         {age}
                     </p>
                     <div className="post-rightBar">
