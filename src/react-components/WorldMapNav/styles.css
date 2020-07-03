@@ -1,9 +1,8 @@
 #worldMapNav {
   position: absolute;
-  right: 200px;
+  right: 220px;
   top: 15px;
   display: inline;
-  /*color: inherit;*/
   color: #147E7D;
 }
 

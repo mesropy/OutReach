@@ -11,9 +11,10 @@ class Users extends React.Component {
         super(props);
         this.state = {
             users: [
-                {username: "@amy", age: "10yrs", city: "Toronto"},
-                {username: "@brian", age: "-", city: "Paris"},
-                {username: "@lily", age: "15yrs", city: "Toronto"},
+                {username: "@user", age: "20yrs", city: "Toronto"},
+                {username: "@user2", age: "-", city: "Toronto"},
+                {username: "@user3", age: "27yrs", city: "Toronto"},
+                {username: "@user4", age: "25yrs", city: "Toronto"},
             ],
             edit: false,
             delete: false,

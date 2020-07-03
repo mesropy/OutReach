@@ -59,16 +59,18 @@ class Message extends React.Component {
             <div className="post">
                 <div className="post-bar">
                     <p className="post-username">
-                        <Link to="/User">
+                        <Link to={"/".concat(this.props.username)}>
                             <strong>{username}</strong>
                         </Link>
                         {age}
                     </p>
                     <div className="post-rightBar">
+                        { pin_left_pos !== "" && pin_down_pos !== "" ?
                         <button className="pin_button"
                                 onClick={ this.toggle.bind(this) }>
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                         </button>
+                        : null }
                         { time.concat(" · ", date) }
                     </div>
                 </div>
