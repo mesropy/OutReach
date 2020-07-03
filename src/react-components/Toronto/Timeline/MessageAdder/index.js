@@ -16,13 +16,13 @@ class NewMessagePopup extends React.Component {
     };
 
     render() {
-        const {city, closePopup, handleInputFunc, addMessageFunc, cleanFunc} = this.props;
+        const { city } = this.props;
 
         return(
             <div>
-                <Backdrop open={true} onClick={closePopup}></Backdrop>
+                <Backdrop open={true} onClick={this.props.closePopup}></Backdrop>
                 <div className="addMessagePopup">
-                    <IconButton id="popup_close_button" onClick={closePopup}>
+                    <IconButton id="popup_close_button" onClick={this.props.closePopup}>
                         <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
                     <h3 className="popupTitle">New Message</h3>
@@ -34,7 +34,7 @@ class NewMessagePopup extends React.Component {
                         placeholder="Share your thoughts here..."
                         fullWidth={true}
                         variant="outlined"
-                        onChange={handleInputFunc}
+                        onChange={this.props.handleInputFunc}
                     />
 
                     <div className="btns">
@@ -66,7 +66,7 @@ class MessageAdder extends React.Component {
     }
 
     render() {
-        const {city, closePopup, handleInputFunc, addMessageFunc, cleanFunc} = this.props;
+        const {city, handleInputFunc, addMessageFunc, cleanFunc} = this.props;
         return (
             <div>
                 <Button id="addBtn"

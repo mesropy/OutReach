@@ -2,7 +2,8 @@ import React from "react";
 
 class CaseReport extends React.Component {
     render() {
-        const { city } = this.props;
+        // const { city } = this.props;
+        // (^ this is commented out to avoid warnings)
         // here, we will get the case count and status from a database
         // using the name of the city
 

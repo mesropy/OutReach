@@ -32,9 +32,9 @@ class PinPlacer extends React.Component {
     }
 
     render() {
-      const { city } = this.props;
-      // here we will get the map of the city from a database using
-      // the city name 
+      // const { city } = this.props;
+      // (^ this is commented out now to avoid warnings)
+      // here we will get the map of the city from a database using the city name
 
         return (
             <div>
