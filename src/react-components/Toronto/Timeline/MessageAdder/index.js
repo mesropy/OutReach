@@ -26,18 +26,16 @@ class NewMessagePopup extends React.Component {
                     <h3 className="popupTitle">New Message</h3>
 
                     <TextField
-                        className="TextEntry"
                         multiline
-                        rows={12}
+                        rows={20}
                         placeholder="Share your thoughts here..."
                         fullWidth={true}
                         variant="outlined"
                         name="content"
                         onChange={this.props.handleInput}
                     />
-
+                    <LocationSetter city={ city } />
                     <div className="btns">
-                        <LocationSetter city={ city } />
                         <Button className="postBtn" onClick={this.handleSubmit}>
                             Post
                             <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
