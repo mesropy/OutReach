@@ -32,14 +32,16 @@ class Timeline extends React.Component {
   };
 
   render(){
-    const { city } = this.props;
+    const { city, isLoggedIn } = this.props;
 
     return(
       <div id="timeline">
         <MessageAdder
             city={ city }
             handleInput={ this.handleInput }
-            addMessage={ () => addMessage(this, this.props.username) } />
+            addMessage={ () => addMessage(this, this.props.username) }
+            isLoggedIn={ isLoggedIn }
+        />
         <MessageList messages={this.state.messages} />
       </div>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
-import Messages from './Messages'
+import UserMessages from './UserMessages'
 import Settings from './Settings'
 
 import '../main_styles.css';
@@ -12,7 +12,7 @@ class User extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            messages: false,
+            messages: true,
             settings: false,
             logout: false
         }
@@ -57,10 +57,22 @@ class User extends React.Component {
         if (this.state.logout) {
             return <Redirect to='/'/>
         }
+
+        if (this.props.username === "Ryan") {
+            return (
+                <div>
+                    <Topbar
+                        username={this.props.username}/>
+                    <UserMessages username={this.props.username} userLoggedIn={false}/>
+                </div>
+            )
+        };
+
         if (this.state.messages) {
             return (
-            <div>
-                <Topbar/>
+                <div>
+                    <Topbar
+                        username={this.props.username}/>
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}
@@ -68,7 +80,7 @@ class User extends React.Component {
                 handleBack={this.handleBack}
                 >
                 </Navbar>
-                <Messages/>
+                    <UserMessages username={this.props.username} userLoggedIn={true}/>
             </div>
             )
         };
@@ -76,7 +88,8 @@ class User extends React.Component {
         if (this.state.settings) {
             return (
                 <div>
-                    <Topbar />
+                    <Topbar
+                        username={this.props.username} />
                     <Navbar
                         handleMessages={this.handleMessages}
                         handleSettings={this.handleSettings}
@@ -91,7 +104,8 @@ class User extends React.Component {
 
         return (
             <div>
-                <Topbar/>
+                <Topbar
+                    username={this.props.username} />
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}

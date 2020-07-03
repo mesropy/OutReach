@@ -1,4 +1,5 @@
 #appbar {
+    z-index: 1;
     box-shadow: none;
     position: fixed;
 }
@@ -47,7 +48,6 @@
     font-size: 25px;
     color: rgb(32,128,126);
 }
-
 
 #admin_div #worldMap {
     position: relative;

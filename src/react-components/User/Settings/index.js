@@ -10,9 +10,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class Settings extends React.Component {
     super(props) {
-        this.state = {
-            checked: false
-        }
+        this.setState({checked: false});
         this.handleEdit = this.handleEdit.bind(this);
         this.toggleChecked = this.toggleChecked(this);
     }
@@ -27,7 +25,6 @@ class Settings extends React.Component {
     render() {
         return (
             <div>
-                <h1>Settings Lorem ipsum</h1>
                 <Table>
                     <TableBody>
                         <TableRow>

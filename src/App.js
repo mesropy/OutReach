@@ -10,7 +10,6 @@ import Login from "./react-components/Login"
 import Admin from "./react-components/Admin"
 import Toronto from "./react-components/Toronto"
 import User from "./react-components/User"
-import OtherUser from "./react-components/OtherUser"
 
 // customize theme
 import { MuiThemeProvider, createMuiTheme  } from '@material-ui/core/styles';
@@ -111,10 +110,6 @@ class App extends React.Component {
               <Route exact path='/user' render={() =>
                               (<User username={this.state.username}
                                      handleLogout={this.handleLogout.bind(this)} />)} />
-              {/* TODO: remove this */}
-              <Route exact path='/OtherUser' render={() =>
-                              (<OtherUser />)} />
-              {/* instead use this: */}
               <Route exact path='/Ryan' render={() =>
                               (<User username="Ryan"
                                      handleLogout={this.handleLogout.bind(this)} />)} />

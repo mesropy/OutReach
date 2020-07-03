@@ -63,15 +63,15 @@ class MessageAdder extends React.Component {
     }
 
     render() {
-        const { city } = this.props;
+        const { city, isLoggedIn } = this.props;
         return (
             <div>
                 <Button id="addBtn"
                         variant="outlined"
                         color="primary"
-                        onClick={this.toggle.bind(this)}>
+                        onClick={isLoggedIn ? this.toggle.bind(this) : null}>
                   <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-                  <span id="addBtnText" >New Message</span>
+                  <span id="addBtnText" >{ isLoggedIn ? "New Message" : "Login to Add a Message" }</span>
                 </Button>
 
                 {this.state.showNewMessagePopup ?
