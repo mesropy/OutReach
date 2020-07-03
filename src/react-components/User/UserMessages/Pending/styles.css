@@ -11,7 +11,7 @@
 #pending_div #edit_div {
     position: relative;
     margin-left: 60vw;
-    transform: translateY(50%);
+    transform: translateY(500%);
     width: min-content;
 }
 
