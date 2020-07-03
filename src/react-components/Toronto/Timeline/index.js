@@ -1,6 +1,5 @@
 import React from "react";
 
-//import TimelineNav from "./TimelineNav";
 import MessageAdder from "./MessageAdder";
 import MessageList from "./MessageList";
 
@@ -10,6 +9,10 @@ import { addMessage } from "../../../actions/addMessage";
 import "./styles.css";
 
 class Timeline extends React.Component {
+
+  // we will get the messages for this city from the database
+  // using the name of the city
+
   state = {
       name: "user",
       content: "",
@@ -33,10 +36,12 @@ class Timeline extends React.Component {
   }
 
   render(){
+    const { city } = this.props;
+
     return(
       <div id="timeline">
-        {/* <TimelineNav /> */}
         <MessageAdder
+            city={ city }
             name={this.state.name}
             content={this.state.content}
             handleInputFunc={this.handleInput}

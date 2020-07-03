@@ -32,6 +32,10 @@ class PinPlacer extends React.Component {
     }
 
     render() {
+      const { city } = this.props;
+      // here we will get the map of the city from a database using
+      // the city name 
+
         return (
             <div>
                 <img className="setting_map" src={ toronto_map } onClick={ this.toggle.bind(this) } alt="Map of Toronto" />

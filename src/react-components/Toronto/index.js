@@ -7,16 +7,20 @@ import SidePanel from "./SidePanel";
 import Timeline from "./Timeline";
 
 class Toronto extends React.Component {
+    state = {
+      city: "TORONTO"
+    }
+
     render() {
         return (
             <div>
                 <TopBar
-                    cityName="TORONTO"
+                    city={ this.state.city }
                     userLoggedIn={this.props.userLoggedIn}
                     adminLoggedIn={this.props.adminLoggedIn}
                     />
-                <SidePanel />
-                <Timeline />
+                <SidePanel city={ this.state.city } />
+                <Timeline city={ this.state.city } />
             </div>
         );
     }

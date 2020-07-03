@@ -8,18 +8,18 @@ import PanelCard from "./PanelCard";
 
 class SidePanel extends React.Component {
   render(){
+    const { city } = this.props;
+
     return(
       <div>
-          <Safety />
+          <Safety city={ city } />
           <div className="sidePanel">
               <CaseReport
-                  confirmed="13,420"
-                  recovered="11,098"
-                  active="1,337"
-                  status="Yellow"
+                  city={ city }
               />
 
-              {/* using a generic panel card as a placer for the polls */}
+              {/* using a generic panel card as a placer for the polls
+                (this is an additional feature that we may later)*/}
               <PanelCard title="Poll Question" />
           </div>
       </div>
