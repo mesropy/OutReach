@@ -1,9 +1,10 @@
 #appbar {
     box-shadow: none;
+    position: fixed;
 }
 
 #toolbar_div {
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(251,248,242);
 }
 
 #back_div {

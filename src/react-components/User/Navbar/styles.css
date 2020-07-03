@@ -49,10 +49,6 @@
     background-color: inherit;
 }
 
-.nav-item button:active {
-    box-shadow: 0 3px 0 #636363;
-}
-
 .nav-item button:focus {
     outline: none;
 }
