@@ -13,7 +13,7 @@ class Pending extends React.Component {
         const messageClass = edit ? "pending_post_edit" : "post_div"
         if (edit) {
             return (
-                <div id="pending_div">
+                <div id="admin_pending_div">
                     {pendingMessages.map(message => (
                             <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
