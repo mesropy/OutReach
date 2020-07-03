@@ -24,10 +24,10 @@ class Topbar extends React.Component {
                     </div>
                     <div id="user_div">
                         <h5 id="userName">{this.props.username}</h5>
-                            <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
-                        <Link to="/WorldMap">
-                            <h5 id="worldMap">World Map</h5>
-                        </Link>
+                                <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
+                            <Link to="/WorldMap">
+                                <h5 id="worldMap">World Map</h5>
+                            </Link>
                     </div>
                 </Toolbar>
             </AppBar>

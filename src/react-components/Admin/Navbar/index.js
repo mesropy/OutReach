@@ -11,7 +11,7 @@ class Navbar extends React.Component {
         super(props);
         this.state = ({
             usersClass: "text-center",
-            messagesClass: "text-center"
+            messagesClass: "text-center nav_highlighted"
         })
         this.resetClasses = this.resetClasses.bind(this)
         this.changeUsersClass = this.changeUsersClass.bind(this)

@@ -1,5 +1,4 @@
 #appbar {
-    z-index: 1;
     box-shadow: none;
     position: fixed;
 }
@@ -55,7 +54,6 @@
 }
 
 #display_div {
-    z-index: 1;
     position: fixed;
     top: 0;
     width: 100%;
