@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
-import Messages from './Messages'
+import UserMessages from './UserMessages'
 import Settings from './Settings'
 
 import '../main_styles.css';
@@ -57,10 +57,22 @@ class User extends React.Component {
         if (this.state.logout) {
             return <Redirect to='/'/>
         }
+
+        if (!this.props.userLoggedIn) {
+            return (
+                <div>
+                    <Topbar
+                        username={"@user2"}/>
+                    <UserMessages username={"@user2"} userLoggedIn={false}/>
+                </div>
+            )
+        };
+
         if (this.state.messages) {
             return (
-            <div>
-                <Topbar/>
+                <div>
+                    <Topbar
+                        username={"@user1"}/>
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}
@@ -68,7 +80,7 @@ class User extends React.Component {
                 handleBack={this.handleBack}
                 >
                 </Navbar>
-                <Messages/>
+                    <UserMessages username={"@user1"} userLoggedIn={true}/>
             </div>
             )
         };
@@ -76,7 +88,8 @@ class User extends React.Component {
         if (this.state.settings) {
             return (
                 <div>
-                    <Topbar />
+                    <Topbar
+                        username={"@user1"} />/>
                     <Navbar
                         handleMessages={this.handleMessages}
                         handleSettings={this.handleSettings}
@@ -91,7 +104,8 @@ class User extends React.Component {
 
         return (
             <div>
-                <Topbar/>
+                <Topbar
+                    username={"@user1"} />/>
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}

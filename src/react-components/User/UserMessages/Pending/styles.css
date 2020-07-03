@@ -1,0 +1,40 @@
+#pending_div {
+    overflow: auto;
+}
+
+#pending_div .post_div .post {
+    float: left;
+    width: 85%;
+    margin-right: 0px;
+}
+
+#pending_div #edit_div {
+    position: relative;
+    margin-left: 60vw;
+    transform: translateY(50%);
+    width: min-content;
+}
+
+#messageContainer {
+    overflow: hidden;
+    width: 100%;
+}
+
+.pending_post_edit {
+    display: flex;
+    float: left;
+    margin-right: 0px;
+    width: 57vw;
+}
+
+.pending_post_edit .post {
+    margin-right: 0px;
+    width: inherit;
+    height: inherit;
+    min-height: 250px;
+}
+
+#edit_div #delete {
+    color: rgb(218,128,141);
+    font-size: larger;
+}

@@ -8,7 +8,6 @@ import Login from "./react-components/Login"
 import Admin from "./react-components/Admin"
 import Toronto from "./react-components/Toronto"
 import User from "./react-components/User"
-import OtherUser from "./react-components/OtherUser"
 
 // customize theme
 import { MuiThemeProvider, createMuiTheme  } from '@material-ui/core/styles';
@@ -62,9 +61,16 @@ class App extends React.Component {
               <Route exact path='/Admin' render={() =>
                               (<Admin />)}/>
               <Route exact path='/User' render={() =>
-                              (<User />)} />
+                              (<User
+                              userLoggedIn={true}
+                              // Should I include adminLoggedIn as well for consistency?
+                              // or merge admin, user, and otheruser
+                              />)} />
               <Route exact path='/OtherUser' render={() =>
-                              (<OtherUser />)} />
+                              (<User
+                              userLoggedIn={false}
+                              // Should I include adminLoggedIn as well for consistency?
+                              />)} />
               <Route exact path='/Toronto' render={() =>
                               (<Toronto 
                                 userLoggedIn={false}
