@@ -25,7 +25,7 @@ class SafetyPopup extends React.Component {
 }
 
 // Component for safety info card & popup
-class SafetyInfo extends React.Component {
+class Safety extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -41,13 +41,16 @@ class SafetyInfo extends React.Component {
 
     render() {
         return (
-            <div className="panel_card" >
-                <h4>Staying Safe
-                  <IconButton id="info_pic" onClick={ this.toggle.bind(this) }>
-                    <FontAwesomeIcon icon={ faInfo } />
-                  </IconButton>
-                </h4>
-
+            <div>
+                <div id="safety">
+                    <div className="panel_card">
+                        <h4>Staying Safe
+                            <IconButton id="i" onClick={ this.toggle.bind(this) }>
+                                <FontAwesomeIcon icon={ faInfo } />
+                            </IconButton>
+                        </h4>
+                    </div>
+                </div>
                 { this.state.show ?
                 <SafetyPopup
                     closePopup={this.toggle.bind(this)} /> : null }
@@ -56,4 +59,4 @@ class SafetyInfo extends React.Component {
     }
 }
 
-export default SafetyInfo;
+export default Safety;
