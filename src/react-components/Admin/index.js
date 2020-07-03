@@ -12,7 +12,7 @@ class Admin extends React.Component {
         super(props)
         this.state = {
             users: false,
-            userMessages: false,
+            userMessages: true,
             logout: false
         }
         this.handleUsers = this.handleUsers.bind(this)
