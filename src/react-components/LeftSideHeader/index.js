@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import logo from './static/logo.svg'
 import handwave from "./static/handwave.svg"
 import './styles.css'
@@ -8,9 +10,9 @@ class LeftSideHeader extends React.Component {
     render() {
         return(
             <div id="header_background">
-                <a href="/">
+                <Link to="/">
                     <button id="back" type="button"> &#10094; Back</button>
-                </a>
+                </Link>
                 <div id="header_content" className="text-center">
                     <div id="header">
                         <h1>OutReach</h1>

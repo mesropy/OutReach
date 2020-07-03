@@ -1,47 +1,46 @@
 import React from "react";
 
-//import TimelineNav from "./TimelineNav";
 import MessageAdder from "./MessageAdder";
 import MessageList from "./MessageList";
-
-// import actions
-import { addMessage } from "../../../actions/addMessage";
+import { addMessage } from "./../../../actions/addMessage";
 
 import "./styles.css";
 
 class Timeline extends React.Component {
+
+  // we will get the messages for this city from the database using the name of the city.
+  // The messages state contains some hard-coded messages
+
+  // note: the content, locationName, pinLeftPos, and pinDownPos states are for input
   state = {
-      name: "user",
-      content: "",
-      time: "12:34 pm·Today",
-      messages: [
-          ["user", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas."]
-      ]
-  };
-
-  handleInput = event => {
-      const newContent = event.target.value;
-      this.setState({
-          content: newContent
-      });
-  };
-
-  cleanContent = () => {
-      this.setState({
-          content: ""
-      });
+    content: "",
+    locationName: "",
+    pinLeftPos: "",
+    pinDownPos: "",
+    messages: [
+      {username: "user1", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
+      {username: "user2", age: "22", time: "9:00am", date: "Jul 9", content: "Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
+    ]
   }
 
+  handleInput = event => {
+      const value = event.target.value;
+      const name = event.target.name;
+      this.setState({
+          [name]: value
+      });
+  };
+
   render(){
+    const { city, isLoggedIn } = this.props;
+
     return(
       <div id="timeline">
-        {/* <TimelineNav /> */}
         <MessageAdder
-            name={this.state.name}
-            content={this.state.content}
-            handleInputFunc={this.handleInput}
-            addMessageFunc={() => addMessage(this)}
-            cleanFunc={this.cleanContent}
+            city={ city }
+            handleInput={ this.handleInput }
+            addMessage={ () => addMessage(this, this.props.username) }
+            isLoggedIn={ isLoggedIn }
         />
         <MessageList messages={this.state.messages} />
       </div>

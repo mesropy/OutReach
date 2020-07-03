@@ -35,11 +35,13 @@ class Login extends React.Component {
         error: false,
       })
       if (this.state.username === "user") {
+        this.props.handleLogin(this.state.username);
         this.setState({
           userLoggedIn: true,
         })
       }
       else {
+        this.props.handleLogin(this.state.username);
         this.setState({
           adminLoggedIn: true,
         })
@@ -53,11 +55,8 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.state.userLoggedIn) {
-      return <Redirect to='/U'/>
-    }
-    if (this.state.adminLoggedIn) {
-      return <Redirect to='/A'/>
+    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+      return <Redirect to='/'/>
     }
 
     return (

@@ -17,11 +17,17 @@ class Pending extends React.Component {
                     {pendingMessages.map(message => (
                             <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
-                                    <Message
-                                        key={uid(message)}
-                                        username={message[0]}
-                                        content={message[1]}
-                                    />
+                                  <Message
+                                      key={uid(message)}
+                                      username={ message.username }
+                                      age={ message.age }
+                                      time={ message.time }
+                                      date={ message.date }
+                                      content={ message.content }
+                                      location_name={ message.locationName }
+                                      pin_left_pos={ message.pinLeftPos }
+                                      pin_down_pos={ message.pinDownPos }
+                                  />
                                 </div>
                                 <div id="edit_div" className="text-center" >
                                     <button id="approve" className="text-center" onClick={() => {approveMessage.bind(this, userMessagesComponent, message)()}}>
@@ -44,8 +50,14 @@ class Pending extends React.Component {
                             <div className={messageClass}>
                                 <Message
                                     key={uid(message)}
-                                    username={message[0]}
-                                    content={message[1]}
+                                    username={ message.username }
+                                    age={ message.age }
+                                    time={ message.time }
+                                    date={ message.date }
+                                    content={ message.content }
+                                    location_name={ message.locationName }
+                                    pin_left_pos={ message.pinLeftPos }
+                                    pin_down_pos={ message.pinDownPos }
                                 />
                             </div>
                         </div>

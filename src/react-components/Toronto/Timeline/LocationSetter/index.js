@@ -9,6 +9,8 @@ import PinPlacer from "../PinPlacer";
 // Component for location setting popup, used by LocationSetter below
 class LocationSettingPopup extends React.Component {
     render() {
+      const { city } = this.props;
+
         return(
             <div>
                 <Backdrop open={ true } onClick={ this.props.closePopup }></Backdrop>
@@ -17,7 +19,7 @@ class LocationSettingPopup extends React.Component {
                     <IconButton id="popup_close_button" onClick={ this.props.closePopup }>
                         <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
-                    <PinPlacer />
+                    <PinPlacer city={ city }/>
                     <div className="bottomBar">
                         <FontAwesomeIcon id="bottomPin" icon={ faMapMarkerAlt } />
                         <Button id="done" onClick={ this.props.closePopup }>

@@ -6,6 +6,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import toronto_map from "./../Toronto/static/toronto_map.png";
+import { Link } from "react-router-dom";
 
 // Component for the location popup
 class LocationPopup extends React.Component {
@@ -51,24 +52,16 @@ class Message extends React.Component {
   }
 
     render() {
-        // will always display current time
-        // TODO: set this time when a new message is added (in MessageAdder)
-        const today = new Date();
-        const {username="user",
-               age="20",
-               time=  today.getHours() + ":" + ('0' + today.getMinutes()).slice(-2),
-               date= today.toLocaleString('default', { month: 'short' }) + " " +
-                     today.getDate(),
-               content,
-               location_name="UofT",
-               pin_left_pos="58%",
-               pin_down_pos="42%"} = this.props;
+        const {username, age, time, date, content, location_name,
+               pin_left_pos, pin_down_pos} = this.props;
 
         return (
             <div className="post">
                 <div className="post-bar">
                     <p className="post-username">
-                        <strong>{username}</strong>
+                        <Link to="/User">
+                            <strong>{username}</strong>
+                        </Link>
                         {age}
                     </p>
                     <div className="post-rightBar">

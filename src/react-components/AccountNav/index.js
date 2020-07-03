@@ -8,6 +8,8 @@ import "./styles.css";
 // or username and logout buttons
 // (depending on whether the user is logged in or not)
 class AccountNav extends React.Component{
+
+  /*
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
@@ -30,24 +32,23 @@ class AccountNav extends React.Component{
       userLoggedIn: false,
       adminLoggedIn: false
     });
-  }
+  }*/
 
   render () {
     /* TODO: Add an if statement for each adminLoggedIn/userLoggedIn and link to each profile page */
-    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+    if (this.props.isLoggedIn) {
       return (
         <div className="account_nav">
           {/* TODO: add path to account */}
-          <Button component= { Link } to={"/Admin"}
+          <Button component= { Link } to={"/".concat(this.props.username)}
                   className="username_button"
                   disableRipple
                   variant="text">
             {/* TODO: add profile icon */}
-            { this.state.username }
-          <div className="divider"/>
+            { this.props.username }
           </Button>
-          {/* TODO: add onclick function that logs out user */}
-          <Button onClick={ this.handleLogout }
+          <div className="divider"/>
+          <Button onClick={ this.props.handleLogout }
                   className="account_button"
                   variant="outlined"
                   color="primary">

@@ -2,7 +2,15 @@ import React from "react";
 
 class CaseReport extends React.Component {
     render() {
-        const {confirmed, recovered, active, status} = this.props;
+        // const { city } = this.props;
+        // (^ this is commented out to avoid warnings)
+        // here, we will get the case count and status from a database
+        // using the name of the city
+
+        const confirmed="13,420";
+        const recovered="11,098";
+        const active="1,337";
+        const status="Yellow";
 
         return (
             <div className="panel_card">

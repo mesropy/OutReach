@@ -21,6 +21,11 @@
     float: left;
 }
 
+.post-username a {
+    color: #464646
+}
+
+
 .post-rightBar{
     float: right;
 }

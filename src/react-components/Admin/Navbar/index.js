@@ -10,8 +10,8 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({
-            usersClass: "text-left",
-            messagesClass: "text-left"
+            usersClass: "text-center",
+            messagesClass: "text-center"
         })
         this.resetClasses = this.resetClasses.bind(this)
         this.changeUsersClass = this.changeUsersClass.bind(this)
@@ -20,23 +20,23 @@ class Navbar extends React.Component {
     
     resetClasses() {
         this.setState({
-            usersClass: "text-left",
-            messagesClass: "text-left"
+            usersClass: "text-center",
+            messagesClass: "text-center"
         })
     }
 
     changeUsersClass() {
-        const usersClass = this.state.usersClass === "text-left" ? "text-left, nav_highlighted" : "text-left"
+        const usersClass = this.state.usersClass === "text-center" ? "text-center nav_highlighted" : "text-center"
         this.setState({
             usersClass: usersClass,
-            messagesClass: "text-left"
+            messagesClass: "text-center"
         })
     }
 
     changeMessagesClass() {
-        const messagesClass = this.state.messagesClass === "text-left" ? "text-left, nav_highlighted" : "text-left"
+        const messagesClass = this.state.messagesClass === "text-center" ? "text-center nav_highlighted" : "text-center"
         this.setState({
-            usersClass: "text-left",
+            usersClass: "text-center",
             messagesClass: messagesClass
         })
     }
@@ -45,7 +45,7 @@ class Navbar extends React.Component {
         const {handleUsers, handleMessages, handleLogout, handleBack} = this.props;
 
         return (
-            <Nav className="nav_bar flex-column justify-content-center">
+            <Nav className="admin_nav_bar flex-column justify-content-center">
                 <Nav.Item className="text-right">
                     <button id="backButton" onClick={() => {handleBack(); this.resetClasses()}}>
                         <p>&#10094;</p>
@@ -55,14 +55,14 @@ class Navbar extends React.Component {
                     <h5>Admin Control</h5>
                 </Nav.Item>
                 <Nav.Item className={this.state.usersClass}>
-                    <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
                     <button onClick={() => {handleUsers(); this.changeUsersClass()}}>
+                        <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
                         <h6>Users</h6>
                     </button>
                 </Nav.Item>
                 <Nav.Item className={this.state.messagesClass}>
-                    <FontAwesomeIcon icon={faComments}></FontAwesomeIcon>
                     <button onClick={() => {handleMessages(); this.changeMessagesClass()}}>
+                    <FontAwesomeIcon icon={faComments}></FontAwesomeIcon>
                         <h6>Messages</h6>
                     </button>
                 </Nav.Item>

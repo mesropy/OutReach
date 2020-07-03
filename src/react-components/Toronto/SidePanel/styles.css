@@ -2,11 +2,11 @@
 
 .sidePanel {
     position: fixed;
-    top: 65px;
-    width: 275px;
+    top: 180px;
 }
 
 .panel_card {
+    width: 240px;
     border-radius: 15px;
     text-align: center;
     /*background: #F4F4F4;*/
@@ -17,4 +17,15 @@
 
 .panel_card h4 {
   color: #147E7D;
+}
+
+#popup_close_button {
+  position: absolute;
+  outline: none;
+  right: 0px;
+  top: 0px;
+}
+
+div.MuiBackdrop-root{
+  z-index: 2;
 }

@@ -10,7 +10,7 @@ import AccountNav from "./../../AccountNav";
 // Component to display top navigation bar
 class TopBar extends React.Component {
     render() {
-        const {cityName} = this.props
+        const {city} = this.props
 
         return (
             <div className="topBar">
@@ -23,12 +23,13 @@ class TopBar extends React.Component {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         letterSpacing="1.5">
-                        { cityName }</text>
+                        { city }</text>
               </svg>
               <WorldMapNav />
-              <AccountNav
-                userLoggedIn={this.props.userLoggedIn}
-                adminLoggedIn={this.props.adminLoggedIn}
+              <AccountNav isLoggedIn={this.props.isLoggedIn}
+                          isAdmin={this.props.isAdmin}
+                          username={this.props.username}
+                          handleLogout={this.props.handleLogout}
               />
             </div>
         );
