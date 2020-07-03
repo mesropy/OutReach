@@ -17,7 +17,7 @@ class Disapprove extends React.Component {
                     <button onClick={closePopup}><FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon></button>
                 </div>
                 <div className="post_div">
-                <h4 Are you sure you would like to disapprove this message?</h4>
+                <h4>Are you sure you would like to disapprove this message?</h4>
                   <Message
                       key={uid(message)}
                       username={ message.username }
