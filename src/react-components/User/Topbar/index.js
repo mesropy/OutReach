@@ -19,7 +19,7 @@ class Topbar extends React.Component {
                         <img id="logo" alt="The logo for the web-application" src={logo}/>
                     </div>
                     <div id="display_div">
-                        <img id="pfp" alt="The user's profile picture" src={pfp}/>
+                        <img id="pfp" alt="The user's profile" src={pfp}/>
                         TORONTO
                         20 yrs
                     </div>
