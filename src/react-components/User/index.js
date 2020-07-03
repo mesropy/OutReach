@@ -12,7 +12,7 @@ class User extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            messages: false,
+            messages: true,
             settings: false,
             logout: false
         }
