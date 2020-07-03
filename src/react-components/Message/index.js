@@ -65,10 +65,12 @@ class Message extends React.Component {
                         {age}
                     </p>
                     <div className="post-rightBar">
+                        { pin_left_pos !== "" && pin_down_pos !== "" ?
                         <button className="pin_button"
                                 onClick={ this.toggle.bind(this) }>
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
                         </button>
+                        : null }
                         { time.concat(" · ", date) }
                     </div>
                 </div>
