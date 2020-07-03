@@ -60,7 +60,7 @@ class LocationSettingPopup extends React.Component {
                            alt="city map"/>
                     </div>
 
-                    <Grid container spacing={2} alignItems="center">
+                    <Grid className="position_sliders" container spacing={2} alignItems="center">
                       <Grid item xs>
                         <Slider
                           value={ Number(this.state.pinLeftPos) }
@@ -105,19 +105,21 @@ class LocationSettingPopup extends React.Component {
                       </Grid>
                     </Grid>
 
-                    <Input
-                        id="input-with-icon-adornment"
-                        startAdornment={
-                          <InputAdornment position="start">
-                            <FontAwesomeIcon icon={ faMapMarkerAlt } />
-                          </InputAdornment>
-                        }
-                        placeholder="Write a location name..."
-                    />
+                    <div id="locationTextFieldContainer">
+                      <Input
+                          fullWidth
+                          startAdornment={
+                            <InputAdornment position="start">
+                              <FontAwesomeIcon icon={ faMapMarkerAlt } />
+                            </InputAdornment>
+                          }
+                          placeholder="Write a location name..."
+                      />
+                    </div>
 
 
-                    <Button id="done" onClick={ this.props.closePopup }>
-                        <h5 id="btnText">Done</h5>
+                    <Button id="doneButton" onClick={ this.props.closePopup }>
+                        <h5>Done</h5>
                         <FontAwesomeIcon id="checkmark" icon={ faCheck }></FontAwesomeIcon>
                     </Button>
                 </div>
