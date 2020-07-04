@@ -64,7 +64,7 @@ class Timeline extends React.Component {
   };
 
   render(){
-    const { city, isLoggedIn } = this.props;
+    const { city, isLoggedIn, isAdmin } = this.props;
 
     return(
       <div id="timeline">
@@ -73,6 +73,7 @@ class Timeline extends React.Component {
             handleInput={ this.handleInput }
             addMessage={ () => addMessage(this, this.props.username) }
             isLoggedIn={ isLoggedIn }
+            isAdmin={ isAdmin }
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
             handleLocationName={ this.handleLocationName }
