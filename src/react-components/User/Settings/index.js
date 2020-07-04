@@ -5,9 +5,6 @@ import TableBody from "@material-ui/core/TableBody";
 import { TableRow, TableCell, FormControlLabel } from "@material-ui/core";
 import Switch from '@material-ui/core/Switch';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-
 class Settings extends React.Component {
     super(props) {
         this.setState({checked: false});
@@ -24,25 +21,23 @@ class Settings extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div id="user_settings">
                 <Table>
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                Age:
+                                Age
                             </TableCell>
                             <TableCell>
-                                19 yrs 
-                                <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                                19 yrs
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                Phone Number:
+                                Phone Number
                             </TableCell>
                             <TableCell>
-                                519-667-1111 
-                                <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                                519-667-1111
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -50,12 +45,9 @@ class Settings extends React.Component {
                         </TableRow>
                         <TableRow>
                             Public
-                             
                             <FormControlLabel
                                 control={<Switch size="small" checked={this.checked} onChange={this.toggleChecked} />}
-                                label="Small"
                             />
-
                         </TableRow>
                         <TableRow>
                             (Message explaining what this means)
