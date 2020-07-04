@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
-import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername } from "../../actions/checkRegister"
+import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge } from "../../actions/checkRegister"
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from '../LeftSideHeader'
 
@@ -17,7 +17,7 @@ class Register extends React.Component {
       confirmPassword: "",
       phoneNumber: "",
       city: "default",
-      age: "default",
+      age: "",
       error: ""
     }
     this.handleChange = this.handleChange.bind(this);
@@ -63,7 +63,13 @@ class Register extends React.Component {
         error: "Please select a valid city."
       })
     }
+    else if (checkAge(this.state)) {
+      this.setState({
+        error: "You must be 13 years or older to create an account."
+      })
+    }
     else {
+      this.props.handleLogin(this.state.username);
       this.setState({
         register: true
       })
@@ -72,7 +78,6 @@ class Register extends React.Component {
 
   render() {
     if (this.state.register) {
-      this.props.handleLogin(this.state.username);
       return <Redirect to='/'/>
     }
 
