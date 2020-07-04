@@ -12,8 +12,8 @@ export const addMessage = (timeline, username)  => {
       date: date,
       content: timeline.state.content,
       locationName: timeline.state.locationName,
-      pinLeftPos: timeline.state.pinLeftPos,
-      pinDownPos: timeline.state.pinDownPos
+      pinLeftPos: `${timeline.state.pinLeftPos}%`,
+      pinDownPos: `${timeline.state.pinDownPos}%`
     };
     // console.log(timeline.state.pinLeftPos, timeline.state.pinDownPos);
 
