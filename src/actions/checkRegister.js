@@ -17,3 +17,19 @@ export const checkPhone = (state) => {
 export const checkCity = (state) => {
     return !(state.city === "Toronto")
   }
+
+export const checkAge = (state) => {
+
+  if (state.age === "") {
+    return false
+  }
+
+  let today = new Date();
+  let birth_date = new Date(state.age);
+  let age = today.getFullYear() - birth_date.getFullYear();
+  let month_diff = today.getMonth() - birth_date.getMonth()
+  if (month_diff < 0 || (month_diff === 0 && today.getDate() < birth_date.getDate())) {
+    age = age - 1
+  }
+  return age < 13;
+}

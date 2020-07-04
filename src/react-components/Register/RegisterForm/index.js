@@ -1,15 +1,22 @@
 import React from "react";
-import { uid } from "react-uid";
 import {Tooltip, OverlayTrigger} from "react-bootstrap"
 import "./styles.css"
 
 class RegisterForm extends React.Component {
+
     constructor(props) {
-        super(props);
-        const year = (new Date()).getFullYear() - 10
-        this.years = Array.from(new Array(100), (val, index) => year - index)
+        super(props)
+        this.onFocus = this.onFocus.bind(this)
+        this.onBlur = this.onBlur.bind(this)
     }
 
+    onFocus(e) {
+        e.currentTarget.type = "date";
+    }
+
+    onBlur(e) {
+        e.currentTarget.type = "text";
+    }
 
     render() {
         const {
@@ -46,14 +53,18 @@ class RegisterForm extends React.Component {
                             <option disabled value="default">select a city</option>
                             <option value="Toronto">Toronto</option>
                         </select><br/>
-                        <select id="age_option" className= "register_select" name="age" value={age} onChange={handleChange}>
-                            <option disabled value="default">select age (optional)</option>
-                            {
-                                this.years.map((year, index) => {
-                                    return (<option key={uid({year})} value={year}>{year}</option>)
-                                })
-                            }
-                        </select><br/>
+                        <input 
+                            placeholder="Birthday" 
+                            type="teext" 
+                            id="age_option" 
+                            className="register_input textbox-n" 
+                            name="age" 
+                            value={age} 
+                            onChange={handleChange}
+                            onFocus={this.onFocus}
+                            onBlur={this.onBlur}
+                            >
+                        </input>
                         <button id="signup_button" type="button" onClick={handleSubmit}>sign-up</button>
                         <div className={error_class}>
                             <h5>{error}</h5>
