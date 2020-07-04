@@ -6,6 +6,7 @@ import Table from '@material-ui/core/Table'
 import TableBody from "@material-ui/core/TableBody";
 import { TableHead, TableRow, TableCell } from "@material-ui/core";
 
+// Component that displays the table of all users
 class UserTable extends React.Component {
     render() {
 

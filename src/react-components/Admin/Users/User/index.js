@@ -4,6 +4,7 @@ import {TableCell, TableRow, Button} from "@material-ui/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+// Component displaying a row entry for a user
 class User extends React.Component {
 
     render() {

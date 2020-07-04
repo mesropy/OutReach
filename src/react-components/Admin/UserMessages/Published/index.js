@@ -6,11 +6,13 @@ import Message from "../../../Message"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+// Component for displaying the published user messages
 class Published extends React.Component {
 
     render() {
         const { userMessagesComponent, edit, publishedMessages } = this.props;
         const messageClass = edit ? "published_post_edit" : "post_div"
+        // Editing Mode
         if (edit) {
             return (
                 <div id="published_div">
@@ -39,6 +41,7 @@ class Published extends React.Component {
                 </div>
             )
         }
+        // Normal Mode
         else {
             return (
                 <div id="published_div">

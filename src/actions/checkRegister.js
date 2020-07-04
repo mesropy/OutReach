@@ -1,11 +1,14 @@
+// Returns true if any field is empty
 export const checkEmpty = (state) => {
     return (state.username === "" || state.password === "" || state.confirmPassword === "" || state.phoneNumber === "" || state.city === "default")
   }
 
+// Returns True if the username does not match the description (Length >= 6 and atleast one letter and number)
 export const checkUsername = (state) => {
     return !(state.username.length >= 6 && /^[0-9a-zA-Z]+$/.test(state.username))
   }
 
+// Returns True if the password does not match
 export const checkPassword = (state) => {
     return !(state.password.length >= 6 && /\d/.test(state.password) && /[a-zA-Z]/.test(state.password) && /[special_characters]/.test(state.password))
   }

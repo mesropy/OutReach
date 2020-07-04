@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+// Component for displaying the popup for deleting a user
 class DeleteUser extends React.Component {
 
     render() {

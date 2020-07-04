@@ -6,11 +6,13 @@ import {approveMessage} from "../../../../actions/adminMessagesEdit"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
+// Component for displaying the pending messages
 class Pending extends React.Component {
 
     render() {
         const {edit, userMessagesComponent, pendingMessages, handlePopup} = this.props
         const messageClass = edit ? "pending_post_edit" : "post_div"
+        // Editing Mode
         if (edit) {
             return (
                 <div id="admin_pending_div">
@@ -43,6 +45,7 @@ class Pending extends React.Component {
                 </div>
             )
         }
+        // Normal Mode
         return (
             <div id="pending_div">
                 {pendingMessages.map(message => (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "./../Toronto/static/logo.svg";
+import logo from "../City/static/logo.svg";
 
 import "./styles.css";
 import "./../main_styles.css";

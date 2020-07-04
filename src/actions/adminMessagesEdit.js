@@ -1,3 +1,4 @@
+// Removes a published message from the list of published messages
 export const removePublishedMessage = (list, message) => {
     const filteredMessages = list.state.publishedMessages.filter(m => {
         return m !== message;
@@ -8,6 +9,7 @@ export const removePublishedMessage = (list, message) => {
     });
 }
 
+// Removes a message from the list of pending mesages
 export const disapproveMessage = (list, message) => {
     const filteredMessages = list.state.pendingMessages.filter(m => {
         return m !== message;
@@ -18,6 +20,7 @@ export const disapproveMessage = (list, message) => {
     });
 }
 
+// Moves a message from the list of pending messages to the list of published messages
 export const approveMessage = (list, message) => {
     const filteredPendingMessages = list.state.pendingMessages.filter(m => {
         return m !== message;

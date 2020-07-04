@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import "./styles.css"
 
+// Component for displaying the top bar
 class Topbar extends React.Component {
     render() {
         return (

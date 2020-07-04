@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers, faComments } from '@fortawesome/free-solid-svg-icons'
 import './styles.css'
 
-
+// Component for the navigation side panel
 class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
+        // Used to switch between highlighted and normal styles
         this.state = ({
             usersClass: "text-center",
             messagesClass: "text-center nav_highlighted"
@@ -18,6 +19,7 @@ class Navbar extends React.Component {
         this.changeMessagesClass = this.changeMessagesClass.bind(this)
     }
     
+    // Closes all tabs
     resetClasses() {
         this.setState({
             usersClass: "text-center",
@@ -25,6 +27,7 @@ class Navbar extends React.Component {
         })
     }
 
+    // Changes the users option to be highlighted
     changeUsersClass() {
         const usersClass = this.state.usersClass === "text-center" ? "text-center nav_highlighted" : "text-center"
         this.setState({
@@ -33,6 +36,7 @@ class Navbar extends React.Component {
         })
     }
 
+    // Changes the messages option to be highlighted
     changeMessagesClass() {
         const messagesClass = this.state.messagesClass === "text-center" ? "text-center nav_highlighted" : "text-center"
         this.setState({

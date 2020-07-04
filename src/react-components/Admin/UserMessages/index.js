@@ -6,16 +6,20 @@ import Published from './Published'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
+// Component for displaying all user messages
 class UserMessages extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            // For closing and opening tabs
             edit: false,
             pending: true,
             published: false,
+            // Switching between styles
             pendingClass: "highlighted",
             publishedClass: "",
+            // The user messages will be retrieved from a database
             pendingMessages: [
                 {username: "user", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
                 {username: "user2", age: "-", time: "9:00am", date: "Jul 9", content: "Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
@@ -25,6 +29,7 @@ class UserMessages extends React.Component {
                 {username: "user4", age: "25", time: "6:30pm", date: "Jul 10", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
 
             ],
+            // Displaying and styles for the disapprove popup
             disapprove: false,
             disapproveMessage: ""
         }
@@ -35,6 +40,7 @@ class UserMessages extends React.Component {
         this.closePopup = this.closePopup.bind(this);
     }
 
+    // Change styles for the pending tab
     changePending() {
         const pendingClass = this.state.pendingClass === "" ? "highlighted" : ""
         const toggle = this.state.pending
@@ -47,6 +53,7 @@ class UserMessages extends React.Component {
         })
     }
 
+    // Change styles for the published tab
     changePublished() {
         const publishedClass = this.state.publishedClass === "" ? "highlighted" : ""
         const toggle = this.state.published
@@ -59,6 +66,7 @@ class UserMessages extends React.Component {
         })
     }
 
+    // Switch to edit mode
     handleEdit() {
         const toggle = this.state.edit;
         this.setState({
@@ -66,6 +74,7 @@ class UserMessages extends React.Component {
         })
     }
 
+    // Display the "disapprove" component
     handlePopup(message) {
         this.setState({
             disapprove: true,
@@ -73,6 +82,7 @@ class UserMessages extends React.Component {
         })
     }
 
+    // Close the "disapprove" component
     closePopup() {
         this.setState({
             disapprove: false

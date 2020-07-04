@@ -5,10 +5,12 @@ import DeleteUser from "./DeleteUser"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
+// Component for displaying all users
 class Users extends React.Component {
 
     constructor(props) {
         super(props);
+        // The users will be retrieved from a database
         this.state = {
             users: [
                 {username: "@user", age: "20yrs", city: "Toronto"},
@@ -16,7 +18,9 @@ class Users extends React.Component {
                 {username: "@user3", age: "27yrs", city: "Toronto"},
                 {username: "@user4", age: "25yrs", city: "Toronto"},
             ],
+            // Used for switching between Edit and Normal modes
             edit: false,
+            // For deletion
             delete: false,
             userDelete: ""
         }
@@ -25,6 +29,7 @@ class Users extends React.Component {
         this.closePopup = this.closePopup.bind(this);
     }
 
+    // Sets Edit Mode
     handleEdit(e) {
         const toggle = this.state.edit
         this.setState({
@@ -32,6 +37,7 @@ class Users extends React.Component {
         })
     }
 
+    // Displays the deletion component
     handlePopup(user) {
         this.setState({
             edit: false,
@@ -40,6 +46,7 @@ class Users extends React.Component {
         })
     }
 
+    // Closes the deletion popup
     closePopup() {
         this.setState({
             edit: true,
@@ -49,6 +56,7 @@ class Users extends React.Component {
     }
 
     render() {
+        // Edit Mode
         if (this.state.edit) {
             return (
                 <div id="users_div">
@@ -61,6 +69,7 @@ class Users extends React.Component {
                 </div>
             )
         }
+        // Deletion Popup
         else if (this.state.delete) {
             return (
                 <DeleteUser
@@ -70,6 +79,7 @@ class Users extends React.Component {
                 />
             )
         }
+        // Normal Mode
         else {
         return (
                 <div id="users_div">
