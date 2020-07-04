@@ -15,6 +15,7 @@ export const addMessage = (timeline, username)  => {
       pinLeftPos: timeline.state.pinLeftPos,
       pinDownPos: timeline.state.pinDownPos
     };
+    // console.log(timeline.state.pinLeftPos, timeline.state.pinDownPos);
 
     // here we will need to add this message to the database to save it
     // (we will also need the city, which we can access from the message)

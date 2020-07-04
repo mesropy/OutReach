@@ -19,24 +19,28 @@ class LocationSettingPopup extends React.Component {
   this.setState({
     pinLeftPos: newValue
     });
+    this.props.handleLocationLeft(newValue);
   };
 
   handleSliderDownChange = (event, newValue) => {
   this.setState({
     pinDownPos: newValue
     });
+    this.props.handleLocationDown(newValue);
   };
 
   handlePosLeftChange = (event) => {
     this.setState({
       pinLeftPos: Number(event.target.value)
     });
+    this.props.handleLocationLeft(event.target.value);
   };
 
   handlePosDownChange = (event) => {
     this.setState({
       pinDownPos: Number(event.target.value)
     });
+    this.props.handleLocationDown(event.target.value);
   };
 
   handleTextInputChange = (event) => {
@@ -44,6 +48,7 @@ class LocationSettingPopup extends React.Component {
     this.setState({
       locationName: value
     });
+    this.props.handleLocationName(value);
   };
 
     render() {
@@ -171,6 +176,9 @@ class LocationSetter extends React.Component {
                 {this.state.show ?
                     <LocationSettingPopup
                         closePopup={this.toggle.bind(this)}
+                        handleLocationLeft={ this.props.handleLocationLeft }
+                        handleLocationDown={ this.props.handleLocationDown }
+                        handleLocationName={ this.props.handleLocationName }
                     />
                     : null
                 }

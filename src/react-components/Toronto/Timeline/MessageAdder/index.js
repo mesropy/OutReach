@@ -34,7 +34,12 @@ class NewMessagePopup extends React.Component {
                         name="content"
                         onChange={this.props.handleInput}
                     />
-                    <LocationSetter city={ city } />
+                    <LocationSetter
+                        city={ city }
+                        handleLocationLeft={ this.props.handleLocationLeft }
+                        handleLocationDown={ this.props.handleLocationDown }
+                        handleLocationName={ this.props.handleLocationName }
+                     />
                     <div className="btns">
                         <Button className="postBtn" onClick={this.handleSubmit}>
                             Post
@@ -80,6 +85,9 @@ class MessageAdder extends React.Component {
                       city={ city }
                       handleInput={ this.props.handleInput }
                       addMessage={ this.props.addMessage }
+                      handleLocationLeft={ this.props.handleLocationLeft }
+                      handleLocationDown={ this.props.handleLocationDown }
+                      handleLocationName={ this.props.handleLocationName }
                     />
                     : null
                 }
