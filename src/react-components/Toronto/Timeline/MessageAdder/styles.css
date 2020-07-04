@@ -18,7 +18,7 @@
 #addBtn {
     position: fixed;
     text-transform: none;
-    top: 80px;
+    bottom: 40px;
     right: 40px;
     font-size: 20px;
     z-index: 1;
