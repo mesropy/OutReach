@@ -35,22 +35,27 @@ class Timeline extends React.Component {
     this.setState({
       pinLeftPos: left
     });
-    // console.log(this.state.pinLeftPos);
-  }
+  };
 
   handleLocationDown = (down) => {
     this.setState({
       pinDownPos: down
     });
-    // console.log(this.state.pinDownPos);
-  }
+  };
 
   handleLocationName = (name) => {
     this.setState({
       locationName: name
     });
-    // console.log(this.state.locationName);
-  }
+  };
+
+  removeLocation = () => {
+    this.setState({
+      locationName: "",
+      pinLeftPos: "",
+      pinDownPos: ""
+    });
+  };
 
   render(){
     const { city, isLoggedIn } = this.props;
@@ -65,6 +70,7 @@ class Timeline extends React.Component {
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
             handleLocationName={ this.handleLocationName }
+            removeLocation={ this.removeLocation }
         />
         <MessageList messages={this.state.messages} />
       </div>

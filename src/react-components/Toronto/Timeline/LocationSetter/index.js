@@ -51,6 +51,11 @@ class LocationSettingPopup extends React.Component {
     this.props.handleLocationName(value);
   };
 
+  handleClose = () => {
+    this.props.closePopup();
+    this.props.removeLocation();
+  }
+
     render() {
       // const { city } = this.props;
       // (^ this is commented out now to avoid warnings)
@@ -63,7 +68,7 @@ class LocationSettingPopup extends React.Component {
                 <div className="setLocationPopup">
 
 
-                    <IconButton id="popup_close_button" onClick={ this.props.closePopup }>
+                    <IconButton id="popup_close_button" onClick={ this.handleClose }>
                         <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
 
@@ -179,6 +184,7 @@ class LocationSetter extends React.Component {
                         handleLocationLeft={ this.props.handleLocationLeft }
                         handleLocationDown={ this.props.handleLocationDown }
                         handleLocationName={ this.props.handleLocationName }
+                        removeLocation={ this.props.removeLocation }
                     />
                     : null
                 }

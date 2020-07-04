@@ -11,6 +11,7 @@ class NewMessagePopup extends React.Component {
     handleSubmit = () => {
         this.props.closePopup();
         this.props.addMessage();
+        this.props.removeLocation();
     };
 
     render() {
@@ -39,6 +40,7 @@ class NewMessagePopup extends React.Component {
                         handleLocationLeft={ this.props.handleLocationLeft }
                         handleLocationDown={ this.props.handleLocationDown }
                         handleLocationName={ this.props.handleLocationName }
+                        removeLocation={ this.props.removeLocation }
                      />
                     <div className="btns">
                         <Button className="postBtn" onClick={this.handleSubmit}>
@@ -88,6 +90,7 @@ class MessageAdder extends React.Component {
                       handleLocationLeft={ this.props.handleLocationLeft }
                       handleLocationDown={ this.props.handleLocationDown }
                       handleLocationName={ this.props.handleLocationName }
+                      removeLocation={ this.props.removeLocation }
                     />
                     : null
                 }
