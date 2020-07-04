@@ -6,8 +6,7 @@ import TopBar from "./TopBar";
 import SidePanel from "./SidePanel";
 import Timeline from "./Timeline";
 
-// TODO: rename this to City
-class Toronto extends React.Component {
+class City extends React.Component {
     render() {
       const { city } = this.props;
 
@@ -31,4 +30,4 @@ class Toronto extends React.Component {
     }
 }
 
-export default Toronto;
+export default City;

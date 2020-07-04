@@ -8,7 +8,7 @@ import WorldMap from './react-components/WorldMap';
 import Register from "./react-components/Register"
 import Login from "./react-components/Login"
 import Admin from "./react-components/Admin"
-import Toronto from "./react-components/Toronto"
+import City from "./react-components/City"
 import User from "./react-components/User"
 
 // customize theme
@@ -78,7 +78,7 @@ class App extends React.Component {
                                 handleLogout={this.handleLogout.bind(this)}
                               />)}/>
               <Route exact path='/Toronto' render={() =>
-                              (<Toronto
+                              (<City
                                 isLoggedIn={this.state.isLoggedIn}
                                 isAdmin={this.state.isAdmin}
                                 username={this.state.username}
@@ -86,7 +86,7 @@ class App extends React.Component {
                                 city="TORONTO"
                               />)}/>
               <Route exact path='/Paris' render={() =>
-                              (<Toronto
+                              (<City
                                 isLoggedIn={this.state.isLoggedIn}
                                 isAdmin={this.state.isAdmin}
                                 username={this.state.username}
@@ -94,7 +94,7 @@ class App extends React.Component {
                                 city="PARIS"
                               />)}/>
               <Route exact path='/Montréal' render={() =>
-                              (<Toronto
+                              (<City
                                 isLoggedIn={this.state.isLoggedIn}
                                 isAdmin={this.state.isAdmin}
                                 username={this.state.username}
