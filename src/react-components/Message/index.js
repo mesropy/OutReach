@@ -62,10 +62,10 @@ class Message extends React.Component {
                         <Link to={"/".concat(this.props.username)}>
                             <strong>{username}</strong>
                         </Link>
-                        {age}
+                        {age}yrs
                     </p>
                     <div className="post-rightBar">
-                        { pin_left_pos !== "" && pin_down_pos !== "" ?
+                        { this.props.location_name !== "" ?
                         <button className="pin_button"
                                 onClick={ this.toggle.bind(this) }>
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
