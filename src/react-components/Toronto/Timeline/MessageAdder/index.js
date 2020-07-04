@@ -12,6 +12,7 @@ class NewMessagePopup extends React.Component {
         this.props.closePopup();
         this.props.addMessage();
         this.props.removeLocation();
+        this.props.removeContent();
     };
 
     render() {
@@ -90,6 +91,7 @@ class MessageAdder extends React.Component {
                       handleLocationLeft={ this.props.handleLocationLeft }
                       handleLocationDown={ this.props.handleLocationDown }
                       handleLocationName={ this.props.handleLocationName }
+                      removeContent={ this.props.removeContent }
                       removeLocation={ this.props.removeLocation }
                     />
                     : null

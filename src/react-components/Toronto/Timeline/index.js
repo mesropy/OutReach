@@ -31,6 +31,12 @@ class Timeline extends React.Component {
       });
   };
 
+  removeContent = () => {
+    this.setState({
+      content: ""
+    });
+  };
+
   handleLocationLeft = (left) => {
     this.setState({
       pinLeftPos: left
@@ -70,6 +76,7 @@ class Timeline extends React.Component {
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
             handleLocationName={ this.handleLocationName }
+            removeContent={ this.removeContent }
             removeLocation={ this.removeLocation }
         />
         <MessageList messages={this.state.messages} />
