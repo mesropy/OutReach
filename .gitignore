@@ -26,3 +26,6 @@ package-lock.json
 # visual studio settings
 /.vs
 /src/.vs
+
+# ignore database contents (for now)
+#/mongo-data
