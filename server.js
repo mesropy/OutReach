@@ -1,20 +1,20 @@
 'use strict';
 const log = console.log
 
+// Express
 const express = require('express');
-const path = require('path');
-
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'src')));
-
 // Mongo and Mongoose
+const { mongoose } = require('./db/mongoose');
+const { ObjectID } = require('mongodb')
+
+// Mongoose Models
+const { User } = require('./models/user')
+
+// Express Middleware
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
-
-const { ObjectID } = require('mongodb')
-const { mongoose } = require('./db/mongoose');
-const { User } = require('./models/user')
 
 /* Database routes */
 // get users
@@ -38,11 +38,30 @@ const { User } = require('./models/user')
 // delete message
 /* End Database routes */
 
-const port = process.env.PORT || 5000
 
+
+// Test Route
 app.get('/ping', function (req, res) {
 	return res.send('pong');
 });
+
+// Serve the build
+app.use(express.static(__dirname + "/client/build"));
+
+// Routes
+app.get("*", (req, res) => {
+    // const goodPageRoutes = ["/", "/login", "/dashboard"];
+    // if (!goodPageRoutes.includes(req.url)) {
+    //     // if url not in expected page routes, set status to 404.
+    //     res.status(404);
+    // }
+
+    // send index.html
+    res.sendFile(__dirname + "/client/build/index.html");
+});
+
+// Express Server Listening
+const port = process.env.PORT || 5000
 
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)

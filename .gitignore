@@ -29,3 +29,8 @@ package-lock.json
 
 # ignore database contents (for now)
 /mongo-data/*
+
+# React
+client/build/
+client/package-lock.json
+client/node_modules/
