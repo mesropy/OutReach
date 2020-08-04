@@ -1,6 +1,7 @@
 'use strict';
 const request = require('request')
 
+// province is one of ON, QC, NS, NB, MB, BC, PE, SK, AB, NL, NT, YT, NU
 const canadaCovidCasesInfo = (province) => {
 	return new Promise((resolve, reject) => {
 		request({
