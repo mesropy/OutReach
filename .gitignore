@@ -28,4 +28,4 @@ package-lock.json
 /src/.vs
 
 # ignore database contents (for now)
-#/mongo-data
+/mongo-data/*
