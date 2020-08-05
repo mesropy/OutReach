@@ -1,4 +1,5 @@
 import React from "react";
+import PollClass from '../../../Poll'
 
 // a generic panel card component
 class PanelCard extends React.Component {
@@ -7,7 +8,7 @@ class PanelCard extends React.Component {
 
         return (
             <div className="panel_card">
-                <h4>{title}</h4>
+                <h4><PollClass/></h4>
             </div>
         );
     }
