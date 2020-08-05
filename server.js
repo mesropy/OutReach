@@ -11,12 +11,16 @@ const { ObjectID } = require('mongodb')
 
 // Mongoose Models
 const { User } = require('./models/user')
+const { Poll } = require('./models/poll')
 
 // Express Middleware
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
 /* Database routes */
+
+// User Routes
+
 // get users
 
 // get user by id
@@ -36,6 +40,80 @@ app.use(bodyParser.json());
 // delete user
 
 // delete message
+
+/* Poll Routes */
+
+// Create Poll
+/*
+Request body expects:
+{
+    "question": <Poll Question Name>
+    "answers": <List of options as Strings>
+    "active": <true or false>
+}
+Returned JSON: The finished poll
+*/
+// POST /poll
+app.post('/poll', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Create list of PollAnswer Objects
+    const pollAnswers = []
+    for (let i=0; i < req.body.answers.length; i++) {
+        pollAnswers.push({
+            option: req.body.answers[i],
+            votes: 0
+        })
+    }
+    // Make the Poll
+    const newPoll = new Poll({
+        question: req.body.question,
+        answers: pollAnswers,
+        active: req.body.active
+    })
+    // Save to database
+    newPoll.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        res.status(400).send("Bad Request")
+        return;
+    })
+})
+
+// Get the Active Poll
+// GET /poll
+app.get('/poll', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get the polls
+    Poll.find().then((polls) => {
+        const activePoll = polls.filter((poll) => {
+            return poll.active
+        })
+        if (activePoll.length == 0) {
+            res.status(404).send("Resource Not Found.")
+        } 
+        else {
+            res.send(activePoll[0])
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
+    })
+})
+
 /* End Database routes */
 
 
