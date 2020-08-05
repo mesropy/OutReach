@@ -9,6 +9,9 @@ const app = express();
 const { mongoose } = require('./db/mongoose');
 const { ObjectID } = require('mongodb')
 
+// Deprecation Warnings
+mongoose.set('useFindAndModify', false);
+
 // Mongoose Models
 const { User } = require('./models/user')
 const { Poll } = require('./models/poll')
@@ -97,12 +100,10 @@ app.get('/poll', (req, res) => {
         return;
     }
 
-    // Get the polls
-    Poll.find().then((polls) => {
-        const activePoll = polls.filter((poll) => {
-            return poll.active
-        })
-        if (activePoll.length == 0) {
+    const query = {'active': true}
+    // Get the active poll
+    Poll.find(query).then((activePoll) => {
+        if (activePoll.length === 0) {
             res.status(404).send("Resource Not Found.")
         } 
         else {
@@ -110,6 +111,47 @@ app.get('/poll', (req, res) => {
         }
     }).catch((error) => {
         log(error)
+        res.status(500).send("Internal Server Error.")
+    })
+})
+
+// Update the Active Poll
+/*
+Request Body Expects:
+[
+    {"op": "replace", "path": "/answers", "value": newAnswers}
+]
+*/
+// PATCH /poll
+app.patch('/poll', (req, res) => {
+
+     // check mongoose connection established.
+     if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+    // Get the fields that need to be updated
+    const fieldsToUpdate = {}
+    req.body.map((change) => {
+        const propertyToChange = change.path.substr(1)
+        fieldsToUpdate[propertyToChange] = change.value
+    })
+
+    const query = {'active': true}
+    Poll.findOneAndUpdate(query, fieldsToUpdate, {new: true}, function(err, doc) {
+        if (err) {
+            res.status(500).send("Internal Server Error")
+            return ;
+        }
+        if (!doc) {
+            res.status(404).send("Resource Not Found.")
+            return ;
+        }
+        else {
+            res.send(doc);
+        }
+    }).catch((error) => {
         res.status(500).send("Internal Server Error.")
     })
 })
