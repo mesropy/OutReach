@@ -8,7 +8,7 @@ class PanelCard extends React.Component {
 
         return (
             <div className="panel_card">
-                <h4><PollClass/></h4>
+                <PollClass/>
             </div>
         );
     }

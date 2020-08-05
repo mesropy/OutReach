@@ -22,6 +22,10 @@ class PollClass extends React.Component {
                 return res.json();
             } else {
                 console.log("Couldn't get the poll data.")
+                return {
+                    question: "No Poll Available",
+                    answers: []
+                }
             }
         }).then(json => {
             this.setState({
@@ -38,10 +42,9 @@ class PollClass extends React.Component {
         const newPollAnswers = pollAnswers.map((answer) => {
             if (answer.option === voteAnswer) {
                 answer.votes = answer.votes + 1;
-                return answer
             }
+            return answer
         })
-
         // Update State
         this.setState({
             pollAnswers: newPollAnswers
@@ -58,14 +61,13 @@ class PollClass extends React.Component {
 
         // Create request constructor with parameters
         const request = new Request(url, {
-            method: "patch",
+            method: "PATCH",
             body: JSON.stringify(pollData),
             headers: {
-                Accept: "application/json, text/plain, */*",
+                Accept: "application/json",
                 "Content-Type": "application/json"
             }
         });
-
         // Send Request
         fetch(request).then((res) => {
             if (res.status !== 200) {
