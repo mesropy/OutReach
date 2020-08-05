@@ -4,6 +4,8 @@ const log = console.log
 // Express
 const express = require('express');
 const app = express();
+// CORS
+const cors = require('cors')
 
 // Mongo and Mongoose
 const { mongoose } = require('./db/mongoose');
@@ -123,7 +125,7 @@ Request Body Expects:
 ]
 */
 // PATCH /poll
-app.patch('/poll', (req, res) => {
+app.patch('/poll', cors(), (req, res) => {
 
      // check mongoose connection established.
      if (mongoose.connection.readyState != 1) {
