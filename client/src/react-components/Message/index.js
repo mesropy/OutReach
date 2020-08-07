@@ -24,7 +24,6 @@ class LocationPopup extends React.Component {
                       <FontAwesomeIcon icon={ faTimesCircle } />
                     </IconButton>
                     <div id="map_container" >
-                    {/* TODO: remove inline CSS? or is this allowed? */}
                       <div style={{left: pin_left_pos, bottom: pin_down_pos, position: "absolute"}}>
                         <FontAwesomeIcon icon={ faMapMarkerAlt }/>
                       </div>

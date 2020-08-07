@@ -19,7 +19,6 @@ class Home extends React.Component {
                     isAdmin={this.props.isAdmin}
                     username={this.props.username}
                     handleLogout={this.props.handleLogout}/>
-        {/* TODO: add to this? / edit it? */}
         <div id="introMessage">
           The purpose of OutReach is to provide those who were
           afflicted by the COVID-19 pandemic an opportunity to share their
