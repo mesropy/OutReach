@@ -22,6 +22,60 @@ const { Poll } = require('./models/poll')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
+/* Session Handling */
+
+// Create a session cookie
+app.use(
+    session({
+        secret: "oursecret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 600000, // 10 mins, increase?
+            httpOnly: true
+        }
+    })
+);
+
+// route to login and create a session
+app.post("/login", (req, res) => {
+    const name = req.body.name;
+    const password = req.body.password;
+
+    User.findByNamePassword(name, password)
+        .then(user => {
+            // Add the user's id to the session cookie.
+            req.session.userId = user._id;
+            req.session.name = user.name;
+            // send the new global state
+            if (user.name === "admin"){
+              res.send({
+                isLoggedIn: true,
+                isAdmin: true,
+                username: user.name });
+            } else {
+              res.send({
+                isLoggedIn: true,
+                isAdmin: false,
+                username: user.name }); 
+            }
+        })
+        .catch(error => {
+            res.status(400).send()
+        });
+});
+
+// route to logout a user and remove the session
+app.get("/logout", (req, res) => {
+    req.session.destroy(error => {
+        if (error) {
+            res.status(500).send(error);
+        } else {
+            res.send()
+        }
+    });
+});
+
 /* Database routes */
 
 // User Routes
