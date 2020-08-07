@@ -51,6 +51,7 @@ const covidInfo = (countryCode, province) => {
                             confirmed: data.total_cases,
                             recovered: data.total_recovered,
                             active: data.total_cases - data.total_deaths - data.total_recovered,
+                            date: "2020-08-07"
                         })
                     } catch (error) {
                         console.log(error);
