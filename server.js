@@ -93,7 +93,47 @@ app.get("/logout", (req, res) => {
 
 // get message by uid, mid
 
-// post user
+// Create User
+/*
+Request body expects:
+{
+    "username": <Username>
+    "password": <Plain Password>
+    "dob": <YYYY-MM-DD>
+    "phone": <Number>
+    "city": <Location of the user>
+}
+Returned JSON: The added User
+*/
+// POST /user
+app.post('/user', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Make the User
+    const newUser = new User({
+        username: req.body.username,
+        password: req.body.password,
+        dob: req.body.dob,
+        phone: req.body.phone,
+        city: req.body.city,
+        public: true
+    })
+
+    // Save to database
+    newUser.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(400).send("Bad Request")
+        return;
+    })
+})
 
 // post message
 
