@@ -25,6 +25,7 @@ class User extends React.Component {
                     <TableCell component="th" scope="row">
                         <Button onClick={handlePopup.bind(parentState, user)}>
                             <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
+                            <h6>delete</h6>
                         </Button>
                     </TableCell>
                 </TableRow>
