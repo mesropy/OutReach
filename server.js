@@ -22,6 +22,11 @@ const { Poll } = require('./models/poll')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
+
+// Express-session for managing user sessions
+const session = require("express-session");
+app.use(bodyParser.urlencoded({ extended: true }));
+
 /* Session Handling */
 
 // Create a session cookie
