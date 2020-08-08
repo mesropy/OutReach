@@ -1,26 +1,16 @@
-/* User and Message models */
+/* User model */
 
 const mongoose = require('mongoose');
-
-const MessageSchema = new mongoose.Schema({
-    text: String,
-    date: String,
-    location: String,
-    published: Boolean,
-    creator: {
-		    type: mongoose.Schema.Types.ObjectId,
-		      required: true
-	  }
-});
-
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-    name: String,
+    username: String,
     password: String,
     dob: String,
-    phone: String,
+	phone: String,
+	city: String,
     public: Boolean
-    // messages: [MessageSchema]
 });
 
 // mongoose middleware that hashes the password that will be saved
@@ -63,7 +53,6 @@ UserSchema.statics.findByNamePassword = function(name, password) {
 		})
 	})
 }
-
 
 const User = mongoose.model('User', UserSchema);
 
