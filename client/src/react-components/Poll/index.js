@@ -74,7 +74,7 @@ class PollClass extends React.Component {
         })
 
         // Update State
-        const newPollAnswersShortened = newPollAnswers.map((answer) => {
+        newPollAnswers.map((answer) => {
             if (answer.option.length > 18) {
                 answer.option = answer.option.slice(0, 16) + '...';
             }
@@ -83,6 +83,7 @@ class PollClass extends React.Component {
         this.setState({
             pollAnswers: newPollAnswers
         })
+        console.log(this.state.pollAnswers)
     };
 
     render() {
