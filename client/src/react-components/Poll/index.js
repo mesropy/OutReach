@@ -45,10 +45,6 @@ class PollClass extends React.Component {
             }
             return answer
         })
-        // Update State
-        this.setState({
-            pollAnswers: newPollAnswers
-        })
 
         // Update Database
         // URL for request
@@ -76,12 +72,32 @@ class PollClass extends React.Component {
         }).catch(error => {
             console.log(error)
         })
+
+        // Update State
+        const newPollAnswersShortened = newPollAnswers.map((answer) => {
+            if (answer.option.length > 18) {
+                answer.option = answer.option.slice(0, 16) + '...';
+            }
+            return answer
+        })
+        this.setState({
+            pollAnswers: newPollAnswers
+        })
     };
 
     render() {
+
+        const pollStyles = {
+            questionSeparator: true,
+            questionSeparatorWidth: 'poll',
+            questionBold: true,
+            align: 'center',
+            theme: 'black'
+        }
+
         return (
             <div>
-                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} />
+                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={pollStyles}/>
             </div>
         )
     }
