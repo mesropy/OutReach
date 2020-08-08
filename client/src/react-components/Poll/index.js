@@ -9,6 +9,13 @@ class PollClass extends React.Component {
             pollQuestion: "",
             pollAnswers: []
         }
+        this.pollStyles = {
+            questionSeparator: true,
+            questionSeparatorWidth: 'poll',
+            questionBold: true,
+            align: 'center',
+            theme: 'black'
+        }
         this.getPollData = this.getPollData.bind(this);
         this.handleVote = this.handleVote.bind(this);
         this.getPollData();
@@ -83,22 +90,16 @@ class PollClass extends React.Component {
         this.setState({
             pollAnswers: newPollAnswers
         })
-        console.log(this.state.pollAnswers)
     };
 
+    componentDidMount() {
+        this.getPollData()
+    }
+
     render() {
-
-        const pollStyles = {
-            questionSeparator: true,
-            questionSeparatorWidth: 'poll',
-            questionBold: true,
-            align: 'center',
-            theme: 'black'
-        }
-
         return (
             <div>
-                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={pollStyles}/>
+                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={this.pollStyles}/>
             </div>
         )
     }
