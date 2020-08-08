@@ -17,6 +17,8 @@ mongoose.set('useFindAndModify', false);
 // Mongoose Models
 const { User } = require('./models/user')
 const { Poll } = require('./models/poll')
+const { Message } = require('./models/message')
+const { Admin } = require('./models/admin')
 
 // Express Middleware
 const bodyParser = require('body-parser')
@@ -83,15 +85,11 @@ app.get("/logout", (req, res) => {
 
 /* Database routes */
 
-// User Routes
+/* User Routes */
 
 // get users
 
 // get user by id
-
-// get messages by uid
-
-// get message by uid, mid
 
 // Create User
 /*
@@ -135,15 +133,58 @@ app.post('/user', (req, res) => {
     })
 })
 
-// post message
-
 // patch user
-
-// patch message
 
 // delete user
 
+/* Message Routes */
+
+// get messages by UserId
+
+// get message by MessageId
+
+// post message
+
+// patch message
+
 // delete message
+
+/* Admin Routes */
+
+// Create an Admin
+/*
+Request body expects:
+{
+    "username": <Username>
+    "password": <Plain Password>
+}
+Returned JSON: The added Admin
+*/
+// POST /admin
+app.post('/admin', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Make the User
+    const newAdmin = new Admin({
+        username: req.body.username,
+        password: req.body.password,
+    })
+
+    // Save to database
+    newAdmin.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(400).send("Bad Request")
+        return;
+    })
+})
 
 /* Poll Routes */
 
