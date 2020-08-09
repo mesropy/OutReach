@@ -62,7 +62,7 @@ class Users extends React.Component {
                 <div id="users_div">
                     <div id="edit_div" className="text-right">
                         <button onClick={this.handleEdit}>
-                            <h6>Done</h6>
+                            <h6 className="edit_done">Done</h6>
                         </button>
                     </div>
                     <UserTable state={this.state} usersComponent={this} edit={this.state.edit} handlePopup={this.handlePopup}></UserTable>

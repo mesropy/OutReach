@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 // CORS
 const cors = require('cors')
+app.use(cors())
 
 // Mongo and Mongoose
 const { mongoose } = require('./db/mongoose');
@@ -17,10 +18,17 @@ mongoose.set('useFindAndModify', false);
 // Mongoose Models
 const { User } = require('./models/user')
 const { Poll } = require('./models/poll')
+const { Message } = require('./models/message')
+const { Admin } = require('./models/admin')
 
 // Express Middleware
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
+
+
+// Express-session for managing user sessions
+const session = require("express-session");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Session Handling */
 
@@ -78,27 +86,106 @@ app.get("/logout", (req, res) => {
 
 /* Database routes */
 
-// User Routes
+/* User Routes */
 
 // get users
 
 // get user by id
 
-// get messages by uid
+// Create User
+/*
+Request body expects:
+{
+    "username": <Username>
+    "password": <Plain Password>
+    "dob": <YYYY-MM-DD>
+    "phone": <Number>
+    "city": <Location of the user>
+}
+Returned JSON: The added User
+*/
+// POST /user
+app.post('/user', (req, res) => {
 
-// get message by uid, mid
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
 
-// post user
+    // Make the User
+    const newUser = new User({
+        username: req.body.username,
+        password: req.body.password,
+        dob: req.body.dob,
+        phone: req.body.phone,
+        city: req.body.city,
+        public: true    // By default
+    })
 
-// post message
+    // Save to database
+    newUser.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(400).send("Bad Request")
+        return;
+    })
+})
 
 // patch user
 
-// patch message
-
 // delete user
 
+/* Message Routes */
+
+// get messages by UserId
+
+// get message by MessageId
+
+// post message
+
+// patch message
+
 // delete message
+
+/* Admin Routes */
+
+// Create an Admin
+/*
+Request body expects:
+{
+    "username": <Username>
+    "password": <Plain Password>
+}
+Returned JSON: The added Admin
+*/
+// POST /admin
+app.post('/admin', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Make the Admin
+    const newAdmin = new Admin({
+        username: req.body.username,
+        password: req.body.password,
+    })
+
+    // Save to database
+    newAdmin.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(400).send("Bad Request")
+        return;
+    })
+})
 
 /* Poll Routes */
 
@@ -113,7 +200,16 @@ Request body expects:
 Returned JSON: The finished poll
 */
 // POST /poll
-app.post('/poll', (req, res) => {
+app.post('/poll/:id', (req, res) => {
+
+
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
 
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -122,26 +218,63 @@ app.post('/poll', (req, res) => {
         return;
     }
 
-    // Create list of PollAnswer Objects
-    const pollAnswers = []
-    for (let i=0; i < req.body.answers.length; i++) {
-        pollAnswers.push({
-            option: req.body.answers[i],
-            votes: 0
-        })
-    }
-    // Make the Poll
-    const newPoll = new Poll({
-        question: req.body.question,
-        answers: pollAnswers,
-        active: req.body.active
-    })
-    // Save to database
-    newPoll.save().then((result) => {
-        res.send(result)
+    // Check if Admin ID is valid
+    Admin.findById(id).then(result => {
+        if (!result) {
+            res.status(404).send("No Admin Found");
+            return ;
+        } else {
+            // Create list of PollAnswer Objects
+            const pollAnswers = []
+            for (let i=0; i < req.body.answers.length; i++) {
+                pollAnswers.push({
+                    option: req.body.answers[i],
+                    votes: 0
+                })
+            }
+            // Make the Poll
+            const newPoll = new Poll({
+                question: req.body.question,
+                answers: pollAnswers,
+                active: req.body.active
+            })
+
+            // Save to database
+            newPoll.save().then((result) => {
+                res.send(result)
+            }).catch((error) => {
+                res.status(400).send("Bad Request")
+                return;
+            })
+        }
     }).catch((error) => {
-        res.status(400).send("Bad Request")
+        res.status(500).send("Internal Server Error")
         return;
+    })
+})
+
+// Get all Polls
+// GET /polls
+app.get('/polls', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all polls 
+    Poll.find().then((poll) => {
+        if (poll.length === 0) {
+            res.status(404).send("Resource Not Found.")
+        } 
+        else {
+            res.send(poll)
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
     })
 })
 
@@ -175,11 +308,14 @@ app.get('/poll', (req, res) => {
 /*
 Request Body Expects:
 [
-    {"op": "replace", "path": "/answers", "value": newAnswers}
+    {"op": "replace", "path": "/question", "value": newQuestion},
+    {"op": "replace", "path": "/answers", "value": newAnswers},
+    {"op": "replace", "path": "/active", "value": <true or false>}
 ]
+Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll', cors(), (req, res) => {
+app.patch('/poll', (req, res) => {
 
      // check mongoose connection established.
      if (mongoose.connection.readyState != 1) {
@@ -210,6 +346,45 @@ app.patch('/poll', cors(), (req, res) => {
     }).catch((error) => {
         res.status(500).send("Internal Server Error.")
     })
+})
+
+// Delete Poll
+/*
+Returned JSON: The deleted poll
+*/
+// DELETE /poll
+app.delete('/poll/:id', (req, res) => {
+
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+       log("Issue with mongoose connection")
+       res.status(500).send("Internal Server Error")
+       return;
+   }
+
+   Poll.findByIdAndDelete(id, function(err, doc) {
+       if (err) {
+           res.status(500).send("Internal Server Error")
+           return ;
+       }
+       if (!doc) {
+           res.status(404).send("Resource Not Found.")
+           return ;
+       }
+       else {
+           res.send(doc);
+       }
+   }).catch((error) => {
+       res.status(500).send("Internal Server Error.")
+   })
 })
 
 /* End Database routes */
