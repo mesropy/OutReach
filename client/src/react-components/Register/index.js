@@ -68,11 +68,82 @@ class Register extends React.Component {
         error: "You must be 13 years or older to create an account."
       })
     }
-    else {
-      this.props.handleLogin(this.state.username);
+    /* TODO: add these checks
+    else if ( first 5 characters are "admin" ){ // reserved for admins
       this.setState({
-        register: true
+        error: "some error message"
       })
+    } else if ( phone number exists ){
+      this.setState({
+        error: "some error message"
+      })
+    }
+    else if ( user exists in database ){
+      this.setState({
+        error: "The username you selected already exists, please pick another."
+      })
+    }
+    */
+    else {
+      // create request for creating a user
+      const signupInfo = {
+          username: this.state.username,
+          password: this.state.password,
+          dob: this.state.age,
+          phone: this.state.phoneNumber,
+          city: this.state.city
+      }
+      const request = new Request("/users", {
+          method: "post",
+          body: JSON.stringify(signupInfo),
+          headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json"
+          }
+      });
+
+      // send the request
+      fetch(request)
+          .then(res => {
+              if (res.status === 200) {
+                  return res.json();
+              }
+          })
+          .then(json => {
+                // create request for logging in user
+                const loginInfo = {
+                  name: this.state.username,
+                  password: this.state.password
+                }
+                const request = new Request("/users/login", {
+                    method: "post",
+                    body: JSON.stringify(loginInfo),
+                    headers: {
+                        Accept: "application/json, text/plain, */*",
+                        "Content-Type": "application/json"
+                    }
+                });
+                return fetch(request);
+          }
+          // send the logging in request
+          .then(res => {
+              if (res.status === 200) {
+                  return res.json();
+              }
+          })
+          .then(json => {
+              if (json.currentUser !== undefined) {
+                  this.props.handleLogin(json.currentUser);
+                  this.setState({
+                    register: true
+                  })
+              }
+          })
+          .catch(error => {
+              this.setState({
+                error: "Could not register" // something else here?
+              })
+          });
     }
   }
 
