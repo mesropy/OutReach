@@ -35,6 +35,45 @@ app.use(bodyParser.json());
 // get message by uid, mid
 
 // post user
+/// Route for adding user, with *no* messages (an empty array).
+/* 
+Request body expects:
+{
+    "name": <user's name>
+    "dob": <user's date of birth>
+    "phone": <user's phone number>
+    "public": <true iff the user's profile is public>
+
+}
+Returned JSON should be the database document added.
+*/
+
+// POST /users
+app.post('/users', (req, res) => {
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
+    // create a new restaurant 
+    const rest = new User({
+        "name": req.body.name,
+        "dob": req.body.dob,
+        "phone": req.body.phone,
+        "public": req.body.public,
+        "messages": []
+    })
+
+    // Save restaurant to the database
+    rest.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(500).send('Internal Server Error')  // server error
+    })
+
+})
 
 // post message
 
