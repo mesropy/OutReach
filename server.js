@@ -88,7 +88,29 @@ app.get("/logout", (req, res) => {
 
 /* User Routes */
 
-// get users
+// Get all Users
+// GET /user
+app.get('/user', (req, res) => {
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all users 
+    User.find().then((user) => {
+        if (user.length === 0) {
+            res.status(404).send("Resource Not Found.")
+        } 
+        else {
+            res.send(user)
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
+    })
+})
 
 // get user by id
 
@@ -191,6 +213,7 @@ app.post('/admin', (req, res) => {
 
 // Create Poll
 /*
+// id is an Admin's id
 Request body expects:
 {
     "question": <Poll Question Name>
@@ -199,56 +222,86 @@ Request body expects:
 }
 Returned JSON: The finished poll
 */
-// POST /poll
-app.post('/poll/:id', (req, res) => {
+// POST /poll/:id
+// app.post('/poll/:id', (req, res) => {
 
 
-    const id = req.params.id
+//     const id = req.params.id
 
-    // Check if ID is valid
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
+//     // Check if ID is valid
+//     if (!ObjectID.isValid(id)) {
+//         res.status(404).send()
+//         return;
+//     }
 
+//     // check mongoose connection established.
+//     if (mongoose.connection.readyState != 1) {
+//         log("Issue with mongoose connection")
+//         res.status(500).send("Internal Server Error")
+//         return;
+//     }
+
+//     // Check if Admin ID is valid
+//     Admin.findById(id).then(result => {
+//         if (!result) {
+//             res.status(404).send("No Admin Found");
+//             return ;
+//         } else {
+//             // Create list of PollAnswer Objects
+//             const pollAnswers = []
+//             for (let i=0; i < req.body.answers.length; i++) {
+//                 pollAnswers.push({
+//                     option: req.body.answers[i],
+//                     votes: 0
+//                 })
+//             }
+//             // Make the Poll
+//             const newPoll = new Poll({
+//                 question: req.body.question,
+//                 answers: pollAnswers,
+//                 active: req.body.active
+//             })
+
+//             // Save to database
+//             newPoll.save().then((result) => {
+//                 res.send(result)
+//             }).catch((error) => {
+//                 res.status(400).send("Bad Request")
+//                 return;
+//             })
+//         }
+//     }).catch((error) => {
+//         res.status(500).send("Internal Server Error")
+//         return;
+//     })
+// })
+app.post('/poll', (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
         res.status(500).send("Internal Server Error")
         return;
     }
+    // Create list of PollAnswer Objects
+    const pollAnswers = []
+    for (let i=0; i < req.body.answers.length; i++) {
+        pollAnswers.push({
+            option: req.body.answers[i],
+            votes: 0
+        })
+    }
+    // Make the Poll
+    const newPoll = new Poll({
+        question: req.body.question,
+        answers: pollAnswers,
+        active: req.body.active
+    })
 
-    // Check if Admin ID is valid
-    Admin.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No Admin Found");
-            return ;
-        } else {
-            // Create list of PollAnswer Objects
-            const pollAnswers = []
-            for (let i=0; i < req.body.answers.length; i++) {
-                pollAnswers.push({
-                    option: req.body.answers[i],
-                    votes: 0
-                })
-            }
-            // Make the Poll
-            const newPoll = new Poll({
-                question: req.body.question,
-                answers: pollAnswers,
-                active: req.body.active
-            })
-
-            // Save to database
-            newPoll.save().then((result) => {
-                res.send(result)
-            }).catch((error) => {
-                res.status(400).send("Bad Request")
-                return;
-            })
-        }
+    // Save to database
+    newPoll.save().then((result) => {
+        res.send(result)
     }).catch((error) => {
-        res.status(500).send("Internal Server Error")
+        res.status(400).send("Bad Request")
         return;
     })
 })
@@ -315,7 +368,14 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll', (req, res) => {
+app.patch('/poll/:id', (req, res) => {
+
+    const id = req.params.id
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
 
      // check mongoose connection established.
      if (mongoose.connection.readyState != 1) {
@@ -323,6 +383,7 @@ app.patch('/poll', (req, res) => {
         res.status(500).send("Internal Server Error")
         return;
     }
+
     // Get the fields that need to be updated
     const fieldsToUpdate = {}
     req.body.map((change) => {
@@ -330,8 +391,7 @@ app.patch('/poll', (req, res) => {
         fieldsToUpdate[propertyToChange] = change.value
     })
 
-    const query = {'active': true}
-    Poll.findOneAndUpdate(query, fieldsToUpdate, {new: true}, function(err, doc) {
+    Poll.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
         if (err) {
             res.status(500).send("Internal Server Error")
             return ;
@@ -350,6 +410,7 @@ app.patch('/poll', (req, res) => {
 
 // Delete Poll
 /*
+id is the id of the Poll to delete
 Returned JSON: The deleted poll
 */
 // DELETE /poll
@@ -389,12 +450,6 @@ app.delete('/poll/:id', (req, res) => {
 
 /* End Database routes */
 
-
-
-// Test Route
-app.get('/ping', function (req, res) {
-	return res.send('pong');
-});
 
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

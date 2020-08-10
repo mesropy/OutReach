@@ -5,7 +5,22 @@
     left: 25vw;
     padding: 20px;
     border-radius: 20px 20px 20px 20px;
-    background-color: beige;
+    background-color: rgb(251,248,242);
+}
+
+#polls_div button:focus {
+    outline: none;
+}
+
+#polls_div #icon_div button {
+    border: 0px;
+    background-color: inherit;
+}
+
+#polls_div #icon_div svg {
+    font-size: 26px;
+    position: relative;
+    right: 10px;
 }
 
 .poll_info {

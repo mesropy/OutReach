@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import Users from './Users'
-import Poll from './Poll'
+import AdminPoll from './Polls'
 import UserMessages from './UserMessages'
 import '../main_styles.css';
 
@@ -79,7 +79,7 @@ class Admin extends React.Component {
             content = <UserMessages/>
         }
         else if (this.state.polls) {
-            content = <Poll/>
+            content = <AdminPoll/>
         }
         else {
             content = null

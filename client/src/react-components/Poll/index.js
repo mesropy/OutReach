@@ -6,8 +6,16 @@ class PollClass extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            poll: null,
             pollQuestion: "",
             pollAnswers: []
+        }
+        this.pollStyles = {
+            questionSeparator: true,
+            questionSeparatorWidth: 'poll',
+            questionBold: true,
+            align: 'center',
+            theme: 'black'
         }
         this.getPollData = this.getPollData.bind(this);
         this.handleVote = this.handleVote.bind(this);
@@ -29,6 +37,7 @@ class PollClass extends React.Component {
             }
         }).then(json => {
             this.setState({
+                pollID: json._id,
                 pollQuestion: json.question,
                 pollAnswers: json.answers
             })
@@ -48,7 +57,7 @@ class PollClass extends React.Component {
 
         // Update Database
         // URL for request
-        const url = '/poll';
+        const url = '/poll/' + this.state.pollID;
 
         // Data sent to the request
         const pollData = [
@@ -83,22 +92,16 @@ class PollClass extends React.Component {
         this.setState({
             pollAnswers: newPollAnswers
         })
-        console.log(this.state.pollAnswers)
     };
 
+    componentDidMount() {
+        this.getPollData()
+    }
+
     render() {
-
-        const pollStyles = {
-            questionSeparator: true,
-            questionSeparatorWidth: 'poll',
-            questionBold: true,
-            align: 'center',
-            theme: 'black'
-        }
-
         return (
             <div>
-                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={pollStyles}/>
+                <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={this.pollStyles}/>
             </div>
         )
     }
