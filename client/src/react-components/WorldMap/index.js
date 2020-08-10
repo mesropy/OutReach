@@ -1,6 +1,5 @@
 import React from "react";
 
-import './styles.css';
 import './../main_styles.css'
 
 // import components
