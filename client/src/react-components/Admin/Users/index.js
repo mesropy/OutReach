@@ -70,11 +70,8 @@ class Users extends React.Component {
                 }
             }
         }).then(json => {
-            this.setState(state => {
-                const users = state.users.concat(json)
-                return {
-                    users
-                }
+            this.setState({
+                users: json
             })
         })
         .catch(error => {

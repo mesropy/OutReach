@@ -41,6 +41,7 @@ class Poll extends React.Component {
                             checked={poll.active}
                             onChange={handleActive.bind(parentState, poll)}
                             name={poll.question}
+                            color="primary"
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                             disabled={!edit}
                         />} label={poll.active ? "On" : "Off"}/>

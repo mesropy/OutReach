@@ -223,55 +223,85 @@ Request body expects:
 Returned JSON: The finished poll
 */
 // POST /poll/:id
-app.post('/poll/:id', (req, res) => {
+// app.post('/poll/:id', (req, res) => {
 
 
-    const id = req.params.id
+//     const id = req.params.id
 
-    // Check if ID is valid
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
+//     // Check if ID is valid
+//     if (!ObjectID.isValid(id)) {
+//         res.status(404).send()
+//         return;
+//     }
 
+//     // check mongoose connection established.
+//     if (mongoose.connection.readyState != 1) {
+//         log("Issue with mongoose connection")
+//         res.status(500).send("Internal Server Error")
+//         return;
+//     }
+
+//     // Check if Admin ID is valid
+//     Admin.findById(id).then(result => {
+//         if (!result) {
+//             res.status(404).send("No Admin Found");
+//             return ;
+//         } else {
+//             // Create list of PollAnswer Objects
+//             const pollAnswers = []
+//             for (let i=0; i < req.body.answers.length; i++) {
+//                 pollAnswers.push({
+//                     option: req.body.answers[i],
+//                     votes: 0
+//                 })
+//             }
+//             // Make the Poll
+//             const newPoll = new Poll({
+//                 question: req.body.question,
+//                 answers: pollAnswers,
+//                 active: req.body.active
+//             })
+
+//             // Save to database
+//             newPoll.save().then((result) => {
+//                 res.send(result)
+//             }).catch((error) => {
+//                 res.status(400).send("Bad Request")
+//                 return;
+//             })
+//         }
+//     }).catch((error) => {
+//         res.status(500).send("Internal Server Error")
+//         return;
+//     })
+// })
+app.post('/poll', (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
         res.status(500).send("Internal Server Error")
         return;
     }
+    // Create list of PollAnswer Objects
+    const pollAnswers = []
+    for (let i=0; i < req.body.answers.length; i++) {
+        pollAnswers.push({
+            option: req.body.answers[i],
+            votes: 0
+        })
+    }
+    // Make the Poll
+    const newPoll = new Poll({
+        question: req.body.question,
+        answers: pollAnswers,
+        active: req.body.active
+    })
 
-    // Check if Admin ID is valid
-    Admin.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No Admin Found");
-            return ;
-        } else {
-            // Create list of PollAnswer Objects
-            const pollAnswers = []
-            for (let i=0; i < req.body.answers.length; i++) {
-                pollAnswers.push({
-                    option: req.body.answers[i],
-                    votes: 0
-                })
-            }
-            // Make the Poll
-            const newPoll = new Poll({
-                question: req.body.question,
-                answers: pollAnswers,
-                active: req.body.active
-            })
-
-            // Save to database
-            newPoll.save().then((result) => {
-                res.send(result)
-            }).catch((error) => {
-                res.status(400).send("Bad Request")
-                return;
-            })
-        }
+    // Save to database
+    newPoll.save().then((result) => {
+        res.send(result)
     }).catch((error) => {
-        res.status(500).send("Internal Server Error")
+        res.status(400).send("Bad Request")
         return;
     })
 })
