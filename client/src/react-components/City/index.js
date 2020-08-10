@@ -14,17 +14,13 @@ class City extends React.Component {
             <div>
                 <TopBar
                     city={ city }
-                    isLoggedIn={this.props.isLoggedIn}
-                    isAdmin={this.props.isAdmin}
-                    username={this.props.username}
+                    currentUser={this.props.currentUser}
                     handleLogout={this.props.handleLogout}
                     />
                 <SidePanel city={ city } />
                 <Timeline
                     city={ city }
-                    isLoggedIn={this.props.isLoggedIn}
-                    isAdmin={this.props.isAdmin}
-                    username={this.props.username} />
+                    currentUser={this.props.currentUser} />
             </div>
         );
     }

@@ -58,12 +58,12 @@ class User extends React.Component {
             return <Redirect to='/'/>
         }
 
-        if (this.props.username === "Ryan") {
+        if (this.props.currentUser === "Ryan") {
             return (
                 <div>
                     <Topbar
-                        username={this.props.username}/>
-                    <UserMessages username={this.props.username} userLoggedIn={false}/>
+                        username={this.props.currentUser}/>
+                    <UserMessages username={this.props.currentUser} userLoggedIn={false}/>
                 </div>
             )
         };
@@ -72,7 +72,7 @@ class User extends React.Component {
             return (
                 <div>
                     <Topbar
-                        username={this.props.username}/>
+                        username={this.props.currentUser}/>
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}
@@ -80,7 +80,7 @@ class User extends React.Component {
                 handleBack={this.handleBack}
                 >
                 </Navbar>
-                    <UserMessages username={this.props.username} userLoggedIn={true}/>
+                    <UserMessages username={this.props.currentUser} userLoggedIn={true}/>
             </div>
             )
         };
@@ -89,7 +89,7 @@ class User extends React.Component {
             return (
                 <div>
                     <Topbar
-                        username={this.props.username} />
+                        username={this.props.currentUser} />
                     <Navbar
                         handleMessages={this.handleMessages}
                         handleSettings={this.handleSettings}
@@ -105,7 +105,7 @@ class User extends React.Component {
         return (
             <div>
                 <Topbar
-                    username={this.props.username} />
+                    username={this.props.currentUser} />
                 <Navbar
                 handleMessages={this.handleMessages}
                 handleSettings={this.handleSettings}

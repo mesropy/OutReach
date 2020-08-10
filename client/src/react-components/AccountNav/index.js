@@ -12,16 +12,16 @@ import "./styles.css";
 class AccountNav extends React.Component{
 
   render () {
-    if (this.props.isLoggedIn) {
+    if (this.props.currentUser) {
       return (
         <div className="account_nav">
-          <Button component= { Link } to={"/".concat(this.props.username)}
+          <Button component= { Link } to={"/".concat(this.props.currentUser)}
                   className="username_button"
                   disableRipple
                   variant="text">
-          <FontAwesomeIcon icon={ this.props.isAdmin ? faUserCog : faUser}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={ (this.props.currentUser === "admin") ? faUserCog : faUser}></FontAwesomeIcon>
           <div className="divider"/>
-          { this.props.username }
+          { this.props.currentUser }
           </Button>
           <div className="divider"/>
           <Button onClick={ this.props.handleLogout }

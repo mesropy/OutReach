@@ -15,9 +15,7 @@ class Home extends React.Component {
              src={require("./../WorldMap/MapSelection/static/world_map.svg")}
              alt="world map"/>
         <Header />
-        <AccountNav isLoggedIn={this.props.isLoggedIn}
-                    isAdmin={this.props.isAdmin}
-                    username={this.props.username}
+        <AccountNav currentUser={this.props.currentUser}
                     handleLogout={this.props.handleLogout}/>
         <div id="introMessage">
           The purpose of OutReach is to provide those who were
