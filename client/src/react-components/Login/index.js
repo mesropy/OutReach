@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
 import LoginForm from './LoginForm'
 import LeftSideHeader from '../LeftSideHeader'
-// import { checkLogin } from "../../actions/checkLogin";
 
 /* Component for the Login page */
 class Login extends React.Component {
@@ -53,6 +52,9 @@ class Login extends React.Component {
         .then(json => {
             if (json.currentUser !== undefined) {
                 this.props.handleLogin(json.currentUser);
+                this.setState({
+                  loggedIn: true,
+                })
             }
         })
         .catch(error => {
@@ -60,30 +62,6 @@ class Login extends React.Component {
               error: true
             })
         });
-
-    /*
-    if (checkLogin(this.state)) {
-      this.setState({
-        error: false,
-      })
-      if (this.state.username === "user") {
-        this.props.handleLogin(this.state.username);
-        this.setState({
-          userLoggedIn: true,
-        })
-      }
-      else {
-        this.props.handleLogin(this.state.username);
-        this.setState({
-          adminLoggedIn: true,
-        })
-      }
-    }
-    else {
-      this.setState({
-        error: true
-      })
-    }*/
   }
 
   render() {
