@@ -98,7 +98,7 @@ app.get('/user', (req, res) => {
         return;
     }
 
-    // Get all polls 
+    // Get all users 
     User.find().then((user) => {
         if (user.length === 0) {
             res.status(404).send("Resource Not Found.")
