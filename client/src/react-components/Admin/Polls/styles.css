@@ -1,3 +1,58 @@
+#pollEntries {
+    position: relative;
+    width: 1020px;;
+    top: 18vh;
+    left: 21vw;
+}
+
+#pollEntries #poll_edit button {
+    border: none;
+    background-color: inherit;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+#pollEntries button:hover,
+#pollEntries button:focus {
+    outline: none;
+}
+
+#pollEntries #poll_edit #edit_button {
+    display: inline;
+    position: absolute;
+    font-size: large;
+    right: 98px;
+}
+
+#pollEntries #poll_edit #edit_button h6 {
+    float: right;
+    position: relative;
+    top:  5px;
+    left: 5px;
+}
+
+#pollEntries #poll_edit #done_button:hover,
+#pollEntries #poll_edit #done_button {
+    color: rgb(188,83,98);
+    background-color: inherit;
+    position: absolute;
+    top: 5px;
+    right: 94px;
+}
+
+#pollEntries #poll_edit #done_button #done:hover,
+#pollEntries #poll_edit #done_button #done {
+    margin: 0px;
+    background-color: inherit;
+    font-size: large;
+}
+
+
+.highlighted {
+    box-shadow: 0px 3px rgb(27,121,120);
+    color: rgb(27,121,120);
+}
+
 #polls_div {
     position: relative;
     width: 900px;

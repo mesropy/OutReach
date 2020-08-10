@@ -191,6 +191,7 @@ app.post('/admin', (req, res) => {
 
 // Create Poll
 /*
+// id is an Admin's id
 Request body expects:
 {
     "question": <Poll Question Name>
@@ -199,7 +200,7 @@ Request body expects:
 }
 Returned JSON: The finished poll
 */
-// POST /poll
+// POST /poll/:id
 app.post('/poll/:id', (req, res) => {
 
 
@@ -315,7 +316,14 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll', (req, res) => {
+app.patch('/poll/:id', (req, res) => {
+
+    const id = req.params.id
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
 
      // check mongoose connection established.
      if (mongoose.connection.readyState != 1) {
@@ -323,6 +331,7 @@ app.patch('/poll', (req, res) => {
         res.status(500).send("Internal Server Error")
         return;
     }
+
     // Get the fields that need to be updated
     const fieldsToUpdate = {}
     req.body.map((change) => {
@@ -330,8 +339,7 @@ app.patch('/poll', (req, res) => {
         fieldsToUpdate[propertyToChange] = change.value
     })
 
-    const query = {'active': true}
-    Poll.findOneAndUpdate(query, fieldsToUpdate, {new: true}, function(err, doc) {
+    Poll.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
         if (err) {
             res.status(500).send("Internal Server Error")
             return ;
@@ -350,6 +358,7 @@ app.patch('/poll', (req, res) => {
 
 // Delete Poll
 /*
+id is the id of the Poll to delete
 Returned JSON: The deleted poll
 */
 // DELETE /poll
@@ -389,12 +398,6 @@ app.delete('/poll/:id', (req, res) => {
 
 /* End Database routes */
 
-
-
-// Test Route
-app.get('/ping', function (req, res) {
-	return res.send('pong');
-});
 
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

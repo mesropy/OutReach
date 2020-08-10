@@ -1,0 +1,17 @@
+#pollEntries tbody svg {
+    color: rgb(161, 54, 54);
+    font-size: large;
+    font-weight: bold;
+    position: absolute;
+    margin-top: -5px;
+}
+
+#pollEntries tbody h6 {
+    color: rgb(161, 54, 54);
+    font-weight: bold;
+    text-transform: none;
+    font-size: x-small;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}

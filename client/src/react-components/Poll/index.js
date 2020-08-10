@@ -6,6 +6,7 @@ class PollClass extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            poll: null,
             pollQuestion: "",
             pollAnswers: []
         }
@@ -36,6 +37,7 @@ class PollClass extends React.Component {
             }
         }).then(json => {
             this.setState({
+                pollID: json._id,
                 pollQuestion: json.question,
                 pollAnswers: json.answers
             })
@@ -55,7 +57,7 @@ class PollClass extends React.Component {
 
         // Update Database
         // URL for request
-        const url = '/poll';
+        const url = '/poll/' + this.state.pollID;
 
         // Data sent to the request
         const pollData = [
