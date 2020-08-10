@@ -25,35 +25,24 @@ const theme = createMuiTheme({
   },
 });
 
-
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: true,
-      isAdmin: false,
-      username: "user"
+      currentUser: null,
+      cities: ["Toronto", "Paris", "Montréal"]
     }
   }
 
   handleLogout() {
     this.setState({
-      isLoggedIn: false,
-      isAdmin: false,
-      username: "user"
+      currentUser: null
     });
   }
 
   handleLogin(username) {
-    let admin = false;
-    if (username === "admin"){
-       admin = true;
-     }
-
     this.setState({
-      isLoggedIn: true,
-      isAdmin: admin,
-      username: username
+      currentUser: username
     });
   }
 
@@ -65,39 +54,30 @@ class App extends React.Component {
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route exact path='/' render={() =>
                               (<Home
-                                isLoggedIn={this.state.isLoggedIn}
-                                isAdmin={this.state.isAdmin}
-                                username={this.state.username}
+                                currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                               />)}/>
               <Route exact path='/WorldMap' render={() =>
                               (<WorldMap
-                                isLoggedIn={this.state.isLoggedIn}
-                                isAdmin={this.state.isAdmin}
-                                username={this.state.username}
+                                currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                               />)}/>
+              {/* TODO: create these city routes based on the list of cities state */}
               <Route exact path='/Toronto' render={() =>
                               (<City
-                                isLoggedIn={this.state.isLoggedIn}
-                                isAdmin={this.state.isAdmin}
-                                username={this.state.username}
+                                currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="TORONTO"
                               />)}/>
               <Route exact path='/Paris' render={() =>
                               (<City
-                                isLoggedIn={this.state.isLoggedIn}
-                                isAdmin={this.state.isAdmin}
-                                username={this.state.username}
+                                currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="PARIS"
                               />)}/>
               <Route exact path='/Montréal' render={() =>
                               (<City
-                                isLoggedIn={this.state.isLoggedIn}
-                                isAdmin={this.state.isAdmin}
-                                username={this.state.username}
+                                currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="MONTRÉAL"
                               />)}/>
@@ -107,13 +87,15 @@ class App extends React.Component {
                               (<Login handleLogin={this.handleLogin.bind(this)} />)}/>
               <Route exact path='/admin' render={() =>
                               (<Admin handleLogout={this.handleLogout.bind(this)} />)}/>
+              {/* TODO: add routes for every user with dynamic routing */}
               <Route exact path='/user' render={() =>
-                              (<User username={this.state.username}
+                              (<User userPage={"user"}
+                                     currentUser={this.state.currentUser}
                                      handleLogout={this.handleLogout.bind(this)} />)} />
               <Route exact path='/Ryan' render={() =>
-                              (<User username="Ryan"
+                              (<User userPage={"Ryan"}
+                                     currentUser={this.state.currentUser}
                                      handleLogout={this.handleLogout.bind(this)} />)} />
-              {/* and can make more user pages like this ^*/}
 
             </Switch>
           </BrowserRouter>

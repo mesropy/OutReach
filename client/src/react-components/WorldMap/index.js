@@ -1,6 +1,5 @@
 import React from "react";
 
-import './styles.css';
 import './../main_styles.css'
 
 // import components
@@ -14,11 +13,9 @@ class WorldMap extends React.Component {
   render() {
     return (
       <div>
-        <AccountNav isLoggedIn={this.props.isLoggedIn}
-                    isAdmin={this.props.isAdmin}
-                    username={this.props.username}
-                    handleLogout={this.props.handleLogout}/>
         <Header />
+        <AccountNav currentUser={this.props.currentUser}
+                    handleLogout={this.props.handleLogout}/>
         <MapSelection />
       </div>
     );

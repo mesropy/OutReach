@@ -26,9 +26,7 @@ class TopBar extends React.Component {
                         { city }</text>
               </svg>
               <WorldMapNav />
-              <AccountNav isLoggedIn={this.props.isLoggedIn}
-                          isAdmin={this.props.isAdmin}
-                          username={this.props.username}
+              <AccountNav currentUser={this.props.currentUser}
                           handleLogout={this.props.handleLogout}
               />
             </div>

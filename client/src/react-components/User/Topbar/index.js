@@ -20,10 +20,10 @@ class Topbar extends React.Component {
                     </div>
                     <div id="display_div">
                         <img id="pfp" alt="The user's profile" src={pfp} />
-                        <h5><b>{this.props.username}</b></h5> <b>TORONTO 20 yrs</b>
+                        <h5><b>{this.props.currentUser}</b></h5> <b>TORONTO 20 yrs</b>
                     </div>
                     <div id="user_div">
-                        <h5 id="userName">{this.props.username}</h5>
+                        <h5 id="userName">{this.props.currentUser}</h5>
                                 <FontAwesomeIcon icon={faGlobeAmericas}></FontAwesomeIcon>
                             <Link to="/WorldMap">
                                 <h5 id="worldMap">World Map</h5>
