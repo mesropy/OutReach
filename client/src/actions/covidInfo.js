@@ -6,7 +6,7 @@ const covidInfo = (countryCode, province) => {
     if (countryCode === "CA") {
         return new Promise((resolve, reject) => {
             request({
-                url: "https://api.covid19tracker.ca/summary/split",
+                url: "https://cors-anywhere.herokuapp.com/https://api.covid19tracker.ca/summary/split",
                 json: true
             }, (error, response, body) => {
                 if (error) {
