@@ -88,7 +88,29 @@ app.get("/logout", (req, res) => {
 
 /* User Routes */
 
-// get users
+// Get all Users
+// GET /user
+app.get('/user', (req, res) => {
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all polls 
+    User.find().then((user) => {
+        if (user.length === 0) {
+            res.status(404).send("Resource Not Found.")
+        } 
+        else {
+            res.send(user)
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
+    })
+})
 
 // get user by id
 
