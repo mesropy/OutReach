@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -8,8 +9,16 @@ class Header extends React.Component {
     return (
       <div >
           <ul className="header">
-              <li><h1>OutReach</h1></li>
-              <li><img className="logo" src={require("./static/logo.svg")} alt= "logo"/></li>
+              <li>
+                <Link to={""} className="app_name">
+                  <h1>OutReach</h1>
+                </Link>
+              </li>
+              <li>
+                <Link to={""}>
+                  <img className="home_nav_logo" src={require("./static/logo.svg")} alt="logo" />
+                </Link>
+              </li>
               <li><h5>connecting through our stories during COVID-19</h5></li>
           </ul>
       </div>

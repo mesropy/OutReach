@@ -4,6 +4,10 @@
   margin-top: 20px;
 }
 
+.header a {
+  color: inherit;
+}
+
 .header li {
   list-style: none;
   display: inline-block;
