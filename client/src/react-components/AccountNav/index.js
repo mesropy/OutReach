@@ -13,13 +13,16 @@ class AccountNav extends React.Component{
 
   render () {
     if (this.props.currentUser) {
+      // TODO: check if the currentUser is an admin
+      // ie. if the first 5 letters are "admin"
+      const isAdmin = false;
       return (
         <div className="account_nav">
           <Button component= { Link } to={"/".concat(this.props.currentUser)}
                   className="username_button"
                   disableRipple
                   variant="text">
-          <FontAwesomeIcon icon={ (this.props.currentUser === "admin") ? faUserCog : faUser}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={ isAdmin ? faUserCog : faUser}></FontAwesomeIcon>
           <div className="divider"/>
           { this.props.currentUser }
           </Button>
