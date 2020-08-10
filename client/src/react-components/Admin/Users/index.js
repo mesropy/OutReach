@@ -13,10 +13,10 @@ class Users extends React.Component {
         // The users will be retrieved from a database
         this.state = {
             users: [
-                {username: "@user", age: "20yrs", city: "Toronto"},
-                {username: "@user2", age: "-", city: "Toronto"},
-                {username: "@user3", age: "27yrs", city: "Toronto"},
-                {username: "@user4", age: "25yrs", city: "Toronto"},
+                // {username: "@user", age: "20yrs", city: "Toronto"},
+                // {username: "@user2", age: "-", city: "Toronto"},
+                // {username: "@user3", age: "27yrs", city: "Toronto"},
+                // {username: "@user4", age: "25yrs", city: "Toronto"},
             ],
             // Used for switching between Edit and Normal modes
             edit: false,
@@ -27,6 +27,8 @@ class Users extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handlePopup = this.handlePopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
+        this.getInfo = this.getInfo.bind(this);
+        this.getInfo();
     }
 
     // Sets Edit Mode
@@ -55,6 +57,28 @@ class Users extends React.Component {
         })
     }
 
+    getInfo() {
+        const url = '/user'
+
+        fetch(url).then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Couldn't get users.")
+                return {
+                    users: []
+                }
+            }
+        }).then(json => {
+            this.setState({
+                users: json
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     render() {
         // Edit Mode
         if (this.state.edit) {
@@ -62,7 +86,7 @@ class Users extends React.Component {
                 <div id="users_div">
                     <div id="edit_div" className="text-right">
                         <button onClick={this.handleEdit}>
-                            <h6>Done</h6>
+                            <h6 className="edit_done">Done</h6>
                         </button>
                     </div>
                     <UserTable state={this.state} usersComponent={this} edit={this.state.edit} handlePopup={this.handlePopup}></UserTable>

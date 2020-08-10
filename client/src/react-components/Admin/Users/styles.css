@@ -1,8 +1,8 @@
 #users_div {
     position: relative;
-    width: 450px;
-    top: 20vh;
-    left: 35vw;
+    width: 900px;
+    top: 17vh;
+    left: 22vw;
 }
 
 #edit_div svg {
@@ -12,6 +12,10 @@
 
 #edit_div h6 {
     float: right;
+}
+
+#edit_div .edit_done {
+    color: rgb(250,68,85);
 }
 
 #edit_div button {

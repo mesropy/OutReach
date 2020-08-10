@@ -1,4 +1,4 @@
-#users_div tbody svg {
+#pollEntries tbody svg {
     color: rgb(161, 54, 54);
     font-size: large;
     font-weight: bold;
@@ -6,7 +6,7 @@
     margin-top: -5px;
 }
 
-#users_div tbody h6 {
+#pollEntries tbody h6 {
     color: rgb(161, 54, 54);
     font-weight: bold;
     text-transform: none;

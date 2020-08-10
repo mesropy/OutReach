@@ -14,17 +14,21 @@ const covidInfo = (countryCode, province) => {
                 } else if (response.statusCode !== 200) {
                     reject("Issue with getting resource")
                 } else {
-                    const provinces = body.data
-                    const filter = provinces.filter(x => x.province === province)
+                    try {
+                        const provinces = body.data
+                        const filter = provinces.filter(x => x.province === province)
 
-                    if (filter.length !== 0) {
-                        resolve({
-                            name: provinceCodeToName(filter[0].province),
-                            confirmed: filter[0].total_cases,
-                            recovered: filter[0].total_recoveries,
-                            active: filter[0].total_cases - filter[0].total_fatalities - filter[0].total_recoveries,
-                            date: filter[0].date
-                        })
+                        if (filter.length !== 0) {
+                            resolve({
+                                name: provinceCodeToName(filter[0].province),
+                                confirmed: filter[0].total_cases,
+                                recovered: filter[0].total_recoveries,
+                                active: filter[0].total_cases - filter[0].total_fatalities - filter[0].total_recoveries,
+                                date: filter[0].date
+                            })
+                        }
+                    } catch (error) {
+                        console.log(error);
                     }
                 }
             })
@@ -40,13 +44,18 @@ const covidInfo = (countryCode, province) => {
                 } else if (response.statusCode !== 200) {
                     reject("Issue with getting resource");
                 } else {
-                    const data = body.countrydata[0];
-                    resolve({
-                        name: data.info.title,
-                        confirmed: data.total_cases,
-                        recovered: data.total_recovered,
-                        active: data.total_cases - data.total_deaths - data.total_recovered,
-                    })
+                    try {
+                        const data = body.countrydata[0];
+                        resolve({
+                            name: data.info.title,
+                            confirmed: data.total_cases,
+                            recovered: data.total_recovered,
+                            active: data.total_cases - data.total_deaths - data.total_recovered,
+                            date: "Today"
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
             })
         })

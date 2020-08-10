@@ -1,37 +1,42 @@
 import React from "react";
-// const info = require("../../../../actions/covidInfo");
+const info = require("../../../../actions/covidInfo");
 
 class CaseReport extends React.Component {
     render() {
         const { city } = this.props;
-        // // (^ this is commented out to avoid warnings)
-        // // here, we will get the case count and status from a database
-        // // using the name of the city
-        let confirmed="13,420";
-        let recovered="11,098";
-        let active="1,337";
-        let date="Today";
+        // here, we will get the case count and status from a database
+        // using the name of the city
+        let countryCode, provinceCode;
         switch(city) {
             case "TORONTO":
-                // info.covidInfo("CA", "ON").then((result) => {
-                //     console.log(result);
-                // }).catch((error) => {
-                //     console.log(error);
-                // })
+                countryCode = "CA";
+                provinceCode = "ON";
                 break;
             case "MONTRÉAL":
+                countryCode = "CA";
+                provinceCode = "QC";
                 break;
             case "PARIS":
+                countryCode = "FR";
+                provinceCode = "";
                 break;
             default:
         }
+        info.covidInfo(countryCode, provinceCode).then((result) => {
+            document.getElementById(city).innerText = result.name + " COVID-19";
+            document.getElementById(city + "Confirmed").innerText = result.confirmed;
+            document.getElementById(city + "Recovered").innerText = result.recovered;
+            document.getElementById(city + "Active").innerText = result.active;
+            document.getElementById(city + "date").innerText = result.date;
+            console.log(result);
+        }).catch();
         return (
             <div className="panel_card">
-                <h4>COVID-19</h4>
-                <p>Confirmed <strong> { confirmed }</strong></p>
-                <p>Recovered <strong>{ recovered}</strong></p>
-                <p>Active <strong>{ active }</strong></p>
-                <p>Last Updated <strong>{ date }</strong></p>
+                <h4 id={city}>COVID-19</h4>
+                <p>Confirmed <strong id={city + "Confirmed"}>Loading</strong></p>
+                <p>Recovered <strong id={city + "Recovered"}>Loading</strong></p>
+                <p>Active <strong id={city + "Active"}>Loading</strong></p>
+                <p>Last Updated <strong id={city + "date"}>Loading</strong></p>
             </div>
         );
     }

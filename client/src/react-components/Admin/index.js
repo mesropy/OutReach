@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import Users from './Users'
+import AdminPoll from './Polls'
 import UserMessages from './UserMessages'
 import '../main_styles.css';
 
@@ -13,10 +14,12 @@ class Admin extends React.Component {
         this.state = {
             users: false,
             userMessages: true,
+            polls: false,
             logout: false
         }
         this.handleUsers = this.handleUsers.bind(this)
         this.handleMessages = this.handleMessages.bind(this)
+        this.handlePolls = this.handlePolls.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
         this.handleBack = this.handleBack.bind(this)
     }
@@ -26,6 +29,7 @@ class Admin extends React.Component {
         this.setState({
             users: !toggle,
             userMessages: false,
+            polls: false
         })
     }
 
@@ -34,6 +38,16 @@ class Admin extends React.Component {
         this.setState({
             users: false,
             userMessages: !toggle,
+            polls: false
+        })
+    }
+
+    handlePolls(e) {
+        const toggle = this.state.polls;
+        this.setState({
+            users: false,
+            userMessages: false,
+            polls: !toggle
         })
     }
 
@@ -64,6 +78,9 @@ class Admin extends React.Component {
         else if (this.state.userMessages) {
             content = <UserMessages/>
         }
+        else if (this.state.polls) {
+            content = <AdminPoll/>
+        }
         else {
             content = null
         }
@@ -73,6 +90,7 @@ class Admin extends React.Component {
                 <Navbar
                 handleUsers={this.handleUsers}
                 handleMessages={this.handleMessages}
+                handlePolls={this.handlePolls}
                 handleLogout={this.handleLogout}
                 handleBack={this.handleBack}
                 >

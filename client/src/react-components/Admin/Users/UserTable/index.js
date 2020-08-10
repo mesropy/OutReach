@@ -19,8 +19,10 @@ class UserTable extends React.Component {
                         <TableHead>
                             <TableRow>
                                 <TableCell>User</TableCell>
-                                <TableCell>Age</TableCell>
+                                <TableCell>Date of Birth</TableCell>
+                                <TableCell>Phone Number</TableCell>
                                 <TableCell>City</TableCell>
+                                <TableCell>Visibility</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
