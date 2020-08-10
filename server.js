@@ -50,24 +50,16 @@ app.post("/login", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
 
+    // get user document based on name and password
     User.findByNamePassword(name, password)
         .then(user => {
-            // Add the user's id to the session cookie.
+            // Add the user's id and name to the session cookie.
             req.session.userId = user._id;
             req.session.name = user.name;
-            // send the new global state
-            if (user.name === "admin"){
-              res.send({
-                isLoggedIn: true,
-                isAdmin: true,
-                username: user.name });
-            } else {
-              res.send({
-                isLoggedIn: true,
-                isAdmin: false,
-                username: user.name }); 
-            }
+            // send the new global user state
+            res.send({currentUser: user.name });
         })
+        // user with given name and password does not exist
         .catch(error => {
             res.status(400).send()
         });

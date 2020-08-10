@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import '../main_styles.css';
 import LoginForm from './LoginForm'
 import LeftSideHeader from '../LeftSideHeader'
-import { checkLogin } from "../../actions/checkLogin";
+// import { checkLogin } from "../../actions/checkLogin";
 
 /* Component for the Login page */
 class Login extends React.Component {
@@ -11,8 +11,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userLoggedIn: false,
-      adminLoggedIn: false,
+      loggedIn: false,
       username: "",
       password: "",
       error: false
@@ -30,6 +29,39 @@ class Login extends React.Component {
   }
 
   handleSubmit = e => {
+    // create request
+    const loginInfo = {
+      name: this.state.username,
+      password: this.state.password
+    }
+    const request = new Request("/users/login", {
+        method: "post",
+        body: JSON.stringify(loginInfo),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    // send the request
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json.currentUser !== undefined) {
+                this.props.handleLogin(json.currentUser);
+            }
+        })
+        .catch(error => {
+            this.setState({
+              error: true
+            })
+        });
+
+    /*
     if (checkLogin(this.state)) {
       this.setState({
         error: false,
@@ -51,11 +83,11 @@ class Login extends React.Component {
       this.setState({
         error: true
       })
-    }
+    }*/
   }
 
   render() {
-    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+    if (this.state.loggedIn) {
       return <Redirect to='/'/>
     }
 

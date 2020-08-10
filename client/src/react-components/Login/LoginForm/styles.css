@@ -34,7 +34,7 @@
 
 .input_error {
     border-radius: 5px 5px 5px 5px;
-    border: 2px solid rgb(134,58,69);
+    border: 2px solid rgb(204 51 63);
     margin: 1vh;
     width: 30vw;
     height: 6vh;
@@ -46,7 +46,7 @@
 }
 
 .error_message_div h5 {
-    color: rgb(153,64,71);
+    color: rgb(204 51 63);
     margin-bottom: 0px;
     display: block;
 }
