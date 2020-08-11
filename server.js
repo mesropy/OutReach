@@ -112,8 +112,34 @@ app.get('/user', (req, res) => {
     })
 })
 
-// get user by id
+// Get User by ID
+// GET /user/:id
+app.get('/user/:id', (req, res) => {
+    const id = req.params.id
 
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    User.findById(id).then(result => {
+        if (!result) {
+            res.status(404).send("No User Found");
+            return ;
+        } else {
+            res.send(result);
+            return ;
+        }
+    })
+})
 // Create User
 /*
 Request body expects:
@@ -159,18 +185,195 @@ app.post('/user', (req, res) => {
 // patch user
 
 // delete user
+app.delete('/user/:id', (req, res) => {
+
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+       log("Issue with mongoose connection")
+       res.status(500).send("Internal Server Error")
+       return;
+   }
+
+   User.findByIdAndDelete(id, function(err, doc) {
+       if (err) {
+           res.status(500).send("Internal Server Error")
+           return ;
+       }
+       if (!doc) {
+           res.status(404).send("Resource Not Found.")
+           return ;
+       }
+       else {
+           res.send(doc);
+       }
+   }).catch((error) => {
+       res.status(500).send("Internal Server Error.")
+   })
+})
 
 /* Message Routes */
 
-// get messages by UserId
+// Get All Messages
+// GET /message
+app.get('/message', (req, res) => {
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all messages 
+    Message.find().then((message) => {
+        if (message.length === 0) {
+            res.status(404).send("Resource Not Found.")
+        } 
+        else {
+            res.send(message)
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
+    })
+})
+
+// Get Messages from a specific User
+// GET /message/:id
+app.get('/message/:id', (req, res) => {
+
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all messages from the User
+    const query = {author: id}
+    Message.find(query).then(result => {
+        if (!result) {
+            res.status(404).send("No Messages Found");
+            return ;
+        } else {
+            res.send(result);
+        }
+    })
+})
 
 // get message by MessageId
 
-// post message
+// Create a Message
+/*
+Request body expects:
+{
+    text: <Text Containing the message>,
+    date: <Date of Posting as YYYY-MM-DD HH:MM>,
+    location: <Coordinates of Message as X and Y values and Name>,
+    published: <False if Pending, True if Published>,
+    author: User ID
+}
+Returned JSON: The added Message
+*/
+// POST /message
+app.post('/message', (req, res) => {
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(req.body.author)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    User.findById(req.body.author).then(result => {
+        if (!result) {
+            res.status(404).send("No User Found");
+            return ;
+        } else {
+            // Make the Message
+            const newMessage = new Message({
+                text: req.body.text,
+                date: req.body.date,
+                location: req.body.location,
+                published: req.body.published,
+                author: req.body.author
+            })
+
+            // Save to database
+            newMessage.save().then((message) => {
+                res.send(message)
+            }).catch((error) => {
+                log(error)
+                res.status(400).send("Bad Request")
+                return;
+            })
+        }
+    })
+})
 
 // patch message
 
-// delete message
+// Delete Message
+/*
+id is the id of the Message to delete
+Returned JSON: The deleted message
+*/
+// DELETE /message/:id
+app.delete('/message/:id', (req, res) => {
+
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+       log("Issue with mongoose connection")
+       res.status(500).send("Internal Server Error")
+       return;
+   }
+
+   Message.findByIdAndDelete(id, function(err, doc) {
+       if (err) {
+           res.status(500).send("Internal Server Error")
+           return ;
+       }
+       if (!doc) {
+           res.status(404).send("Resource Not Found.")
+           return ;
+       }
+       else {
+           res.send(doc);
+       }
+   }).catch((error) => {
+       res.status(500).send("Internal Server Error.")
+   })
+})
 
 /* Admin Routes */
 
