@@ -93,7 +93,7 @@ class Register extends React.Component {
           phone: this.state.phoneNumber,
           city: this.state.city
       }
-      const request = new Request("/users", {
+      const request = new Request("/user", {
           method: "post",
           body: JSON.stringify(signupInfo),
           headers: {
@@ -115,7 +115,7 @@ class Register extends React.Component {
                   name: this.state.username,
                   password: this.state.password
                 }
-                const request = new Request("/users/login", {
+                const request = new Request("/login", {
                     method: "post",
                     body: JSON.stringify(loginInfo),
                     headers: {

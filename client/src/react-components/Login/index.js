@@ -33,7 +33,7 @@ class Login extends React.Component {
       name: this.state.username,
       password: this.state.password
     }
-    const request = new Request("/users/login", {
+    const request = new Request("/login", {
         method: "post",
         body: JSON.stringify(loginInfo),
         headers: {
