@@ -13,10 +13,6 @@ class Users extends React.Component {
         // The users will be retrieved from a database
         this.state = {
             users: [
-                // {username: "@user", age: "20yrs", city: "Toronto"},
-                // {username: "@user2", age: "-", city: "Toronto"},
-                // {username: "@user3", age: "27yrs", city: "Toronto"},
-                // {username: "@user4", age: "25yrs", city: "Toronto"},
             ],
             // Used for switching between Edit and Normal modes
             edit: false,
@@ -65,9 +61,7 @@ class Users extends React.Component {
                 return res.json();
             } else {
                 console.log("Couldn't get users.")
-                return {
-                    users: []
-                }
+                return [];
             }
         }).then(json => {
             this.setState({
