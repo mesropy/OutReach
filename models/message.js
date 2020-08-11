@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const MessageSchema = new mongoose.Schema({
     text: String,
     date: String,
-    location: String,
+    location: {
+      name: String,
+      x: Number,
+      y: Number
+    },
     published: Boolean,
-    creator: {
+    author: {
 		    type: mongoose.Schema.Types.ObjectId,
 		      required: true
 	  }
