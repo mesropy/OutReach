@@ -14,21 +14,14 @@ class UserMessages extends React.Component {
         this.state = {
             // For closing and opening tabs
             edit: false,
-            pending: true,
+            pending: false,
             published: false,
             // Switching between styles
-            pendingClass: "highlighted",
+            pendingClass: "",
             publishedClass: "",
             // The user messages will be retrieved from a database
-            pendingMessages: [
-                {username: "user", age: "20", time: "8:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
-                {username: "user2", age: "-", time: "9:00am", date: "Jul 9", content: "Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
-            ],
-            publishedMessages: [
-                {username: "user3", age: "27", time: "11:30am", date: "Jul 8", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"},
-                {username: "user4", age: "25", time: "6:30pm", date: "Jul 10", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget maximus massa. Vestibulum hendrerit nec urna eu elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc vehicula turpis vitae eros convallis, suscipit lobortis neque vestibulum. Morbi ac augue at nisl porttitor varius. Suspendisse elementum tincidunt ullamcorper. Fusce mi arcu, vehicula in facilisis sit amet, eleifend ut sem. Aenean volutpat feugiat nulla vel egestas.", locationName: "UofT", pinLeftPos: "58%", pinDownPos: "42%"}
-
-            ],
+            pendingMessages: [],
+            publishedMessages: [],
             // Displaying and styles for the disapprove popup
             disapprove: false,
             disapproveMessage: ""
@@ -38,7 +31,77 @@ class UserMessages extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handlePopup = this.handlePopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
+        this.getInfo = this.getInfo.bind(this);
+        this.getInfo();
     }
+
+    getInfo() {
+        const url = '/message'
+
+        const newPendingMessages = []
+        const newPublishedMessages = []
+
+        // Get all Messages
+        fetch(url).then(message => {
+            if (message.status === 200) {
+                return message.json();
+            } else {
+                console.log("Couldn't get messages.")
+                return []
+            }
+        }).then(json => {
+            // Add each message to the appropriate list
+            json.forEach(message => {
+                // Get the author
+                fetch('/user/' + message.author).then(user => {
+                    if (user.status !== 200) {
+                        console.log("Couldn't get user")
+                        return null;
+                    } else {
+                        return user.json()
+                    }
+                }).then(data => {
+                    if (data === null) {
+                        return ;
+                    }
+                    if (message.published) {
+                        newPublishedMessages.push({
+                            _id: message._id,
+                            username: data.username, 
+                            age: "20", 
+                            time: "8:30am", 
+                            date: "Jul 8", 
+                            content: message.text, 
+                            locationName: message.location.name, 
+                            pinLeftPos: message.location.x, 
+                            pinDownPos: message.location.y
+                        })
+                    } else {
+                        newPendingMessages.push({
+                            _id: message._id,
+                            username: data.username, 
+                            age: "20", 
+                            time: "8:30am", 
+                            date: "Jul 8", 
+                            content: message.text, 
+                            locationName: message.location.name, 
+                            pinLeftPos: message.location.x, 
+                            pinDownPos: message.location.y
+                        })
+                    }
+                }).catch(error => {
+                    console.log(error)
+                })
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+        this.state.pendingMessages = newPendingMessages;
+        this.state.publishedMessages = newPublishedMessages
+    }
+
 
     // Change styles for the pending tab
     changePending() {
