@@ -124,7 +124,7 @@ class Register extends React.Component {
                     }
                 });
                 return fetch(request);
-          }
+          })
           // send the logging in request
           .then(res => {
               if (res.status === 200) {

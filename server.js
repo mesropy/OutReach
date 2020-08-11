@@ -94,6 +94,15 @@ app.get("/logout", (req, res) => {
     });
 });
 
+// route to check if a user is logged in on the session cookie
+app.get("/user/check-session", (req, res) => {
+    if (req.session.userId) {
+        res.send({ currentUser: req.session.name });
+    } else {
+        res.status(401).send();
+    }
+});
+
 /* Database routes */
 
 /* User Routes */
@@ -108,11 +117,11 @@ app.get('/user', (req, res) => {
         return;
     }
 
-    // Get all users 
+    // Get all users
     User.find().then((user) => {
         if (user.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(user)
         }
@@ -327,11 +336,11 @@ app.get('/polls', (req, res) => {
         return;
     }
 
-    // Get all polls 
+    // Get all polls
     Poll.find().then((poll) => {
         if (poll.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(poll)
         }
@@ -357,7 +366,7 @@ app.get('/poll', (req, res) => {
     Poll.find(query).then((activePoll) => {
         if (activePoll.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(activePoll[0])
         }
@@ -481,4 +490,4 @@ const port = process.env.PORT || 5000
 
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
-}) 
+})
