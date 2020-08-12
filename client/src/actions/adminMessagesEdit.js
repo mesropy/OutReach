@@ -21,6 +21,70 @@ export const getDate = (dt) => {
     return date.format(dateObj, "MMM D")
 }
 
+// Get data for Messages
+export function getInfo() {
+    const url = '/message'
+
+    const newPendingMessages = []
+    const newPublishedMessages = []
+
+    // Get all Messages
+    fetch(url).then(message => {
+        if (message.status === 200) {
+            return message.json();
+        } else {
+            console.log("Couldn't get messages.")
+            return []
+        }
+    }).then(json => {
+        // Add each message to the appropriate list
+        json.forEach(message => {
+            // Get the author
+            fetch('/user/' + message.author).then(user => {
+                if (user.status !== 200) {
+                    console.log("Couldn't get user")
+                    return null;
+                } else {
+                    return user.json()
+                }
+            }).then(data => {
+                if (data === null) {
+                    return ;
+                }
+                const age = getAge(data.dob)
+                const time = getTime(message.date)
+                const date = getDate(message.date)
+                const newMessage = {
+                    _id: message._id,
+                        username: data.username, 
+                        age: age, 
+                        time: time, 
+                        date: date, 
+                        content: message.text, 
+                        locationName: message.location.name, 
+                        pinLeftPos: message.location.x, 
+                        pinDownPos: message.location.y
+                }
+                if (message.published) {
+                    newPublishedMessages.push(newMessage)
+                } else {
+                    newPendingMessages.push(newMessage)
+                }
+            }).catch(error => {
+                console.log(error)
+            })
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    })
+
+    return ({
+        pendingMessages: newPendingMessages,
+        publishedMessages: newPublishedMessages
+    })
+}
+
 // Removes a published message from the list of published messages
 export const removePublishedMessage = (list, message) => {
 

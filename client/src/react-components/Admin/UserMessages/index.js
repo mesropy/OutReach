@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.css'
-import {getAge, getTime, getDate} from '../../../actions/adminMessagesEdit'
+import {getInfo} from '../../../actions/adminMessagesEdit'
 import Pending from './Pending'
 import Disapprove from './Pending/Disapprove'
 import Published from './Published'
@@ -12,6 +12,7 @@ class UserMessages extends React.Component {
 
     constructor(props) {
         super(props);
+        const messages = getInfo();
         this.state = {
             // For closing and opening tabs
             edit: false,
@@ -21,8 +22,8 @@ class UserMessages extends React.Component {
             pendingClass: "",
             publishedClass: "",
             // The user messages will be retrieved from a database
-            pendingMessages: [],
-            publishedMessages: [],
+            pendingMessages: messages.pendingMessages,
+            publishedMessages: messages.publishedMessages,
             // Displaying and styles for the disapprove popup
             disapprove: false,
             disapproveMessage: ""
@@ -32,71 +33,7 @@ class UserMessages extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handlePopup = this.handlePopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
-        this.getInfo = this.getInfo.bind(this);
-        this.getInfo();
     }
-
-    getInfo() {
-        const url = '/message'
-
-        const newPendingMessages = []
-        const newPublishedMessages = []
-
-        // Get all Messages
-        fetch(url).then(message => {
-            if (message.status === 200) {
-                return message.json();
-            } else {
-                console.log("Couldn't get messages.")
-                return []
-            }
-        }).then(json => {
-            // Add each message to the appropriate list
-            json.forEach(message => {
-                // Get the author
-                fetch('/user/' + message.author).then(user => {
-                    if (user.status !== 200) {
-                        console.log("Couldn't get user")
-                        return null;
-                    } else {
-                        return user.json()
-                    }
-                }).then(data => {
-                    if (data === null) {
-                        return ;
-                    }
-                    const age = getAge(data.dob)
-                    const time = getTime(message.date)
-                    const date = getDate(message.date)
-                    const newMessage = {
-                        _id: message._id,
-                            username: data.username, 
-                            age: age, 
-                            time: time, 
-                            date: date, 
-                            content: message.text, 
-                            locationName: message.location.name, 
-                            pinLeftPos: message.location.x, 
-                            pinDownPos: message.location.y
-                    }
-                    if (message.published) {
-                        newPublishedMessages.push(newMessage)
-                    } else {
-                        newPendingMessages.push(newMessage)
-                    }
-                }).catch(error => {
-                    console.log(error)
-                })
-            })
-        })
-        .catch(error => {
-            console.log(error)
-        })
-
-        this.state.pendingMessages = newPendingMessages;
-        this.state.publishedMessages = newPublishedMessages
-    }
-
 
     // Change styles for the pending tab
     changePending() {

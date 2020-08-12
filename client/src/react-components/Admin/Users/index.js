@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.css'
+import {getInfo} from '../../../actions/adminUserEdit'
 import UserTable from './UserTable'
 import DeleteUser from "./DeleteUser"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,8 +13,7 @@ class Users extends React.Component {
         super(props);
         // The users will be retrieved from a database
         this.state = {
-            users: [
-            ],
+            users: [],
             // Used for switching between Edit and Normal modes
             edit: false,
             // For deletion
@@ -23,8 +23,7 @@ class Users extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handlePopup = this.handlePopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
-        this.getInfo = this.getInfo.bind(this);
-        this.getInfo();
+        getInfo.bind(this)();
     }
 
     // Sets Edit Mode
@@ -50,26 +49,6 @@ class Users extends React.Component {
             edit: true,
             delete: false,
             userDelete: ""
-        })
-    }
-
-    getInfo() {
-        const url = '/user'
-
-        fetch(url).then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                console.log("Couldn't get users.")
-                return [];
-            }
-        }).then(json => {
-            this.setState({
-                users: json
-            })
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 
