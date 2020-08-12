@@ -61,7 +61,7 @@ class Message extends React.Component {
                         <Link to={"/".concat(this.props.username)}>
                             <strong>{username}</strong>
                         </Link>
-                        {age}yrs
+                        {age !== null ? age.concat(" yrs") : null}
                     </p>
                     <div className="post-rightBar">
                         { this.props.location_name !== "" ?
