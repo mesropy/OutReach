@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
+import {getUsers, renderUsers} from './actions/dynamicRouting'
 import Home from "./react-components/Home";
 import WorldMap from './react-components/WorldMap';
 import Register from "./react-components/Register"
@@ -29,9 +29,11 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      users: [],
       currentUser: null,
       cities: ["Toronto", "Paris", "Montréal"]
     }
+    getUsers.bind(this)();
   }
 
   handleLogout() {
@@ -88,10 +90,8 @@ class App extends React.Component {
               <Route exact path='/admin' render={() =>
                               (<Admin handleLogout={this.handleLogout.bind(this)} />)}/>
               {/* TODO: add routes for every user with dynamic routing */}
-              <Route exact path='/user' render={() =>
-                              (<User userPage={"user"}
-                                     currentUser={this.state.currentUser}
-                                     handleLogout={this.handleLogout.bind(this)} />)} />
+              <Route path='/user/:username' render={(routerProps) => {return renderUsers.bind(this, routerProps)()}} />
+              {/* Remove this later... */}
               <Route exact path='/Ryan' render={() =>
                               (<User userPage={"Ryan"}
                                      currentUser={this.state.currentUser}

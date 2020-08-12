@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.css'
-import {getInfo} from '../../../actions/adminUserEdit'
+import {getUsers} from '../../../actions/dynamicRouting'
 import UserTable from './UserTable'
 import DeleteUser from "./DeleteUser"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +23,7 @@ class Users extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handlePopup = this.handlePopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
-        getInfo.bind(this)();
+        getUsers.bind(this)();
     }
 
     // Sets Edit Mode

@@ -1,24 +1,3 @@
-// Get Users
-export function getInfo() {
-    const url = '/users'
-
-    fetch(url).then(res => {
-        if (res.status === 200) {
-            return res.json();
-        } else {
-            console.log("Couldn't get users.")
-            return [];
-        }
-    }).then(json => {
-        this.setState({
-            users: json
-        })
-    })
-    .catch(error => {
-        console.log(error)
-    })
-}
-
 // Removes a user from the list of users
 export const removeUser = (list, user) => {
 

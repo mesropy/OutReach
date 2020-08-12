@@ -154,7 +154,6 @@ Returned JSON: The added User
 */
 // POST /user
 app.post('/user', (req, res) => {
-
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -652,11 +651,11 @@ app.use(express.static(__dirname + "/client/build"));
 
 // Routes
 app.get("*", (req, res) => {
-    const goodPageRoutes = ["/", "/WorldMap", "/Toronto", "/Paris", "/Montréal", "/Register", "/Login", "/admin", "/user"];
-    if (!goodPageRoutes.includes(req.url)) {
-        // if url not in expected page routes, set status to 404.
-        res.status(404);
-    }
+    // const goodPageRoutes = ["/", "/WorldMap", "/Toronto", "/Paris", "/Montréal", "/Register", "/Login", "/admin", "/user/Faisal"];
+    // if (!goodPageRoutes.includes(req.url)) {
+    //     // if url not in expected page routes, set status to 404.
+    //     res.status(404);
+    // }
 
     // send index.html
     res.sendFile(__dirname + "/client/build/index.html");
