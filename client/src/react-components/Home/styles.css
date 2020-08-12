@@ -5,7 +5,7 @@
   padding: 10px;
   margin-left: 5%;
   z-index: -1;
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 #introMessage {
