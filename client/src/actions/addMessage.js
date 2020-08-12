@@ -1,9 +1,14 @@
+import dateAndTime from 'date-and-time'
+import meridiem from 'date-and-time/plugin/meridiem'
+dateAndTime.plugin(meridiem)
+
 export const addMessage = (timeline, username)  => {
-    const today = new Date();
-    const time = today.getHours() + ":" + ('0' + today.getMinutes()).slice(-2);
-    const date = today.toLocaleString('default', { month: 'short' }) + " " + today.getDate();
+    const now = new Date();
+    const time = dateAndTime.format(now, 'h:mm a')
+    const date = dateAndTime.format(now, 'MMM D')
 
     // we will get the age of a user from a database (with their username)
+    // TODO: get user's age from database
 
     const newMessage = {
       username: username,
