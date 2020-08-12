@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.css'
+import {handleDelete, handleActive} from '../../../../actions/adminPollEdit'
 import { uid } from "react-uid";
 import {TableCell, TableRow, Switch, FormControlLabel, Button} from "@material-ui/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,10 +10,10 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 class Poll extends React.Component {
 
     render() {
-        const {poll, edit, parentState, handleDelete, handleActive} = this.props
+        const {poll, edit, parentState} = this.props
         
         const deleteRow = edit ? <TableCell component="tr" scope="row" style={{width: 100}}>
-                                    <Button onClick={handleDelete.bind(parentState, poll)}>
+                                    <Button onClick={handleDelete.bind(this, parentState, poll)}>
                                         <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
                                         <h6>delete</h6>
                                     </Button>
@@ -39,7 +40,7 @@ class Poll extends React.Component {
                     <FormControlLabel control={
                         <Switch
                             checked={poll.active}
-                            onChange={handleActive.bind(parentState, poll)}
+                            onChange={handleActive.bind(this, parentState, poll)}
                             name={poll.question}
                             color="primary"
                             inputProps={{ 'aria-label': 'primary checkbox' }}

@@ -10,7 +10,7 @@ import { TableHead, TableRow, TableCell } from "@material-ui/core";
 class PollTable extends React.Component {
     render() {
 
-        const {state, pollsComponent, edit, handleDelete, handleActive} = this.props
+        const {state, pollsComponent, edit} = this.props
 
         const deleteRow = edit ? <TableCell style={{width: 100}}></TableCell> : null
 
@@ -31,7 +31,7 @@ class PollTable extends React.Component {
                         </TableHead>
                         <TableBody>
                             {state.polls.map(poll => (
-                                <Poll key={uid(poll)} poll={poll} edit={edit} parentState={pollsComponent} handleDelete={handleDelete} handleActive={handleActive}/>
+                                <Poll key={uid(poll)} poll={poll} edit={edit} parentState={pollsComponent}/>
                             ))}
                         </TableBody>
                     </Table>

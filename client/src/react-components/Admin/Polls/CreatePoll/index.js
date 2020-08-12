@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.css'
+import {handleSubmit} from '../../../../actions/adminPollEdit'
 import {Switch, FormControlLabel} from "@material-ui/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
@@ -16,7 +17,6 @@ class CreatePoll extends React.Component {
             pollOption2: ""
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleChange = e => {
@@ -34,44 +34,9 @@ class CreatePoll extends React.Component {
         }
     }
 
-    handleSubmit(parentState, handleActive) {
-        // Add Poll to Database
-        const url = '/poll';
-
-        const body = {
-            "question": this.state.pollQuestion,
-            "answers": [this.state.pollOption1, this.state.pollOption2],
-            "active": this.state.pollActive
-        }
-        const request = new Request(url, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-            }
-        });
-    
-        // Send the request with fetch()
-        fetch(request)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                }
-            })
-            .then(json => {
-                // If Poll is Active
-                json.active = !json.active
-                handleActive(json)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
     render() {
 
-        const {parentState, handleCreate, handleActive} = this.props
+        const {parentState, handleCreate} = this.props
 
         let poll_class = ""
         let error_class = ""
@@ -106,7 +71,7 @@ class CreatePoll extends React.Component {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />} label={this.state.pollActive ? "On" : "Off"}/>
                     <br/><br/>
-                    <button id="poll_button" type="button" onClick={() => {this.handleSubmit.bind(this, parentState, handleActive)(); handleCreate()}}>Submit</button>
+                    <button id="poll_button" type="button" onClick={() => {handleSubmit.bind(this, parentState)(); handleCreate()}}>Submit</button>
                     <div className={error_class}>
                         <h5 className="error_message">Missing Poll Question</h5>
                         <h5 className="error_message">Please enter atleast one option.</h5>
