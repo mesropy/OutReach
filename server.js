@@ -89,8 +89,8 @@ app.get("/logout", (req, res) => {
 /* User Routes */
 
 // Get all Users
-// GET /user
-app.get('/user', (req, res) => {
+// GET /users
+app.get('/users', (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -113,8 +113,8 @@ app.get('/user', (req, res) => {
 })
 
 // Get User by ID
-// GET /user/:id
-app.get('/user/:id', (req, res) => {
+// GET /users/:id
+app.get('/users/:id', (req, res) => {
     const id = req.params.id
 
     // Check if ID is valid
@@ -463,7 +463,6 @@ app.post('/admin', (req, res) => {
 
 // Create Poll
 /*
-// id is an Admin's id
 Request body expects:
 {
     "question": <Poll Question Name>
@@ -472,59 +471,6 @@ Request body expects:
 }
 Returned JSON: The finished poll
 */
-// POST /poll/:id
-// app.post('/poll/:id', (req, res) => {
-
-
-//     const id = req.params.id
-
-//     // Check if ID is valid
-//     if (!ObjectID.isValid(id)) {
-//         res.status(404).send()
-//         return;
-//     }
-
-//     // check mongoose connection established.
-//     if (mongoose.connection.readyState != 1) {
-//         log("Issue with mongoose connection")
-//         res.status(500).send("Internal Server Error")
-//         return;
-//     }
-
-//     // Check if Admin ID is valid
-//     Admin.findById(id).then(result => {
-//         if (!result) {
-//             res.status(404).send("No Admin Found");
-//             return ;
-//         } else {
-//             // Create list of PollAnswer Objects
-//             const pollAnswers = []
-//             for (let i=0; i < req.body.answers.length; i++) {
-//                 pollAnswers.push({
-//                     option: req.body.answers[i],
-//                     votes: 0
-//                 })
-//             }
-//             // Make the Poll
-//             const newPoll = new Poll({
-//                 question: req.body.question,
-//                 answers: pollAnswers,
-//                 active: req.body.active
-//             })
-
-//             // Save to database
-//             newPoll.save().then((result) => {
-//                 res.send(result)
-//             }).catch((error) => {
-//                 res.status(400).send("Bad Request")
-//                 return;
-//             })
-//         }
-//     }).catch((error) => {
-//         res.status(500).send("Internal Server Error")
-//         return;
-//     })
-// })
 app.post('/poll', (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -706,11 +652,11 @@ app.use(express.static(__dirname + "/client/build"));
 
 // Routes
 app.get("*", (req, res) => {
-    // const goodPageRoutes = ["/", "/login", "/dashboard"];
-    // if (!goodPageRoutes.includes(req.url)) {
-    //     // if url not in expected page routes, set status to 404.
-    //     res.status(404);
-    // }
+    const goodPageRoutes = ["/", "/WorldMap", "/Toronto", "/Paris", "/Montréal", "/Register", "/Login", "/admin", "/user"];
+    if (!goodPageRoutes.includes(req.url)) {
+        // if url not in expected page routes, set status to 404.
+        res.status(404);
+    }
 
     // send index.html
     res.sendFile(__dirname + "/client/build/index.html");

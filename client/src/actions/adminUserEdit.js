@@ -1,6 +1,6 @@
 // Get Users
 export function getInfo() {
-    const url = '/user'
+    const url = '/users'
 
     fetch(url).then(res => {
         if (res.status === 200) {

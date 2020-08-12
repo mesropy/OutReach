@@ -40,7 +40,7 @@ export function getInfo() {
         // Add each message to the appropriate list
         json.forEach(message => {
             // Get the author
-            fetch('/user/' + message.author).then(user => {
+            fetch('/users/' + message.author).then(user => {
                 if (user.status !== 200) {
                     console.log("Couldn't get user")
                     return null;
