@@ -5,7 +5,6 @@ import Navbar from "./Navbar"
 import Users from './Users'
 import AdminPoll from './Polls'
 import UserMessages from './UserMessages'
-import '../main_styles.css';
 
 class Admin extends React.Component {
 

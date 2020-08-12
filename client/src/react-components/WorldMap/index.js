@@ -1,6 +1,5 @@
 import React from "react";
 
-import './../main_styles.css'
 
 // import components
 import Header from "./Header";

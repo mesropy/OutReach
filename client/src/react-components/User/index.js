@@ -5,7 +5,6 @@ import Navbar from "./Navbar"
 import UserMessages from './UserMessages'
 import Settings from './Settings'
 
-import '../main_styles.css';
 
 class User extends React.Component {
 

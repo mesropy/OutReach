@@ -1,6 +1,5 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
-import '../main_styles.css';
 import LoginForm from './LoginForm'
 import LeftSideHeader from '../LeftSideHeader'
 import { checkLogin } from "../../actions/checkLogin";

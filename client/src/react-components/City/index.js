@@ -1,5 +1,4 @@
 import React from "react";
-import '../main_styles.css';
 
 // import components
 import TopBar from "./TopBar";

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "../City/static/logo.svg";
 
 import "./styles.css";
-import "./../main_styles.css";
 
 class HomePageNav extends React.Component {
   render(){
