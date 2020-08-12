@@ -1,3 +1,26 @@
+import date from 'date-and-time'
+import meridiem from 'date-and-time/plugin/meridiem'
+date.plugin(meridiem)
+
+// Return age from date of birth
+export const getAge = (dob) => {
+    const ageDifMs = Date.now() - (new Date(dob)).getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+// Get time. Example: 7:23pm
+export const getTime = (time) => {
+    const timeDate = date.parse(time, "YYYY-MM-DD h:mmA")
+    return date.format(timeDate, "h:mma")
+}
+
+// Get Month and day. Example: Jul 23
+export const getDate = (dt) => {
+    const dateObj = date.parse(dt, "YYYY-MM-DD h:mmA")
+    return date.format(dateObj, "MMM D")
+}
+
 // Removes a published message from the list of published messages
 export const removePublishedMessage = (list, message) => {
 

@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.css'
+import {getAge, getTime, getDate} from '../../../actions/adminMessagesEdit'
 import Pending from './Pending'
 import Disapprove from './Pending/Disapprove'
 import Published from './Published'
@@ -64,30 +65,24 @@ class UserMessages extends React.Component {
                     if (data === null) {
                         return ;
                     }
+                    const age = getAge(data.dob)
+                    const time = getTime(message.date)
+                    const date = getDate(message.date)
+                    const newMessage = {
+                        _id: message._id,
+                            username: data.username, 
+                            age: age, 
+                            time: time, 
+                            date: date, 
+                            content: message.text, 
+                            locationName: message.location.name, 
+                            pinLeftPos: message.location.x, 
+                            pinDownPos: message.location.y
+                    }
                     if (message.published) {
-                        newPublishedMessages.push({
-                            _id: message._id,
-                            username: data.username, 
-                            age: "20", 
-                            time: "8:30am", 
-                            date: "Jul 8", 
-                            content: message.text, 
-                            locationName: message.location.name, 
-                            pinLeftPos: message.location.x, 
-                            pinDownPos: message.location.y
-                        })
+                        newPublishedMessages.push(newMessage)
                     } else {
-                        newPendingMessages.push({
-                            _id: message._id,
-                            username: data.username, 
-                            age: "20", 
-                            time: "8:30am", 
-                            date: "Jul 8", 
-                            content: message.text, 
-                            locationName: message.location.name, 
-                            pinLeftPos: message.location.x, 
-                            pinDownPos: message.location.y
-                        })
+                        newPendingMessages.push(newMessage)
                     }
                 }).catch(error => {
                     console.log(error)

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const MessageSchema = new mongoose.Schema({
     text: String,
-    date: String,
+    date: String, // YYYY-MM-DD h:mmA Ex: 2012-05-03 4:23am
     location: {
       name: String,
       x: Number,
