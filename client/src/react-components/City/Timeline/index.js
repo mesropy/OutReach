@@ -79,7 +79,7 @@ class Timeline extends React.Component {
         <MessageAdder
             city={ city }
             handleInput={ this.handleInput }
-            addMessage={ () => addMessage(this, currentUser) }
+            addMessage={ () => addMessage(this, currentUser, city) }
             isLoggedIn={ isLoggedIn }
             isAdmin={ isAdmin }
             handleLocationLeft={ this.handleLocationLeft }
