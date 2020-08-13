@@ -8,6 +8,7 @@ const MessageSchema = new mongoose.Schema({
       x: Number,
       y: Number
     },
+    city: String,
     published: Boolean,
     author: {
 		    type: mongoose.Schema.Types.ObjectId,

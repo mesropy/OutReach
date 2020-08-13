@@ -346,6 +346,7 @@ app.post('/message', authenticate, (req, res) => {
                 text: req.body.text,
                 date: req.body.date,
                 location: req.body.location,
+                city: req.body.city,
                 published: req.body.published,
                 author: req.body.author
             })

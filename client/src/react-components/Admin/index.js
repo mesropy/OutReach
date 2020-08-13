@@ -53,7 +53,8 @@ class Admin extends React.Component {
     handleBack(e) {
         this.setState({
             users: false,
-            userMessages: false
+            userMessages: false,
+            polls: false
         })
     }
 
@@ -61,6 +62,7 @@ class Admin extends React.Component {
         this.setState({
             users: false,
             userMessages: false,
+            polls: false,
             logout: true
         })
     }

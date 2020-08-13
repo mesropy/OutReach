@@ -1,18 +1,31 @@
 /* styles for the side panel component */
 
-.sidePanel {
-    position: absolute;
-    top: 150px;
-}
-
 .panel_card {
     width: 260px;
     border-radius: 15px;
     text-align: center;
-    /*background: #F4F4F4;*/
-    background: #E4F0F0;
+    background: #FAF8F1;
     padding: 10px;
-    margin: 10px;
+    margin-left: 25px;
+}
+
+.panel_card_pos1 {
+    position: absolute;
+    top: 90px;
+}
+
+.panel_card_pos2 {
+    position: absolute;
+    top: 315px;
+}
+
+.panel_card_pos3 {
+    position: absolute;
+    top: 405px;
+}
+
+.light_blue_highlight {
+  background-color: #EAF4F4;
 }
 
 .panel_card article h3 {

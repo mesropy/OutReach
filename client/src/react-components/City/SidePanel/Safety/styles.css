@@ -1,10 +1,14 @@
-#i {
-    font-size: 25px;
+#staying_safe {
+    display: inline-block;
 }
 
-#safety {
-    position: absolute;
-    top: 65px;
+#i {
+    font-size: 25px;
+    color: #147E7D;
+}
+
+#i:focus {
+  outline: none;
 }
 
 #safetyPopup {

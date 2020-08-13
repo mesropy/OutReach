@@ -4,7 +4,7 @@ import "./styles.css";
 
 import Safety from "./Safety";
 import CaseReport from "./CaseReport";
-import PanelCard from "./PanelCard";
+import PollClass from "./Poll";
 
 class SidePanel extends React.Component {
   render(){
@@ -12,16 +12,9 @@ class SidePanel extends React.Component {
 
     return(
       <div>
+          <CaseReport city={ city }/>
           <Safety city={ city } />
-          <div className="sidePanel">
-              <CaseReport
-                  city={ city }
-              />
-
-              {/* using a generic panel card as a placer for the polls
-                (this is an additional feature that we may later)*/}
-              <PanelCard title="Poll Question" />
-          </div>
+          <PollClass title="Poll Question" />
       </div>
     );
   }

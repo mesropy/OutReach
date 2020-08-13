@@ -1,8 +1,7 @@
 .post {
-    /* background-color: #F8F8F8; */
-    background-color: #FAF8F1;
+    background-color: #F4F8F8;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     border-radius: 10px;
     overflow: auto;
     height: auto;
@@ -19,12 +18,16 @@
 
 .post-username {
     float: left;
+    color: #147E7D;
 }
 
 .post-username a {
-    color: #464646
+    color: #147E7D;
 }
 
+.post-leftBar{
+    float: left;
+}
 
 .post-rightBar{
     float: right;
@@ -44,6 +47,10 @@
 
 .post strong {
     margin-right: 25px;
+}
+
+#post_pin {
+    color: #464646;
 }
 
 .locationPopup {
