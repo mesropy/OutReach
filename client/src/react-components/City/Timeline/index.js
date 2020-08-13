@@ -71,8 +71,6 @@ class Timeline extends React.Component {
 
   render(){
     const { city, currentUser} = this.props;
-    const isLoggedIn = currentUser ? true : false
-    const isAdmin = currentUser === "admin" ? true : false
 
     return(
       <div id="timeline">
@@ -80,8 +78,7 @@ class Timeline extends React.Component {
             city={ city }
             handleInput={ this.handleInput }
             addMessage={ () => addMessage(this, currentUser, city) }
-            isLoggedIn={ isLoggedIn }
-            isAdmin={ isAdmin }
+            currentUser={ currentUser }
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
             handleLocationName={ this.handleLocationName }
