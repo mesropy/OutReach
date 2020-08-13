@@ -31,6 +31,32 @@ const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Session Handling */
+const sessionChecker = (req, res, next) => {
+    console.log("sessionChecker", req.session.userId);///
+    if (req.session.userId) {
+        res.redirect("/");
+    } else {
+        next();
+    }
+};
+
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+    console.log("authenticate", req.session.userId);///
+	// if (req.session.userId) {
+	// 	User.findById(req.session.userId).then((user) => {
+	// 		if (!user) {
+	// 			return Promise.reject()
+	// 		} else {
+	// 			next();
+	// 		}
+	// 	}).catch((error) => {
+	// 		res.status(401).send("Unauthorized")
+	// 	})
+	// } else {
+	// 	res.status(401).send("Unauthorized")
+	// }
+}
 
 // Create a session cookie
 app.use(
@@ -44,6 +70,10 @@ app.use(
         }
     })
 );
+
+app.get("/login", sessionChecker, (req, res) => {
+    res.sendFile(__dirname + "/client/build/index.html");
+});
 
 // route to login and create a session
 app.post("/login", (req, res) => {
@@ -184,7 +214,7 @@ app.post('/user', (req, res) => {
 // patch user
 
 // delete user
-app.delete('/user/:id', (req, res) => {
+app.delete('/user/:id', authenticate, (req, res) => {
 
     const id = req.params.id
 
@@ -291,7 +321,7 @@ Request body expects:
 Returned JSON: The added Message
 */
 // POST /message
-app.post('/message', (req, res) => {
+app.post('/message', authenticate, (req, res) => {
 
     // Check if ID is valid
     if (!ObjectID.isValid(req.body.author)) {
@@ -341,7 +371,7 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /message
-app.patch('/message/:id', (req, res) => {
+app.patch('/message/:id', authenticate, (req, res) => {
 
     const id = req.params.id
     // Check if ID is valid
@@ -387,7 +417,7 @@ id is the id of the Message to delete
 Returned JSON: The deleted message
 */
 // DELETE /message/:id
-app.delete('/message/:id', (req, res) => {
+app.delete('/message/:id', authenticate, (req, res) => {
 
     const id = req.params.id
 
@@ -470,7 +500,7 @@ Request body expects:
 }
 Returned JSON: The finished poll
 */
-app.post('/poll', (req, res) => {
+app.post('/poll', authenticate, (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -563,7 +593,7 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll/:id', (req, res) => {
+app.patch('/poll/:id', authenticate, (req, res) => {
 
     const id = req.params.id
     // Check if ID is valid
@@ -609,7 +639,7 @@ id is the id of the Poll to delete
 Returned JSON: The deleted poll
 */
 // DELETE /poll
-app.delete('/poll/:id', (req, res) => {
+app.delete('/poll/:id', authenticate, (req, res) => {
 
     const id = req.params.id
 
@@ -666,4 +696,4 @@ const port = process.env.PORT || 5000
 
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
-}) 
+})
