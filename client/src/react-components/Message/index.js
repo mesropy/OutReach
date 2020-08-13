@@ -70,7 +70,7 @@ class Message extends React.Component {
                         { this.props.location_name !== "" ?
                         <button className="pin_button"
                                 onClick={ this.toggle.bind(this) }>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} />
+                            <FontAwesomeIcon id="post_pin" icon={faMapMarkerAlt} />
                         </button>
                         : null }
                         { time.concat(" · ", date) }

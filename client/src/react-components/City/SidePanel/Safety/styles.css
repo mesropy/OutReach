@@ -1,5 +1,14 @@
+#staying_safe {
+    display: inline-block;
+}
+
 #i {
     font-size: 25px;
+    color: #147E7D;
+}
+
+#i:focus {
+  outline: none;
 }
 
 #safetyPopup {

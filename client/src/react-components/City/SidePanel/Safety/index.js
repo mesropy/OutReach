@@ -90,11 +90,12 @@ class Safety extends React.Component {
         return (
             <div className="panel_card panel_card_pos2">
                 <div>
-                    <h4><span className="light_blue_highlight">Staying Safe
-                        <IconButton id="i" onClick={ this.toggle.bind(this) }>
-                            <FontAwesomeIcon icon={ faInfo } />
-                        </IconButton></span>
-                    </h4>
+                  <span className="light_blue_highlight">
+                    <h4 id="staying_safe">Staying Safe</h4>
+                    <IconButton id="i" onClick={ this.toggle.bind(this) }>
+                        <FontAwesomeIcon icon={ faInfo } />
+                    </IconButton>
+                  </span>
                 </div>
                 { this.state.show ?
                 <SafetyPopup
