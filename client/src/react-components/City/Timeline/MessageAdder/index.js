@@ -73,17 +73,17 @@ class MessageAdder extends React.Component {
     // we will also need to check if this user is in the city their account is
     // attached to ( they can only add messages to their own city)
     // We will get what city the user is in from a database
-    
+
     render() {
         const { city, isLoggedIn, isAdmin } = this.props;
         return (
             <div>
-            { isAdmin ? null : <Button id="addBtn"
+            { isAdmin || !isLoggedIn ? null : <Button id="addBtn"
                     variant="outlined"
                     color="primary"
-                    onClick={isLoggedIn ? this.toggle.bind(this) : null}>
+                    onClick={this.toggle.bind(this)}>
               <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-              <span id="addBtnText" >{ isLoggedIn ? "New Message" : "Login to Add a Message" }</span>
+              <span id="addBtnText">New Message</span>
             </Button> }
 
                 {this.state.showNewMessagePopup ?

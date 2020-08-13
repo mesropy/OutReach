@@ -22,8 +22,19 @@
     right: 40px;
     font-size: 20px;
     z-index: 1;
-    background-color: rgba(228, 240, 240, 0.8);
+    background-color: #FAF8F1;
     color: #147E7D;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+}
+
+#addBtn:hover {
+  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149);
+}
+
+#addBtn:focus {
+  outline: none;
 }
 
 #addBtnText {
