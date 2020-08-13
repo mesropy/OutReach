@@ -56,14 +56,16 @@ export function getInfo() {
                 const date = getDate(message.date)
                 const newMessage = {
                     _id: message._id,
-                        username: data.username, 
-                        age: age, 
+                        username: data.username,
+                        public_account: data.public,
+                        age: (age.toString()), 
                         time: time, 
                         date: date, 
-                        content: message.text, 
+                        content: message.text,
+                        published: message.published,
                         locationName: message.location.name, 
-                        pinLeftPos: message.location.x, 
-                        pinDownPos: message.location.y
+                        pinLeftPos: `${message.location.x}%`, 
+                        pinDownPos: `${message.location.y}%`
                 }
                 if (message.published) {
                     newPublishedMessages.push(newMessage)
