@@ -9,10 +9,13 @@
     width: 260px;
     border-radius: 15px;
     text-align: center;
-    /*background: #F4F4F4;*/
-    background: #E4F0F0;
+    background: #FAF8F1;
     padding: 10px;
     margin: 10px;
+}
+
+.light_blue_highlight {
+  background-color: #EAF4F4;
 }
 
 .panel_card article h3 {

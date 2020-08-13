@@ -32,7 +32,7 @@ class CaseReport extends React.Component {
         }).catch();
         return (
             <div className="panel_card">
-                <h4 id={city}>COVID-19</h4>
+                <h4><span className="light_blue_highlight" id={city}>COVID-19</span></h4>
                 <p>Confirmed <strong id={city + "Confirmed"}>Loading</strong></p>
                 <p>Recovered <strong id={city + "Recovered"}>Loading</strong></p>
                 <p>Active <strong id={city + "Active"}>Loading</strong></p>

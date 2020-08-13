@@ -91,10 +91,10 @@ class Safety extends React.Component {
             <div>
                 <div id="safety">
                     <div className="panel_card">
-                        <h4>Staying Safe
+                        <h4><span className="light_blue_highlight">Staying Safe
                             <IconButton id="i" onClick={ this.toggle.bind(this) }>
                                 <FontAwesomeIcon icon={ faInfo } />
-                            </IconButton>
+                            </IconButton></span>
                         </h4>
                     </div>
                 </div>

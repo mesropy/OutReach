@@ -57,10 +57,12 @@ class Message extends React.Component {
         return (
             <div className="post">
                 <div className="post-bar">
-                    <p className="post-username">
-                        {public_account ? <Link to={"/".concat(this.props.username)}>
-                            <strong>{username}</strong>
-                        </Link> : <strong>anonymous</strong>}
+                    <p className="post-leftBar">
+                        <span className="post-username">
+                            {public_account ? <Link to={"/".concat(this.props.username)}>
+                              <strong>{username}</strong>
+                            </Link> : <strong>anonymous</strong>}
+                        </span>
                         {age !== null ? age.concat(" yrs") : null}
                         {!published ? "  (Pending)" : null}
                     </p>
