@@ -89,14 +89,7 @@ class App extends React.Component {
                               (<Login handleLogin={this.handleLogin.bind(this)} />)}/>
               <Route exact path='/admin' render={() =>
                               {return checkAdmin.bind(this, this.state.currentUser)()}}/>
-              {/* TODO: add routes for every user with dynamic routing */}
               <Route path='/user/:username' render={(routerProps) => {return renderUsers.bind(this, routerProps)()}} />
-              {/* Remove this later... */}
-              <Route exact path='/Ryan' render={() =>
-                              (<User userPage={"Ryan"}
-                                     currentUser={this.state.currentUser}
-                                     handleLogout={this.handleLogout.bind(this)} />)} />
-
             </Switch>
           </BrowserRouter>
         </MuiThemeProvider>
