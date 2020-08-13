@@ -32,9 +32,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Session Handling */
 const sessionChecker = (req, res, next) => {
-    console.log("sessionChecker", req.session.userId);///
+    console.log("sessionChecker", req.session.userId);
+    // if logged-in user try to access login page,
+    // redirect them to WorldMap page
     if (req.session.userId) {
-        res.redirect("/");
+        res.redirect("/WorldMap");
     } else {
         next();
     }
@@ -42,7 +44,8 @@ const sessionChecker = (req, res, next) => {
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
-    console.log("authenticate", req.session.userId);///
+    console.log("authenticate", req.session.userId);
+    // // if a user/admin is logged in
 	// if (req.session.userId) {
 	// 	User.findById(req.session.userId).then((user) => {
 	// 		if (!user) {
