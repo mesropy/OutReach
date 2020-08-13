@@ -12,11 +12,9 @@ class SidePanel extends React.Component {
 
     return(
       <div>
+          <CaseReport city={ city }/>
           <Safety city={ city } />
-          <div className="sidePanel">
-              <CaseReport city={ city }/>
-              <PollClass title="Poll Question" />
-          </div>
+          <PollClass title="Poll Question" />
       </div>
     );
   }

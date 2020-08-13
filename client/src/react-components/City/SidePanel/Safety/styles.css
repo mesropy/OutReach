@@ -2,11 +2,6 @@
     font-size: 25px;
 }
 
-#safety {
-    position: absolute;
-    top: 65px;
-}
-
 #safetyPopup {
   background-color: white;
   text-align: center;

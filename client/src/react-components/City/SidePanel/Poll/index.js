@@ -100,7 +100,7 @@ class PollClass extends React.Component {
 
     render() {
         return (
-            <div className="panel_card">
+            <div className="panel_card panel_card_pos3">
                 <Poll question={this.state.pollQuestion} answers={this.state.pollAnswers} onVote={this.handleVote} customStyles={this.pollStyles}/>
             </div>
         )

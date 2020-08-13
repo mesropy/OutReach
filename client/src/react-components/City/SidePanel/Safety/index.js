@@ -88,15 +88,13 @@ class Safety extends React.Component {
         const { city } = this.props;
 
         return (
-            <div>
-                <div id="safety">
-                    <div className="panel_card">
-                        <h4><span className="light_blue_highlight">Staying Safe
-                            <IconButton id="i" onClick={ this.toggle.bind(this) }>
-                                <FontAwesomeIcon icon={ faInfo } />
-                            </IconButton></span>
-                        </h4>
-                    </div>
+            <div className="panel_card panel_card_pos2">
+                <div>
+                    <h4><span className="light_blue_highlight">Staying Safe
+                        <IconButton id="i" onClick={ this.toggle.bind(this) }>
+                            <FontAwesomeIcon icon={ faInfo } />
+                        </IconButton></span>
+                    </h4>
                 </div>
                 { this.state.show ?
                 <SafetyPopup
