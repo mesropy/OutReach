@@ -3,11 +3,11 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {getUsers, renderUsers} from './actions/dynamicRouting'
+import {checkAdmin} from './actions/checkLogin'
 import Home from "./react-components/Home";
 import WorldMap from './react-components/WorldMap';
 import Register from "./react-components/Register"
 import Login from "./react-components/Login"
-import Admin from "./react-components/Admin"
 import City from "./react-components/City"
 import User from "./react-components/User"
 
@@ -88,7 +88,7 @@ class App extends React.Component {
               <Route exact path='/Login' render={() =>
                               (<Login handleLogin={this.handleLogin.bind(this)} />)}/>
               <Route exact path='/admin' render={() =>
-                              (<Admin handleLogout={this.handleLogout.bind(this)} />)}/>
+                              {return checkAdmin.bind(this, this.state.currentUser)()}}/>
               {/* TODO: add routes for every user with dynamic routing */}
               <Route path='/user/:username' render={(routerProps) => {return renderUsers.bind(this, routerProps)()}} />
               {/* Remove this later... */}
