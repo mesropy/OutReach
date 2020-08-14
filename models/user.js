@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     dob: String,
-	phone: String,
-	city: String,
+	  phone: String,
+	  city: String,
     public: Boolean
 });
 
@@ -37,7 +37,7 @@ UserSchema.statics.findByNamePassword = function(name, password) {
 	const User = this
 
 	// find the user by its name (which is unique)
-	return User.findOne({ name: name }).then((user) => {
+	return User.findOne({ username: name }).then((user) => {
 		if (!user) {
 			return Promise.reject()
 		}

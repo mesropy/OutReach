@@ -2,7 +2,6 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import LoginForm from './LoginForm'
 import LeftSideHeader from '../LeftSideHeader'
-import { checkLogin } from "../../actions/checkLogin";
 
 /* Component for the Login page */
 class Login extends React.Component {
@@ -10,8 +9,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userLoggedIn: false,
-      adminLoggedIn: false,
+      loggedIn: false,
       username: "",
       password: "",
       error: false
@@ -29,32 +27,44 @@ class Login extends React.Component {
   }
 
   handleSubmit = e => {
-    if (checkLogin(this.state)) {
-      this.setState({
-        error: false,
-      })
-      if (this.state.username === "user") {
-        this.props.handleLogin(this.state.username);
-        this.setState({
-          userLoggedIn: true,
-        })
-      }
-      else {
-        this.props.handleLogin(this.state.username);
-        this.setState({
-          adminLoggedIn: true,
-        })
-      }
+    // create request
+    const loginInfo = {
+      name: this.state.username,
+      password: this.state.password
     }
-    else {
-      this.setState({
-        error: true
-      })
-    }
+    const request = new Request("/login", {
+        method: "post",
+        body: JSON.stringify(loginInfo),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    // send the request
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json.currentUser !== undefined) {
+                this.props.handleLogin(json.currentUser);
+                this.setState({
+                  loggedIn: true,
+                })
+            }
+        })
+        .catch(error => {
+            this.setState({
+              error: true
+            })
+        });
   }
 
   render() {
-    if (this.state.userLoggedIn || this.state.adminLoggedIn) {
+    if (this.state.loggedIn) {
       return <Redirect to='/'/>
     }
 

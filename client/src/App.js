@@ -11,6 +11,8 @@ import Login from "./react-components/Login"
 import City from "./react-components/City"
 import User from "./react-components/User"
 
+import { readCookie } from "./actions/readCookie.js";
+
 // customize theme
 import { MuiThemeProvider, createMuiTheme  } from '@material-ui/core/styles';
 
@@ -34,6 +36,7 @@ class App extends React.Component {
       cities: ["Toronto", "Paris", "Montréal"]
     }
     getUsers.bind(this)();
+    readCookie(this.handleLogin.bind(this))
   }
 
   handleLogout() {

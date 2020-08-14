@@ -83,27 +83,37 @@ app.post("/login", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
 
-    User.findByNamePassword(name, password)
-        .then(user => {
-            // Add the user's id to the session cookie.
-            req.session.userId = user._id;
-            req.session.name = user.name;
-            // send the new global state
-            if (user.name === "admin"){
-              res.send({
-                isLoggedIn: true,
-                isAdmin: true,
-                username: user.name });
-            } else {
-              res.send({
-                isLoggedIn: true,
-                isAdmin: false,
-                username: user.name }); 
-            }
+    // TODO: check if admin
+    // (if first 5 letters of username are admin)
+    const isAdmin = false;
+    if (isAdmin) {
+      Admin.findByNamePassword(name, password)
+        .then(admin => {
+            // Add the admin's id and name to the session cookie.
+            req.session.userId = admin._id;
+            req.session.name = admin.name;
+            // send the new global user state
+            res.send({currentUser: admin.name });
         })
+        // admin with given name and password does not exist
         .catch(error => {
             res.status(400).send()
         });
+    } else {
+      // get user document based on name and password
+      User.findByNamePassword(name, password)
+          .then(user => {
+              // Add the user's id and name to the session cookie.
+              req.session.userId = user._id;
+              req.session.name = user.name;
+              // send the new global user state
+              res.send({currentUser: user.name });
+          })
+          // user with given name and password does not exist
+          .catch(error => {
+              res.status(400).send()
+          });
+    }
 });
 
 // route to logout a user and remove the session
@@ -115,6 +125,15 @@ app.get("/logout", (req, res) => {
             res.send()
         }
     });
+});
+
+// route to check if a user is logged in on the session cookie
+app.get("/user/check-session", (req, res) => {
+    if (req.session.userId) {
+        res.send({ currentUser: req.session.name });
+    } else {
+        res.status(401).send();
+    }
 });
 
 /* Database routes */
@@ -131,11 +150,11 @@ app.get('/users', (req, res) => {
         return;
     }
 
-    // Get all users 
+    // Get all users
     User.find().then((user) => {
         if (user.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(user)
         }
@@ -264,11 +283,11 @@ app.get('/message', (req, res) => {
         return;
     }
 
-    // Get all messages 
+    // Get all messages
     Message.find().then((message) => {
         if (message.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(message)
         }
@@ -546,11 +565,11 @@ app.get('/polls', (req, res) => {
         return;
     }
 
-    // Get all polls 
+    // Get all polls
     Poll.find().then((poll) => {
         if (poll.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(poll)
         }
@@ -576,7 +595,7 @@ app.get('/poll', (req, res) => {
     Poll.find(query).then((activePoll) => {
         if (activePoll.length === 0) {
             res.status(404).send("Resource Not Found.")
-        } 
+        }
         else {
             res.send(activePoll[0])
         }
