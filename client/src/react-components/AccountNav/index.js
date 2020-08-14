@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faUserCog } from '@fortawesome/free-solid-svg-icons'
+import { logout } from '../../actions/logout.js'
 
 import "./styles.css";
 
@@ -27,7 +28,7 @@ class AccountNav extends React.Component{
           { this.props.currentUser }
           </Button>
           <div className="divider"/>
-          <Button onClick={ this.props.handleLogout }
+          <Button onClick={ () => logout(this.props.handleLogout) }
                   className="account_button"
                   variant="outlined"
                   color="primary">
