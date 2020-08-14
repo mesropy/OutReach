@@ -49,6 +49,10 @@ class Login extends React.Component {
               this.setState({
                 loggedIn: true,
               })
+            } else { // status code is not 200
+              this.setState({
+                error: true
+              })
             }
         })
         .catch(error => {

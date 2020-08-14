@@ -14,9 +14,7 @@ class AccountNav extends React.Component{
 
   render () {
     if (this.props.currentUser) {
-      // TODO: check if the currentUser is an admin
-      // ie. if the first 5 letters are "admin"
-      const isAdmin = false;
+      const isAdmin = this.props.currentUser.startsWith("admin");
       return (
         <div className="account_nav">
           <Button component= { Link } to={"/user/".concat(this.props.currentUser)}
