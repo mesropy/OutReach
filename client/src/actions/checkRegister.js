@@ -18,7 +18,7 @@ export const checkPhone = (state) => {
   }
 
 export const checkCity = (state) => {
-    return !(state.city === "Toronto")
+    return !(state.city === "Toronto" || state.city === "Paris" || state.city === "Montréal")
   }
 
 export const checkAge = (state) => {
@@ -35,4 +35,39 @@ export const checkAge = (state) => {
     age = age - 1
   }
   return age < 13;
+}
+
+export function registerDB() {
+  const url = '/user'
+
+  const body = {
+    "username": this.state.username,
+    "password": this.state.password,
+    "dob": this.state.age,
+    "phone": this.state.phoneNumber,
+    "city": this.state.city
+  }
+
+  const request = new Request(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+      }
+  });
+
+  // Send the request with fetch()
+  fetch(request)
+      .then(res => {
+          if (res.status === 200) {
+              console.log("User registered.")
+          } else {
+            console.log("Failed to register User.")
+          }
+      })
+      .catch(error => {
+          console.log(error);
+      });
+
 }
