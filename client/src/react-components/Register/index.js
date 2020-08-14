@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
-import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge, checkDuplicate, registerDB } from "../../actions/checkRegister"
+import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge, checkDuplicate } from "../../actions/checkRegister"
 import {getUsers} from '../../actions/dynamicRouting'
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from '../LeftSideHeader'
