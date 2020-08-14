@@ -129,27 +129,27 @@ class Register extends React.Component {
                         "Content-Type": "application/json"
                     }
                 });
-                return fetch(request);
-          })
-          // send the logging in request
-          .then(res => {
-              if (res.status === 200) {
-                  return res.json();
-              }
-          })
-          .then(json => {
-              if (json.currentUser !== undefined) {
-                  // change currentUser global state
-                  this.props.handleLogin(json.currentUser);
-                  // update register state to redirect to home
-                  this.setState({
-                    register: true
-                  })
-              }
+                // send the logging in request
+                fetch(request)
+                    .then(res2 => {
+                        if (res2.status === 200) {
+                            // logging in was successful
+                            this.props.handleLogin(this.state.username);
+                            // update register state to redirect to home
+                            this.setState({
+                              register: true
+                            })
+                        }
+                    })
+                    .catch(error => {
+                        this.setState({
+                          error: "Could not log in"
+                        })
+                    });
           })
           .catch(error => {
               this.setState({
-                error: "Could not register" // something else here?
+                error: "Could not register"
               })
           });
     }

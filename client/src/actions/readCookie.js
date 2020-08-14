@@ -1,5 +1,5 @@
 // check if a user is logged in on the session cookie
-export const readCookie = (app) => {
+export const readCookie = (handleLogin) => {
     const url = "/user/check-session";
 
     fetch(url)
@@ -11,7 +11,7 @@ export const readCookie = (app) => {
         .then(json => {
             if (json && json.currentUser) {
                 // set the global user state
-                this.props.handleLogin(json.currentUser);
+                handleLogin(json.currentUser);
             }
         })
         .catch(error => {

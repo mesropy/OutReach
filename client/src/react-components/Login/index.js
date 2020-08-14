@@ -45,15 +45,10 @@ class Login extends React.Component {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
-                return res.json();
-            }
-        })
-        .then(json => {
-            if (json.currentUser !== undefined) {
-                this.props.handleLogin(json.currentUser);
-                this.setState({
-                  loggedIn: true,
-                })
+              this.props.handleLogin(this.state.username);
+              this.setState({
+                loggedIn: true,
+              })
             }
         })
         .catch(error => {

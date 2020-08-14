@@ -74,10 +74,6 @@ app.use(
     })
 );
 
-app.get("/login", sessionChecker, (req, res) => {
-    res.sendFile(__dirname + "/client/build/index.html");
-});
-
 // route to login and create a session
 app.post("/login", (req, res) => {
     const name = req.body.name;
@@ -105,9 +101,9 @@ app.post("/login", (req, res) => {
           .then(user => {
               // Add the user's id and name to the session cookie.
               req.session.userId = user._id;
-              req.session.name = user.name;
+              req.session.name = user.username;
               // send the new global user state
-              res.send({currentUser: user.name });
+              res.send({currentUser: user.username });
           })
           // user with given name and password does not exist
           .catch(error => {
