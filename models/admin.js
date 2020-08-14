@@ -33,7 +33,7 @@ AdminSchema.statics.findByNamePassword = function(name, password) {
 	const admin = this
 
 	// find the admin by its name (which is unique)
-	return Admin.findOne({ name: name }).then((admin) => {
+	return Admin.findOne({ username: name }).then((admin) => {
 		if (!admin) {
 			return Promise.reject()
 		}
