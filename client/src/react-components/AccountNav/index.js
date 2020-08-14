@@ -15,7 +15,7 @@ class AccountNav extends React.Component{
     if (this.props.currentUser) {
       return (
         <div className="account_nav">
-          <Button component= { Link } to={"/".concat(this.props.currentUser)}
+          <Button component= { Link } to={"/user/".concat(this.props.currentUser)}
                   className="username_button"
                   disableRipple
                   variant="text">
