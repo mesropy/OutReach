@@ -51,6 +51,8 @@ class RegisterForm extends React.Component {
                         <span className="star">*</span><input className="register_input" type="number" name="phoneNumber" value={phoneNumber} placeholder="phone number" onChange={handleChange}></input><br/>
                         <span className="star">*</span><select className="register_select" name="city" value={city} onChange={handleChange}>
                             <option disabled value="default">select a city</option>
+                            <option value="Paris">Paris</option>
+                            <option value="Montréal">Montréal</option>
                             <option value="Toronto">Toronto</option>
                         </select><br/>
                         <input 

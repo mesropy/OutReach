@@ -84,7 +84,7 @@ class App extends React.Component {
                                 city="MONTRÉAL"
                               />)}/>
               <Route exact path='/Register' render={() =>
-                              (<Register handleLogin={this.handleLogin.bind(this)} />)}/>
+                              (<Register global={this} handleLogin={this.handleLogin.bind(this)} />)}/>
               <Route exact path='/Login' render={() =>
                               (<Login handleLogin={this.handleLogin.bind(this)} />)}/>
               <Route exact path='/admin' render={() =>

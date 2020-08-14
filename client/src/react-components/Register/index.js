@@ -1,6 +1,7 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
-import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge } from "../../actions/checkRegister"
+import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge, checkDuplicate, registerDB } from "../../actions/checkRegister"
+import {getUsers} from '../../actions/dynamicRouting'
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from '../LeftSideHeader'
 
@@ -59,7 +60,12 @@ class Register extends React.Component {
     }
     else if (checkCity(this.state)) {
       this.setState({
-        error: "Please select a valid city."
+        error: "Please select a city."
+      })
+    }
+    else if (checkDuplicate.bind(this)()) {
+      this.setState({
+        error: "Please use a different phone number."
       })
     }
     else if (checkAge(this.state)) {
@@ -68,7 +74,13 @@ class Register extends React.Component {
       })
     }
     else {
+      // Change currentUser in global state
       this.props.handleLogin(this.state.username);
+      // Create User in Database
+      registerDB.bind(this)();
+      // Update users in global state
+      getUsers.bind(this.props.global)();
+      // Redirect to Home
       this.setState({
         register: true
       })
@@ -76,6 +88,7 @@ class Register extends React.Component {
   }
 
   render() {
+
     if (this.state.register) {
       return <Redirect to='/'/>
     }
