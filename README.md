@@ -21,7 +21,7 @@ For now, we have designed webpages for three cities:
 
 Each city page includes a Safety Information panel which can be accessed by clicking the "i" symbol.  
 
-Data regarding the COVID-19 status is shown in a panel (this data will be pulled from an external server).  
+Data regarding the COVID-19 status is shown in a panel (this data will be pulled from an external API).  
 
 The Poll Question will later be implemented using an API.  
 

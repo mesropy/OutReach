@@ -28,7 +28,6 @@ class CaseReport extends React.Component {
             document.getElementById(city + "Recovered").innerText = result.recovered;
             document.getElementById(city + "Active").innerText = result.active;
             document.getElementById(city + "date").innerText = result.date;
-            console.log(result);
         }).catch();
         return (
             <div className="panel_card panel_card_pos1">

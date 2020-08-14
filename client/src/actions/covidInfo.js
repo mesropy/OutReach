@@ -28,7 +28,7 @@ const covidInfo = (countryCode, province) => {
                             })
                         }
                     } catch (error) {
-                        console.log(error);
+                        console.log("API failed.");
                     }
                 }
             })
@@ -54,7 +54,7 @@ const covidInfo = (countryCode, province) => {
                             date: "Today"
                         })
                     } catch (error) {
-                        console.log(error);
+                        console.log("API failed.");
                     }
                 }
             })
@@ -106,18 +106,5 @@ const provinceCodeToName = (provinceCode) => {
     }
     return provinceName;
 }
-
-// // Sample Usage
-// covidInfo("CA", "QC").then((result) => {
-//     console.log(result);
-// }).catch((error) => {
-//     console.log(error);
-// })
-
-// covidInfo("FR").then((result) => {
-//     console.log(result);
-// }).catch((error) => {
-//     console.log(error);
-// })
 
 module.exports = { covidInfo }

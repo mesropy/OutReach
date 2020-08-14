@@ -32,11 +32,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Session Handling */
 const sessionChecker = (req, res, next) => {
-    console.log("sessionChecker", req.session.userId);
-    // if logged-in user try to access login page,
-    // redirect them to WorldMap page
+    // if logged-in user/admin try to access login page
+    // redirect user to homepage
     if (req.session.userId) {
-        res.redirect("/WorldMap");
+        res.redirect("/");
     } else {
         next();
     }
@@ -44,21 +43,12 @@ const sessionChecker = (req, res, next) => {
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
-    console.log("authenticate", req.session.userId);
-    // // if a user/admin is logged in
-	// if (req.session.userId) {
-	// 	User.findById(req.session.userId).then((user) => {
-	// 		if (!user) {
-	// 			return Promise.reject()
-	// 		} else {
-	// 			next();
-	// 		}
-	// 	}).catch((error) => {
-	// 		res.status(401).send("Unauthorized")
-	// 	})
-	// } else {
-	// 	res.status(401).send("Unauthorized")
-	// }
+    // if a user/admin is logged in
+    if (! req.session.userId) {
+        res.status(401).send("Unauthorized");
+    } else {
+        next();
+    }
 }
 
 // Create a session cookie
@@ -73,6 +63,10 @@ app.use(
         }
     })
 );
+
+app.get("/login", sessionChecker, (req, res) => {
+    res.sendFile(__dirname + "/client/build/index.html");
+});
 
 // route to login and create a session
 app.post("/login", (req, res) => {
