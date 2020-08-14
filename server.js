@@ -326,6 +326,30 @@ app.get('/message/:id', (req, res) => {
 
 // get message by MessageId
 
+// Get Messages of a specific city
+// GET /message/:city
+app.get('/message/:city', (req, res) => {
+    const cityToGet = req.params.city
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get all messages of a city
+    const query = {city: cityToGet}
+    Message.find(query).then(result => {
+        if (!result) {
+            res.status(404).send("No Messages Found");
+            return ;
+        } else {
+            res.send(result);
+        }
+    })
+})
+
 // Create a Message
 /*
 Request body expects:
