@@ -1,6 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
-import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge, registerDB } from "../../actions/checkRegister"
+import { checkCity, checkEmpty, checkPassword, checkPhone, checkUsername, checkAge, checkDuplicate, registerDB } from "../../actions/checkRegister"
 import {getUsers} from '../../actions/dynamicRouting'
 import RegisterForm from './RegisterForm'
 import LeftSideHeader from '../LeftSideHeader'
@@ -60,7 +60,12 @@ class Register extends React.Component {
     }
     else if (checkCity(this.state)) {
       this.setState({
-        error: "Please select a valid city."
+        error: "Please select a city."
+      })
+    }
+    else if (checkDuplicate.bind(this)()) {
+      this.setState({
+        error: "Please use a different phone number."
       })
     }
     else if (checkAge(this.state)) {

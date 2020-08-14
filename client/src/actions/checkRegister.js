@@ -1,26 +1,45 @@
 // Returns true if any field is empty
 export const checkEmpty = (state) => {
     return (state.username === "" || state.password === "" || state.confirmPassword === "" || state.phoneNumber === "" || state.city === "default")
-  }
+}
 
 // Returns True if the username does not match the description (Length >= 6 and atleast one letter and number)
 export const checkUsername = (state) => {
+    if (state.username.startsWith("admin")) {
+      return true
+    }
     return !(state.username.length >= 6 && /^[0-9a-zA-Z]+$/.test(state.username))
-  }
+}
 
 // Returns True if the password does not match
 export const checkPassword = (state) => {
     return !(state.password.length >= 6 && /\d/.test(state.password) && /[a-zA-Z]/.test(state.password) && /[special_characters]/.test(state.password))
-  }
+}
 
+// Checks if a valid phone number was entered
 export const checkPhone = (state) => {
     return !(/^\d{10}$/.test(state.phoneNumber))
-  }
+}
 
+// Checks if the User already exists based on the phone number
+export function checkDuplicate() {
+  const users = this.props.global.state.users;
+  let duplicate = false;
+  users.forEach(user => {
+    console.log(user.phone)
+    if (user.phone === this.state.phoneNumber) {
+        duplicate = true;
+    }
+  });
+  return duplicate;
+}
+
+// Checks if the user picked a city
 export const checkCity = (state) => {
-    return !(state.city === "Toronto" || state.city === "Paris" || state.city === "Montréal")
+    return state.city === "default"
   }
 
+// Check if the user is older than 13 (if they entered their date of birth)
 export const checkAge = (state) => {
 
   if (state.age === "") {
@@ -37,6 +56,7 @@ export const checkAge = (state) => {
   return age < 13;
 }
 
+// Create a User in the database
 export function registerDB() {
   const url = '/user'
 
