@@ -40,22 +40,27 @@ class Register extends React.Component {
     }
     else if (checkUsername(this.state)) {
       this.setState({
-        error: "Username must match the required description."
+        error: "Please enter a username that matches the required description."
+      })
+    }
+    else if (this.state.username.startsWith("admin")) { // reserved for admin
+      this.setState({
+        error: "The username you entered is not available."
       })
     }
     else if (checkPassword(this.state)) {
       this.setState({
-        error: "Password must match the required description."
+        error: "Please enter a password that matches the required description."
       })
     }
     else if (this.state.password !== this.state.confirmPassword) {
       this.setState({
-        error: "Confirm Password must match the Password entered."
+        error: "The passwords you entered do not match."
       })
     }
     else if (checkPhone(this.state)) {
       this.setState({
-        error: "Please enter a valid Phone Number."
+        error: "Please enter a valid phone number."
       })
     }
     else if (checkCity(this.state)) {
@@ -73,19 +78,10 @@ class Register extends React.Component {
         error: "You must be 13 years or older to create an account."
       })
     }
-    /* TODO: add these checks
-    else if ( first 5 characters are "admin" ){ // reserved for admins
-      this.setState({
-        error: "some error message"
-      })
-    } else if ( phone number exists ){
-      this.setState({
-        error: "some error message"
-      })
-    }
+    /* TODO: add this check
     else if ( user exists in database ){
       this.setState({
-        error: "The username you selected already exists, please pick another."
+        error: "The username you entered is not available."
       })
     }
     */

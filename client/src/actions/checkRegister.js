@@ -5,9 +5,6 @@ export const checkEmpty = (state) => {
 
 // Returns True if the username does not match the description (Length >= 6 and atleast one letter and number)
 export const checkUsername = (state) => {
-    if (state.username.startsWith("admin")) {
-      return true
-    }
     return !(state.username.length >= 6 && /^[0-9a-zA-Z]+$/.test(state.username))
 }
 
