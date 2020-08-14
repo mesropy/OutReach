@@ -57,30 +57,33 @@ class User extends React.Component {
             return <Redirect to='/'/>
         }
 
-        if (this.props.currentUser === "Ryan") {
-            return (
-                <div>
-                    <Topbar
-                        username={this.props.currentUser}/>
-                    <UserMessages username={this.props.currentUser} userLoggedIn={false}/>
-                </div>
-            )
-        };
-
         if (this.state.messages) {
+            // replace the following 2 lines later///
+            const isOwnerOrAdminfalse = true;
+            const isPublic = true;
+            // (1) Others accessing a public user's page
+            let userContent = null;
+            let loggedIn = false;
+            // (2) User accessing own account or an admin access a user's account
+            if (isOwnerOrAdminfalse) {
+                loggedIn = true;
+                userContent = <Navbar
+                    handleMessages={this.handleMessages}
+                    handleSettings={this.handleSettings}
+                    handleLogout={this.handleLogout}
+                    handleBack={this.handleBack}/>;
+            // (3) Others accessing a private user's profile
+            } else if (! isPublic) {
+                return <div>Unauthorized</div>;
+            }
+
             return (
                 <div>
                     <Topbar
                         username={this.props.currentUser}/>
-                <Navbar
-                handleMessages={this.handleMessages}
-                handleSettings={this.handleSettings}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                >
-                </Navbar>
-                    <UserMessages username={this.props.currentUser} userLoggedIn={true}/>
-            </div>
+                    { userContent }
+                    <UserMessages username={this.props.currentUser} userLoggedIn={loggedIn}/>
+                </div>
             )
         };
 
@@ -94,23 +97,21 @@ class User extends React.Component {
                         handleSettings={this.handleSettings}
                         handleLogout={this.handleLogout}
                         handleBack={this.handleBack}
-                    >
-                    </Navbar>
+                    />
                     <Settings/>
                 </div>
             )
         };
-
         return (
             <div>
                 <Topbar
                     username={this.props.currentUser} />
                 <Navbar
-                handleMessages={this.handleMessages}
-                handleSettings={this.handleSettings}
-                handleLogout={this.handleLogout}
-                handleBack={this.handleBack}
-                ></Navbar>
+                    handleMessages={this.handleMessages}
+                    handleSettings={this.handleSettings}
+                    handleLogout={this.handleLogout}
+                    handleBack={this.handleBack}
+                />
             </div>
         )
     }

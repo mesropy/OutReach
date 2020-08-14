@@ -4,6 +4,11 @@
     margin-left: 25vw;
 }
 
+#publicUserMessages {
+    margin-top: 12vh;
+    margin-left: 12.5vw;
+}
+
 #userMessages #headers button {
     border: none;
     background-color: inherit;

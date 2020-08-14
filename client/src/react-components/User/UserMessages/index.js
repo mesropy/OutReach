@@ -106,11 +106,8 @@ class UserMessages extends React.Component {
         }
         if (!this.props.userLoggedIn) { 
             messages = <Published userMessagesComponent={this} edit={this.state.edit} publishedMessages={this.state.publishedMessages}/>
-        }
-
-        if (!this.props.userLoggedIn) { 
             return (
-                <div id="userMessages">
+                <div id="publicUserMessages">
                     {messages}
                     <br /><br />
                 </div>
