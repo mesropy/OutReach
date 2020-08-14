@@ -43,7 +43,6 @@ const sessionChecker = (req, res, next) => {
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
-    req.session.userId = "5f33a543e6826106f41d058f"
     // if a user/admin is logged in
     if (! req.session.userId) {
         res.status(401).send("Unauthorized");
