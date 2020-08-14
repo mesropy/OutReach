@@ -129,11 +129,16 @@ class Register extends React.Component {
                 fetch(request)
                     .then(res2 => {
                         if (res2.status === 200) {
-                            // logging in was successful
-                            this.props.handleLogin(this.state.username);
+                            return res2.json();
+                        }
+                    })
+                    .then(json => {
+                        if (json.currentUserId !== undefined) {
+                            // update global states 
+                            this.props.handleLogin(this.state.username, json.currentUserId);
                             // update register state to redirect to home
                             this.setState({
-                              register: true
+                              register: true,
                             })
                         }
                     })

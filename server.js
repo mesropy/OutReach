@@ -68,7 +68,8 @@ app.post("/login", (req, res) => {
             req.session.userId = admin._id;
             req.session.name = admin.username;
             // send the new global user state
-            res.send({currentUser: admin.username });
+            const result = {currentUserId: admin._id }
+            res.send(result);
         })
         // admin with given name and password does not exist
         .catch(error => {
@@ -82,7 +83,7 @@ app.post("/login", (req, res) => {
               req.session.userId = user._id;
               req.session.name = user.username;
               // send the new global user state
-              res.send({currentUser: user.username });
+              res.send({currentUserId: user._id });
           })
           // user with given name and password does not exist
           .catch(error => {
