@@ -59,13 +59,13 @@ class User extends React.Component {
 
         if (this.state.messages) {
             // replace the following 2 lines later///
-            const isOwnerOrAdminfalse = true;
+            const isOwnerOrAdmin = true;
             const isPublic = true;
             // (1) Others accessing a public user's page
             let userContent = null;
             let loggedIn = false;
             // (2) User accessing own account or an admin access a user's account
-            if (isOwnerOrAdminfalse) {
+            if (isOwnerOrAdmin) {
                 loggedIn = true;
                 userContent = <Navbar
                     handleMessages={this.handleMessages}
