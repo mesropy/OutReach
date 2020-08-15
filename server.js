@@ -615,33 +615,38 @@ app.post('/poll', authenticate, (req, res) => {
         res.status(500).send("Internal Server Error")
         return;
     }
-    // Create list of PollAnswer Objects
-    const pollAnswers = []
-    for (let i=0; i < req.body.answers.length; i++) {
-        pollAnswers.push({
-            option: req.body.answers[i],
-            votes: 0
-        })
-    }
-    // Make the Poll
-    const newPoll = new Poll({
-        question: req.body.question,
-        answers: pollAnswers,
-        active: req.body.active
-    })
 
-    // Save to database
-    newPoll.save().then((result) => {
-        res.send(result)
-    }).catch((error) => {
-        res.status(400).send("Bad Request")
-        return;
-    })
+    if (req.isAdmin) {
+        // Create list of PollAnswer Objects
+        const pollAnswers = []
+        for (let i=0; i < req.body.answers.length; i++) {
+            pollAnswers.push({
+                option: req.body.answers[i],
+                votes: 0
+            })
+        }
+        // Make the Poll
+        const newPoll = new Poll({
+            question: req.body.question,
+            answers: pollAnswers,
+            active: req.body.active
+        })
+
+        // Save to database
+        newPoll.save().then((result) => {
+            res.send(result)
+        }).catch((error) => {
+            res.status(400).send("Bad Request")
+            return;
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 // Get all Polls
 // GET /polls
-app.get('/polls', (req, res) => {
+app.get('/polls', authenticate, (req, res) => {
 
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -650,18 +655,22 @@ app.get('/polls', (req, res) => {
         return;
     }
 
-    // Get all polls
-    Poll.find().then((poll) => {
-        if (poll.length === 0) {
-            res.status(404).send("Resource Not Found.")
-        }
-        else {
-            res.send(poll)
-        }
-    }).catch((error) => {
-        log(error)
-        res.status(500).send("Internal Server Error.")
-    })
+    if (req.isAdmin) {
+        // Get all polls
+        Poll.find().then((poll) => {
+            if (poll.length === 0) {
+                res.status(404).send("Resource Not Found.")
+            }
+            else {
+                res.send(poll)
+            }
+        }).catch((error) => {
+            log(error)
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 // Get the Active Poll
@@ -701,7 +710,7 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll/:id', authenticate, (req, res) => {
+app.patch('/poll/:id', (req, res) => {
 
     const id = req.params.id
     // Check if ID is valid
@@ -764,21 +773,26 @@ app.delete('/poll/:id', authenticate, (req, res) => {
        return;
    }
 
-   Poll.findByIdAndDelete(id, function(err, doc) {
-       if (err) {
-           res.status(500).send("Internal Server Error")
-           return ;
-       }
-       if (!doc) {
-           res.status(404).send("Resource Not Found.")
-           return ;
-       }
-       else {
-           res.send(doc);
-       }
-   }).catch((error) => {
-       res.status(500).send("Internal Server Error.")
-   })
+   if (req.isAdmin) {
+        Poll.findByIdAndDelete(id, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+   } else {
+       res.status(401).send("Unauthorized")
+   }
+   
 })
 
 /* End Database routes */
