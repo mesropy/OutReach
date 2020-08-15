@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
+import {getUserMessages} from '../../actions/userMessages'
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import UserMessages from './UserMessages'
@@ -11,10 +12,11 @@ class User extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            messages: true,
+            messages: false,
             settings: false,
             logout: false,
-            user: this.props.userPage
+            user: this.props.userPage,
+            userMessages: getUserMessages(this.props.userPage)
         }
         this.handleMessages = this.handleMessages.bind(this)
         this.handleSettings = this.handleSettings.bind(this)
@@ -100,41 +102,21 @@ class User extends React.Component {
 
         // If settings is clicked
         const settingsComponent = this.state.settings ?  <Settings/> : null
-        const messagesComponent = this.state.messages ?  <UserMessages username={this.props.currentUser} userLoggedIn={false}/> : null
+        let userLoggedIn;
+        // If anonymous user is visiting
+        if (!currentUser) {
+            userLoggedIn = false
+        }
+        // If Admin or Owner is logged in
+        else {
+            userLoggedIn = true
+        }
+        const messagesComponent = this.state.messages ?  <UserMessages userMessages={this.state.userMessages} userPage={this.props.userPage} userLoggedIn={userLoggedIn}/> : null
 
-        // if (this.state.messages) {
-        //     // replace the following 2 lines later///
-        //     const isOwnerOrAdmin = true;
-        //     const isPublic = true;
-        //     // (1) Others accessing a public user's page
-        //     let userContent = null;
-        //     let loggedIn = false;
-        //     // (2) User accessing own account or an admin access a user's account
-        //     if (isOwnerOrAdmin) {
-        //         loggedIn = true;
-        //         userContent = <Navbar
-        //             handleMessages={this.handleMessages}
-        //             handleSettings={this.handleSettings}
-        //             handleLogout={this.handleLogout}
-        //             handleBack={this.handleBack}/>;
-        //     // (3) Others accessing a private user's profile
-        //     } else if (! isPublic) {
-        //         return 
-        //     }
-
-        //     return (
-        //         <div>
-        //             <Topbar
-        //                 username={this.props.currentUser}/>
-        //             { userContent }
-                   
-        //         </div>
-        //     )
-        // };
         return (
             <div>
                 <Topbar
-                    username={this.props.currentUser} />
+                    username={this.props.userPage.username} />
                 <Navbar
                     handleMessages={this.handleMessages}
                     handleSettings={this.handleSettings}

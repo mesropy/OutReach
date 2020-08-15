@@ -1,40 +1,43 @@
-#pending_div {
+#userMessages #published_div {
     overflow: auto;
+    top: 5vh;
+    right: 5vw;
+    position: relative;
 }
 
-#pending_div .post_div .post {
+#userMessages #published_div .post_div .post {
     float: left;
     width: 85%;
     margin-right: 0px;
 }
 
-#pending_div #edit_div {
+#userMessages #published_div #edit_div {
     position: relative;
     margin-left: 60vw;
     transform: translateY(500%);
-    width: min-content;
+    width: min-content;    
 }
 
-#messageContainer {
+#userMessages #messageContainer {
     overflow: hidden;
     width: 100%;
 }
 
-.pending_post_edit {
+#userMessages .published_post_edit {
     display: flex;
     float: left;
     margin-right: 0px;
     width: 57vw;
 }
 
-.pending_post_edit .post {
+#userMessages .published_post_edit .post {
     margin-right: 0px;
+    min-height: 250px;
     width: inherit;
     height: inherit;
-    min-height: 250px;
 }
 
-#edit_div #delete {
+#userMessages #edit_div #trash {
     color: rgb(218,128,141);
     font-size: larger;
 }
