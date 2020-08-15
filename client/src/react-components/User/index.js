@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
+import {logout} from '../../actions/logout'
 import {getUserMessages} from '../../actions/userMessages'
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
@@ -89,6 +90,7 @@ class User extends React.Component {
 
     render() {
         if (this.state.logout) {
+            logout(this.props.handleLogout)
             return <Redirect to='/'/>
         }
 
