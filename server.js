@@ -36,10 +36,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const authenticate = (req, res, next) => {
     // if a user/admin is logged in
     if (! req.session.userId) {
-        res.status(401).send("Unauthorized");
-    } else {
-        next();
+        req.isAnon = true;
+        req.isAdmin = false;
+        req.isUser = false;
     }
+    else if (req.session.userId) {
+        req.isAnon = false;
+        if (req.session.name.startsWith("admin")) {
+            req.isAdmin = true;
+            req.isUser = false;
+        } else {
+            req.isAdmin = false;
+            req.isUser = true;
+        }
+    }
+    next();
 }
 
 // Create a session cookie
@@ -118,7 +129,7 @@ app.get("/user/check-session", (req, res) => {
 
 // Get all Users
 // GET /users
-app.get('/users', (req, res) => {
+app.get('/users', authenticate, (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -126,23 +137,28 @@ app.get('/users', (req, res) => {
         return;
     }
 
-    // Get all users
-    User.find().then((user) => {
-        if (user.length === 0) {
-            res.status(404).send("Resource Not Found.")
-        }
-        else {
-            res.send(user)
-        }
-    }).catch((error) => {
-        log(error)
-        res.status(500).send("Internal Server Error.")
-    })
+    if (req.isAdmin) {
+        // Get all users
+        User.find().then((user) => {
+            if (user.length === 0) {
+                res.status(404).send("Resource Not Found.")
+            }
+            else {
+                res.send(user)
+            }
+        }).catch((error) => {
+            log(error)
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+    
 })
 
 // Get User by ID
 // GET /users/:id
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id', authenticate, (req, res) => {
     const id = req.params.id
 
     // Check if ID is valid
@@ -158,16 +174,20 @@ app.get('/users/:id', (req, res) => {
         return;
     }
 
-    User.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No User Found");
-            return ;
-        } else {
-            const resultToSend = {user: result}
-            res.send(resultToSend);
-            return ;
-        }
-    })
+    if (req.isAdmin || req.isUser) {
+        User.findById(id).then(result => {
+            if (!result) {
+                res.status(404).send("No User Found");
+                return ;
+            } else {
+                const resultToSend = {user: result}
+                res.send(resultToSend);
+                return ;
+            }
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
 })
 // Create User
 /*
@@ -230,21 +250,25 @@ app.delete('/user/:id', authenticate, (req, res) => {
        return;
    }
 
-   User.findByIdAndDelete(id, function(err, doc) {
-       if (err) {
-           res.status(500).send("Internal Server Error")
-           return ;
-       }
-       if (!doc) {
-           res.status(404).send("Resource Not Found.")
-           return ;
-       }
-       else {
-           res.send(doc);
-       }
-   }).catch((error) => {
-       res.status(500).send("Internal Server Error.")
-   })
+   if (req.isAdmin) {
+        User.findByIdAndDelete(id, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+   } else {
+       res.status(401).send("Unauthorized")
+   }
 })
 
 // Patch User
@@ -255,7 +279,7 @@ Request Body Expects:
 ]
 Returned JSON: The updated User
 */
-// PATCH /message
+// PATCH /user/:id
 app.patch('/user/:id', authenticate, (req, res) => {
 
     const id = req.params.id
@@ -272,28 +296,32 @@ app.patch('/user/:id', authenticate, (req, res) => {
         return;
     }
 
-    // Get the fields that need to be updated
-    const fieldsToUpdate = {}
-    req.body.map((change) => {
-        const propertyToChange = change.path.substr(1)
-        fieldsToUpdate[propertyToChange] = change.value
-    })
+    if (req.isAdmin || (req.isUser && req.session.userId === id)) {
+        // Get the fields that need to be updated
+        const fieldsToUpdate = {}
+        req.body.map((change) => {
+            const propertyToChange = change.path.substr(1)
+            fieldsToUpdate[propertyToChange] = change.value
+        })
 
-    User.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
-        if (err) {
-            res.status(500).send("Internal Server Error")
-            return ;
-        }
-        if (!doc) {
-            res.status(404).send("Resource Not Found.")
-            return ;
-        }
-        else {
-            res.send(doc);
-        }
-    }).catch((error) => {
-        res.status(500).send("Internal Server Error.")
-    })
+        User.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 /* Message Routes */
@@ -541,29 +569,33 @@ Request body expects:
 Returned JSON: The added Admin
 */
 // POST /admin
-app.post('/admin', (req, res) => {
+app.post('/admin', authenticate, (req, res) => {
 
-    // check mongoose connection established.
-    if (mongoose.connection.readyState != 1) {
-        log("Issue with mongoose connection")
-        res.status(500).send("Internal Server Error")
-        return;
+    if (req.isAdmin) {
+        // check mongoose connection established.
+        if (mongoose.connection.readyState != 1) {
+            log("Issue with mongoose connection")
+            res.status(500).send("Internal Server Error")
+            return;
+        }
+
+        // Make the Admin
+        const newAdmin = new Admin({
+            username: req.body.username,
+            password: req.body.password,
+        })
+
+        // Save to database
+        newAdmin.save().then((result) => {
+            res.send(result)
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request")
+            return;
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
     }
-
-    // Make the Admin
-    const newAdmin = new Admin({
-        username: req.body.username,
-        password: req.body.password,
-    })
-
-    // Save to database
-    newAdmin.save().then((result) => {
-        res.send(result)
-    }).catch((error) => {
-        log(error)
-        res.status(400).send("Bad Request")
-        return;
-    })
 })
 
 /* Poll Routes */
@@ -585,33 +617,38 @@ app.post('/poll', authenticate, (req, res) => {
         res.status(500).send("Internal Server Error")
         return;
     }
-    // Create list of PollAnswer Objects
-    const pollAnswers = []
-    for (let i=0; i < req.body.answers.length; i++) {
-        pollAnswers.push({
-            option: req.body.answers[i],
-            votes: 0
-        })
-    }
-    // Make the Poll
-    const newPoll = new Poll({
-        question: req.body.question,
-        answers: pollAnswers,
-        active: req.body.active
-    })
 
-    // Save to database
-    newPoll.save().then((result) => {
-        res.send(result)
-    }).catch((error) => {
-        res.status(400).send("Bad Request")
-        return;
-    })
+    if (req.isAdmin) {
+        // Create list of PollAnswer Objects
+        const pollAnswers = []
+        for (let i=0; i < req.body.answers.length; i++) {
+            pollAnswers.push({
+                option: req.body.answers[i],
+                votes: 0
+            })
+        }
+        // Make the Poll
+        const newPoll = new Poll({
+            question: req.body.question,
+            answers: pollAnswers,
+            active: req.body.active
+        })
+
+        // Save to database
+        newPoll.save().then((result) => {
+            res.send(result)
+        }).catch((error) => {
+            res.status(400).send("Bad Request")
+            return;
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 // Get all Polls
 // GET /polls
-app.get('/polls', (req, res) => {
+app.get('/polls', authenticate, (req, res) => {
 
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -620,18 +657,22 @@ app.get('/polls', (req, res) => {
         return;
     }
 
-    // Get all polls
-    Poll.find().then((poll) => {
-        if (poll.length === 0) {
-            res.status(404).send("Resource Not Found.")
-        }
-        else {
-            res.send(poll)
-        }
-    }).catch((error) => {
-        log(error)
-        res.status(500).send("Internal Server Error.")
-    })
+    if (req.isAdmin) {
+        // Get all polls
+        Poll.find().then((poll) => {
+            if (poll.length === 0) {
+                res.status(404).send("Resource Not Found.")
+            }
+            else {
+                res.send(poll)
+            }
+        }).catch((error) => {
+            log(error)
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 // Get the Active Poll
@@ -671,7 +712,7 @@ Request Body Expects:
 Returned JSON: The updated poll
 */
 // PATCH /poll
-app.patch('/poll/:id', authenticate, (req, res) => {
+app.patch('/poll/:id', (req, res) => {
 
     const id = req.params.id
     // Check if ID is valid
@@ -734,21 +775,26 @@ app.delete('/poll/:id', authenticate, (req, res) => {
        return;
    }
 
-   Poll.findByIdAndDelete(id, function(err, doc) {
-       if (err) {
-           res.status(500).send("Internal Server Error")
-           return ;
-       }
-       if (!doc) {
-           res.status(404).send("Resource Not Found.")
-           return ;
-       }
-       else {
-           res.send(doc);
-       }
-   }).catch((error) => {
-       res.status(500).send("Internal Server Error.")
-   })
+   if (req.isAdmin) {
+        Poll.findByIdAndDelete(id, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+   } else {
+       res.status(401).send("Unauthorized")
+   }
+   
 })
 
 /* End Database routes */

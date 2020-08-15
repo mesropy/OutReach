@@ -32,7 +32,6 @@ class Published extends React.Component {
                                 pin_down_pos={ message.pinDownPos }
                                 public_account={ message.public_account }
                                 published={ message.published }
-                                city={ message.city }
                             />
                             </div>
                             <div id="edit_div" className="text-center">
