@@ -11,7 +11,7 @@ export const readCookie = (handleLogin) => {
         .then(json => {
             if (json && json.currentUser) {
                 // set the global user state
-                handleLogin(json.currentUser);
+                handleLogin(json.currentUser, json.currentUserId);
             }
         })
         .catch(error => {
