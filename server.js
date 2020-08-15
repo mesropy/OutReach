@@ -36,18 +36,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const authenticate = (req, res, next) => {
     // if a user/admin is logged in
     if (! req.session.userId) {
-        res.isAnon = true;
-        res.isAdmin = false;
-        res.isUser = false;
+        req.isAnon = true;
+        req.isAdmin = false;
+        req.isUser = false;
     }
     else if (req.session.userId) {
-        res.isAnon = false;
+        req.isAnon = false;
         if (req.session.name.startsWith("admin")) {
-            res.isAdmin = true;
-            res.isUser = false;
+            req.isAdmin = true;
+            req.isUser = false;
         } else {
-            res.isAdmin = false;
-            res.isUser = true;
+            req.isAdmin = false;
+            req.isUser = true;
         }
     }
     next();
