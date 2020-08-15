@@ -25,7 +25,8 @@ export function getUsers() {
 export function renderUsers(routerProps) {
     const username = routerProps.match.params.username;
     const foundUser = this.state.users.find(user => user.username === username);
-    const component = foundUser ? <User userPage={foundUser}
+    const component = foundUser ? <User
+                                    userPage={foundUser}
                                     currentUser={this.state.currentUser}
                                     currentUserId={this.state.currentUserId}
                                     handleLogout={this.handleLogout.bind(this)} /> : null

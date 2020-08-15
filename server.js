@@ -305,6 +305,55 @@ app.get('/users/:username', (req, res) => {
     })
 })
 
+// Patch User
+/*
+Request Body Expects:
+[
+    {"op": "replace", "path": "/public", "value": <true or false>},
+]
+Returned JSON: The updated User
+*/
+// PATCH /message
+app.patch('/user/:id', authenticate, (req, res) => {
+
+    const id = req.params.id
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+     // check mongoose connection established.
+     if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    // Get the fields that need to be updated
+    const fieldsToUpdate = {}
+    req.body.map((change) => {
+        const propertyToChange = change.path.substr(1)
+        fieldsToUpdate[propertyToChange] = change.value
+    })
+
+    User.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
+        if (err) {
+            res.status(500).send("Internal Server Error")
+            return ;
+        }
+        if (!doc) {
+            res.status(404).send("Resource Not Found.")
+            return ;
+        }
+        else {
+            res.send(doc);
+        }
+    }).catch((error) => {
+        res.status(500).send("Internal Server Error.")
+    })
+})
+
 /* Message Routes */
 
 // Get All Messages
@@ -456,7 +505,7 @@ Request Body Expects:
 [
     {"op": "replace", "path": "/published", "value": <true or false>},
 ]
-Returned JSON: The updated poll
+Returned JSON: The updated Message
 */
 // PATCH /message
 app.patch('/message/:id', authenticate, (req, res) => {

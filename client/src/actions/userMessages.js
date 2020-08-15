@@ -72,3 +72,42 @@ export function removeUserMessage(message) {
         userMessages: filteredMessages
     });
 }
+
+// Change User Privacy Option
+export function handlePublic(user) {
+
+    const newValue = !user.public
+
+    // Update Database
+    // Activate/Deactivate the main poll
+    let url = '/user/' + user._id;
+    // Data sent to the request
+    let data = [
+        {"op": "replace", "path": "/public", "value": newValue}
+    ]
+
+    // Create request constructor with parameters
+    let request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then((res) => {
+        if (res.status !== 200) {
+            console.log("Couldn't update the database.")
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+
+    user.public = newValue
+
+    // Update State
+    this.setState({
+        user: user
+    })
+
+}

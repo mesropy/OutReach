@@ -103,7 +103,7 @@ class User extends React.Component {
         }
 
         // If settings is clicked
-        const settingsComponent = this.state.settings ?  <Settings/> : null
+        const settingsComponent = this.state.settings ?  <Settings user={this} userPage={this.state.user}/> : null
         let userLoggedIn;
         // If anonymous user is visiting
         if (!currentUser) {
@@ -113,12 +113,12 @@ class User extends React.Component {
         else {
             userLoggedIn = true
         }
-        const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.props.userPage} userLoggedIn={userLoggedIn}/> : null
+        const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.state.user} userLoggedIn={userLoggedIn}/> : null
 
         return (
             <div>
                 <Topbar
-                    username={this.props.userPage.username} />
+                    username={this.state.user.username} />
                 <Navbar
                     handleMessages={this.handleMessages}
                     handleSettings={this.handleSettings}
