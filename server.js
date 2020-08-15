@@ -571,29 +571,33 @@ Request body expects:
 Returned JSON: The added Admin
 */
 // POST /admin
-app.post('/admin', (req, res) => {
+app.post('/admin', authenticate, (req, res) => {
 
-    // check mongoose connection established.
-    if (mongoose.connection.readyState != 1) {
-        log("Issue with mongoose connection")
-        res.status(500).send("Internal Server Error")
-        return;
+    if (req.isAdmin) {
+        // check mongoose connection established.
+        if (mongoose.connection.readyState != 1) {
+            log("Issue with mongoose connection")
+            res.status(500).send("Internal Server Error")
+            return;
+        }
+
+        // Make the Admin
+        const newAdmin = new Admin({
+            username: req.body.username,
+            password: req.body.password,
+        })
+
+        // Save to database
+        newAdmin.save().then((result) => {
+            res.send(result)
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request")
+            return;
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
     }
-
-    // Make the Admin
-    const newAdmin = new Admin({
-        username: req.body.username,
-        password: req.body.password,
-    })
-
-    // Save to database
-    newAdmin.save().then((result) => {
-        res.send(result)
-    }).catch((error) => {
-        log(error)
-        res.status(400).send("Bad Request")
-        return;
-    })
 })
 
 /* Poll Routes */
