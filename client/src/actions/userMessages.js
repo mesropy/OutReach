@@ -1,4 +1,5 @@
 import {getAge, getTime, getDate} from './adminMessagesEdit'
+import date from 'date-and-time'
 
 // Get data for User Messages
 export function getUserMessages(user) {
@@ -76,7 +77,6 @@ export function removeUserMessage(message) {
 
 // Change User's username
 export function changeUsername(user, newUsername, global) {
-    console.log(newUsername)
     if (checkUsername(newUsername)) {
         console.log("Username must match description.")
         return false;
@@ -118,6 +118,46 @@ export function changeUsername(user, newUsername, global) {
     return true;
 }
 
+// Change the User's DOB
+export function changeDOB(user, newDOB) {
+    if (checkAge(newDOB)) {
+        console.log("Age is less than 13 years old")
+        return false;
+    }
+    const newDOBformatted = date.format(newDOB, "YYYY-MM-DD")
+
+    // Update Database
+    const url = '/user/' + user._id;
+    // Data sent to the request
+    const data = [
+        {"op": "replace", "path": "/dob", "value": newDOBformatted}
+    ]
+
+    // Create request constructor with parameters
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then((res) => {
+        if (res.status !== 200) {
+            console.log("Couldn't update the database.")
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+
+    user.dob = newDOBformatted
+    // Update State
+    this.setState({
+        user: user
+    })
+    return true;
+}
+
 // Check if username is valid. Return true if not valid
 function checkUsername(newUsername) {
     return !(newUsername.length >= 6 && /^[0-9a-zA-Z]+$/.test(newUsername))
@@ -133,6 +173,22 @@ function checkDuplicateName(newUsername) {
     }
   });
   return duplicate;
+}
+
+// Check if the new DOB is older than 13
+function checkAge(newAge) {
+    if (newAge === "") {
+        return false
+    }
+
+    let today = new Date();
+    let birth_date = new Date(newAge);
+    let age = today.getFullYear() - birth_date.getFullYear();
+    let month_diff = today.getMonth() - birth_date.getMonth()
+    if (month_diff < 0 || (month_diff === 0 && today.getDate() < birth_date.getDate())) {
+        age = age - 1
+    }
+    return age < 13;
 }
 
 // Change User Privacy Option

@@ -1,9 +1,11 @@
 import React from "react";
 import './styles.css';
-import {handlePublic, changeUsername} from '../../../actions/userMessages'
+import {handlePublic, changeUsername, changeDOB} from '../../../actions/userMessages'
 import Table from '@material-ui/core/Table';
 import TableBody from "@material-ui/core/TableBody";
-import { TableRow, TableCell, FormControlLabel, Switch, TextField } from "@material-ui/core";
+import { TableRow, TableCell, FormControlLabel, Switch, TextField, } from "@material-ui/core";
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,10 +16,13 @@ class Settings extends React.Component {
         this.state = {
             editUsername: false,
             newUsername: "",
-            editDOB: false
+            editDOB: false,
+            newDOB: this.props.userPage.dob
         };
         this.handleEditUsername = this.handleEditUsername.bind(this);
+        this.handleEditDOB = this.handleEditDOB.bind(this);
         this.handleInput = this.handleInput.bind(this)
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     handleEditUsername() {
@@ -28,6 +33,14 @@ class Settings extends React.Component {
         })
     }
 
+    handleEditDOB() {
+        const toggle = this.state.editDOB;
+        this.setState({
+            editUsername: false,
+            editDOB: !toggle
+        })
+    }
+
     handleInput = event => {
         const value = event.target.value;
         const name = event.target.name;
@@ -35,6 +48,12 @@ class Settings extends React.Component {
             [name]: value
         });
     };
+
+    handleDateChange(date) {
+        this.setState({
+            newDOB: date
+        })
+    }
 
     render() {
         return (
@@ -74,9 +93,36 @@ class Settings extends React.Component {
                             <TableCell>
                                 Date of Birth:
                             </TableCell>
-                            <TableCell>
-                                {this.props.userPage.dob}
-                            </TableCell>
+                                {this.state.editDOB ?
+                                <TableCell>
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                        <KeyboardDatePicker
+                                        margin="normal"
+                                        id="date-picker-dialog"
+                                        label="Date picker dialog"
+                                        format="yyyy-MM-dd"
+                                        value={this.state.newDOB}
+                                        onChange={this.handleDateChange}
+                                        KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                        }}
+                                        />
+                                    </MuiPickersUtilsProvider>
+                                    <button id="confirmDOB" className="text-center" onClick={() => {
+                                        if (changeDOB.bind(this.props.user, this.props.userPage, this.state.newDOB)()) {
+                                            this.handleEditDOB()
+                                        }
+                                    }}>
+                                        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+                                    </button>
+                                </TableCell> : 
+                                <TableCell>
+                                    {this.props.userPage.dob}
+                                    <button id="editDOB" className="text-center" onClick={this.handleEditDOB}>
+                                        <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
+                                    </button>
+                                </TableCell>
+                                }
                         </TableRow>
                         <TableRow>
                             <TableCell>

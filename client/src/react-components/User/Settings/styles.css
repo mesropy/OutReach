@@ -31,3 +31,7 @@
   background-color: inherit;
   border: none;
 }
+
+.MuiDialog-root .MuiBackdrop-root {
+  z-index: 0;
+}
