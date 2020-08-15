@@ -354,11 +354,9 @@ app.get('/message/:id', (req, res) => {
     })
 })
 
-// get message by MessageId
-
 // Get Messages of a specific city
-// GET /message/:city
-app.get('/message/:city', (req, res) => {
+// GET /message/city/:city
+app.get('/message/city/:city', (req, res) => {
     const cityToGet = req.params.city
 
     // check mongoose connection established.
