@@ -387,6 +387,7 @@ Request body expects:
     text: <Text Containing the message>,
     date: <Date of Posting as YYYY-MM-DD HH:MM>,
     location: <Coordinates of Message as X and Y values and Name>,
+    city: <Name of city the message is in>,
     published: <False if Pending, True if Published>,
     author: User ID
 }

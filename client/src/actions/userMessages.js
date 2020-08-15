@@ -31,7 +31,8 @@ export function getUserMessages(user) {
                 published: message.published,
                 locationName: message.location.name,
                 pinLeftPos: `${message.location.x}%`,
-                pinDownPos: `${message.location.y}%`
+                pinDownPos: `${message.location.y}%`,
+                city: message.city
             }
             newUserMessages.push(newMessage)
         })

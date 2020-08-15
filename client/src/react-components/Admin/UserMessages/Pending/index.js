@@ -32,6 +32,7 @@ class Pending extends React.Component {
                                       location_name={ message.locationName }
                                       pin_left_pos={ message.pinLeftPos }
                                       pin_down_pos={ message.pinDownPos }
+                                      city={ message.city }
                                   />
                                 </div>
                                 <div id="edit_div" className="text-center" >

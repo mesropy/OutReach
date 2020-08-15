@@ -56,14 +56,16 @@ class Message extends React.Component {
         const {username, public_account, age, time, date, content, published, location_name,
                pin_left_pos, pin_down_pos, city} = this.props;
         let map = toronto_map;
-        switch(city) {
-            case "MONTRÉAL":
-                map = montreal_map;
-                break;
-            case "PARIS":
-                map = paris_map;
-                break;
-            default:
+        if (city) { // make sure is defined / not null
+          switch(city.toLowerCase()) {
+              case "montréal":
+                  map = montreal_map;
+                  break;
+              case "paris":
+                  map = paris_map;
+                  break;
+              default:
+          }
         }
 
         return (

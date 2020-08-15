@@ -64,7 +64,6 @@ export const addMessage = (timeline, username, userId, cityName)  => {
             // add the message to the database with a server call
 
             const newMessageData = {
-                city: cityName,
                 text: newMessage.content,
                 date: dateAndTime.format(now, "YYYY-MM-DD HH:MM"),
                 location: {
@@ -72,6 +71,7 @@ export const addMessage = (timeline, username, userId, cityName)  => {
                   x: timeline.state.pinLeftPos,
                   y: timeline.state.pinDownPos
                 },
+                city: cityName,
                 published: false,
                 author: userId
             }

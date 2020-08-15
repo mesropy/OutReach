@@ -69,7 +69,8 @@ export function getInfo() {
                     published: message.published,
                     locationName: message.location.name,
                     pinLeftPos: `${message.location.x}%`,
-                    pinDownPos: `${message.location.y}%`
+                    pinDownPos: `${message.location.y}%`,
+                    city: message.city
                 }
                 if (message.published) {
                     newPublishedMessages.push(newMessage)
