@@ -12,6 +12,7 @@ class MessageList extends React.Component {
             <div id="messageList">
                 {messages.map(message => (
                     <Message
+                        city={ message.city }
                         key={uid(message)}
                         username={ message.username }
                         public_account={ message.public_account }

@@ -54,7 +54,17 @@ class Message extends React.Component {
 
     render() {
         const {username, public_account, age, time, date, content, published, location_name,
-               pin_left_pos, pin_down_pos} = this.props;
+               pin_left_pos, pin_down_pos, city} = this.props;
+        let map = toronto_map;
+        switch(city) {
+            case "MONTRÉAL":
+                map = montreal_map;
+                break;
+            case "PARIS":
+                map = paris_map;
+                break;
+            default:
+        }
 
         return (
             <div className="post">
@@ -87,7 +97,7 @@ class Message extends React.Component {
                 { this.state.showLocationPopup ?
                 <LocationPopup
                     location_name={ location_name }
-                    city_map={ toronto_map }
+                    city_map={ map }
                     pin_left_pos={ pin_left_pos }
                     pin_down_pos={ pin_down_pos }
                     closePopup={ this.toggle.bind(this) } /> : null }

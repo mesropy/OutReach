@@ -42,6 +42,7 @@ export const addMessage = (timeline, username, userId, cityName)  => {
 
             // add a new message to the page by adding it to the messages list
             const newMessage = {
+              city: cityName,
               username: username,
               public_account: public_account,
               age: age,
@@ -63,6 +64,7 @@ export const addMessage = (timeline, username, userId, cityName)  => {
             // add the message to the database with a server call
 
             const newMessageData = {
+                city: cityName,
                 text: newMessage.content,
                 date: dateAndTime.format(now, "YYYY-MM-DD HH:MM"),
                 location: {

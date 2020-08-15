@@ -20,6 +20,7 @@ class Pending extends React.Component {
                             <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
                                   <Message
+                                      city={ message.city }
                                       key={uid(message)}
                                       username={ message.username }
                                       public_account={ message.public_account }
@@ -54,6 +55,7 @@ class Pending extends React.Component {
                         <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                                 <Message
+                                      city={ message.city }
                                       key={uid(message)}
                                       username={ message.username }
                                       age={ message.age }

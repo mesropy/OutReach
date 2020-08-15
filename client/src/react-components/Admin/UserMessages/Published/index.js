@@ -20,6 +20,7 @@ class Published extends React.Component {
                         <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                             <Message
+                                city={ message.city }
                                 key={uid(message)}
                                 username={ message.username }
                                 age={ message.age }
@@ -51,6 +52,7 @@ class Published extends React.Component {
                             <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
                                     <Message
+                                        city={ message.city }
                                         key={uid(message)}
                                         username={ message.username }
                                         age={ message.age }

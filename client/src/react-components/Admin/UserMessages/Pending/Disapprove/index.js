@@ -23,6 +23,7 @@ class Disapprove extends React.Component {
                   <div className="post_div">
                   <h4>Are you sure you would like to disapprove this message?</h4>
                     <Message
+                        city={ message.city }
                         key={uid(message)}
                         username={ message.username }
                         age={ message.age }
