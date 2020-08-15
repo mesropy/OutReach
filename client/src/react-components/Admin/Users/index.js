@@ -73,6 +73,7 @@ class Users extends React.Component {
                     user={this.state.userDelete}
                     usersComponent={this}
                     closePopup={this.closePopup}
+                    global={this.props.global}
                 />
             )
         }

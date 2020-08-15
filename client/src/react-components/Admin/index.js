@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
+import {logout} from '../../actions/logout';
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import Users from './Users'
@@ -69,12 +70,12 @@ class Admin extends React.Component {
 
     render() {
         if (this.state.logout) {
-            this.props.handleLogout();
+            logout(this.props.handleLogout)
             return <Redirect to='/'/>
         }
         let content;
         if (this.state.users) {
-            content = <Users/>
+            content = <Users global={this.props.global}/>
         }
         else if (this.state.userMessages) {
             content = <UserMessages/>

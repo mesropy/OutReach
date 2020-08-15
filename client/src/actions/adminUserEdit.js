@@ -1,5 +1,7 @@
+import {getUsers} from './dynamicRouting'
+
 // Removes a user from the list of users
-export const removeUser = (list, user) => {
+export const removeUser = (list, user, global) => {
 
     // Update Database
     // Delete the User
@@ -12,6 +14,7 @@ export const removeUser = (list, user) => {
     fetch(request).then(res => {
         if (res.status === 200) {
             console.log("User Deleted")
+            getUsers.bind(global)();
         } else {
             console.log("Couldn't delete user")
         }

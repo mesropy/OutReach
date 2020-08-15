@@ -29,6 +29,7 @@ class AdminPoll extends React.Component {
         })
     }
 
+    // Handle Create Popup
     handleCreate() {
         const toggle = !this.state.create
         this.setState({
@@ -39,7 +40,7 @@ class AdminPoll extends React.Component {
 
     render() {
         if (this.state.create) {
-            return <CreatePoll parentState={this} handleCreate={this.handleCreate}></CreatePoll>
+            return <CreatePoll parentState={this}></CreatePoll>
         }
         const edit = this.state.edit ? <button id="done_button" onClick={this.handleEdit}>
                                         <h6 id="done">Done</h6>
