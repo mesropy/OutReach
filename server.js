@@ -768,11 +768,12 @@ app.use(express.static(__dirname + "/client/build"));
 
 // Routes
 app.get("*", (req, res) => {
-    // const goodPageRoutes = ["/", "/WorldMap", "/Toronto", "/Paris", "/Montréal", "/Register", "/Login", "/admin", "/user/Faisal"];
-    // if (!goodPageRoutes.includes(req.url)) {
-    //     // if url not in expected page routes, set status to 404.
-    //     res.status(404);
-    // }
+    const goodPageRoutes = ["/", "/WorldMap", "/Register", "/Login", "/admin", "/Toronto", "/Paris", "/Montr%C3%A9al"];
+    if (!(goodPageRoutes.includes(req.url) || req.url.startsWith("/user/"))) {
+        // if url not in expected page routes, set status to 404.
+        res.status(404).send("Invalid Page");
+        return;
+    }
 
     // send index.html
     res.sendFile(__dirname + "/client/build/index.html");
