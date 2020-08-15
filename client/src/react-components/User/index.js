@@ -2,6 +2,7 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import {logout} from '../../actions/logout'
 import {getUserMessages} from '../../actions/userMessages'
+import {addMessage} from '../../actions/addMessage'
 import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import UserMessages from './UserMessages'
@@ -18,13 +19,26 @@ class User extends React.Component {
             settings: false,
             logout: false,
             user: this.props.userPage,
-            userMessages: getUserMessages(this.props.userPage)
+            userMessages: getUserMessages(this.props.userPage),
+
+            content: "",
+            locationName: "",
+            pinLeftPos: "",
+            pinDownPos: "",
+            messages: []
         }
         this.handleMessages = this.handleMessages.bind(this)
         this.handleSettings = this.handleSettings.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
         this.handleBack = this.handleBack.bind(this);
         this.authorize = this.authorize.bind(this)
+
+        this.handleInput = this.handleInput.bind(this)
+        this.removeContent = this.removeContent.bind(this)
+        this.handleLocationLeft = this.handleLocationLeft.bind(this)
+        this.handleLocationDown = this.handleLocationDown.bind(this)
+        this.handleLocationName = this.handleLocationName.bind(this)
+        this.removeLocation = this.removeLocation.bind(this)
     }
 
     handleMessages(e) {
@@ -89,6 +103,47 @@ class User extends React.Component {
         }
     }
 
+      handleInput = event => {
+          const value = event.target.value;
+          const name = event.target.name;
+          this.setState({
+              [name]: value
+          });
+      };
+    
+      removeContent = () => {
+        this.setState({
+          content: ""
+        });
+      };
+    
+      handleLocationLeft = (left) => {
+        this.setState({
+          pinLeftPos: left
+        });
+      };
+    
+      handleLocationDown = (down) => {
+        this.setState({
+          pinDownPos: down
+        });
+      };
+    
+      handleLocationName = (name) => {
+        this.setState({
+          locationName: name
+        });
+      };
+    
+      removeLocation = () => {
+        this.setState({
+          locationName: "",
+          pinLeftPos: "",
+          pinDownPos: ""
+        });
+      };
+    
+
     render() {
         if (this.state.logout) {
             logout(this.props.handleLogout)
@@ -114,7 +169,6 @@ class User extends React.Component {
         else {
             userLoggedIn = true
         }
-        console.log(userPage.city, userPage.username, userPage._id);
         const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.state.user} userLoggedIn={userLoggedIn}/> : null
         return (
             <div>
@@ -131,7 +185,19 @@ class User extends React.Component {
                 />
                 {messagesComponent}
                 {settingsComponent}
-                { userLoggedIn ? <MessageAdder city={ userPage.city } currentUser= {userPage.username} currentUserId={userPage._id} /> : null}
+                { userLoggedIn ? 
+                    <MessageAdder
+                        city={ userPage.city }
+                        handleInput={ this.handleInput }
+                        addMessage={ () => addMessage(this, userPage.username, userPage._id, userPage.city) }
+                        currentUser={ userPage.username }
+                        currentUserId={ userPage._id }
+                        handleLocationLeft={ this.handleLocationLeft }
+                        handleLocationDown={ this.handleLocationDown }
+                        handleLocationName={ this.handleLocationName }
+                        removeContent={ this.removeContent }
+                        removeLocation={ this.removeLocation }
+                    /> : null}
             </div>
         )
     }
