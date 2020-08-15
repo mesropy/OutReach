@@ -55,6 +55,7 @@ class Message extends React.Component {
     render() {
         const {username, public_account, age, time, date, content, published, location_name,
                pin_left_pos, pin_down_pos, city} = this.props;
+
         let map = toronto_map;
         if (city) { // make sure is defined / not null
           switch(city.toLowerCase()) {
