@@ -48,24 +48,24 @@ export function getInfo() {
                     return user.json()
                 }
             }).then(data => {
-                if (data === null) {
+                if (data.user === null) {
                     return ;
                 }
-                const age = getAge(data.dob)
+                const age = getAge(data.user.dob)
                 const time = getTime(message.date)
                 const date = getDate(message.date)
                 const newMessage = {
                     _id: message._id,
-                        username: data.username,
-                        public_account: data.public,
-                        age: (age.toString()), 
-                        time: time, 
-                        date: date, 
-                        content: message.text,
-                        published: message.published,
-                        locationName: message.location.name, 
-                        pinLeftPos: `${message.location.x}%`, 
-                        pinDownPos: `${message.location.y}%`
+                    username: data.user.username,
+                    public_account: data.user.public,
+                    age: (age.toString()), 
+                    time: time, 
+                    date: date, 
+                    content: message.text,
+                    published: message.published,
+                    locationName: message.location.name, 
+                    pinLeftPos: `${message.location.x}%`, 
+                    pinDownPos: `${message.location.y}%`
                 }
                 if (message.published) {
                     newPublishedMessages.push(newMessage)
