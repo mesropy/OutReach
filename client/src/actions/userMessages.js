@@ -24,7 +24,7 @@ export function getUserMessages(user) {
                 _id: message._id,
                 username: user.username,
                 public_account: user.public,
-                age: age ? (age.toString()) : null, 
+                age: age ? (age.toString()) : null,
                 time: time,
                 date: date,
                 content: message.text,
