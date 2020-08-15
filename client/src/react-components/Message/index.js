@@ -35,7 +35,7 @@ class LocationPopup extends React.Component {
     }
 }
 
-// componenet for the message
+// Component for the message
 class Message extends React.Component {
   constructor() {
       super();

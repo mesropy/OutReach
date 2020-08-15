@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './styles.css'
 import {TableCell, TableRow, Button} from "@material-ui/core"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,7 +20,9 @@ class User extends React.Component {
         return (
             <TableRow key={user.username}>
                 <TableCell component="th" scope="row">
+                <Link to={"/user/".concat(user.username)}>
                     {'@' + user.username}
+                </Link>
                 </TableCell>
                 <TableCell component="th" scope="row">
                     {user.dob}
