@@ -129,7 +129,7 @@ app.get("/user/check-session", (req, res) => {
 
 // Get all Users
 // GET /users
-app.get('/users', (req, res) => {
+app.get('/users', authenticate, (req, res) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -137,23 +137,28 @@ app.get('/users', (req, res) => {
         return;
     }
 
-    // Get all users
-    User.find().then((user) => {
-        if (user.length === 0) {
-            res.status(404).send("Resource Not Found.")
-        }
-        else {
-            res.send(user)
-        }
-    }).catch((error) => {
-        log(error)
-        res.status(500).send("Internal Server Error.")
-    })
+    if (req.isAdmin) {
+        // Get all users
+        User.find().then((user) => {
+            if (user.length === 0) {
+                res.status(404).send("Resource Not Found.")
+            }
+            else {
+                res.send(user)
+            }
+        }).catch((error) => {
+            log(error)
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+    
 })
 
 // Get User by ID
 // GET /users/:id
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id', authenticate, (req, res) => {
     const id = req.params.id
 
     // Check if ID is valid
@@ -169,16 +174,20 @@ app.get('/users/:id', (req, res) => {
         return;
     }
 
-    User.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No User Found");
-            return ;
-        } else {
-            const resultToSend = {user: result}
-            res.send(resultToSend);
-            return ;
-        }
-    })
+    if (req.isAdmin || req.isUser) {
+        User.findById(id).then(result => {
+            if (!result) {
+                res.status(404).send("No User Found");
+                return ;
+            } else {
+                const resultToSend = {user: result}
+                res.send(resultToSend);
+                return ;
+            }
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
 })
 // Create User
 /*
@@ -241,21 +250,25 @@ app.delete('/user/:id', authenticate, (req, res) => {
        return;
    }
 
-   User.findByIdAndDelete(id, function(err, doc) {
-       if (err) {
-           res.status(500).send("Internal Server Error")
-           return ;
-       }
-       if (!doc) {
-           res.status(404).send("Resource Not Found.")
-           return ;
-       }
-       else {
-           res.send(doc);
-       }
-   }).catch((error) => {
-       res.status(500).send("Internal Server Error.")
-   })
+   if (req.isAdmin) {
+        User.findByIdAndDelete(id, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+   } else {
+       res.status(401).send("Unauthorized")
+   }
 })
 
 // Patch User
@@ -266,7 +279,7 @@ Request Body Expects:
 ]
 Returned JSON: The updated User
 */
-// PATCH /message
+// PATCH /user/:id
 app.patch('/user/:id', authenticate, (req, res) => {
 
     const id = req.params.id
@@ -283,28 +296,32 @@ app.patch('/user/:id', authenticate, (req, res) => {
         return;
     }
 
-    // Get the fields that need to be updated
-    const fieldsToUpdate = {}
-    req.body.map((change) => {
-        const propertyToChange = change.path.substr(1)
-        fieldsToUpdate[propertyToChange] = change.value
-    })
+    if (req.isAdmin || (req.isUser && req.session.userId === id)) {
+        // Get the fields that need to be updated
+        const fieldsToUpdate = {}
+        req.body.map((change) => {
+            const propertyToChange = change.path.substr(1)
+            fieldsToUpdate[propertyToChange] = change.value
+        })
 
-    User.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
-        if (err) {
-            res.status(500).send("Internal Server Error")
-            return ;
-        }
-        if (!doc) {
-            res.status(404).send("Resource Not Found.")
-            return ;
-        }
-        else {
-            res.send(doc);
-        }
-    }).catch((error) => {
-        res.status(500).send("Internal Server Error.")
-    })
+        User.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized.")
+    }
 })
 
 /* Message Routes */
