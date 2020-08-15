@@ -53,7 +53,7 @@ class Navbar extends React.Component {
                     </button>
                 </Nav.Item>
                 <Nav.Item className="text-center">
-                    <h5>My Account</h5>
+                    <h5>User Account</h5>
                 </Nav.Item>
                 <Nav.Item className={this.state.usersClass}>
                     <button onClick={() => { handleMessages(); this.changeUsersClass() }}>
@@ -61,16 +61,16 @@ class Navbar extends React.Component {
                         <h6>Messages</h6>
                     </button>
                 </Nav.Item>
-                {userLoggedIn ? <Nav.Item className={this.state.messagesClass}>
+                {userLoggedIn ? <div><Nav.Item className={this.state.messagesClass}>
                     <button onClick={() => { handleSettings(); this.changeMessagesClass() }}>
                         <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
                         <h6>Settings</h6>
                     </button>
-                </Nav.Item> : null }
+                </Nav.Item>
                 <br /><br /><br />
                 <Nav.Item className="text-center">
                     <input type="button" value="Logout" onClick={handleLogout}></input>
-                </Nav.Item>
+                </Nav.Item></div> : null }
             </Nav>
         )
     }
