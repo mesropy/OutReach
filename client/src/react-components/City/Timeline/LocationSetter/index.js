@@ -63,11 +63,8 @@ class LocationSettingPopup extends React.Component {
       // (^ this is commented out now to avoid warnings)
       // here we will get the map of the city from a database using the city name
       // (now it will always show the Toronto map)
-      let map;
-      switch (city) {
-        case "TORONTO":
-          map = toronto_map;
-          break;
+      let map = toronto_map;
+      switch (this.props.city) {
         case "MONTRÉAL":
           map = montreal_map;
           break;
@@ -195,6 +192,7 @@ class LocationSetter extends React.Component {
                 </Button>
                 {this.state.show ?
                     <LocationSettingPopup
+                        city={this.props.city}
                         closePopup={this.toggle.bind(this)}
                         handleLocationLeft={ this.props.handleLocationLeft }
                         handleLocationDown={ this.props.handleLocationDown }
