@@ -9,7 +9,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 class DeleteUser extends React.Component {
 
     render() {
-        const {user, usersComponent, closePopup} = this.props
+        const {user, usersComponent, closePopup, global} = this.props
         return (
             <div id="delete_div">
                 <div id="icon_div" className="text-right">
@@ -19,7 +19,7 @@ class DeleteUser extends React.Component {
                 <h5 className="text-center">this action cannot be undone</h5><br/>
                 <div id="delete_buttons" className="text-center">
                     <button id="cancel" onClick={closePopup}>cancel</button>
-                    <button id="delete" onClick={() => {removeUser.bind(this, usersComponent, user)(); closePopup() }}>
+                    <button id="delete" onClick={() => {removeUser.bind(this, usersComponent, user, global)(); closePopup() }}>
                         <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>delete
                     </button>
                 </div>

@@ -75,7 +75,7 @@ class Admin extends React.Component {
         }
         let content;
         if (this.state.users) {
-            content = <Users/>
+            content = <Users global={this.props.global}/>
         }
         else if (this.state.userMessages) {
             content = <UserMessages/>

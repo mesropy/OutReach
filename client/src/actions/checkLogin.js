@@ -10,7 +10,7 @@ export const checkLogin = (state) => {
 // Check if currentUser is an admin
 export function checkAdmin() {
     const currentUser = this.state.currentUser;
-    const adminComponent = <Admin handleLogout={this.handleLogout.bind(this)} />;
+    const adminComponent = <Admin global={this} handleLogout={this.handleLogout.bind(this)} />;
     const homeComponent = <Home
                                 currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
