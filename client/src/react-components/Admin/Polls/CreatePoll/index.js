@@ -14,7 +14,11 @@ class CreatePoll extends React.Component {
             pollActive: false,
             pollQuestion: "",
             pollOption1: "",
-            pollOption2: ""
+            pollOption2: "",
+            pollOption3: "",
+            pollOption4: "",
+            error: false,
+            errorMessage: ""
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -36,7 +40,7 @@ class CreatePoll extends React.Component {
 
     render() {
 
-        const {parentState, handleCreate} = this.props
+        const {parentState} = this.props
 
         let poll_class = ""
         let error_class = ""
@@ -51,7 +55,7 @@ class CreatePoll extends React.Component {
         return (
             <div id="polls_div">
                 <div id="icon_div" className="text-right">
-                    <button onClick={handleCreate.bind(parentState)}><FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon></button>
+                    <button onClick={parentState.handleCreate}><FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon></button>
                 </div>
                 <h4>Create a Poll</h4>
                 <form id="poll_form" className="text-center">
@@ -60,6 +64,10 @@ class CreatePoll extends React.Component {
                     <input className={poll_class} type="text" name="pollOption1" value={this.state.pollOption1} placeholder="Poll Option 1" onChange={this.handleChange}></input>
                     <br/>
                     <input className={poll_class} type="text" name="pollOption2" value={this.state.pollOption2} placeholder="Poll Option 2" onChange={this.handleChange}></input>
+                    <br/>
+                    <input className={poll_class} type="text" name="pollOption3" value={this.state.pollOption3} placeholder="Poll Option 3" onChange={this.handleChange}></input>
+                    <br/>
+                    <input className={poll_class} type="text" name="pollOption4" value={this.state.pollOption4} placeholder="Poll Option 4" onChange={this.handleChange}></input>
                     <br/>
                     <h6 style={{display: "inline", textAlign:"left"}}>Set Active: </h6>
                     <FormControlLabel control={
@@ -71,10 +79,9 @@ class CreatePoll extends React.Component {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />} label={this.state.pollActive ? "On" : "Off"}/>
                     <br/><br/>
-                    <button id="poll_button" type="button" onClick={() => {handleSubmit.bind(this, parentState)(); handleCreate()}}>Submit</button>
+                    <button id="poll_button" type="button" onClick={() => {handleSubmit.bind(this, parentState)()}}>Submit</button>
                     <div className={error_class}>
-                        <h5 className="error_message">Missing Poll Question</h5>
-                        <h5 className="error_message">Please enter atleast one option.</h5>
+                        <h5 className="error_message">{this.state.errorMessage}</h5>
                     </div>
                 </form>
             </div>

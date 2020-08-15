@@ -121,9 +121,35 @@ export function handleSubmit(parentState) {
     // Add Poll to Database
     const url = '/poll';
 
+    // Check Question
+    if (this.state.pollQuestion === "") {
+        this.setState({
+            error: true,
+            errorMessage: "Missing Poll Question"
+        })
+        return ;
+    }
+
+    // Get non-empty poll Options
+    const tempPollAnswers = [this.state.pollOption1, this.state.pollOption2, this.state.pollOption3, this.state.pollOption4]
+    const pollAnswers = tempPollAnswers.filter((poll) => {
+        if (poll !== "") {
+            return poll
+        }
+    })
+
+    if (pollAnswers.length <= 1) {
+        this.setState({
+            error: true,
+            errorMessage: "Please enter atleast two poll options."
+        })
+        return ;
+    }
+
+    // Payload
     const body = {
         "question": this.state.pollQuestion,
-        "answers": [this.state.pollOption1, this.state.pollOption2],
+        "answers": pollAnswers,
         "active": this.state.pollActive
     }
     const request = new Request(url, {
@@ -146,6 +172,8 @@ export function handleSubmit(parentState) {
             // Activate Poll (or do nothing if it's not active) and update information
             json.active = !json.active
             handleActive.bind(this, parentState, json)()
+            // Go back to the Polls menu
+            parentState.handleCreate();
         })
         .catch(error => {
             console.log(error);
