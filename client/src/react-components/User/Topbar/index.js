@@ -8,11 +8,6 @@ import { faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 import "./styles.css"
 
 class Topbar extends React.Component {
-    state = {
-      city: "TORONTO",
-      age: 20
-    }
-
     render() {
         return (
             <AppBar id="appbar">
@@ -26,7 +21,7 @@ class Topbar extends React.Component {
                     <div id="display_div">
                         <img id="pfp" alt="The user's profile" src={pfp} />
                         <h5><b>{this.props.currentUser}</b></h5>
-                        <b>{this.state.city }{this.state.age ? ` · ${this.state.age} yrs` : null}</b>
+                        <b>{this.props.username}{this.props.city ? ` · ${this.props.city}` : null }{this.props.age ? ` · ${this.state.age} yrs` : null}</b>
                     </div>
                     <div id="user_div">
                         <h5 id="userName">{this.props.currentUser}</h5>
