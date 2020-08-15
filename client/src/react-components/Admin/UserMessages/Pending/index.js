@@ -22,15 +22,15 @@ class Pending extends React.Component {
                                   <Message
                                       key={uid(message)}
                                       username={ message.username }
+                                      public_account={ message.public_account }
                                       age={ message.age }
                                       time={ message.time }
                                       date={ message.date }
                                       content={ message.content }
+                                      published={ message.published }
                                       location_name={ message.locationName }
                                       pin_left_pos={ message.pinLeftPos }
                                       pin_down_pos={ message.pinDownPos }
-                                      public_account={ message.public_account }
-                                      published={ message.published }
                                   />
                                 </div>
                                 <div id="edit_div" className="text-center" >

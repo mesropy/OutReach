@@ -111,7 +111,7 @@ class UserMessages extends React.Component {
             messages = <Published userMessagesComponent={this} edit={this.state.edit} publishedMessages={this.state.publishedMessages}/>
         }
         return (
-            <div id="userMessages">
+            <div id="adminUserMessages">
                 <div id="headers">
                     <button id="pending" className={this.state.pendingClass} onClick={this.changePending}>Pending</button>
                     <button id="published" className={this.state.publishedClass} onClick={this.changePublished}>Published</button>
