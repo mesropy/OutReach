@@ -20,6 +20,7 @@ class Published extends React.Component {
                         <div id="messageContainer" key={uid(message)}>
                             <div className={messageClass}>
                             <Message
+                                city={ message.city }
                                 key={uid(message)}
                                 username={ message.username }
                                 age={ message.age }
@@ -31,6 +32,7 @@ class Published extends React.Component {
                                 pin_down_pos={ message.pinDownPos }
                                 public_account={ message.public_account }
                                 published={ message.published }
+                                city={ message.city }
                             />
                             </div>
                             <div id="edit_div" className="text-center">
@@ -51,6 +53,7 @@ class Published extends React.Component {
                             <div id="messageContainer" key={uid(message)}>
                                 <div className={messageClass}>
                                     <Message
+                                        city={ message.city }
                                         key={uid(message)}
                                         username={ message.username }
                                         age={ message.age }

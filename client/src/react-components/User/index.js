@@ -6,6 +6,7 @@ import Topbar from "./Topbar"
 import Navbar from "./Navbar"
 import UserMessages from './UserMessages'
 import Settings from './Settings'
+import MessageAdder from "../City/Timeline/MessageAdder"
 
 
 class User extends React.Component {
@@ -113,8 +114,8 @@ class User extends React.Component {
         else {
             userLoggedIn = true
         }
+        console.log(userPage.city, userPage.username, userPage._id);
         const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.state.user} userLoggedIn={userLoggedIn}/> : null
-
         return (
             <div>
                 <Topbar
@@ -130,6 +131,7 @@ class User extends React.Component {
                 />
                 {messagesComponent}
                 {settingsComponent}
+                { userLoggedIn ? <MessageAdder city={ userPage.city } currentUser= {userPage.username} currentUserId={userPage._id} /> : null}
             </div>
         )
     }

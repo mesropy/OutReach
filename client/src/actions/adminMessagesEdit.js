@@ -4,9 +4,13 @@ date.plugin(meridiem)
 
 // Return age from date of birth
 export const getAge = (dob) => {
-    const ageDifMs = Date.now() - (new Date(dob)).getTime();
-    const ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (dob === ""){
+      return null
+    } else {
+      const ageDifMs = Date.now() - (new Date(dob)).getTime();
+      const ageDate = new Date(ageDifMs);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
 }
 
 // Get time. Example: 7:23pm
@@ -58,14 +62,15 @@ export function getInfo() {
                     _id: message._id,
                     username: data.user.username,
                     public_account: data.user.public,
-                    age: (age.toString()), 
-                    time: time, 
-                    date: date, 
+                    age: age ? (age.toString()) : null,
+                    time: time,
+                    date: date,
                     content: message.text,
                     published: message.published,
-                    locationName: message.location.name, 
-                    pinLeftPos: `${message.location.x}%`, 
-                    pinDownPos: `${message.location.y}%`
+                    locationName: message.location.name,
+                    pinLeftPos: `${message.location.x}%`,
+                    pinDownPos: `${message.location.y}%`,
+                    city: message.city
                 }
                 if (message.published) {
                     newPublishedMessages.push(newMessage)
@@ -187,6 +192,6 @@ export const approveMessage = (list, message) => {
 
     list.setState({
         pendingMessages: filteredPendingMessages,
-        publishedMessages: newPublishedMssages 
+        publishedMessages: newPublishedMssages
     })
 }

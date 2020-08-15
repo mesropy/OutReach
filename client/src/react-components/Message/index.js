@@ -6,6 +6,8 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import toronto_map from "../City/static/toronto_map.png"
+import montreal_map from "../City/static/montreal_map.png";
+import paris_map from "../City/static/paris_map.png";
 import { Link } from "react-router-dom";
 
 // Component for the location popup
@@ -52,7 +54,20 @@ class Message extends React.Component {
 
     render() {
         const {username, public_account, age, time, date, content, published, location_name,
-               pin_left_pos, pin_down_pos} = this.props;
+               pin_left_pos, pin_down_pos, city} = this.props;
+
+        let map = toronto_map;
+        if (city) { // make sure is defined / not null
+          switch(city.toLowerCase()) {
+              case "montréal":
+                  map = montreal_map;
+                  break;
+              case "paris":
+                  map = paris_map;
+                  break;
+              default:
+          }
+        }
 
         return (
             <div className="post">
@@ -85,7 +100,7 @@ class Message extends React.Component {
                 { this.state.showLocationPopup ?
                 <LocationPopup
                     location_name={ location_name }
-                    city_map={ toronto_map }
+                    city_map={ map }
                     pin_left_pos={ pin_left_pos }
                     pin_down_pos={ pin_down_pos }
                     closePopup={ this.toggle.bind(this) } /> : null }

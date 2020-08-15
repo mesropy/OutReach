@@ -45,6 +45,7 @@ export const addMessage = (timeline, username, userId, cityName)  => {
 
             // add a new message to the page by adding it to the messages list
             const newMessage = {
+              city: cityName,
               username: username,
               public_account: public_account,
               age: age,
@@ -72,6 +73,7 @@ export const addMessage = (timeline, username, userId, cityName)  => {
                   x: pinLeftPos,
                   y: pinDownPos
                 },
+                city: cityName,
                 published: false,
                 author: userId
             }

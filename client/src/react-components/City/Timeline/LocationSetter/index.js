@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faCheck, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import toronto_map from "./../../static/toronto_map.png";
+import montreal_map from "./../../static/montreal_map.png";
+import paris_map from "./../../static/paris_map.png";
 
 // Component for location setting popup, used by LocationSetter below
 class LocationSettingPopup extends React.Component {
@@ -57,10 +59,19 @@ class LocationSettingPopup extends React.Component {
   }
 
     render() {
-      // const { city } = this.props;
-      // (^ this is commented out now to avoid warnings)
-      // here we will get the map of the city from a database using the city name
-      // (now it will always show the Toronto map)
+      const { city } = this.props;
+
+      let map = toronto_map;
+      if (city){ // make sure is undefined / not null
+        switch (city.toLowerCase()) {
+          case "montréal":
+            map = montreal_map;
+            break;
+          case "paris":
+            map = paris_map;
+            break;
+        }
+      }
 
         return(
             <div>
@@ -79,7 +90,7 @@ class LocationSettingPopup extends React.Component {
                       </div>
                       <img className="loc_setting_city_map"
                            onClick={ this.handleMapClick }
-                           src={ toronto_map }
+                           src={ map }
                            alt="city map"/>
                     </div>
 
@@ -180,6 +191,7 @@ class LocationSetter extends React.Component {
                 </Button>
                 {this.state.show ?
                     <LocationSettingPopup
+                        city={this.props.city}
                         closePopup={this.toggle.bind(this)}
                         handleLocationLeft={ this.props.handleLocationLeft }
                         handleLocationDown={ this.props.handleLocationDown }
