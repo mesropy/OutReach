@@ -6,6 +6,8 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import toronto_map from "../City/static/toronto_map.png"
+import montreal_map from "../City/static/montreal_map.png";
+import paris_map from "../City/static/paris_map.png";
 import { Link } from "react-router-dom";
 
 // Component for the location popup
