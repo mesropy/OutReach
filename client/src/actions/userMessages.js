@@ -24,13 +24,13 @@ export function getUserMessages(user) {
                 _id: message._id,
                 username: user.username,
                 public_account: user.public,
-                age: (age.toString()), 
-                time: time, 
-                date: date, 
+                age: age ? (age.toString()) : null, 
+                time: time,
+                date: date,
                 content: message.text,
                 published: message.published,
-                locationName: message.location.name, 
-                pinLeftPos: `${message.location.x}%`, 
+                locationName: message.location.name,
+                pinLeftPos: `${message.location.x}%`,
                 pinDownPos: `${message.location.y}%`
             }
             newUserMessages.push(newMessage)
