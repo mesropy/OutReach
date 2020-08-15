@@ -9,7 +9,6 @@ import WorldMap from './react-components/WorldMap';
 import Register from "./react-components/Register"
 import Login from "./react-components/Login"
 import City from "./react-components/City"
-import User from "./react-components/User"
 
 import { readCookie } from "./actions/readCookie.js";
 

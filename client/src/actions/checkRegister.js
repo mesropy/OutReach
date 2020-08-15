@@ -1,3 +1,5 @@
+import { getUsers } from '../actions/dynamicRouting'
+
 // Returns true if any field is empty
 export const checkEmpty = (state) => {
     return (state.username === "" || state.password === "" || state.confirmPassword === "" || state.phoneNumber === "" || state.city === "default")
@@ -22,12 +24,23 @@ export const checkPhone = (state) => {
 }
 
 // Checks if the User already exists based on the phone number
-export function checkDuplicate() {
+export function checkDuplicateNumber() {
   const users = this.props.global.state.users;
   let duplicate = false;
   users.forEach(user => {
-    console.log(user.phone)
     if (user.phone === this.state.phoneNumber) {
+        duplicate = true;
+    }
+  });
+  return duplicate;
+}
+
+// Check if the username already exists in the database
+export function checkDuplicateName() {
+  const users = this.props.global.state.users;
+  let duplicate = false;
+  users.forEach(user => {
+    if (user.username === this.state.username) {
         duplicate = true;
     }
   });
@@ -58,36 +71,67 @@ export const checkAge = (state) => {
 
 // Create a User in the database
 export function registerDB() {
-  const url = '/user'
+    // create request for creating a user
+    const signupInfo = {
+      username: this.state.username,
+      password: this.state.password,
+      dob: this.state.age,
+      phone: this.state.phoneNumber,
+      city: this.state.city
+    }
+    const request = new Request("/user", {
+        method: "post",
+        body: JSON.stringify(signupInfo),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
 
-  const body = {
-    "username": this.state.username,
-    "password": this.state.password,
-    "dob": this.state.age,
-    "phone": this.state.phoneNumber,
-    "city": this.state.city
-  }
-
-  const request = new Request(url, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-      }
-  });
-
-  // Send the request with fetch()
-  fetch(request)
-      .then(res => {
-          if (res.status === 200) {
-              console.log("User registered.")
-          } else {
-            console.log("Failed to register User.")
-          }
-      })
-      .catch(error => {
-          console.log(error);
-      });
-
+    // send the request
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+              // create request for logging in user
+              const loginInfo = {
+                name: this.state.username,
+                password: this.state.password
+              }
+              const request = new Request("/login", {
+                  method: "post",
+                  body: JSON.stringify(loginInfo),
+                  headers: {
+                      Accept: "application/json, text/plain, */*",
+                      "Content-Type": "application/json"
+                  }
+              });
+              // send the logging in request
+              fetch(request)
+                  .then(res2 => {
+                      if (res2.status === 200) {
+                          // logging in was successful
+                          this.props.handleLogin(this.state.username);
+                          // Update users global state
+                          getUsers.bind(this.props.global)();
+                          // update register state to redirect to home
+                          this.setState({
+                            register: true
+                          })
+                      }
+                  })
+                  .catch(error => {
+                      this.setState({
+                        error: "Could not log in"
+                      })
+                  });
+        })
+        .catch(error => {
+            this.setState({
+              error: "Could not register"
+            })
+        });
 }
