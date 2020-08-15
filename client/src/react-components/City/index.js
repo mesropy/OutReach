@@ -19,7 +19,8 @@ class City extends React.Component {
                 <SidePanel city={ city } />
                 <Timeline
                     city={ city }
-                    currentUser={this.props.currentUser} />
+                    currentUser={this.props.currentUser}
+                    currentUserId={this.props.currentUserId}/>
             </div>
         );
     }

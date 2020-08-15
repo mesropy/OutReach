@@ -2,7 +2,7 @@ import dateAndTime from 'date-and-time'
 import meridiem from 'date-and-time/plugin/meridiem'
 dateAndTime.plugin(meridiem)
 
-export const addMessage = (timeline, username, cityName)  => {
+export const addMessage = (timeline, username, userId, cityName)  => {
     const now = new Date();
     const time = dateAndTime.format(now, 'h:mm a')
     const date = dateAndTime.format(now, 'MMM D')

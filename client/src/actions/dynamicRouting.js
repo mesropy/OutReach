@@ -27,6 +27,7 @@ export function renderUsers(routerProps) {
     const foundUser = this.state.users.find(user => user.username === username);
     const component = foundUser ? <User userPage={foundUser.username}
                                     currentUser={this.state.currentUser}
+                                    currentUserId={this.state.currentUserId}
                                     handleLogout={this.handleLogout.bind(this)} /> : null
     return component
 }

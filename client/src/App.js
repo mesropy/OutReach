@@ -73,18 +73,21 @@ class App extends React.Component {
               <Route exact path='/Toronto' render={() =>
                               (<City
                                 currentUser={this.state.currentUser}
+                                currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="TORONTO"
                               />)}/>
               <Route exact path='/Paris' render={() =>
                               (<City
                                 currentUser={this.state.currentUser}
+                                currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="PARIS"
                               />)}/>
               <Route exact path='/Montréal' render={() =>
                               (<City
                                 currentUser={this.state.currentUser}
+                                currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}
                                 city="MONTRÉAL"
                               />)}/>

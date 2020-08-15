@@ -70,14 +70,14 @@ class Timeline extends React.Component {
   };
 
   render(){
-    const { city, currentUser} = this.props;
+    const { city, currentUser, currentUserId } = this.props;
 
     return(
       <div id="timeline">
         <MessageAdder
             city={ city }
             handleInput={ this.handleInput }
-            addMessage={ () => addMessage(this, currentUser, city) }
+            addMessage={ () => addMessage(this, currentUser, currentUserId, city) }
             currentUser={ currentUser }
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
