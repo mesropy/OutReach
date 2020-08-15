@@ -106,7 +106,7 @@ app.get("/logout", (req, res) => {
 // route to check if a user is logged in on the session cookie
 app.get("/user/check-session", (req, res) => {
     if (req.session.userId) {
-        res.send({ currentUser: req.session.name });
+        res.send({ currentUserId: req.session.userId, currentUser: req.session.name});
     } else {
         res.status(401).send();
     }
@@ -163,7 +163,8 @@ app.get('/users/:id', (req, res) => {
             res.status(404).send("No User Found");
             return ;
         } else {
-            res.send(result);
+            const resultToSend = {user: result}
+            res.send(resultToSend);
             return ;
         }
     })

@@ -110,8 +110,13 @@ export function registerDB() {
               fetch(request)
                   .then(res2 => {
                       if (res2.status === 200) {
-                          // logging in was successful
-                          this.props.handleLogin(this.state.username);
+                        return res2.json();
+                      }
+                  })
+                  .then(json2 => {
+                      if (json2.currentUserId !== undefined) {
+                          // update currentUser and current global states
+                          this.props.handleLogin(this.state.username, json2.currentUserId);
                           // Update users global state
                           getUsers.bind(this.props.global)();
                           // update register state to redirect to home
