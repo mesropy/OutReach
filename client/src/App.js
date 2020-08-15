@@ -32,6 +32,7 @@ class App extends React.Component {
     this.state = {
       users: [],
       currentUser: null,
+      currentUserId: null,
       cities: ["Toronto", "Paris", "Montréal"]
     }
     getUsers.bind(this)();
@@ -40,13 +41,15 @@ class App extends React.Component {
 
   handleLogout() {
     this.setState({
-      currentUser: null
+      currentUser: null,
+      currentUserId: null
     });
   }
 
-  handleLogin(username) {
+  handleLogin(username, id) {
     this.setState({
-      currentUser: username
+      currentUser: username,
+      currentUserId: id
     });
   }
 

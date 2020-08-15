@@ -17,7 +17,7 @@ class AccountNav extends React.Component{
       const isAdmin = this.props.currentUser.startsWith("admin");
       return (
         <div className="account_nav">
-          <Button component= { Link } to={"/user/".concat(this.props.currentUser)}
+          <Button component= { Link } to={ isAdmin ? "/admin" : "/user/".concat(this.props.currentUser)}
                   className="username_button"
                   disableRipple
                   variant="text">

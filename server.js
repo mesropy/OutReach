@@ -31,15 +31,6 @@ const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Session Handling */
-const sessionChecker = (req, res, next) => {
-    // if logged-in user/admin try to access login page
-    // redirect user to homepage
-    if (req.session.userId) {
-        res.redirect("/");
-    } else {
-        next();
-    }
-};
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
@@ -64,10 +55,6 @@ app.use(
     })
 );
 
-app.get("/login", sessionChecker, (req, res) => {
-    res.sendFile(__dirname + "/client/build/index.html");
-});
-
 // route to login and create a session
 app.post("/login", (req, res) => {
     const name = req.body.name;
@@ -81,7 +68,8 @@ app.post("/login", (req, res) => {
             req.session.userId = admin._id;
             req.session.name = admin.username;
             // send the new global user state
-            res.send({currentUser: admin.username });
+            const result = {currentUserId: admin._id }
+            res.send(result);
         })
         // admin with given name and password does not exist
         .catch(error => {
@@ -95,7 +83,7 @@ app.post("/login", (req, res) => {
               req.session.userId = user._id;
               req.session.name = user.username;
               // send the new global user state
-              res.send({currentUser: user.username });
+              res.send({currentUserId: user._id });
           })
           // user with given name and password does not exist
           .catch(error => {
@@ -256,6 +244,64 @@ app.delete('/user/:id', authenticate, (req, res) => {
    }).catch((error) => {
        res.status(500).send("Internal Server Error.")
    })
+})
+
+// Get User's city by the user's ID
+// GET /users/:id/city
+app.get('/users/:id/city', (req, res) => {
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    User.findById(id).then(result => {
+        if (!result) {
+            res.status(404).send("No User Found");
+            return ;
+        } else {
+            res.send(result.city);
+            return ;
+        }
+    })
+})
+
+// Get User by the username
+// GET /users/:username
+app.get('/users/:username', (req, res) => {
+    const id = req.params.id
+
+    // Check if ID is valid
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()
+        return;
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log("Issue with mongoose connection")
+        res.status(500).send("Internal Server Error")
+        return;
+    }
+
+    User.findById(id).then(result => {
+        if (!result) {
+            res.status(404).send("No User Found");
+            return ;
+        } else {
+            res.send(result.city);
+            return ;
+        }
+    })
 })
 
 /* Message Routes */
