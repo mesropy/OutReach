@@ -68,7 +68,13 @@ class LocationSettingPopup extends React.Component {
         case "MONTRÉAL":
           map = montreal_map;
           break;
+        case "Montréal":
+          map = montreal_map;
+          break;
         case "PARIS":
+          map = paris_map;
+          break;
+        case "Paris":
           map = paris_map;
           break;
         default:
