@@ -36,10 +36,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const authenticate = (req, res, next) => {
     // if a user/admin is logged in
     if (! req.session.userId) {
-        res.status(401).send("Unauthorized");
-    } else {
-        next();
+        res.isAnon = true;
+        res.isAdmin = false;
+        res.isUser = false;
     }
+    else if (req.session.userId) {
+        res.isAnon = false;
+        if (req.session.name.startsWith("admin")) {
+            res.isAdmin = true;
+            res.isUser = false;
+        } else {
+            res.isAdmin = false;
+            res.isUser = true;
+        }
+    }
+    next();
 }
 
 // Create a session cookie
