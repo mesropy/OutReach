@@ -124,6 +124,7 @@ class User extends React.Component {
                     handleSettings={this.handleSettings}
                     handleLogout={this.handleLogout}
                     handleBack={this.handleBack}
+                    userLoggedIn={userLoggedIn}
                 />
                 {messagesComponent}
                 {settingsComponent}
