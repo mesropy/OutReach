@@ -132,11 +132,11 @@ export function handleSubmit(parentState) {
 
     // Get non-empty poll Options
     const tempPollAnswers = [this.state.pollOption1, this.state.pollOption2, this.state.pollOption3, this.state.pollOption4]
-    const pollAnswers = tempPollAnswers.filter((poll) => {
+    const pollAnswers = tempPollAnswers.forEach(poll => {
         if (poll !== "") {
             return poll
         }
-    })
+    });
 
     if (pollAnswers.length <= 1) {
         this.setState({
