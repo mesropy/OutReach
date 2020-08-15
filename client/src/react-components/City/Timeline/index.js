@@ -79,6 +79,7 @@ class Timeline extends React.Component {
             handleInput={ this.handleInput }
             addMessage={ () => addMessage(this, currentUser, currentUserId, city) }
             currentUser={ currentUser }
+            currentUserId={ currentUserId }
             handleLocationLeft={ this.handleLocationLeft }
             handleLocationDown={ this.handleLocationDown }
             handleLocationName={ this.handleLocationName }

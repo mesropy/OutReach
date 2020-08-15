@@ -61,7 +61,9 @@ class MessageAdder extends React.Component {
     constructor() {
         super();
         this.state = {
-          showNewMessagePopup: false
+          showNewMessagePopup: false,
+          userCity: null,
+          inOwnCity: null
         };
     }
 
@@ -71,19 +73,11 @@ class MessageAdder extends React.Component {
         });
     }
 
-    // we will also need to check if this user is in the city their account is
-    // attached to ( they can only add messages to their own city)
-    // We will get what city the user is in from a database
-
     render() {
-        const { city, currentUser } = this.props;
-        const isLoggedIn = currentUser ? true : false;
+        const { city, currentUser, currentUserId } = this.props;
+        const isLoggedIn = currentUserId ? true : false;
         // the user is an admin if the username's first 5 chars are "admin"
-        const isAdmin = currentUser ? currentUser.search("admin") === 0 : false;
-
-        // TODO: if there is a currentUser get the current user's city
-        // (right now hardcoded to Toronto)
-        const userCity = currentUser ? "Toronto" : null
+        const isAdmin = currentUser ? currentUser.startsWith("admin") : false;
 
         if (!isLoggedIn) {
           return (
@@ -100,40 +94,69 @@ class MessageAdder extends React.Component {
               (Admins cannot add messages)
             </div>
           );
-        } else if (userCity.toLowerCase() !== city.toLowerCase()){
-          return (
-            <div className="add_message_info">
-              To post a message visit <Link to={`/${userCity}`}>your city page.</Link>
-            </div>
-          );
-        } else { // display the button for adding a message
-          return (
-              <div>
-              <Button id="addBtn"
-                      variant="outlined"
-                      color="primary"
-                      onClick={this.toggle.bind(this)}>
-                <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-                <span id="addBtnText">New Message</span>
-              </Button>
+        } else {
+            // get the logged in user's data if we don't already have it
+            if (!this.state.userCity){
+              const url = "/users/".concat(currentUserId)
+              fetch(url)
+                  .then(function (res) {
+                      if (res.status === 200) {
+                          return res.json()
+                      }
+                  })
+                  .then(json => {
+                      if (json !== undefined) {
+                          // get the user's city, and update state
+                          this.setState({
+                            userCity: json.user.city
+                          })
+                          this.setState({
+                            inOwnCity: this.state.userCity.toLowerCase() === city.toLowerCase()
+                          })
+                          return;
+                      }
+                  })
+                  .catch(error => {
+                      console.log(error)
+                  })
+            }
 
-                  {this.state.showNewMessagePopup ?
-                      <NewMessagePopup
-                        closePopup={this.toggle.bind(this)}
-                        city={ city }
-                        handleInput={ this.props.handleInput }
-                        addMessage={ this.props.addMessage }
-                        handleLocationLeft={ this.props.handleLocationLeft }
-                        handleLocationDown={ this.props.handleLocationDown }
-                        handleLocationName={ this.props.handleLocationName }
-                        removeContent={ this.props.removeContent }
-                        removeLocation={ this.props.removeLocation }
-                      />
-                      : null
-                  }
-              </div>
-          );
-        }
+            return (
+              <div>
+              {!this.state.userCity ? null :
+                (!this.state.inOwnCity ?
+                  <div className="add_message_info">
+                    To post a message visit <a href={`/${this.state.userCity}`}>your city page.</a>
+                  </div>
+                  :
+                  (<div>
+                    <Button id="addBtn"
+                              variant="outlined"
+                              color="primary"
+                              onClick={this.toggle.bind(this)}>
+                        <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                        <span id="addBtnText">New Message</span>
+                      </Button>
+                           {this.state.showNewMessagePopup ?
+                              <NewMessagePopup
+                                closePopup={this.toggle.bind(this)}
+                                city={ city }
+                                handleInput={ this.props.handleInput }
+                                addMessage={ this.props.addMessage }
+                                handleLocationLeft={ this.props.handleLocationLeft }
+                                handleLocationDown={ this.props.handleLocationDown }
+                                handleLocationName={ this.props.handleLocationName }
+                                removeContent={ this.props.removeContent }
+                                removeLocation={ this.props.removeLocation }
+                              />
+                              : null}
+
+                      </div>)
+                    )
+                    }
+                  </div>
+                )
+          }
     }
 };
 
