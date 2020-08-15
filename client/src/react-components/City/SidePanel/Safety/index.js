@@ -5,11 +5,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
-
 // Component for the button for safety info, used by SafetyInfo below
 class SafetyPopup extends React.Component {
+    getSafetyUrl(city){
+      switch(city.toLowerCase()) {
+          case "toronto":
+              return "https://www.toronto.ca/home/covid-19/"
+          case "montréal":
+              return "https://santemontreal.qc.ca/en/public/coronavirus-covid-19/"
+          case "paris":
+              return "https://www.paris.fr/coronavirus-covid-19"
+          default:
+              return "https://www.toronto.ca/home/covid-19/"
+      }
+    }
+
     render() {
       const { closePopup, city } = this.props;
+
+      const safetyUrl = this.getSafetyUrl(city)
 
         return(
             <div>
@@ -50,9 +64,7 @@ class SafetyPopup extends React.Component {
                     <Button href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">
                         W.H.O.
                     </Button>
-                    {/* we will get a link to the cite for the specific city
-                      from a database */}
-                    <Button href="https://www.toronto.ca/home/covid-19/">
+                    <Button href={safetyUrl}>
                       { city }
                     </Button>
                   </ButtonGroup>
