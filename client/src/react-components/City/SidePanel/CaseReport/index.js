@@ -4,8 +4,7 @@ const info = require("../../../../actions/covidInfo");
 class CaseReport extends React.Component {
     render() {
         const { city } = this.props;
-        // here, we will get the case count and status from a database
-        // using the name of the city
+        // get the COVID info from an external API
         let countryCode, provinceCode;
         switch(city) {
             case "TORONTO":
