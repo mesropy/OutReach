@@ -63,7 +63,7 @@ class Message extends React.Component {
                               <strong>{username}</strong>
                             </Link> : <strong>anonymous</strong>}
                         </span>
-                        {age !== null ? age.concat(" yrs") : null}
+                        {age !== null ? `${age} yrs` : null}
                         {!published ? "  (Pending)" : null}
                     </p>
                     <div className="post-rightBar">

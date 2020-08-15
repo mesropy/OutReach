@@ -163,7 +163,8 @@ app.get('/users/:id', (req, res) => {
             res.status(404).send("No User Found");
             return ;
         } else {
-            res.send(result);
+            const resultToSend = {user: result}
+            res.send(resultToSend);
             return ;
         }
     })
