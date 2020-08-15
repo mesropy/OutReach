@@ -1,6 +1,7 @@
 import React from "react";
 import './styles.css';
-import {handlePublic, changeUsername, changeDOB} from '../../../actions/userMessages'
+import ChangePassword from './ChangePassword'
+import {handlePublic, changeUsername, changeDOB} from '../../../actions/userSettings'
 import Table from '@material-ui/core/Table';
 import TableBody from "@material-ui/core/TableBody";
 import { TableRow, TableCell, FormControlLabel, Switch, TextField, } from "@material-ui/core";
@@ -17,19 +18,22 @@ class Settings extends React.Component {
             editUsername: false,
             newUsername: "",
             editDOB: false,
-            newDOB: this.props.userPage.dob
+            newDOB: this.props.userPage.dob,
+            changePass: false
         };
         this.handleEditUsername = this.handleEditUsername.bind(this);
         this.handleEditDOB = this.handleEditDOB.bind(this);
-        this.handleInput = this.handleInput.bind(this)
+        this.handleInput = this.handleInput.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleChangePass = this.handleChangePass.bind(this);
     }
 
     handleEditUsername() {
         const toggle = this.state.editUsername;
         this.setState({
             editUsername: !toggle,
-            editDOB: false
+            editDOB: false,
+            changePass: false
         })
     }
 
@@ -37,7 +41,8 @@ class Settings extends React.Component {
         const toggle = this.state.editDOB;
         this.setState({
             editUsername: false,
-            editDOB: !toggle
+            editDOB: !toggle,
+            changePass: false
         })
     }
 
@@ -55,7 +60,20 @@ class Settings extends React.Component {
         })
     }
 
+    handleChangePass() {
+        const toggle = this.state.changePass;
+        this.setState({
+            editDOB: false,
+            editUsername: false,
+            changePass: !toggle
+        })
+    }
+
     render() {
+        if (this.state.changePass) {
+            return <ChangePassword userComponent={this.props.user} parentState={this} userPage={this.props.userPage}></ChangePassword>
+        }
+
         return (
             <div id="user_settings">
                 <Table>
@@ -133,7 +151,9 @@ class Settings extends React.Component {
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            Change Password
+                            <button id="changePasswordButton" className="text-center" onClick={this.handleChangePass}>
+                                Change Password
+                            </button>
                         </TableRow>
                         <TableRow>
                             <FormControlLabel control={

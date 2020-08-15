@@ -1,0 +1,81 @@
+#pass_div {
+    position: relative;
+    width: 900px;
+    top: 20vh;
+    left: 25vw;
+    padding: 20px;
+    border-radius: 20px 20px 20px 20px;
+    background-color: rgb(251,248,242);
+}
+
+#pass_div button:focus {
+    outline: none;
+}
+
+#pass_div #icon_div button {
+    border: 0px;
+    background-color: inherit;
+}
+
+#pass_div #icon_div svg {
+    font-size: 26px;
+    position: relative;
+    right: 10px;
+}
+
+.pass_input {
+    border-radius: 20px 20px 20px 20px;
+    border: 2px solid rgb(22,123,121);
+    margin: 1vh;
+    width: 30vw;
+    height: 6vh;
+    padding-left: 15px;
+}
+
+.pass_error {
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid rgb(134,58,69);
+    margin: 1vh;
+    width: 30vw;
+    height: 6vh;
+    padding-left: 15px;
+}
+
+.error_message_div {
+    margin-top: 20px;
+}
+
+.error_message_div h5 {
+    color: rgb(153,64,71);
+    margin-bottom: 0px;
+    display: block;
+}
+
+.pass_error:focus,
+.pass_input:focus {
+    outline: none;
+}
+
+.star {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#pass_button {
+    position: relative;
+    color: rgb(70,75,78);
+    font-size: large;
+    font-weight: 500;
+    padding: 10px;
+    width: 30vw;
+    background-color: rgb(224,238,239);
+    border: 1px;
+}
+
+#pass_button:focus {
+    outline: none;
+}
+
+.hide {
+    display: none;
+}
