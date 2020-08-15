@@ -14,7 +14,7 @@
 #userMessages #published_div #edit_div {
     position: relative;
     margin-left: 60vw;
-    transform: translateY(500%);
+    transform: translateY(450%);
     width: min-content;    
 }
 

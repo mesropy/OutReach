@@ -111,7 +111,7 @@ class User extends React.Component {
         else {
             userLoggedIn = true
         }
-        const messagesComponent = this.state.messages ?  <UserMessages userMessages={this.state.userMessages} userPage={this.props.userPage} userLoggedIn={userLoggedIn}/> : null
+        const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.props.userPage} userLoggedIn={userLoggedIn}/> : null
 
         return (
             <div>

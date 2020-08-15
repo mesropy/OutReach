@@ -42,3 +42,33 @@ export function getUserMessages(user) {
 
     return newUserMessages;
 }
+
+// Deletes a User message
+export function removeUserMessage(message) {
+
+    // Update Database
+    const url = '/message/' + message._id
+
+    const request = new Request(url, {
+        method: "DELETE"
+    });
+
+    fetch(request).then(res => {
+        if (res.status === 200) {
+            console.log("Message Deleted")
+        } else {
+            console.log("Couldn't delete message")
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // Update State
+    const filteredMessages = this.state.userMessages.filter(m => {
+        return m !== message;
+    });
+
+    this.setState({
+        userMessages: filteredMessages
+    });
+}

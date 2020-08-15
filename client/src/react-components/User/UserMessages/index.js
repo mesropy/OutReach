@@ -24,7 +24,7 @@ class UserMessages extends React.Component {
     render() {
 
         const { userLoggedIn } = this.props
-        const messages = <Messages userLoggedIn={userLoggedIn} userMessages={this.props.userMessages} edit={this.state.edit}/>
+        const messages = <Messages userLoggedIn={userLoggedIn} user={this.props.user} edit={this.state.edit}/>
         let edit;
         if (!userLoggedIn) {
             edit = null;
