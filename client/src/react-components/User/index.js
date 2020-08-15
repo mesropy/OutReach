@@ -13,12 +13,14 @@ class User extends React.Component {
         this.state = {
             messages: true,
             settings: false,
-            logout: false
+            logout: false,
+            user: this.props.userPage
         }
         this.handleMessages = this.handleMessages.bind(this)
         this.handleSettings = this.handleSettings.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
-        this.handleBack = this.handleBack.bind(this)
+        this.handleBack = this.handleBack.bind(this);
+        this.authorize = this.authorize.bind(this)
     }
 
     handleMessages(e) {
@@ -52,56 +54,83 @@ class User extends React.Component {
         })
     }
 
+    authorize(userPage, currentUser) {
+        // 1) Anonymous User
+        if (!currentUser) {
+            // Public
+            if (userPage.public) {
+                return true
+            }
+            // Private 
+            else {
+                return false
+            }
+        }
+        // 2) Non-Anon User
+        else {
+            // 2.1) Admin
+            if (currentUser.startsWith("admin")) {
+                return true
+            }
+            // 2.2) Owner
+            if (currentUser === userPage.username) {
+                return true
+            }
+            // 2.3) Non-Owner User
+            if (userPage.public) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
     render() {
         if (this.state.logout) {
             return <Redirect to='/'/>
         }
 
-        if (this.state.messages) {
-            // replace the following 2 lines later///
-            const isOwnerOrAdmin = true;
-            const isPublic = true;
-            // (1) Others accessing a public user's page
-            let userContent = null;
-            let loggedIn = false;
-            // (2) User accessing own account or an admin access a user's account
-            if (isOwnerOrAdmin) {
-                loggedIn = true;
-                userContent = <Navbar
-                    handleMessages={this.handleMessages}
-                    handleSettings={this.handleSettings}
-                    handleLogout={this.handleLogout}
-                    handleBack={this.handleBack}/>;
-            // (3) Others accessing a private user's profile
-            } else if (! isPublic) {
-                return <div>Unauthorized</div>;
-            }
+        // userPage is the User associated with the page
+        // currentUser is the User accessing the page
+        const {userPage, currentUser} = this.props
 
-            return (
-                <div>
-                    <Topbar
-                        username={this.props.currentUser}/>
-                    { userContent }
-                    <UserMessages username={this.props.currentUser} userLoggedIn={loggedIn}/>
-                </div>
-            )
-        };
+        if (!this.authorize(userPage, currentUser)) {
+            return (<div>Unauthorized</div>)
+        }
 
-        if (this.state.settings) {
-            return (
-                <div>
-                    <Topbar
-                        username={this.props.currentUser} />
-                    <Navbar
-                        handleMessages={this.handleMessages}
-                        handleSettings={this.handleSettings}
-                        handleLogout={this.handleLogout}
-                        handleBack={this.handleBack}
-                    />
-                    <Settings/>
-                </div>
-            )
-        };
+        // If settings is clicked
+        const settingsComponent = this.state.settings ?  <Settings/> : null
+        const messagesComponent = this.state.messages ?  <UserMessages username={this.props.currentUser} userLoggedIn={false}/> : null
+
+        // if (this.state.messages) {
+        //     // replace the following 2 lines later///
+        //     const isOwnerOrAdmin = true;
+        //     const isPublic = true;
+        //     // (1) Others accessing a public user's page
+        //     let userContent = null;
+        //     let loggedIn = false;
+        //     // (2) User accessing own account or an admin access a user's account
+        //     if (isOwnerOrAdmin) {
+        //         loggedIn = true;
+        //         userContent = <Navbar
+        //             handleMessages={this.handleMessages}
+        //             handleSettings={this.handleSettings}
+        //             handleLogout={this.handleLogout}
+        //             handleBack={this.handleBack}/>;
+        //     // (3) Others accessing a private user's profile
+        //     } else if (! isPublic) {
+        //         return 
+        //     }
+
+        //     return (
+        //         <div>
+        //             <Topbar
+        //                 username={this.props.currentUser}/>
+        //             { userContent }
+                   
+        //         </div>
+        //     )
+        // };
         return (
             <div>
                 <Topbar
@@ -112,6 +141,8 @@ class User extends React.Component {
                     handleLogout={this.handleLogout}
                     handleBack={this.handleBack}
                 />
+                {messagesComponent}
+                {settingsComponent}
             </div>
         )
     }
