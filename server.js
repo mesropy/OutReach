@@ -328,7 +328,7 @@ app.patch('/user/:id', authenticate, (req, res) => {
 
 // Get All Messages
 // GET /message
-app.get('/message', (req, res) => {
+app.get('/message', authenticate, (req, res) => {
 
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -337,23 +337,28 @@ app.get('/message', (req, res) => {
         return;
     }
 
-    // Get all messages
-    Message.find().then((message) => {
-        if (message.length === 0) {
-            res.status(404).send("Resource Not Found.")
-        }
-        else {
-            res.send(message)
-        }
-    }).catch((error) => {
-        log(error)
-        res.status(500).send("Internal Server Error.")
-    })
+    if (req.isAdmin) {
+        // Get all messages
+        Message.find().then((message) => {
+            if (message.length === 0) {
+                res.status(404).send("Resource Not Found.")
+            }
+            else {
+                res.send(message)
+            }
+        }).catch((error) => {
+            log(error)
+            res.status(500).send("Internal Server Error.")
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+    
 })
 
 // Get Messages from a specific User
 // GET /message/:id
-app.get('/message/:id', (req, res) => {
+app.get('/message/:id', authenticate, (req, res) => {
 
     const id = req.params.id
 
@@ -370,21 +375,26 @@ app.get('/message/:id', (req, res) => {
         return;
     }
 
-    // Get all messages from the User
-    const query = {author: id}
-    Message.find(query).then(result => {
-        if (!result) {
-            res.status(404).send("No Messages Found");
-            return ;
-        } else {
-            res.send(result);
-        }
-    })
+    if (req.isAdmin || (req.isUser && (req.session.userId === id))) {
+        // Get all messages from the User
+        const query = {author: id}
+        Message.find(query).then(result => {
+            if (!result) {
+                res.status(404).send("No Messages Found");
+                return ;
+            } else {
+                res.send(result);
+            }
+        })
+    }
+    else {
+        res.status(401).send("Unauthorized")
+    }
 })
 
 // Get Messages of a specific city
 // GET /message/city/:city
-app.get('/message/city/:city', (req, res) => {
+app.get('/message/city/:city', authenticate, (req, res) => {
     const cityToGet = req.params.city
 
     // check mongoose connection established.
@@ -394,16 +404,51 @@ app.get('/message/city/:city', (req, res) => {
         return;
     }
 
-    // Get all messages of a city
-    const query = {city: cityToGet}
-    Message.find(query).then(result => {
-        if (!result) {
-            res.status(404).send("No Messages Found");
+    if (req.isAnon) {
+        // Get all messages of a city
+        const query = {city: cityToGet}
+        Message.find(query).then(result => {
+            if (!result) {
+                return Promise.reject("No Messages Found");
+            } else {
+                return res.json();
+            }
+        }).then(json => {
+            const publicMessages = []
+            json.forEach(message => {
+                fetch('/users/' + message.author).then(result => {
+                    if (!result) {
+                        return Promise.reject("User not found");
+                    } else {
+                        if (result.user.public) {
+                            publicMessages.push(message)
+                            return ;
+                        } else {
+                            return ;
+                        }
+                    }
+                }).catch((err) => {
+                    res.status(404).send(err)
+                })
+            });
+        }).then(newMessages => {
+            res.send(newMessages);
+        })
+        .catch((err) => {
+            res.status(404).send(err);
             return ;
-        } else {
-            res.send(result);
-        }
-    })
+        })
+    } else {
+        const query = {city: cityToGet}
+        Message.find(query).then(result => {
+            if (!result) {
+                res.status(404).send("No Messages Found");
+                return ;
+            } else {
+                res.send(result);
+            }
+        })
+    }
 })
 
 // Create a Message
@@ -428,12 +473,6 @@ app.post('/message', authenticate, (req, res) => {
         return;
     }
 
-    // Check if the current user is also the author
-    if (req.session.userId !== req.body.author) {
-        res.status(404).send("Bad Request")
-        return ;
-    }
-
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log("Issue with mongoose connection")
@@ -441,31 +480,38 @@ app.post('/message', authenticate, (req, res) => {
         return;
     }
 
-    User.findById(req.body.author).then(result => {
-        if (!result) {
-            res.status(404).send("No User Found");
+    if (req.isUser) {
+        // Check if the current user is also the author
+        if (req.session.userId !== req.body.author) {
+            res.status(404).send("Bad Request")
             return ;
-        } else {
-            // Make the Message
-            const newMessage = new Message({
-                text: req.body.text,
-                date: req.body.date,
-                location: req.body.location,
-                city: req.body.city,
-                published: req.body.published,
-                author: req.body.author
-            })
-
-            // Save to database
-            newMessage.save().then((message) => {
-                res.send(message)
-            }).catch((error) => {
-                log(error)
-                res.status(400).send("Bad Request")
-                return;
-            })
         }
-    })
+        User.findById(req.body.author).then(result => {
+            if (!result) {
+                res.status(404).send("No User Found");
+                return ;
+            } else {
+                // Make the Message
+                const newMessage = new Message({
+                    text: req.body.text,
+                    date: req.body.date,
+                    location: req.body.location,
+                    city: req.body.city,
+                    published: req.body.published,
+                    author: req.body.author
+                })
+    
+                // Save to database
+                newMessage.save().then((message) => {
+                    res.send(message)
+                }).catch((error) => {
+                    log(error)
+                    res.status(400).send("Bad Request")
+                    return;
+                })
+            }
+        })
+    }
 })
 
 // Patch Message
@@ -493,28 +539,30 @@ app.patch('/message/:id', authenticate, (req, res) => {
         return;
     }
 
-    // Get the fields that need to be updated
-    const fieldsToUpdate = {}
-    req.body.map((change) => {
-        const propertyToChange = change.path.substr(1)
-        fieldsToUpdate[propertyToChange] = change.value
-    })
+    if (req.isAdmin) {
+        // Get the fields that need to be updated
+        const fieldsToUpdate = {}
+        req.body.map((change) => {
+            const propertyToChange = change.path.substr(1)
+            fieldsToUpdate[propertyToChange] = change.value
+        })
 
-    Message.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
-        if (err) {
-            res.status(500).send("Internal Server Error")
-            return ;
-        }
-        if (!doc) {
-            res.status(404).send("Resource Not Found.")
-            return ;
-        }
-        else {
-            res.send(doc);
-        }
-    }).catch((error) => {
-        res.status(500).send("Internal Server Error.")
-    })
+        Message.findByIdAndUpdate(id, fieldsToUpdate, {new: true}, function(err, doc) {
+            if (err) {
+                res.status(500).send("Internal Server Error")
+                return ;
+            }
+            if (!doc) {
+                res.status(404).send("Resource Not Found.")
+                return ;
+            }
+            else {
+                res.send(doc);
+            }
+        }).catch((error) => {
+            res.status(500).send("Internal Server Error.")
+        })
+    }
 })
 
 // Delete Message
@@ -540,21 +588,23 @@ app.delete('/message/:id', authenticate, (req, res) => {
        return;
    }
 
-   Message.findByIdAndDelete(id, function(err, doc) {
-       if (err) {
-           res.status(500).send("Internal Server Error")
-           return ;
-       }
-       if (!doc) {
-           res.status(404).send("Resource Not Found.")
-           return ;
-       }
-       else {
-           res.send(doc);
-       }
-   }).catch((error) => {
-       res.status(500).send("Internal Server Error.")
-   })
+   if (req.isUser || req.isAdmin) {
+    Message.findByIdAndDelete(id, function(err, doc) {
+        if (err) {
+            res.status(500).send("Internal Server Error")
+            return ;
+        }
+        if (!doc) {
+            res.status(404).send("Resource Not Found.")
+            return ;
+        }
+        else {
+            res.send(doc);
+        }
+    }).catch((error) => {
+        res.status(500).send("Internal Server Error.")
+    })
+   }
 })
 
 /* Admin Routes */
