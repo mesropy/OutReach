@@ -118,7 +118,9 @@ class User extends React.Component {
         return (
             <div>
                 <Topbar
-                    username={this.state.user.username} />
+                    username={this.state.user.username}
+                    city={this.state.user.city}
+                    age={this.state.user.age} />
                 <Navbar
                     handleMessages={this.handleMessages}
                     handleSettings={this.handleSettings}
