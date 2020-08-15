@@ -247,64 +247,6 @@ app.delete('/user/:id', authenticate, (req, res) => {
    })
 })
 
-// Get User's city by the user's ID
-// GET /users/:id/city
-app.get('/users/:id/city', (req, res) => {
-    const id = req.params.id
-
-    // Check if ID is valid
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
-
-    // check mongoose connection established.
-    if (mongoose.connection.readyState != 1) {
-        log("Issue with mongoose connection")
-        res.status(500).send("Internal Server Error")
-        return;
-    }
-
-    User.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No User Found");
-            return ;
-        } else {
-            res.send(result.city);
-            return ;
-        }
-    })
-})
-
-// Get User by the username
-// GET /users/:username
-app.get('/users/:username', (req, res) => {
-    const id = req.params.id
-
-    // Check if ID is valid
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
-
-    // check mongoose connection established.
-    if (mongoose.connection.readyState != 1) {
-        log("Issue with mongoose connection")
-        res.status(500).send("Internal Server Error")
-        return;
-    }
-
-    User.findById(id).then(result => {
-        if (!result) {
-            res.status(404).send("No User Found");
-            return ;
-        } else {
-            res.send(result.city);
-            return ;
-        }
-    })
-})
-
 // Patch User
 /*
 Request Body Expects:
