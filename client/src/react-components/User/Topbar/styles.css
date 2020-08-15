@@ -3,8 +3,13 @@
     position: fixed;
 }
 
-#toolbar_div {
-    background-color: rgb(251,248,242);
+#pfp {
+  height: 75px;
+}
+
+#toolbar_div_user {
+    background-color: #EDF5F5;
+    min-height: 90px;
 }
 
 #back_div {
