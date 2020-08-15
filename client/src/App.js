@@ -69,7 +69,6 @@ class App extends React.Component {
                                 currentUser={this.state.currentUser}
                                 handleLogout={this.handleLogout.bind(this)}
                               />)}/>
-              {/* TODO: create these city routes based on the list of cities state */}
               <Route exact path='/Toronto' render={() =>
                               (<City
                                 currentUser={this.state.currentUser}

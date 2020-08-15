@@ -2,8 +2,6 @@ import dateAndTime from 'date-and-time'
 import meridiem from 'date-and-time/plugin/meridiem'
 dateAndTime.plugin(meridiem)
 
-// TODO: fix bug, content, pinLeftPos, pinDownPos, and locationName
-// don't update in timeline (are always saved as empty strings or null)
 export const addMessage = (timeline, username, userId, cityName)  => {
     const now = new Date();
     const time = dateAndTime.format(now, 'h:mm a')
