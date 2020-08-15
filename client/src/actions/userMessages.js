@@ -73,21 +73,82 @@ export function removeUserMessage(message) {
     });
 }
 
+
+// Change User's username
+export function changeUsername(user, newUsername, global) {
+    console.log(newUsername)
+    if (checkUsername(newUsername)) {
+        console.log("Username must match description.")
+        return false;
+    }
+    if (checkDuplicateName.bind(global, newUsername)()) {
+        console.log("Username already taken.")
+        return false;
+    }
+
+    // Update Database
+    const url = '/user/' + user._id;
+    // Data sent to the request
+    const data = [
+        {"op": "replace", "path": "/username", "value": newUsername}
+    ]
+
+    // Create request constructor with parameters
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then((res) => {
+        if (res.status !== 200) {
+            console.log("Couldn't update the database.")
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+
+    user.username = newUsername
+    // Update State
+    this.setState({
+        user: user
+    })
+    return true;
+}
+
+// Check if username is valid. Return true if not valid
+function checkUsername(newUsername) {
+    return !(newUsername.length >= 6 && /^[0-9a-zA-Z]+$/.test(newUsername))
+}
+
+// Check if the username already exists in the database
+function checkDuplicateName(newUsername) {
+  const users = this.state.users;
+  let duplicate = false;
+  users.forEach(user => {
+    if (user.username === newUsername) {
+        duplicate = true;
+    }
+  });
+  return duplicate;
+}
+
 // Change User Privacy Option
 export function handlePublic(user) {
 
     const newValue = !user.public
 
     // Update Database
-    // Activate/Deactivate the main poll
-    let url = '/user/' + user._id;
+    const url = '/user/' + user._id;
     // Data sent to the request
-    let data = [
+    const data = [
         {"op": "replace", "path": "/public", "value": newValue}
     ]
 
     // Create request constructor with parameters
-    let request = new Request(url, {
+    const request = new Request(url, {
         method: "PATCH",
         body: JSON.stringify(data),
         headers: {

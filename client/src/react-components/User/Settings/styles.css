@@ -19,3 +19,15 @@
   margin-left: 250px;
   margin-top: 120px;
 }
+
+
+#user_settings button:hover,
+#user_settings button:focus {
+    outline: none;
+}
+
+#user_settings button {
+  outline: none;
+  background-color: inherit;
+  border: none;
+}

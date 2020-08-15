@@ -1,24 +1,40 @@
 import React from "react";
 import './styles.css';
-import {handlePublic} from '../../../actions/userMessages'
+import {handlePublic, changeUsername} from '../../../actions/userMessages'
 import Table from '@material-ui/core/Table';
 import TableBody from "@material-ui/core/TableBody";
-import { TableRow, TableCell, FormControlLabel } from "@material-ui/core";
-import Switch from '@material-ui/core/Switch';
+import { TableRow, TableCell, FormControlLabel, Switch, TextField } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 class Settings extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            checked: false
+            editUsername: false,
+            newUsername: "",
+            editDOB: false
         };
-        this.handleEdit = this.handleEdit.bind(this);
+        this.handleEditUsername = this.handleEditUsername.bind(this);
+        this.handleInput = this.handleInput.bind(this)
     }
 
-    handleEdit() {
-        return;
+    handleEditUsername() {
+        const toggle = this.state.editUsername;
+        this.setState({
+            editUsername: !toggle,
+            editDOB: false
+        })
     }
+
+    handleInput = event => {
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+            [name]: value
+        });
+    };
 
     render() {
         return (
@@ -27,15 +43,36 @@ class Settings extends React.Component {
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                Username
+                                Username:
                             </TableCell>
-                            <TableCell>
-                                {this.props.userPage.username}
-                            </TableCell>
+                                {this.state.editUsername ?
+                                <TableCell>
+                                    <TextField
+                                        placeholder="New Username"
+                                        variant="outlined"
+                                        name="newUsername"
+                                        onChange={this.handleInput}
+                                    /> 
+                                    <button id="confirmUsername" className="text-center" onClick={() => {
+                                        if (changeUsername.bind(this.props.user, this.props.userPage, this.state.newUsername, this.props.user.props.global)()) {
+                                            this.handleEditUsername()
+                                        }
+                                    }}>
+                                        <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
+                                    </button>
+                                </TableCell>
+                                : 
+                                <TableCell>
+                                    {this.props.userPage.username}
+                                    <button id="editUsername" className="text-center" onClick={this.handleEditUsername}>
+                                        <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
+                                    </button>
+                                </TableCell>
+                                }
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                Date of Birth
+                                Date of Birth:
                             </TableCell>
                             <TableCell>
                                 {this.props.userPage.dob}
@@ -43,7 +80,7 @@ class Settings extends React.Component {
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                Phone Number
+                                Phone Number:
                             </TableCell>
                             <TableCell>
                                 {this.props.userPage.phone}
