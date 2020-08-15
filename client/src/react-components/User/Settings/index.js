@@ -166,7 +166,7 @@ class Settings extends React.Component {
                             />} label={this.props.userPage.public ? "Public" : "Private"}/>
                         </TableRow>
                         <TableRow>
-                            (Message explaining what this means)
+                            Toggle Public if you want your profile page to be visible by others.
                         </TableRow>
                     </TableBody>
                 </Table>
