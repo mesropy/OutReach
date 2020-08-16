@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css'
 import {changePassword} from '../../../../actions/userSettings'
-import { TextField, } from "@material-ui/core";
+import { Backdrop, TextField } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
@@ -42,6 +42,8 @@ class ChangePassword extends React.Component {
             error_class = "hide"
         }
         return (
+          <div>
+            <Backdrop open={true} onClick={parentState.handleChangePass}></Backdrop>
             <div id="pass_div">
                 <div id="icon_div" className="text-right">
                     <button onClick={parentState.handleChangePass}><FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon></button>
@@ -54,7 +56,7 @@ class ChangePassword extends React.Component {
                         variant="outlined"
                         name="currentPassword"
                         onChange={this.handleInput}
-                    /> 
+                    />
                     <br/><br/>
                     <TextField
                         className={pass_class}
@@ -62,7 +64,7 @@ class ChangePassword extends React.Component {
                         variant="outlined"
                         name="newPassword"
                         onChange={this.handleInput}
-                    /> 
+                    />
                     <br/>
                     <TextField
                         className={pass_class}
@@ -86,6 +88,7 @@ class ChangePassword extends React.Component {
                         <h5 className="error_message">{this.state.errorMessage}</h5>
                     </div>
                 </form>
+            </div>
             </div>
         )
     }

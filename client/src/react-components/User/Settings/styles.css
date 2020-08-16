@@ -15,6 +15,11 @@
     padding: 0px;
 }
 
+
+#user_settings tbody tr:nth-child(odd){
+    background-color: rgb(247,250,250);
+}
+
 #user_settings {
   margin-left: 250px;
   margin-top: 120px;
