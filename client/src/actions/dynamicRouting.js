@@ -30,6 +30,6 @@ export function renderUsers(routerProps) {
                                     userPage={foundUser}
                                     currentUser={this.state.currentUser}
                                     currentUserId={this.state.currentUserId}
-                                    handleLogout={this.handleLogout.bind(this)} /> : null
+                                    handleLogout={this.handleLogout.bind(this)} /> : <div>Invalid Page</div>
     return component
 }
