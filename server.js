@@ -344,7 +344,6 @@ app.get('/message', authenticate, (req, res) => {
     } else {
         res.status(401).send("Unauthorized")
     }
-    
 })
 
 // Get Messages from a specific User
@@ -366,21 +365,19 @@ app.get('/message/:id', authenticate, (req, res) => {
         return;
     }
 
-    if (req.isAdmin || (req.isUser && (req.session.userId === id))) {
-        // Get all messages from the User
-        const query = {author: id}
-        Message.find(query).then(result => {
-            if (!result) {
-                res.status(404).send("No Messages Found");
-                return ;
-            } else {
-                res.send(result);
-            }
-        })
-    }
-    else {
-        res.status(401).send("Unauthorized")
-    }
+    // Get all messages from the User
+    const query = {author: id}
+    Message.find(query).then(result => {
+        if (!result) {
+            res.status(404).send("No Messages Found");
+            return ;
+        } else {
+            res.send(result);
+        }
+    })
+    .catch(error =>{
+      log(error)
+    })
 })
 
 // Get Messages of a specific city
@@ -455,7 +452,7 @@ app.post('/message', authenticate, (req, res) => {
                     published: req.body.published,
                     author: req.body.author
                 })
-    
+
                 // Save to database
                 newMessage.save().then((message) => {
                     res.send(message)
@@ -799,7 +796,7 @@ app.delete('/poll/:id', authenticate, (req, res) => {
    } else {
        res.status(401).send("Unauthorized")
    }
-   
+
 })
 
 /* End Database routes */

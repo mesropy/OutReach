@@ -147,9 +147,51 @@ You can also activate and deactivate polls using the "Edit" button. Only one pol
         {"op": "replace", "path": "/dob", "value": <The new date of birth}
     ]
   * Returned JSON: The changed User object
+* POST /user
+  * Creates a User and saves to the database
+  * Used in the Registration Page
+  * Request Body Expects:
+    {
+       "username": <Username>
+       "password": <Plain Password>
+       "dob": <YYYY-MM-DD>
+       "phone": <Number>
+       "city": <The city of the user>
+    }
+  * Returned JSON: The newly created User object
 
 ##### Message Routes
-* 
+* GET /message
+  * Returns a list of all of the messages in the database
+  * Used in the Admin Page, and in App.js to create dynamic routing
+* GET /message/:id
+  * Returns the message associated with the user id
+  * Used in the User Page
+* GET /message/city/:city
+  * Returns a list of messages of the specified city
+  * Used in the City Page
+* POST /message
+  * Creates a Message and saves to the database
+  * Used in the City and User Pages
+  * Request Body Expects:
+    {
+        text: <Text Containing the message>,
+        date: <Date of Posting as YYYY-MM-DD HH:MM>,
+        location: <Coordinates of Message as X and Y values and Name>,
+        city: <Name of city the message is in>,
+        published: <False if Pending, True if Published>,
+        author: <User ID of User this message belongs to>
+    }
+  * Returned JSON: The newly created Message object
+* PATCH /message/:id
+  * Changes certain properties of the Message associated with the ID
+  * Used in the User Page
+  * Request Body Expects:
+    [
+       {"op": "replace", "path": "/published", "value": <true or false>},
+    ]
+  * Returned JSON: The changed Message object
+
 ## Front-end Libraries
 
 This application was built using the React framework.
