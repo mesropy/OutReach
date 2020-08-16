@@ -80,7 +80,7 @@ class Settings extends React.Component {
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                Username:
+                                <span className="settings-label">Username</span>
                             </TableCell>
                                 {this.state.editUsername ?
                                 <TableCell>
@@ -89,7 +89,7 @@ class Settings extends React.Component {
                                         variant="outlined"
                                         name="newUsername"
                                         onChange={this.handleInput}
-                                    /> 
+                                    />
                                     <button id="confirmUsername" className="text-center" onClick={() => {
                                         if (changeUsername.bind(this.props.user, this.props.userPage, this.state.newUsername, this.props.user.props.global)()) {
                                             this.handleEditUsername()
@@ -98,7 +98,7 @@ class Settings extends React.Component {
                                         <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
                                     </button>
                                 </TableCell>
-                                : 
+                                :
                                 <TableCell>
                                     {this.props.userPage.username}
                                     <button id="editUsername" className="text-center" onClick={this.handleEditUsername}>
@@ -109,7 +109,7 @@ class Settings extends React.Component {
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                Date of Birth:
+                                <span className="settings-label">Date of Birth</span>
                             </TableCell>
                                 {this.state.editDOB ?
                                 <TableCell>
@@ -133,7 +133,7 @@ class Settings extends React.Component {
                                     }}>
                                         <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon>
                                     </button>
-                                </TableCell> : 
+                                </TableCell> :
                                 <TableCell>
                                     {this.props.userPage.dob}
                                     <button id="editDOB" className="text-center" onClick={this.handleEditDOB}>
@@ -144,7 +144,7 @@ class Settings extends React.Component {
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                Phone Number:
+                                <span className="settings-label">Phone Number</span>
                             </TableCell>
                             <TableCell>
                                 {this.props.userPage.phone}
@@ -152,7 +152,7 @@ class Settings extends React.Component {
                         </TableRow>
                         <TableRow>
                             <button id="changePasswordButton" className="text-center" onClick={this.handleChangePass}>
-                                Change Password
+                                <span className="settings-label">Change Password</span>
                             </button>
                         </TableRow>
                         <TableRow>
@@ -163,7 +163,7 @@ class Settings extends React.Component {
                                 name={this.props.userPage.username}
                                 color="primary"
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />} label={this.props.userPage.public ? "Public" : "Private"}/>
+                            />} label={this.props.userPage.public ? "Public" : "Private"}className="settings-label"/>
                         </TableRow>
                         <TableRow>
                             Toggle Public if you want your profile page to be visible by others.
