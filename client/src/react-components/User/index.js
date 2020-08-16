@@ -169,6 +169,19 @@ class User extends React.Component {
         else {
             userLoggedIn = true
         }
+
+        let settingsAllow;
+        // If anonymous user is visiting
+        if (!currentUser) {
+            settingsAllow = false;
+        }
+        else if (currentUser !== userPage.username) {
+            settingsAllow = false;
+        }
+        // If Admin or Owner is logged in
+        else {
+            settingsAllow = true
+        }
         const messagesComponent = this.state.messages ?  <UserMessages user={this} userPage={this.state.user} userLoggedIn={userLoggedIn}/> : null
         return (
             <div>
@@ -181,7 +194,7 @@ class User extends React.Component {
                     handleSettings={this.handleSettings}
                     handleLogout={this.handleLogout}
                     handleBack={this.handleBack}
-                    userLoggedIn={userLoggedIn}
+                    settingsAllow={settingsAllow}
                 />
                 {messagesComponent}
                 {settingsComponent}
