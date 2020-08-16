@@ -63,7 +63,9 @@ class Timeline extends React.Component {
 
   render(){
     const { city, currentUser, currentUserId } = this.props;
-
+    const publicMessages = this.state.messages.filter((message) => {
+      return message.published ? message : null
+    })
     return(
       <div id="timeline">
         <MessageAdder
@@ -78,7 +80,7 @@ class Timeline extends React.Component {
             removeContent={ this.removeContent }
             removeLocation={ this.removeLocation }
         />
-        <MessageList messages={this.state.messages} />
+        <MessageList messages={publicMessages} />
       </div>
     );
   }
