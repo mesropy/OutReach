@@ -21,8 +21,9 @@
 }
 
 #user_settings {
-  margin-left: 250px;
-  margin-top: 120px;
+  margin: auto;
+  margin-top: 140px;
+  width: 800px;
 }
 
 
@@ -37,6 +38,16 @@
   border: none;
 }
 
+.settings-label {
+  color: #147d7c;
+  font-weight: bolder;
+}
+
 .MuiDialog-root .MuiBackdrop-root {
   z-index: 0;
+}
+
+#changePasswordButton {
+  text-decoration: underline;
+  margin: 10px;
 }
