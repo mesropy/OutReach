@@ -169,20 +169,16 @@ app.get('/users/:id', authenticate, (req, res) => {
         return;
     }
 
-    if (req.isAdmin || req.isUser) {
-        User.findById(id).then(result => {
-            if (!result) {
-                res.status(404).send("No User Found");
-                return ;
-            } else {
-                const resultToSend = {user: result}
-                res.send(resultToSend);
-                return ;
-            }
-        })
-    } else {
-        res.status(401).send("Unauthorized")
-    }
+    User.findById(id).then(result => {
+        if (!result) {
+            res.status(404).send("No User Found");
+            return ;
+        } else {
+            const resultToSend = {user: result}
+            res.send(resultToSend);
+            return ;
+        }
+    })
 })
 // Create User
 /*
