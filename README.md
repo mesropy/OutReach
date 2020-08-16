@@ -147,18 +147,6 @@ You can also activate and deactivate polls using the "Edit" button. Only one pol
         {"op": "replace", "path": "/dob", "value": <The new date of birth}
     ]
   * Returned JSON: The changed User object
-* POST /user
-  * Creates a User and saves to the database
-  * Used in the Registration Page
-  * Request Body Expects:
-    {
-       "username": <Username>
-       "password": <Plain Password>
-       "dob": <YYYY-MM-DD>
-       "phone": <Number>
-       "city": <The city of the user>
-    }
-  * Returned JSON: The newly created User object
 
 ##### Message Routes
 * GET /message
@@ -191,6 +179,45 @@ You can also activate and deactivate polls using the "Edit" button. Only one pol
        {"op": "replace", "path": "/published", "value": <true or false>},
     ]
   * Returned JSON: The changed Message object
+* DELETE /message/:id
+  * Deletes the Message associated with the ID
+  * Used in the Admin and User Pages
+  * Returned JSON: The deleted Message object
+* POST /admin
+  * Creates an admin and saves to the database
+  * Request Body Expects:
+    {
+       "username": <Username>
+       "password": <Plain Password>
+    }
+  * Returned JSON: The created Admin object
+
+##### Poll Routes
+* POST /poll
+  * Creates a poll and saves it to the database
+  * Used in the Admin Page
+  * Request Body Expects:
+    {
+        "question": <Poll Question Name>
+        "answers": <List of options as Strings>
+        "active": <true or false>
+    }
+   * Returned JSON: The added Poll object
+* PATCH /poll/:id
+ * Changes certain properties of the poll with the associated ID
+ * Used in the Admin Page
+ * Request Body Expects:
+   [
+      {"op": "replace", "path": "/question", "value": newQuestion},
+      {"op": "replace", "path": "/answers", "value": newAnswers},
+      {"op": "replace", "path": "/active", "value": <true or false>}
+   ]
+  * Returned JSON: The changed Poll object
+ * DELETE /poll/:id
+  * Deletes the Poll associated with the ID
+  * Used in the Admin Pages
+  * Returned JSON: The deleted Poll object
+ 
 
 ## Front-end Libraries
 
