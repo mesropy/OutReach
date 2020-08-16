@@ -3,7 +3,6 @@ import React from "react";
 import MessageAdder from "./MessageAdder";
 import MessageList from "./MessageList";
 import { addMessage } from "./../../../actions/addMessage";
-import { getCityMessages } from "./../../../actions/cityMessages";
 
 import "./styles.css";
 
@@ -18,7 +17,7 @@ class Timeline extends React.Component {
           locationName: "",
           pinLeftPos: "",
           pinDownPos: "",
-          messages: []
+          messages: this.props.messages
       }
   }
 
@@ -64,10 +63,6 @@ class Timeline extends React.Component {
 
   render(){
     const { city, currentUser, currentUserId } = this.props;
-
-    if (!this.state.loadedMessages) {
-        getCityMessages(city, this)
-    }
 
     return(
       <div id="timeline">

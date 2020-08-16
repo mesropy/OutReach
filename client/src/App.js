@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {getUsers, renderUsers} from './actions/dynamicRouting'
+import {getCityMessages} from './actions/cityMessages'
 import {checkAdmin} from './actions/checkLogin'
 import Home from "./react-components/Home";
 import WorldMap from './react-components/WorldMap';
@@ -31,12 +32,18 @@ class App extends React.Component {
     super(props);
     this.state = {
       users: [],
+      ParisMessages: [],
+      MontréalMessages: [],
+      TorontoMessages: [],
       currentUser: null,
       currentUserId: null,
       cities: ["Toronto", "Paris", "Montréal"]
     }
     getUsers.bind(this)();
     readCookie(this.handleLogin.bind(this))
+    this.state.cities.forEach(city => {
+      getCityMessages(city, this)
+    });
   }
 
   handleLogout() {
@@ -71,6 +78,7 @@ class App extends React.Component {
                               />)}/>
               <Route exact path='/Toronto' render={() =>
                               (<City
+                                messages={this.state.TorontoMessages}
                                 currentUser={this.state.currentUser}
                                 currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}
@@ -78,6 +86,7 @@ class App extends React.Component {
                               />)}/>
               <Route exact path='/Paris' render={() =>
                               (<City
+                                messages={this.state.ParisMessages}
                                 currentUser={this.state.currentUser}
                                 currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}
@@ -85,6 +94,7 @@ class App extends React.Component {
                               />)}/>
               <Route exact path='/Montréal' render={() =>
                               (<City
+                                messages={this.state.MontréalMessages}
                                 currentUser={this.state.currentUser}
                                 currentUserId={this.state.currentUserId}
                                 handleLogout={this.handleLogout.bind(this)}

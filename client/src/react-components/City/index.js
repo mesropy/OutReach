@@ -7,7 +7,7 @@ import Timeline from "./Timeline";
 
 class City extends React.Component {
     render() {
-      const { city } = this.props;
+      const { city, messages} = this.props;
 
         return (
             <div>
@@ -18,6 +18,7 @@ class City extends React.Component {
                     />
                 <SidePanel city={ city } />
                 <Timeline
+                    messages={messages}
                     city={ city }
                     currentUser={this.props.currentUser}
                     currentUserId={this.props.currentUserId}/>
