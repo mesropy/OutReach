@@ -137,23 +137,18 @@ app.get('/users', authenticate, (req, res) => {
         return;
     }
 
-    if (req.isAdmin) {
-        // Get all users
-        User.find().then((user) => {
-            if (user.length === 0) {
-                res.status(404).send("Resource Not Found.")
-            }
-            else {
-                res.send(user)
-            }
-        }).catch((error) => {
-            log(error)
-            res.status(500).send("Internal Server Error.")
-        })
-    } else {
-        res.status(401).send("Unauthorized")
-    }
-    
+    // Get all users
+    User.find().then((user) => {
+        if (user.length === 0) {
+            res.status(404).send("Resource Not Found.")
+        }
+        else {
+            res.send(user)
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send("Internal Server Error.")
+    })
 })
 
 // Get User by ID
@@ -404,51 +399,15 @@ app.get('/message/city/:city', authenticate, (req, res) => {
         return;
     }
 
-    if (req.isAnon) {
-        // Get all messages of a city
-        const query = {city: cityToGet}
-        Message.find(query).then(result => {
-            if (!result) {
-                return Promise.reject("No Messages Found");
-            } else {
-                return res.json();
-            }
-        }).then(json => {
-            const publicMessages = []
-            json.forEach(message => {
-                fetch('/users/' + message.author).then(result => {
-                    if (!result) {
-                        return Promise.reject("User not found");
-                    } else {
-                        if (result.user.public) {
-                            publicMessages.push(message)
-                            return ;
-                        } else {
-                            return ;
-                        }
-                    }
-                }).catch((err) => {
-                    res.status(404).send(err)
-                })
-            });
-        }).then(newMessages => {
-            res.send(newMessages);
-        })
-        .catch((err) => {
-            res.status(404).send(err);
+    const query = {city: cityToGet}
+    Message.find(query).then(result => {
+        if (!result) {
+            res.status(404).send("No Messages Found");
             return ;
-        })
-    } else {
-        const query = {city: cityToGet}
-        Message.find(query).then(result => {
-            if (!result) {
-                res.status(404).send("No Messages Found");
-                return ;
-            } else {
-                res.send(result);
-            }
-        })
-    }
+        } else {
+            res.send(result);
+        }
+    })
 })
 
 // Create a Message
