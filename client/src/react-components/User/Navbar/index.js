@@ -43,7 +43,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        const { handleMessages, handleLogout, handleBack, handleSettings, userLoggedIn } = this.props;
+        const { handleMessages, handleLogout, handleBack, handleSettings, settingsAllow } = this.props;
 
         return (
             <Nav className="admin_nav_bar flex-column justify-content-center">
@@ -61,7 +61,7 @@ class Navbar extends React.Component {
                         <h6>Messages</h6>
                     </button>
                 </Nav.Item>
-                {userLoggedIn ? <div><Nav.Item className={this.state.messagesClass}>
+                {settingsAllow ? <div><Nav.Item className={this.state.messagesClass}>
                     <button onClick={() => { handleSettings(); this.changeMessagesClass() }}>
                         <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
                         <h6>Settings</h6>
