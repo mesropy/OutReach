@@ -204,9 +204,9 @@ You can also activate and deactivate polls using the "Edit" button. Only one pol
     }
    * Returned JSON: The added Poll object
 * PATCH /poll/:id
- * Changes certain properties of the poll with the associated ID
- * Used in the Admin Page
- * Request Body Expects:
+  * Changes certain properties of the poll with the associated ID
+  * Used in the Admin Page
+  * Request Body Expects:
    [
       {"op": "replace", "path": "/question", "value": newQuestion},
       {"op": "replace", "path": "/answers", "value": newAnswers},
@@ -214,9 +214,9 @@ You can also activate and deactivate polls using the "Edit" button. Only one pol
    ]
   * Returned JSON: The changed Poll object
  * DELETE /poll/:id
-  * Deletes the Poll associated with the ID
-  * Used in the Admin Pages
-  * Returned JSON: The deleted Poll object
+   * Deletes the Poll associated with the ID
+   * Used in the Admin Pages
+   * Returned JSON: The deleted Poll object
  
 
 ## Front-end Libraries
